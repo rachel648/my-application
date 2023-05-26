@@ -26,12 +26,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.57"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="93dp" />
+        tools:layout_editor_absoluteY="63dp" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="87dp"
         android:layout_height="34dp"
+        android:hint="username"
         android:text="login"
         android:textColor="@color/white"
         android:textSize="24sp"
@@ -45,6 +46,7 @@
         android:id="@+id/editTextTextPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/input_bg"
         android:ems="10"
         android:inputType="textPassword"
         android:text="password"
@@ -85,13 +87,21 @@
 
     <EditText
         android:id="@+id/editTextTextPersonName2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="205dp"
+        android:layout_height="43dp"
+        android:background="@drawable/input_bg"
+        android:drawableLeft="@drawable/input_bg"
         android:ems="10"
+        android:hint="username"
         android:inputType="textPersonName"
-        android:text="Name"
-        android:textColor="@color/white"
+        android:paddingLeft="20dp"
+        android:paddingTop="10dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp"
+        android:textColor="@color/design_default_color_surface"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="105dp"
-        tools:layout_editor_absoluteY="220dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.616"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="242dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
