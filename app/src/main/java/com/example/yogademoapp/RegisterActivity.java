@@ -40,6 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String Password = edPassword.getText().toString();
                 String email = edEmail.getText().toString();
                 String ConfirmPassword = edConfirmPassword.getText().toString();
+                Database db = new Database(getApplicationContext(),"yogademo",null ,1);
 
                 if (Username.length() == 0 || email.length() == 0 || Password.length() == 0 || ConfirmPassword.length() == 0) {
                     Toast.makeText(getApplicationContext(), ("Please fill all the details"), Toast.LENGTH_SHORT).show();
@@ -47,6 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     if (Password.compareTo(ConfirmPassword) == 0) {
                         if (isValid(Password)) {    /*if both passwords are same then check whether it's a valid password containing all specifications*/
+
                       Toast.makeText(getApplicationContext(),"Record Inserted",Toast.LENGTH_SHORT).show();
                       startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         }
@@ -94,6 +96,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
             if(f1==1 && f2==1 && f3==1)         /*flags*/
                 return true;
+
                 return false;
                 }
             }
