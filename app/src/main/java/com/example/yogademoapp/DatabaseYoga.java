@@ -13,7 +13,7 @@ public class DatabaseYoga extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String qry1 ="create table users"(username text,email text,password text)";
+        String qry1 ="create table users (username text,email text,password text)";
                 sqLiteDatabase.execSQL(qry1);
 
     }
