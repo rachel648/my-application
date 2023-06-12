@@ -48,7 +48,7 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     if (Password.compareTo(ConfirmPassword) == 0) {
                         if (isValid(Password)) {    /*if both passwords are same then check whether it's a valid password containing all specifications*/
-
+                 db.registar(Username,email,Password);
                       Toast.makeText(getApplicationContext(),"Record Inserted",Toast.LENGTH_SHORT).show();
                       startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
                         }
