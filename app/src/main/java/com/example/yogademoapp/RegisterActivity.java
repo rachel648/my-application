@@ -40,7 +40,7 @@ public class RegisterActivity extends AppCompatActivity {
                 String Password = edPassword.getText().toString();
                 String email = edEmail.getText().toString();
                 String ConfirmPassword = edConfirmPassword.getText().toString();
-                Database db = new Database(getApplicationContext(),"yogademo",null ,1);
+                Database db = new Database(getApplicationContext(),"YogaDemo",null ,1);
 
                 if (Username.length() == 0 || email.length() == 0 || Password.length() == 0 || ConfirmPassword.length() == 0) {
                     Toast.makeText(getApplicationContext(), ("Please fill all the details"), Toast.LENGTH_SHORT).show();
