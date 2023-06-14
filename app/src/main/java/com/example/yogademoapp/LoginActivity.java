@@ -15,15 +15,19 @@ public class LoginActivity extends AppCompatActivity {
     Button btn;
     TextView tv;
 
+    /*  The following are methods:
+        onCreate(Bundle savedInstanceState)
+        onClick(View view) (anonymous inner class inside onCreate)
+        onClick(View view) (anonymous inner class inside tv.setOnClickListener)*/
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //objects creation
-        edUsername = findViewById(R.id.RegistarPassword);
+        edUsername = findViewById(R.id.RegistarPassword);/* edUsername,edPassword,btn,tv is a Member variable i.e the data defined by the class*/
         edPassword = findViewById(R.id.RegistarPassword);
-        btn = findViewById(R.id.buttonLogin);
-        tv= findViewById(R.id.textViewExistingUser);
+        btn = findViewById(R.id.buttonLogin); /*Btn for button*/
+        tv= findViewById(R.id.textViewExistingUser);/*tv for text view*/
         //classes creation
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -34,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
                 if (Username.length()==0 || Password.length()==0) {
                     Toast.makeText(getApplicationContext(),("Please fill all the details"),Toast.LENGTH_SHORT).show();
                 }else {
+
+
                     Toast.makeText(getApplicationContext(), ("Login Success"), Toast.LENGTH_SHORT).show();
                 }
             }
