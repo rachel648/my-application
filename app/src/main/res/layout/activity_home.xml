@@ -28,10 +28,84 @@
 
         <androidx.cardview.widget.CardView
             android:id="@+id/Box"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="180dp"
+            android:layout_height="170dp"
             android:layout_row="0"
             android:layout_rowWeight="1"
+            android:layout_column="0"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            app:cardBackgroundColor="@color/teal_200"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="175dp"
+                android:layout_height="172dp"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="172dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/box"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Let_Us_Box"
+                        android:textAlignment="center"
+                        android:textColor="@color/purple_200"
+                        android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Cycle"
+            android:layout_width="180dp"
+            android:layout_height="170dp"
+            android:layout_row="0"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            app:cardBackgroundColor="@color/teal_200"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="172dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/cycle"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Let_Us_Cycle"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Cycle"
+            android:layout_width="180dp"
+            android:layout_height="170dp"
+            android:layout_row="1"
+            android:layout_rowWeight="0"
             android:layout_column="0"
             android:layout_columnWeight="1"
             android:layout_gravity="fill"
@@ -48,22 +122,57 @@
                 android:orientation="vertical">
 
                 <ImageView
+                    android:layout_width="172dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/eq"/>
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/box"/>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Let_Us_Box"
-                        android:textAlignment="center"
-                        android:textColor="@color/purple_200"
-                        android:textStyle="bold"/>
+                    android:text="Let_Us_Lift_Weights"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/Instructor"
+            android:layout_width="180dp"
+            android:layout_height="170dp"
+            android:layout_row="1"
+            android:layout_rowWeight="1"
+            android:layout_column="1"
+            android:layout_columnWeight="1"
+            android:layout_gravity="fill"
+            app:cardBackgroundColor="@color/teal_200"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|center_horizontal"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="172dp"
+                    android:layout_height="100dp"
+                    android:src="@drawable/intructor"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Get_An_Instructor"
+                    android:textAlignment="center"
+                    android:textColor="@color/purple_200"
+                    android:textStyle="bold"/>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
     </GridLayout>
-
-
-
-    </RelativeLayout>
+</RelativeLayout>
