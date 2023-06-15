@@ -21,7 +21,7 @@ public class HomeActivity extends AppCompatActivity {
         String username = sharedpreferences.getString("username","").toString();
         Toast.makeText(getApplicationContext(),"Welcome" +username, Toast.LENGTH_SHORT).show();
 
-        CardView exit = findViewById(R.id.Logout);
+        CardView exit = findViewById(R.id.Logout); //creation of an object
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -29,6 +29,13 @@ public class HomeActivity extends AppCompatActivity {
             editor.clear();
             editor.apply();
             startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+            }
+        });
+        CardView box = findViewById(R.id.Box); //creation of another object
+        box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this,BoxActivity.class));
             }
         });
 
