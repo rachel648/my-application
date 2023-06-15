@@ -235,7 +235,7 @@
                 <ImageView
                     android:layout_width="172dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/Logout"/>
+                    android:src="@drawable/log"/>
 
                 <TextView
                     android:layout_width="wrap_content"
