@@ -55,7 +55,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Let_Us_Box"
+                        android:text="Gymnastics"
                         android:textAlignment="center"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold"/>
@@ -92,7 +92,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Let_Us_Cycle"
+                    android:text="Cycling"
                     android:textAlignment="center"
                     android:textColor="@color/purple_200"
                     android:textStyle="bold"/>
@@ -175,7 +175,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/Hobby"
+            android:id="@+id/Aerobics"
             android:layout_width="180dp"
             android:layout_height="170dp"
             android:layout_row="2"
@@ -203,7 +203,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Find_Preferred_Workout"
+                    android:text="Aerobics"
                     android:textAlignment="center"
                     android:textColor="@color/purple_200"
                     android:textStyle="bold"/>
