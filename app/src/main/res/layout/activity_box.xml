@@ -45,7 +45,7 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/weight12"
+        android:id="@+id/cycle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="0"
@@ -68,12 +68,12 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="70dp"
-          android:src="@drawable/boxbackground2"/>
+          android:src="@drawable/cycle"/>
 
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="12kg"
+              android:text="Cycle_With_Us"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"/>
@@ -82,7 +82,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/weight13"
+        android:id="@+id/Box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="0"
@@ -105,12 +105,12 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/boxtwo"/>
+            android:src="@drawable/box"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="13kg"
+            android:text="Boxing_Training_Available"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"/>

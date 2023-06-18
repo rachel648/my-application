@@ -22,21 +22,21 @@ public class BoxActivity extends AppCompatActivity {
             }
         });
 
-        CardView weight12 = findViewById(R.id.weight12);
-        weight12.setOnClickListener(new View.OnClickListener() {
+        CardView cycle = findViewById(R.id.cycle);
+        cycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "weight12");
+                it.putExtra("title", "Cycle_With_Us");
                 startActivity(it);
             }
         });
-        CardView weight13 = findViewById(R.id.weight13);
-        weight13.setOnClickListener(new View.OnClickListener() {
+        CardView Box = findViewById(R.id.Box);
+        Box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "weight13");
+                it.putExtra("title", "Box_Training_Available");
                 startActivity(it);
             }
         });
