@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/boxbg"
+    android:background="@drawable/bike"
     tools:context=".BoxActivity">
   /* changed to relative layout because the weights are of different sizes. */
 
@@ -216,7 +216,7 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/boxfour"/>
+            android:src="@drawable/boxbackground"/>
 
         <TextView
             android:layout_width="wrap_content"

@@ -4,6 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/backone"
     tools:context=".GymDetailsActivity">
 
+    <TextView
+        android:id="@+id/GymDetailstitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24*FITNESS"
+        android:textColor="#color/purple_200"
+        android:textSize="34sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        android:layout_centerHorizontal="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.045"
+
+        />
+
+
+
+
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>
+
