@@ -13,7 +13,7 @@ public class BoxActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_box);
 
-        CardView exit =findViewById(R.id.Boxback);
+        CardView exit =findViewById(R.id.Boxback); //writinf functinally of back(boxback)
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
