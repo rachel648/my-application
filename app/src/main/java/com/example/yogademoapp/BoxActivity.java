@@ -56,9 +56,18 @@ public class BoxActivity extends AppCompatActivity {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
                 it.putExtra("title", "weight15");
                 startActivity(it);
-
-
             }
         });
+        CardView weight16 = findViewById(R.id.weight16);
+        weight16.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
+                it.putExtra("title", "weight16");
+                startActivity(it);
+            }
+        });
+
+
     }
 }
