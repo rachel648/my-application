@@ -49,7 +49,7 @@ public class BoxActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-        CardView Aerobics = findViewById(R.id.Aerobics;
+        CardView Aerobics = findViewById(R.id.Aerobics);
         Aerobics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -58,16 +58,15 @@ public class BoxActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-        CardView weight16 = findViewById(R.id.weight16);
-        weight16.setOnClickListener(new View.OnClickListener() {
+        CardView Explore = findViewById(R.id.Explore);
+        Explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "weight16");
+                it.putExtra("title", "Explore_Outside");
                 startActivity(it);
             }
         });
-
 
     }
 }
