@@ -22,25 +22,32 @@ public class BoxActivity extends AppCompatActivity {
             }
         });
 
-        CardView Class_And_Schedule = findViewById(R.id.Class_And_Schedule);
-        Class_And_Schedule.setOnClickListener(new View.OnClickListener() {
+        CardView weight12 = findViewById(R.id.weight12);
+        weight12.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "Class_And_Schedule");
+                it.putExtra("title", "weight12");
                 startActivity(it);
             }
         });
-        CardView Membership = findViewById(R.id.Membership);
-        Class_And_Schedule.setOnClickListener(new View.OnClickListener() {
+        CardView weight13 = findViewById(R.id.weight13);
+        weight13.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "Membership");
+                it.putExtra("title", "weight13");
                 startActivity(it);
             }
         });
-
-
+        CardView weight14 = findViewById(R.id.weight14);
+        weight13.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
+                it.putExtra("title", "weight1e");
+                startActivity(it);
+            }
+    });
     }
-    }
+}
