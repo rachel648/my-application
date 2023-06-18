@@ -49,12 +49,12 @@ public class BoxActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-        CardView weight15 = findViewById(R.id.weight15);
-        weight15.setOnClickListener(new View.OnClickListener() {
+        CardView Aerobics = findViewById(R.id.Aerobics;
+        Aerobics.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "weight15");
+                it.putExtra("title", "Aerobics");
                 startActivity(it);
             }
         });
