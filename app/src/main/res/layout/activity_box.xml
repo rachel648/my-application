@@ -119,7 +119,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/weight14"
+        android:id="@+id/Weight"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="1"
@@ -142,12 +142,12 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/boxthree"/>
+            android:src="@drawable/eq"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="14kg"
+            android:text="WeightLift_With_Us"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"/>
@@ -156,7 +156,7 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/weight15"
+        android:id="@+id/Aerobics"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="1"
@@ -179,12 +179,12 @@
         <ImageView
             android:layout_width="100dp"
             android:layout_height="70dp"
-            android:src="@drawable/boxfour"/>
+            android:src="@drawable/hobby"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15kg"
+            android:text="Aerobics"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"/>
