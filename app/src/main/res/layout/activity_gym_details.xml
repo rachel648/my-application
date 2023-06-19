@@ -8,7 +8,7 @@
     tools:context=".GymDetailsActivity">
 
     <TextView
-        android:id="@+id/GymDetailsName"
+        android:id="@+id/TextviewGymDetailsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -27,7 +27,7 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <TextView
-        android:id="@+id/GymDetailsTitle"
+        android:id="@+id/TextviewGymDetailsTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -44,10 +44,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/GymDetailsName"
+        app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsName"
         app:layout_constraintVertical_bias="0.045" />
 
     <ListView
+        android:id="@+id/listviewGymDetail"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
@@ -57,7 +58,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/GymDetailsName"
+        app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsName"
 
         />
 
