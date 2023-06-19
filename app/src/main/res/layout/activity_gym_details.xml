@@ -48,9 +48,9 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <ListView
-        android:id="@+id/listviewGymDetail"
+        android:id="@+id/listviewGymDetails"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="500dp"
         android:layout_margin="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
@@ -58,15 +58,22 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsName"
+        app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsTitle" />
 
-        />
-
-
-
-
-
-
+    <Button
+        android:id="@+id/buttonGymDetailsback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="48dp"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
