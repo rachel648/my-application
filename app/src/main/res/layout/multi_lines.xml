@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="@color/black"
     android:padding="8dp"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
 
     <TextView
         android:id="@+id/line_a"
@@ -13,7 +13,8 @@
         android:text="Textview"
         android:textColor="#ffffff"
         android:textSize="16sp"
-        android:textStyle="italic"/>
+        android:textStyle="italic"
+        />
     <TextView
         android:id="@+id/line_b"
         android:layout_width="match_parent"
