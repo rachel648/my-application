@@ -13,7 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText edUsername, edPassword;
+    EditText edUsername, edPassword;  //ed means edit text
     Button btn;
     TextView tv;
 
