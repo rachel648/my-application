@@ -9,6 +9,17 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class GymDetailsActivity extends AppCompatActivity {
+    private String[] []  Gym_Deatils1 =
+            {
+                    {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
+                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
+                    {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
+                    {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
+                    {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+
+            };
+
+
     Button btn;
     TextView tv;
     @Override
@@ -29,3 +40,4 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
         });
     }
 }
+
