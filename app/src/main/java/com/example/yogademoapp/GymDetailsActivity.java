@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 
@@ -74,16 +75,16 @@ public class GymDetailsActivity extends AppCompatActivity {
         if(title.compareTo("Get_An_Instructor")==0)
             Gym_Details = Instructor_Details1;
         else
-        if(title.compareTo("Boxing_Training_Available")==0)
+        if(title.compareTo("Explote_Outside")==0)
             Gym_Details = Instructor_Details2;
         else
-        if(title.compareTo("Weight_Lift_With_me")==0)
+        if(title.compareTo("Boxing_Training_Available")==0)
             Gym_Details = Instructor_Details3;
         else
-        if(title.compareTo("Aerobics")==0)
+        if(title.compareTo("Weight_Lift_With_me")==0)
             Gym_Details = Instructor_Details4;
         else
-        if(title.compareTo("Explore_Outside")==0)
+        if(title.compareTo("Aerobics")==0)
             Gym_Details = Instructor_Details5;
         else
 
@@ -109,6 +110,9 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
                new String[]{"line1,line2,line3,line4,line5"},
                new int [] {R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
        );
+        ListView lst = findViewById(R.id.listviewGymDetails);
+        lst.setAdapter(sa);
+
 }
 }
 

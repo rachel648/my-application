@@ -49,19 +49,16 @@
 
     <ListView
         android:id="@+id/listviewGymDetails"
-        android:layout_width="wrap_content"
+        android:layout_width="350dp"
         android:layout_height="500dp"
         android:layout_margin="10dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
-        android:layout_marginBottom="76dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonGymDetailsback"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.963"
-        app:layout_constraintStart_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsTitle" />
+        app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsTitle" />
 
     <Button
         android:id="@+id/buttonGymDetailsback"
