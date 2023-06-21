@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class GymDetailsActivity extends AppCompatActivity {
-    private String[] []  Instructor_Deatils1 =
+    private String[] []  Instructor_Details1 =
             {
                     {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
                     {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -17,7 +17,7 @@ public class GymDetailsActivity extends AppCompatActivity {
                     {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
                     {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
             };
-    private String[] []  Instructor_Deatils2 =
+    private String[] []  Instructor_Details2 =
     {
         {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
         {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -25,7 +25,7 @@ public class GymDetailsActivity extends AppCompatActivity {
         {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
         {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
     };
-    private String[] []  Instructor_Deatils3 =
+    private String[] []  Instructor_Details3 =
     {
         {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
         {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -34,7 +34,7 @@ public class GymDetailsActivity extends AppCompatActivity {
         {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
     };
 
-    private String[] []  Instructor_Deatils4 =
+    private String[] []  Instructor_Details4 =
             {
                     {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
                     {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -42,7 +42,7 @@ public class GymDetailsActivity extends AppCompatActivity {
                     {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
                     {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
             };
-    private String[] []  Instructor_Deatils5 =
+    private String[] []  Instructor_Details5 =
             {
                     {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
                     {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -52,6 +52,7 @@ public class GymDetailsActivity extends AppCompatActivity {
             };
     Button btn;
     TextView tv;
+    String[] [] Instructor_Details = {};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
