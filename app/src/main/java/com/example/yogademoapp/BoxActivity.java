@@ -22,12 +22,12 @@ public class BoxActivity extends AppCompatActivity {
             }
         });
 
-        CardView cycle = findViewById(R.id.cycle);
+        CardView cycle = findViewById(R.id.Instructors);
         cycle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
-                it.putExtra("title", "Cycle_With_Us");
+                it.putExtra("title", "Get_An_Instructor");
                 startActivity(it);
             }
         });

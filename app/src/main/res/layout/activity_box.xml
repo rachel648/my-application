@@ -45,7 +45,7 @@
       android:rowCount="3">
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cycle"
+        android:id="@+id/Instructors"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_row="0"
@@ -73,7 +73,7 @@
           <TextView
               android:layout_width="wrap_content"
               android:layout_height="wrap_content"
-              android:text="Cycle_With_Us"
+              android:text="Get_An_Instructor"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
             android:textStyle="bold"/>
