@@ -21,10 +21,11 @@
         android:id="@+id/textViewSelectTime"
         android:layout_width="111dp"
         android:layout_height="26dp"
+        android:layout_marginBottom="25dp"
         android:text="Select Time"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteX="255dp"
-        tools:layout_editor_absoluteY="579dp" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAppTime"
+        tools:layout_editor_absoluteX="255dp" />
 
     <Button
         android:id="@+id/buttonAppBack"
@@ -64,14 +65,15 @@
         android:id="@+id/ButtonBookApp"
         android:layout_width="258dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="24dp"
         android:text="Register"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/buttonAppBack"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="731dp" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextAppContact"
@@ -186,10 +188,11 @@
         android:id="@+id/textViewSelectDate"
         android:layout_width="111dp"
         android:layout_height="26dp"
+        android:layout_marginBottom="25dp"
         android:text="Select Date"
         android:textColor="@color/white"
-        tools:layout_editor_absoluteX="42dp"
-        tools:layout_editor_absoluteY="579dp" />
+        app:layout_constraintBottom_toTopOf="@+id/buttonAppDate"
+        tools:layout_editor_absoluteX="42dp" />
 
     <Button
         android:id="@+id/buttonAppDate"
