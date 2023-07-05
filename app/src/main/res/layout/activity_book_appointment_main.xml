@@ -9,7 +9,7 @@
     tools:context=".BookAppointmentMainActivity">
 
     <Button
-        android:id="@+id/buttonAppDate2"
+        android:id="@+id/buttonAppTime"
         style="?android:spinnerStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -18,7 +18,7 @@
         tools:layout_editor_absoluteY="630dp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/textViewSelectTime"
         android:layout_width="111dp"
         android:layout_height="26dp"
         android:text="Select Time"
@@ -183,7 +183,7 @@
         tools:layout_editor_absoluteY="92dp" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/textViewSelectDate"
         android:layout_width="111dp"
         android:layout_height="26dp"
         android:text="Select Date"
