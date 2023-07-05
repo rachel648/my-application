@@ -9,17 +9,36 @@
     tools:context=".BookAppointmentMainActivity">
 
     <Button
+        android:id="@+id/buttonAppDate2"
+        style="?android:spinnerStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10:00"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="630dp" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="111dp"
+        android:layout_height="26dp"
+        android:text="Select Time"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="255dp"
+        tools:layout_editor_absoluteY="579dp" />
+
+    <Button
         android:id="@+id/buttonAppBack"
         android:layout_width="258dp"
         android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
         android:text="BACK"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="771dp" />
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextAppFees"
@@ -37,9 +56,9 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.523"
+        app:layout_constraintHorizontal_bias="0.619"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="580dp" />
+        tools:layout_editor_absoluteY="487dp" />
 
     <Button
         android:id="@+id/ButtonBookApp"
@@ -52,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="667dp" />
+        tools:layout_editor_absoluteY="731dp" />
 
     <EditText
         android:id="@+id/editTextAppContact"
@@ -73,15 +92,17 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextAppFees"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAppAddress" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppAddress"
+        app:layout_constraintVertical_bias="0.0" />
 
     <EditText
         android:id="@id/editTextAppAddress"
         android:layout_width="363dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginRight="24dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/sym_action_email"
         android:drawablePadding="2dp"
@@ -100,10 +121,8 @@
         app:icon="@drawable/baseline2"
         app:iconGravity="textStart"
         app:iconSize="40dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.499" />
+        tools:layout_editor_absoluteY="333dp" />
 
     <EditText
         android:id="@+id/editTextFullName"
@@ -111,10 +130,8 @@
         android:layout_height="44dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="116dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:layout_marginBottom="32dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
@@ -133,12 +150,10 @@
         app:icon="@drawable/baseline2"
         app:iconGravity="textStart"
         app:iconSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextAppAddress"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.75"
+        app:layout_constraintHorizontal_bias="0.687"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Registar"
-        app:layout_constraintVertical_bias="0.0" />
+        tools:layout_editor_absoluteY="261dp" />
 
     <TextView
         android:id="@+id/Registar"
@@ -166,6 +181,24 @@
         android:visibility="visible"
         tools:layout_editor_absoluteX="123dp"
         tools:layout_editor_absoluteY="92dp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="111dp"
+        android:layout_height="26dp"
+        android:text="Select Date"
+        android:textColor="@color/white"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="579dp" />
+
+    <Button
+        android:id="@+id/buttonAppDate"
+        style="?android:spinnerStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="26/01/2022"
+        tools:layout_editor_absoluteX="42dp"
+        tools:layout_editor_absoluteY="630dp" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
