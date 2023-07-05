@@ -16,23 +16,23 @@ import java.util.HashMap;
 public class GymDetailsActivity extends AppCompatActivity {
     private String[] []  Instructor_Details1 =
             {
-                    {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                    {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                    {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                    {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+                    {"Instuctor Name : Rachel Murithi", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
+                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
+                    {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
+                    {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
+                    {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
             };
     private String[] []  Instructor_Details2 =
     {
-            {"Competation Name : World championship", "Gym Number : 101S2 ", "Exp : Gold","Mobile No:0712671172","600"},
-            {"Competation Name : Regional Boxing", "Gym Number : 101S1 ", "Exp : Silver","Mobile No:0723297740","600"},
-            {"Competation Name : Constitency", "Gym Number : 1O1D2 ", "Exp : Bronze","Mobile No:0750467930","600"},
-            {"Competation Name : Friendly  Trains", "Gym Number : 101D1 ", "Exp : Free Tickets","Mobile No:0714752682","600"},
-            {"Competation Name : Indoor Trains", "Gym Number : 101A1 ", "Exp : 5yrs","Free Tickets:0715588485","600"},
+            {"Instuctor Name : Rachel Murithi", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
+            {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
+            {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
+            {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
+            {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
     };
     private String[] []  Instructor_Details3 =
     {
-            {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
+            {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
             {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
             {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
             {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
@@ -76,16 +76,16 @@ public class GymDetailsActivity extends AppCompatActivity {
         if(title.compareTo("Get_An_Instructor")==0)
             Gym_Details = Instructor_Details1;
         else
-        if(title.compareTo("Boxing_Training_Available")==0) //Explore_Outside
+        if(title.compareTo("Boxing_Training_Available")==0)
             Gym_Details = Instructor_Details2;
         else
-        if(title.compareTo("Aerobics")==0) //Boxing_Training_Available
+        if(title.compareTo("Weight_Lift_With_me")==0)
             Gym_Details = Instructor_Details3;
         else
-        if(title.compareTo("Weight_Lift_With_me")==0)
+        if(title.compareTo("Aerobics")==0)
             Gym_Details = Instructor_Details4;
         else
-      //  if(title.compareTo("Explore_Outside")==0) //Aerobic
+        //f(title.compareTo("Explore_Outside")==0) //Aerobic
             Gym_Details = Instructor_Details5;
 
 
