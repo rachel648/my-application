@@ -26,8 +26,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         //objects creation
-        edUsername = findViewById(R.id.RegistarPassword);/* edUsername,edPassword,btn,tv is a Member variable i.e the data defined by the class*/
-        edPassword = findViewById(R.id.RegistarPassword);
+        edUsername = findViewById(R.id.editTextAppContact);/* edUsername,edPassword,btn,tv is a Member variable i.e the data defined by the class*/
+        edPassword = findViewById(R.id.editTextAppContact);
         btn = findViewById(R.id.buttonLogin); /*Btn for button*/
         tv= findViewById(R.id.textViewExistingUser);/*tv for text view*/
         //classes creation

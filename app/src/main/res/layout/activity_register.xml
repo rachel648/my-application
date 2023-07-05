@@ -22,7 +22,7 @@
         tools:context=".RegisterActivity">
 
         <EditText
-            android:id="@+id/ConfirmPassword"
+            android:id="@+id/editTextAppFees"
             android:layout_width="358dp"
             android:layout_height="48dp"
             android:layout_marginStart="32dp"
@@ -35,13 +35,13 @@
             android:inputType="textPassword"
             android:textAllCaps="false"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/Registarbutton"
+            app:layout_constraintBottom_toTopOf="@+id/ButtonBookApp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.386"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
-            android:id="@+id/Registarbutton"
+            android:id="@+id/ButtonBookApp"
             android:layout_width="258dp"
             android:layout_height="60dp"
             android:layout_marginBottom="50dp"
@@ -55,7 +55,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
-            android:id="@+id/RegistarPassword"
+            android:id="@+id/editTextAppContact"
             android:layout_width="358dp"
             android:layout_height="48dp"
             android:layout_marginEnd="44dp"
@@ -68,11 +68,11 @@
             android:inputType="textPassword"
             android:textAllCaps="false"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/ConfirmPassword"
+            app:layout_constraintBottom_toTopOf="@+id/editTextAppFees"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@id/emailReg"
+            android:id="@id/editTextAppAddress"
             android:layout_width="363dp"
             android:layout_height="44dp"
             android:layout_marginEnd="36dp"
@@ -96,11 +96,11 @@
             app:icon="@drawable/baseline2"
             app:iconGravity="textStart"
             app:iconSize="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/RegistarPassword"
+            app:layout_constraintBottom_toTopOf="@+id/editTextAppContact"
             app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
-            android:id="@+id/UsernameRegistar"
+            android:id="@+id/editTextFullName"
             android:layout_width="363dp"
             android:layout_height="44dp"
             android:layout_marginBottom="36dp"
@@ -122,7 +122,7 @@
             app:icon="@drawable/baseline2"
             app:iconGravity="textStart"
             app:iconSize="40dp"
-            app:layout_constraintBottom_toTopOf="@+id/emailReg"
+            app:layout_constraintBottom_toTopOf="@+id/editTextAppAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.598"
             app:layout_constraintStart_toStartOf="parent" />
@@ -137,7 +137,7 @@
             android:textColor="@color/white"
             android:textSize="24sp"
             android:textStyle="bold"
-            app:layout_constraintBottom_toTopOf="@+id/UsernameRegistar"
+            app:layout_constraintBottom_toTopOf="@+id/editTextFullName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.662"
             app:layout_constraintStart_toStartOf="parent" />
