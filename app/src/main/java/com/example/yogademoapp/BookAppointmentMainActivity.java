@@ -36,7 +36,7 @@ public class BookAppointmentMainActivity extends AppCompatActivity {
         ed1.setText(fullname);
         ed2.setText(address);
         ed3.setText(contact);
-        ed4.setText( "Training Fees:"+fees+"ksh");
+        ed4.setText( "Train Fees:"+fees+"ksh");
     }
 
 }
