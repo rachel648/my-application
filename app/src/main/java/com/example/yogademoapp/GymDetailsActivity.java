@@ -15,51 +15,51 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GymDetailsActivity extends AppCompatActivity {
-    private String[] []  Instructor_Details1 =
+    private String[][]  Instructor_Details1 =
             {
-                    {"Instuctor Name : Rachel Murithi", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
+                    {"Instuctor Name : Rachel kaume", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
                     {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
                     {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
                     {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
                     {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
             };
-    private String[] []  Instructor_Details2 =
+   private String[][]  Instructor_Details2 =
     {
-            {"Instuctor Name : Rachel Murithi", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
-            {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
-            {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
-            {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
-            {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
+            {"Instuctor Name : Agnes Kajuju", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
+            {"Instuctor Name : Bessy Sheryl", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
+            {"Instuctor Name : Malissa Bernson", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
+            {"Instuctor Name : Modesma  Octavio", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
+            {"Instuctor Name : Frank Opiyo", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
     };
-    private String[] []  Instructor_Details3 =
-    {
-            {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-            {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-            {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-            {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-            {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+       private String[][]  Instructor_Details3 =
+      {
+              {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
+              {"Instuctor Name : Linet Orengo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
+              {"Instuctor Name : Lydia Karanja", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
+              {"Instuctor Name : Zagallo Lobo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
+              {"Instuctor Name : Martin Zachayo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
 
-    };
+      };
 
     private String[] []  Instructor_Details4 =
-            {
-                    {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                    {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                    {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                    {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
-            };
-    private String[] []  Instructor_Details5 =
-            {
-                    {"Instuctor Name : Rachel Murithi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                    {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                    {"Instuctor Name : Henry  Chumba", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                    {"Instuctor Name : Marcus Justin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
-            };
+             {
+                     {"Instuctor Name : Evans Kimathi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
+                     {"Instuctor Name : Amber Ray Domani", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
+                     {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
+                     {"Instuctor Name : Consolata Penting", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
+                     {"Instuctor Name : Martha Austin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+             };
+     private String[] []  Instructor_Details5 =
+             {
+                     {"Instuctor Name : Judy Valentine", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
+                     {"Instuctor Name : Ariana Goodie", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
+                     {"Instuctor Name : Thomas Grey", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
+                     {"Instuctor Name : Leon  Kalonzo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
+                     {"Instuctor Name : Shem Timothy", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+             };
     Button btn;
     TextView tv;
-    String[] [] Gym_Details = {};
+    String[][] Gym_Details = {};
     HashMap<String,String> item;
     ArrayList List;
     SimpleAdapter sa;
@@ -76,17 +76,17 @@ public class GymDetailsActivity extends AppCompatActivity {
 
         if(title.compareTo("Get_An_Instructor")==0)
             Gym_Details = Instructor_Details1;
-        else
+      else
         if(title.compareTo("Boxing_Training_Available")==0)
             Gym_Details = Instructor_Details2;
-        else
-        if(title.compareTo("Weight_Lift_With_me")==0)
+         else
+        if(title.compareTo("Weight_Lift_With_me")==0)//Weight_Lift_With_me
             Gym_Details = Instructor_Details3;
         else
-        if(title.compareTo("Aerobics")==0)
+        if(title.compareTo("Aerobics")==0)//Aerobics
             Gym_Details = Instructor_Details4;
         else
-        //f(title.compareTo("Explore_Outside")==0) //Aerobic
+       // if(title.compareTo("Explore_Outside")==0) //Aerobic
             Gym_Details = Instructor_Details5;
 
 
@@ -100,6 +100,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
        List = new ArrayList<>();
        for (int i=0; i<Gym_Details.length;i++){
            item = new HashMap<String,String>();
+           // HashMap<String, String> item = new HashMap<>();
            item.put("line1",Gym_Details [i] [0]);
            item.put("line2",Gym_Details [i] [1]);
            item.put("line3",Gym_Details [i] [2]);
@@ -110,7 +111,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
        sa = new SimpleAdapter(this,List,
                R.layout.multi_lines,
                new String[]{"line1", "line2", "line3", "line4", "line5"},
-               new int [] {R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
+               new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
        );
         ListView lst = findViewById(R.id.listviewGymDetails);
         lst.setAdapter(sa);
@@ -124,7 +125,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
                 item.put("text3",Gym_Details [i] [1]);
                 item.put("text4",Gym_Details [i] [2]);
                 item.put("text5",Gym_Details [i] [3]);
-
+                startActivity(it);
             }
         });
 
