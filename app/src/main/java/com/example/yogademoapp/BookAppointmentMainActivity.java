@@ -2,6 +2,7 @@ package com.example.yogademoapp;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -23,6 +24,19 @@ public class BookAppointmentMainActivity extends AppCompatActivity {
         ed1.setKeyListener(null);
         ed1.setKeyListener(null);
         ed1.setKeyListener(null);
+
+        Intent it = getIntent(); //fetching data with the help of intent
+        String title = it.getStringExtra("text1"); //set info to all the variables:title,fullname,address,contant,fees
+        String fullname = it.getStringExtra("text2");
+        String address = it.getStringExtra("text3");
+        String contact = it.getStringExtra("text4");
+        String fees = it.getStringExtra("text5");
+
+        tv.setText(title); //Display
+        ed1.setText(fullname);
+        ed2.setText(address);
+        ed3.setText(contact);
+        ed4.setText( "Training Fees:"+fees+"ksh");
     }
 
 }
