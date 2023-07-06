@@ -13,5 +13,16 @@ public class BookAppointmentMainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_appointment_main);
+    tv =  findViewById(R.id.textViewAppTitle);
+    ed1 = findViewById(R.id.editTextAppAddress);
+    ed2=  findViewById(R.id.editTextAppContact);
+    ed3 = findViewById(R.id.editTextAppFees);
+    ed4 = findViewById(R.id.editTextFullName);
+
+        ed1.setKeyListener(null);
+        ed1.setKeyListener(null);
+        ed1.setKeyListener(null);
+        ed1.setKeyListener(null);
     }
+
 }
