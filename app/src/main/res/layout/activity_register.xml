@@ -2,7 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Registar"
+    android:id="@+id/textViewAppTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/Registar"
+            android:id="@+id/textViewAppTitle"
             android:layout_width="204dp"
             android:layout_height="37dp"
             android:layout_marginBottom="20dp"
@@ -168,7 +168,7 @@
             android:textSize="24sp"
             android:textStyle="bold"
             android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/Registar"
+            app:layout_constraintBottom_toTopOf="@+id/textViewAppTitle"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

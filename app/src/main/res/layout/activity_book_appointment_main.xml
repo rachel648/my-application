@@ -158,7 +158,7 @@
         tools:layout_editor_absoluteY="261dp" />
 
     <TextView
-        android:id="@+id/Registar"
+        android:id="@+id/textViewAppTitle"
         android:layout_width="255dp"
         android:layout_height="29dp"
         android:layout_marginStart="88dp"
