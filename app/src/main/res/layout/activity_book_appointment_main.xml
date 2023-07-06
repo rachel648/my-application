@@ -159,17 +159,17 @@
 
     <TextView
         android:id="@+id/Registar"
-        android:layout_width="204dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="128dp"
-        android:layout_marginLeft="128dp"
+        android:layout_width="255dp"
+        android:layout_height="29dp"
+        android:layout_marginStart="88dp"
+        android:layout_marginLeft="88dp"
         android:hint="username"
-        android:text="Appointment"
+        android:text=" Book Appointment"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="193dp" />
+        tools:layout_editor_absoluteY="186dp" />
 
     <TextView
         android:id="@+id/textView2"
