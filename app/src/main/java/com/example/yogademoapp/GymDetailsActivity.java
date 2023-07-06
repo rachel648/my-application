@@ -123,7 +123,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
                 it.putExtra("text1",title);
                 item.put("text2",Gym_Details [i] [0]);
                 item.put("text3",Gym_Details [i] [1]);
-                item.put("text4",Gym_Details [i] [2]);
+               // item.put("text4",Gym_Details [i] [2]); experience not required on book Appointment so we skip index 2
                 item.put("text5",Gym_Details [i] [3]);
                 startActivity(it);
             }
