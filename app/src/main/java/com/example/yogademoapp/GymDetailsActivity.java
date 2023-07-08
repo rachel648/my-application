@@ -119,7 +119,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent it = new Intent(GymDetailsActivity.this,BookAppointmentMainActivity.class);
+                Intent it = new Intent(GymDetailsActivity.this,BookAppointmentActivity.class);
                 it.putExtra("text1",title);
                 item.put("text2",Gym_Details [i] [0]);
                 item.put("text3",Gym_Details [i] [1]);
