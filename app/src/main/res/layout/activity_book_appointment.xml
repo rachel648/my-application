@@ -127,30 +127,38 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAppContact" />
 
+    <TextView
+        android:id="@+id/textViewNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="New Text"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toStartOf="@+id/buttonNew"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
+
+    <Button
+        android:id="@+id/buttonNew"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:text="New Button"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textViewNew"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <Button
         android:id="@+id/ButtonBookApp"
         android:layout_width="258dp"
         android:layout_height="60dp"
+        android:layout_marginTop="208dp"
         android:text="Register"
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintHorizontal_bias="0.558"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
-
-    <Button
-        android:id="@+id/BackBookApp"
-        android:layout_width="258dp"
-        android:layout_height="60dp"
-        android:text="Back"
-        android:textColor="@android:color/holo_blue_dark"
-        android:textSize="16sp"
-        app:backgroundTint="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ButtonBookApp" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        app:layout_constraintTop_toBottomOf="@+id/textViewNew" />
