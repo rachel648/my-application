@@ -36,7 +36,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextFullName"
@@ -66,7 +66,7 @@
         tools:layout_editor_absoluteY="212dp" />
 
     <EditText
-        android:id="@id/editTextAppAddress"
+        android:id="@+id/editTextAppAddress"
         android:layout_width="363dp"
         android:layout_height="44dp"
         android:layout_marginEnd="28dp"
@@ -114,16 +114,41 @@
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginBottom="36dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="Fees"
         android:inputType="textPassword"
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.386"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="436dp" />
 
+    <Button
+        android:id="@+id/ButtonBookApp"
+        android:layout_width="258dp"
+        android:layout_height="60dp"
+        android:text="Register"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="684dp" />
+
+    <Button
+        android:id="@+id/BackBookApp"
+        android:layout_width="258dp"
+        android:layout_height="60dp"
+        android:text="Back"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="791dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
