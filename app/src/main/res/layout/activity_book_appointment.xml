@@ -136,9 +136,10 @@
         android:textSize="16sp"
         app:backgroundTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.414"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="805dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewNew2"
+        app:layout_constraintBottom_toTopOf="@+id/BackBookApp"/>
 
     <TextView
         android:id="@+id/textViewNew1"
@@ -146,7 +147,17 @@
         android:layout_height="wrap_content"
         android:text="New TextView 1"
         android:textColor="@color/white"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
+
+    <Button
+        android:id="@+id/buttonNew1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button 1"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
 
     <TextView
@@ -155,22 +166,32 @@
         android:layout_height="wrap_content"
         android:text="New TextView 2"
         android:textColor="@color/white"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewNew1" />
-
-    <Button
-        android:id="@+id/buttonNew1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Button 1"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
 
     <Button
         android:id="@+id/buttonNew2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Button 2"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonNew1" />
 
+    <Button
+        android:id="@+id/BackBookApp"
+        android:layout_width="258dp"
+        android:layout_height="60dp"
+        android:text="Back"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ButtonBookApp"
+        app:layout_constraintVertical_bias="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
