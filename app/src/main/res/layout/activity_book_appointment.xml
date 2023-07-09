@@ -23,12 +23,10 @@
         tools:layout_editor_absoluteY="58dp" />
 
     <TextView
-        tools:layout_editor_absoluteX="139dp"
-        tools:layout_editor_absoluteY="131dp"
         android:id="@+id/textViewAppTitle"
         android:layout_width="204dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="16dp"
         android:hint="username"
         android:text="Book Appointment"
         android:textColor="@color/white"
@@ -36,12 +34,14 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.662"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <EditText
         android:id="@+id/editTextFullName"
         android:layout_width="363dp"
         android:layout_height="44dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
@@ -63,14 +63,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="212dp" />
+        app:layout_constraintTop_toBottomOf="@+id/textViewAppTitle" />
 
     <EditText
         android:id="@+id/editTextAppAddress"
         android:layout_width="363dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="28dp"
-        android:layout_marginRight="28dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/sym_action_email"
         android:drawablePadding="2dp"
@@ -90,14 +89,15 @@
         app:iconGravity="textStart"
         app:iconSize="40dp"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="360dp" />
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextFullName" />
 
     <EditText
         android:id="@+id/editTextAppContact"
         android:layout_width="358dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="36dp"
-        android:layout_marginRight="36dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -106,14 +106,15 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="284dp" />
+        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppAddress" />
 
     <EditText
         android:id="@+id/editTextAppFees"
         android:layout_width="358dp"
         android:layout_height="48dp"
-        android:layout_marginStart="32dp"
-        android:layout_marginLeft="32dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -122,9 +123,9 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="0.333"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="436dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppContact" />
 
     <Button
         android:id="@+id/ButtonBookApp"
@@ -137,7 +138,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="684dp" />
+        app:layout_constraintTop_toBottomOf="@+id/editTextAppFees" />
 
     <Button
         android:id="@+id/BackBookApp"
@@ -150,5 +151,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="791dp" />
+        app:layout_constraintTop_toBottomOf="@+id/ButtonBookApp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
