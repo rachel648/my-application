@@ -18,26 +18,35 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        String username = sharedpreferences.getString("username","").toString();
-        Toast.makeText(getApplicationContext(),"Welcome "+username, Toast.LENGTH_SHORT).show();
+        String username = sharedpreferences.getString("username", "").toString();
+        Toast.makeText(getApplicationContext(), "Welcome " + username, Toast.LENGTH_SHORT).show();
 
         CardView exit = findViewById(R.id.Logout); //creation of an object
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                 SharedPreferences.Editor editor = sharedpreferences.edit();
-            editor.clear();
-            editor.apply();
-            startActivity(new Intent(HomeActivity.this,LoginActivity.class));
+                SharedPreferences.Editor editor = sharedpreferences.edit();
+                editor.clear();
+                editor.apply();
+                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             }
         });
         CardView box = findViewById(R.id.Box); //creation of another object
         box.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this,BoxActivity.class));
+                startActivity(new Intent(HomeActivity.this, BoxActivity.class));
             }
         });
 
+
+        CardView BMI = findViewById(R.id.Class_And_Schedule); //creation of another object
+        box.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, BMIActivity.class));
+
+            }
+        });
     }
 }

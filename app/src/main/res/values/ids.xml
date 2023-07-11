@@ -2,4 +2,6 @@
 <resources>
     <item name="editTextTextUsername" type="id" />
     <item name="editTextAppAddress" type="id" />
+    <item name="editTextHeight" type="id" />
+    <item name="editTextWeight" type="id" />
 </resources>
