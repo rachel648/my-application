@@ -18,7 +18,7 @@ public class BMIActivity extends AppCompatActivity {
 
     EditText ed;
     private EditText editTextWeight, editTextHeight;
-    private Button CalculateButton;
+    private Button CalculateButton,btnback;
     private TextView ResultTextView; //Declarations
 
 
@@ -31,16 +31,25 @@ public class BMIActivity extends AppCompatActivity {
         editTextHeight = findViewById(R.id.editTextHeight);
         CalculateButton = findViewById(R.id.CalculateButton);
         ResultTextView = findViewById(R.id.ResultTextView);
+        btnback = findViewById(R.id.btnback);
 
         CalculateButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 calculateBMI();
-            }
-        });
-    }
 
-    private void calculateBMI() {
+        }
+    });
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            // Handle the button click event
+            finish();
+        }
+    });
+}
+       private void calculateBMI() {
         String weightString = editTextWeight.getText().toString();
         String heightString = editTextHeight.getText().toString();
 
