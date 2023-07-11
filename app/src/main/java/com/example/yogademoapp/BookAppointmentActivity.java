@@ -22,7 +22,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
     private DatePickerDialog datePickerDialog;
     private TimePickerDialog timePickerDialog;
 
-    private Button dateButton, timeButton;
+    private Button dateButton, timeButton, btnBook, btnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,8 @@ public class BookAppointmentActivity extends AppCompatActivity {
         ed4 = findViewById(R.id.editTextAppFees);
         dateButton = findViewById(R.id.buttonDate); //mapping
         timeButton = findViewById(R.id.buttonSelectTime);
+        btnBook = findViewById(R.id.ButtonBookApp);
+        btnBack = findViewById(R.id.BackBookApp);
 
         ed1.setKeyListener(null);
         ed2.setKeyListener(null);
@@ -75,9 +77,21 @@ public class BookAppointmentActivity extends AppCompatActivity {
                 timePickerDialog.show();
             }
         });
-
         // Initialize the time picker
-        initTimePicker();
+        //initTimePicker();
+        btnBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+               startActivity(new Intent(BookAppointmentActivity.this,BoxActivity.class));
+            }
+        });
+
+        btnBook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void initDatePicker() {
