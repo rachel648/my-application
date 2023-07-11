@@ -19,7 +19,7 @@ public class BMIActivity extends AppCompatActivity {
     EditText ed;
     private EditText editTextWeight, editTextHeight;
     private Button CalculateButton;
-    private TextView ResultTextView;
+    private TextView ResultTextView; //Declarations
 
 
     @Override
