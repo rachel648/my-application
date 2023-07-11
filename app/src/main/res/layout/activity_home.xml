@@ -101,7 +101,7 @@
         </androidx.cardview.widget.CardView>
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/Class_And_Schedule"
+            android:id="@+id/BMI"
             android:layout_width="180dp"
             android:layout_height="170dp"
             android:layout_row="1"
@@ -129,7 +129,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="CLASS AND SCHEDULE"
+                    android:text="BMI"
                     android:textAlignment="center"
                     android:textColor="@color/purple_200"
                     android:textStyle="bold"/>

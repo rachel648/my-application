@@ -40,8 +40,8 @@ public class HomeActivity extends AppCompatActivity {
         });
 
 
-        CardView BMI = findViewById(R.id.Class_And_Schedule); //creation of another object
-        box.setOnClickListener(new View.OnClickListener() {
+        CardView BMI = findViewById(R.id.BMI); //creation of another object
+        BMI.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, BMIActivity.class));
