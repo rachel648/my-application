@@ -121,4 +121,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.968"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/BackBookApp"
+        android:layout_width="115dp"
+        android:layout_height="48dp"
+        android:text="Back"
+        android:textColor="@android:color/holo_blue_dark"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ResultTextView"
+        app:layout_constraintVertical_bias="0.2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
