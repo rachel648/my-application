@@ -128,7 +128,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
-            android:id="@+id/textViewAppTitle"
+            android:id="@+id/textViewAppTitle2"
             android:layout_width="204dp"
             android:layout_height="37dp"
             android:layout_marginBottom="20dp"
