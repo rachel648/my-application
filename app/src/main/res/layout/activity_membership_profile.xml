@@ -50,13 +50,13 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:hint="Enter your email"
         android:layout_marginTop="64dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
         android:ems="10"
+        android:hint="Enter your email"
+        android:inputType="textEmailAddress"
         android:padding="0dp"
         android:paddingLeft="0dp"
         android:paddingTop="10dp"
@@ -65,8 +65,7 @@
         android:textColor="@color/design_default_color_surface"
         android:textSize="18sp"
         android:textStyle="bold"
-        android:visibility="visible"
-        />
+        android:visibility="visible" />
 
     <TextView
         android:id="@+id/textViewMembershipType"
@@ -77,7 +76,7 @@
         android:layout_marginTop="24dp"
         android:text="Membership Type"
         android:textColor="@color/white"
-        android:textSize="16sp"
+        android:textSize="18sp"
         android:visibility="visible" />
 
     <Spinner
@@ -99,11 +98,10 @@
     <Button
         android:id="@+id/buttonSubmit"
         style="?android:spinnerStyle"
-        android:text="LOGIN"
         android:layout_width="258dp"
         android:layout_height="60dp"
-        android:textSize="16sp"
-        />
+        android:text="LOGIN"
+        android:textSize="20sp" />
 
     <Button
         android:id="@+id/buttonSignup"
@@ -111,7 +109,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SIGNUP"
-        android:textSize="16sp" />
+        android:textSize="20sp" />
 
         />
 
@@ -120,6 +118,7 @@
         style="?android:spinnerStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Forgot Password" />
+        android:text="Forgot Password"
+        android:textSize="18sp" />
 
 </LinearLayout>

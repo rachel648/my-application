@@ -99,7 +99,11 @@ public class MembershipProfileActivity extends AppCompatActivity {
 
         // Add four types of membership to the spinner
         String[] membershipTypes = {"OneDayMembership", "WeekMembership","MonthMembership","YearMembership"};
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, membershipTypes);
+      // ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, membershipTypes);
+      //  spinnerMembershipType.setAdapter(adapter);
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, membershipTypes);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMembershipType.setAdapter(adapter);
 
 
