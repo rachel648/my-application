@@ -49,13 +49,13 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-  /*      CardView Membership = findViewById(R.id.Membership); //creation of another object
+       CardView Membership = findViewById(R.id.Membership); //creation of another object
         Membership.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(HomeActivity.this, MembershipProfileActivity.class));
 
             }
-        }); */
+        });
     }
 }
