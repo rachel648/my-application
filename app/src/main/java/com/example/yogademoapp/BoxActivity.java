@@ -40,7 +40,7 @@ public class BoxActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
-        CardView Weight = findViewById(R.id.Weight);
+        CardView Weight = findViewById(R.id.Weight); // Rachel
         Weight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
