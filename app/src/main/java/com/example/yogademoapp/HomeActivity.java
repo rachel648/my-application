@@ -57,5 +57,14 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        CardView Purchase = findViewById(R.id.Purchase); //creation of another object
+        Purchase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              //  startActivity(new Intent(HomeActivity.this, MembershipProfileActivity.class));
+
+            }
+        });
     }
 }
