@@ -32,7 +32,7 @@ public class BoxActivity extends AppCompatActivity {
             }
         });
         CardView Box = findViewById(R.id.Box);
-        Box.setOnClickListener(new View.OnClickListener() {
+        Box.setOnClickListener(new View.OnClickListener() {  //  Ray
             @Override
             public void onClick(View view) {
                 Intent it = new Intent(BoxActivity.this, GymDetailsActivity.class);
