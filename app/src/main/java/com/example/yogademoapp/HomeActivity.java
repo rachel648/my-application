@@ -62,7 +62,7 @@ public class HomeActivity extends AppCompatActivity {
         Purchase.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-              //  startActivity(new Intent(HomeActivity.this, MembershipProfileActivity.class));
+               startActivity(new Intent(HomeActivity.this, PurchaseActivity.class));
 
             }
         });

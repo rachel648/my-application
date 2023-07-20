@@ -69,7 +69,7 @@ public class GymDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gym_details);
 
         tv = findViewById(R.id.TextviewGymDetailsTitle);
-        btn = findViewById(R.id.buttonGymDetailsback);
+        btn = findViewById(R.id.buttonPurchaseback);
         Intent it = getIntent();//variable "it" obtained by calling getIntent().The intent is stored in "it"
         String title = it. getStringExtra("title");//The retrieved value which is expected to be a string is assigned to the "title"
         tv.setText(title);//Value of the title is set as the text of a textview
@@ -113,7 +113,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
                new String[]{"line1", "line2", "line3", "line4", "line5"},
                new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
        );
-        ListView lst = findViewById(R.id.listviewGymDetails);
+        ListView lst = findViewById(R.id.listviewPurchase);
         lst.setAdapter(sa);
 
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
