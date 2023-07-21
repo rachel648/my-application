@@ -30,7 +30,7 @@
         android:textStyle="bold"
         tools:layout_editor_absoluteX="114dp"
         tools:layout_editor_absoluteY="110dp"
-        app:layout_constraintBottom_toBottomOf="TextviewGymDetailsName"/>
+        />
 
     <TextView
         android:id="@+id/TextviewGymDetailsName"
