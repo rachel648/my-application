@@ -69,7 +69,7 @@ public class GymDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gym_details);
 
         tv = findViewById(R.id.TextviewGymDetailsTitle);
-        btn = findViewById(R.id.buttonPurchaseback);
+        btn = findViewById(R.id.buttonPurchaseDetailback);
         Intent it = getIntent();//variable "it" obtained by calling getIntent().The intent is stored in "it"
         String title = it. getStringExtra("title");//The retrieved value which is expected to be a string is assigned to the "title"
         tv.setText(title);//Value of the title is set as the text of a textview

@@ -4,24 +4,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backone"
-    tools:context=".PurchaseActivity">
-
+    android:background="@drawable/lucky"
+    tools:context=".PurchaseDetailActivity">
 
     <Button
-        android:id="@+id/buttonPurchaseCart"
+        android:id="@+id/buttonPurchaseDetailCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="280dp"
         android:layout_marginRight="280dp"
         android:layout_marginBottom="28dp"
-        android:hint="Go To Cart"
-        android:text="Go To Cart"
+        android:hint="Add To Cart"
+        android:text="Add To Cart"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
-        android:id="@+id/textviewBuyTitleDetail"
+        android:id="@+id/textviewBuyTitleDetail1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -73,22 +72,44 @@
         app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsName"
         app:layout_constraintVertical_bias="0.095" />
 
-    <ListView
-        android:id="@+id/listviewPurchase"
-        android:layout_width="350dp"
-        android:layout_height="500dp"
-        android:layout_margin="10dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+    <EditText
+        android:id="@+id/edPurchaseDetailMultiLine"
+        android:layout_width="290dp"
+        android:layout_height="372dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/buttonPurchaseDetailback"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textviewBuyTitleDetail" />
+        app:layout_constraintVertical_bias="0.307"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        android:ems="10"
+        android:text="Hi \nHello"
+        android:textColor="#FFFFFF"
+        app:layout_constraintHorizontal_bias="0.495"
+        tools:ignore="MissingContraints"
+        android:gravity="start|top"
+        app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsName"
+        android:textSize="25dp"
+        />
 
-
+    <TextView
+        android:id="@+id/textViewTotalCost"
+        android:layout_width="204dp"
+        android:layout_height="37dp"
+        android:hint="username"
+        android:text="Total Cost"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="729dp"
+       />
 
     <Button
-        android:id="@+id/buttonPurchaseback"
+        android:id="@+id/buttonPurchaseDetailback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="28dp"

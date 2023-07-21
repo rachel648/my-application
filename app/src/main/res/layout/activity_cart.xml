@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/blackone"
+    tools:context=".CartActivity">
+
+    <Button
+        android:id="@+id/buttonCheckOutCart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="280dp"
+        android:layout_marginRight="280dp"
+        android:layout_marginBottom="28dp"
+        android:hint="Go To Cart"
+        android:text="Checkout"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+    <TextView
+        android:id="@+id/textviewBuyCheckoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="PURCHASE_OR_HIRE"
+        android:textColor="#C8FBFBFB"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="114dp"
+        tools:layout_editor_absoluteY="110dp"
+        app:layout_constraintBottom_toBottomOf="TextviewGymDetailsName"/>
+
+    <TextView
+        android:id="@+id/TextviewGymDetailsName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="24*FITNESS"
+        android:textColor="#C8FBFBFB"
+        android:textSize="34dp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="34dp" />
+
+    <TextView
+        android:id="@+id/TextviewCheckoutTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="180dp"
+        android:text="GYMWEAR *AND* EQUIPMENT"
+        android:textColor="#C8FBFBFB"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ListView
+        android:id="@+id/listviewCheckout"
+        android:layout_width="386dp"
+        android:layout_height="293dp"
+        android:layout_margin="10dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        tools:layout_editor_absoluteY="240dp" />
+
+    <Button
+        android:id="@+id/buttonCheckoutback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="28dp"
+        android:layout_marginRight="28dp"
+        android:layout_marginBottom="28dp"
+        android:text="BACK"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/CheckoutDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Select Date"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="728dp" />
+
+    <TextView
+        android:id="@+id/CheckoutTime"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginLeft="32dp"
+        android:text="Select Time"
+        android:textColor="@color/white"
+        android:visibility="visible"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="654dp" />
+
+    <Button
+        android:id="@+id/buttonCheckoutDate"
+        style="?android:spinnerStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="27/10/2023"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="287dp"
+        tools:layout_editor_absoluteY="711dp" />
+
+    <Button
+        android:id="@+id/buttonCheckoutTime"
+        style="?android:spinnerStyle"
+        android:layout_width="114dp"
+        android:layout_height="38dp"
+        android:text="10:00"
+        android:visibility="visible"
+        tools:layout_editor_absoluteX="287dp"
+        tools:layout_editor_absoluteY="673dp" />
+
+    <TextView
+        android:id="@+id/textViewTotalCost"
+        android:layout_width="184dp"
+        android:layout_height="30dp"
+        android:hint="username"
+        android:text="Total Cost"
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="583dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
