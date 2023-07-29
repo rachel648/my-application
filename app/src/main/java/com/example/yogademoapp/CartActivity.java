@@ -14,6 +14,7 @@ import android.widget.DatePicker;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -30,6 +31,7 @@ public class CartActivity extends AppCompatActivity {
     private TimePickerDialog timePickerDialog;
 
     private Button dateButton, timeButton, btnCheckout, btnBack;
+    private String [][] equipments = {};
 
 
     @Override
@@ -41,13 +43,32 @@ public class CartActivity extends AppCompatActivity {
         timeButton = findViewById(R.id.buttonCheckoutTime);
         btnCheckout = findViewById(R.id.buttonCheckOutCart);
         btnBack = findViewById(R.id.buttonCheckoutback);
+        tvTotal = findViewById(R.id.textViewTotalCost);
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
         String username =sharedPreferences.getString("username","").toString();
 
         Database db = new Database(getApplicationContext(),"fitness",null,1);
-        float totalamount = 0;//fetch card data and store it in Arraylist
+        float totalAmount = 0;//fetch card data and store it in Arraylist
         ArrayList dbData = db.getCartData(username,"lab");
+        Toast.makeText(getApplicationContext(),""+dbData,Toast.LENGTH_LONG).show();
+
+        equipments = new String[dbData.size()][];
+        for (int i = 0; i<equipments.length;i++) {
+            equipments[1] = new String[5];
+        }
+
+            for(int i = 0; i<dbData.size();i++) {
+                String arrData = dbData.get(i).toString();
+                String[] strData = arrData.split(java.util.regex.Pattern.quote( "ksh"));
+                equipments[i][0] = strData[0];
+                equipments[i][4] = "Cost: " + strData[1] + "/-";
+                totalAmount = totalAmount +Float.parseFloat(strData[1]);
+            }
+
+           tvTotal.setText("Total Cost"+totalAmount);
+
+
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
