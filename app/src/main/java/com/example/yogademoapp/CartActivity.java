@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
@@ -25,6 +26,7 @@ public class CartActivity extends AppCompatActivity {
     ArrayList List;
     SimpleAdapter sa;
     TextView tvTotal;
+    ListView lst;
 
     private DatePickerDialog datePickerDialog;
 
@@ -44,6 +46,9 @@ public class CartActivity extends AppCompatActivity {
         btnCheckout = findViewById(R.id.buttonCheckOutCart);
         btnBack = findViewById(R.id.buttonCheckoutback);
         tvTotal = findViewById(R.id.textViewTotalCost);
+         lst = findViewById(R.id.listviewCheckout);
+
+         List=new ArrayList<>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
         String username =sharedPreferences.getString("username","").toString();
@@ -53,9 +58,9 @@ public class CartActivity extends AppCompatActivity {
         ArrayList dbData = db.getCartData(username,"lab");
         Toast.makeText(getApplicationContext(),""+dbData,Toast.LENGTH_LONG).show();
 
-        equipments = new String[dbData.size()][];
+        equipments = new String[dbData.size()][5];
         for (int i = 0; i<equipments.length;i++) {
-            equipments[1] = new String[5];
+            equipments[i] = new String[5];
         }
 
             for(int i = 0; i<dbData.size();i++) {
@@ -68,7 +73,21 @@ public class CartActivity extends AppCompatActivity {
 
            tvTotal.setText("Total Cost"+totalAmount);
 
-
+            for (int i=0;i<equipments.length;i++) {
+                List = new ArrayList<>();
+                item = new HashMap();//<String,String>();
+                item.put("line1", equipments[i][0]);
+                item.put("line2", equipments[i][1]);
+                item.put("line3", equipments[i][2]);
+                item.put("line4", equipments[i][3]);
+                item.put("line5", equipments[i][4]);
+                List.add (item);
+            }
+sa= new SimpleAdapter(this,List,
+        R.layout.multi_lines,
+        new String[]{"line1", "line2", "line3", "line4", "line5"},
+        new int[] {R.id.line_a, R.id.line_b, R.id.line_d, R.id.line_e});
+        lst.setAdapter(sa);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
