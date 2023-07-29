@@ -20,7 +20,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
 
     private EditText editTextName, editTextEmail, editTextPassword, editTextUsername;
     private Spinner spinnerMembershipType;
-    private Button buttonSubmit, buttonSignup,buttonForgotPassword;
+    private Button buttonSubmit, buttonSignup,buttonForgotPassword, btnback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,8 +35,17 @@ public class MembershipProfileActivity extends AppCompatActivity {
        // editTextUsername = findViewById(R.id.editTextUsername);
        editTextPassword = findViewById(R.id.editTextPassword);
         editTextPassword.setHintTextColor(ColorStateList.valueOf(getResources().getColor(android.R.color.white)));
-
+        btnback = findViewById(R.id.buttonMembershipback);
         buttonSignup = findViewById(R.id.buttonSignup);
+
+        btnback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
