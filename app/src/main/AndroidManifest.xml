@@ -12,6 +12,21 @@
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
         <activity
+            android:name=".CartBook"
+            android:exported="false" />
+        <activity
+            android:name=".User"
+            android:exported="false" />
+        <activity
+            android:name=".UserDatabaseHelper"
+            android:exported="false" />
+        <activity
+            android:name=".GymdbDetails"
+            android:exported="false" />
+        <activity
+            android:name=".GymDatabaseHelper"
+            android:exported="false" />
+        <activity
             android:name=".CartActivity"
             android:exported="false" />
         <activity

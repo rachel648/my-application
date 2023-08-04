@@ -20,6 +20,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.Arrays;
 
 public class CartActivity extends AppCompatActivity {
     HashMap<String, String> item;
@@ -63,19 +64,22 @@ public class CartActivity extends AppCompatActivity {
             equipments[i] = new String[5];
         }
 
-            for(int i = 0; i<dbData.size();i++) {
+            for(int i = 0; i < dbData.size();i++) {
                 String arrData = dbData.get(i).toString();
                 String[] strData = arrData.split(java.util.regex.Pattern.quote( "ksh"));
                 equipments[i][0] = strData[0];
+                equipments[i][3] = "Date: " + strData[2];
                 equipments[i][4] = "Cost: " + strData[1] + "/-";
                 totalAmount = totalAmount +Float.parseFloat(strData[1]);
             }
 
+
+
            tvTotal.setText("Total Cost"+totalAmount);
 
+            List = new ArrayList<>();
             for (int i=0;i<equipments.length;i++) {
-                List = new ArrayList<>();
-                item = new HashMap();//<String,String>();
+                item = new HashMap<String,String>();
                 item.put("line1", equipments[i][0]);
                 item.put("line2", equipments[i][1]);
                 item.put("line3", equipments[i][2]);
@@ -83,15 +87,28 @@ public class CartActivity extends AppCompatActivity {
                 item.put("line5", equipments[i][4]);
                 List.add (item);
             }
-sa= new SimpleAdapter(this,List,
+
+
+       sa= new SimpleAdapter(this,List,
         R.layout.multi_lines,
         new String[]{"line1", "line2", "line3", "line4", "line5"},
-        new int[] {R.id.line_a, R.id.line_b, R.id.line_d, R.id.line_e});
+        new int[] {R.id.line_a, R.id.line_b,  R.id.line_c, R.id.line_d, R.id.line_e});
         lst.setAdapter(sa);
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(CartActivity.this, PurchaseDetailActivity.class));
+            }
+        });
+
+        btnCheckout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent it = new Intent(CartActivity.this, CartBook.class);
+           it.putExtra("price", tvTotal.getText());
+           it.putExtra("date", tvTotal.getText()) ;
+            it.putExtra("time", tvTotal.getText());
+            startActivity(it);
             }
         });
 

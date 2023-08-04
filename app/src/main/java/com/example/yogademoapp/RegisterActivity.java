@@ -27,12 +27,12 @@ public class RegisterActivity extends AppCompatActivity {
         btn = findViewById(R.id.ButtonBookApp);
         tv= findViewById(R.id.textViewExistingUser);
 
-      /*  tv.setOnClickListener(new View.OnClickListener() {
+        tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
             }
-        });W*/
+        });
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

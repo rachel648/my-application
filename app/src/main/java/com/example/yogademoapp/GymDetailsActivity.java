@@ -119,16 +119,18 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Intent it = new Intent(GymDetailsActivity.this,BookAppointmentActivity.class);
-                it.putExtra("text1",title);
-                item.put("text2",Gym_Details [i] [0]);
-                item.put("text3",Gym_Details [i] [1]);
-               // item.put("text4",Gym_Details [i] [2]); experience not required on book Appointment so we skip index 2
-                item.put("text5",Gym_Details [i] [3]);
-                item.put("text5",Gym_Details [i] [4]);
+                Intent it = new Intent(GymDetailsActivity.this, BookAppointmentActivity.class);
+                it.putExtra("text1", title);
+                item.put("text2", Gym_Details[i][0]); // Instructor Name
+                item.put("text3", Gym_Details[i][1]); // Gym Number
+                // item.put("text4", Gym_Details[i][2]); // Experience (not required on Book Appointment)
+                item.put("text4", Gym_Details[i][3]); // Mobile Number
+                it.putExtra("text5", Gym_Details[i][4]); // Instructor Fees
                 startActivity(it);
             }
         });
+
+
 
 }
 }

@@ -16,6 +16,11 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
+import android.util.Log;
+
+
+
+
 public class BookAppointmentActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4;
     TextView tv;
@@ -47,7 +52,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
         dateButton = findViewById(R.id.buttonDate);
         timeButton = findViewById(R.id.buttonSelectTime);
 
-        Intent it = getIntent(); //fetching data with the help of intent
+        Intent it = getIntent(); //fetching data with the help of intentA
         String title = it.getStringExtra("text1"); //set info to all the variables:title,fullname,address,contant,fees
         String fullname = it.getStringExtra("text2");
         String address = it.getStringExtra("text3");
@@ -127,5 +132,8 @@ public class BookAppointmentActivity extends AppCompatActivity {
 
         int style = AlertDialog.THEME_HOLO_DARK;
         timePickerDialog = new TimePickerDialog(this, style, timeSetListener, hrs, mins, true);
+
+
+
     }
 }
