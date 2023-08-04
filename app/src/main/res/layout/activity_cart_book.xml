@@ -21,13 +21,13 @@
         android:inputType="textPassword"
         android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/ButtonBookApp"
+        app:layout_constraintBottom_toTopOf="@+id/ButtonBooking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/ButtonBookApp"
+        android:id="@+id/ButtonBooking"
         android:layout_width="258dp"
         android:layout_height="60dp"
         android:layout_marginBottom="50dp"
@@ -35,7 +35,7 @@
         android:textColor="@android:color/holo_blue_dark"
         android:textSize="16sp"
         app:backgroundTint="@color/white"
-        app:layout_constraintBottom_toTopOf="@+id/textViewAccountBooking"
+        app:layout_constraintBottom_toTopOf="@+id/textViewBooking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent" />
@@ -50,7 +50,7 @@
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Pin Code"
         android:inputType="textPassword"
         android:textAllCaps="false"
         android:textStyle="bold"
@@ -114,26 +114,26 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/Booking"
-        android:layout_width="204dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="20dp"
+        android:id="@+id/BookingDetails"
+        android:layout_width="334dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="28dp"
         android:hint="username"
-        android:text="Registration"
+        android:text="Please Fill In All The Details"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextBookingName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.662"
+        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
-        android:id="@+id/textViewAccountBooking"
+        android:id="@+id/textViewBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
-        android:text="Already Have An Account"
+        android:text="Book Now !! Why Wait !!"
         android:textColor="@color/white"
         android:textSize="20sp"
         android:textStyle="bold"

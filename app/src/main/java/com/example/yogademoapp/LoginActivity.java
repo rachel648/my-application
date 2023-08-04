@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
         edUsername = findViewById(R.id.editTextBookingContact);/* edUsername,edPassword,btn,tv is a Member variable i.e the data defined by the class*/
         edPassword = findViewById(R.id.editTextBookingContact);
         btn = findViewById(R.id.buttonLogin); /*Btn for button*/
-        tv= findViewById(R.id.textViewAccountBooking);/*tv for text view*/
+        tv= findViewById(R.id.textViewBooking);/*tv for text view*/
         //classes creation
         btn.setOnClickListener(new View.OnClickListener() {
             @Override

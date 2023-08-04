@@ -24,8 +24,8 @@ public class RegisterActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.editTextBookingContact);
         edEmail = findViewById(R.id.editTextBookingAddress);
         edConfirmPassword = findViewById(R.id.editTextBookingConfirm);
-        btn = findViewById(R.id.ButtonBookApp);
-        tv= findViewById(R.id.textViewAccountBooking);
+        btn = findViewById(R.id.ButtonBooking);
+        tv= findViewById(R.id.textViewBooking);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override

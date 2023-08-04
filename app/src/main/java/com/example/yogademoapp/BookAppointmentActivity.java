@@ -37,7 +37,7 @@ public class BookAppointmentActivity extends AppCompatActivity {
         ed4 = findViewById(R.id.editTextBookingConfirm);
         dateButton = findViewById(R.id.buttonDate); //mapping
         timeButton = findViewById(R.id.buttonSelectTime);
-        btnBook = findViewById(R.id.ButtonBookApp);
+        btnBook = findViewById(R.id.ButtonBooking);
         btnBack = findViewById(R.id.BackBookApp);
 
         ed1.setKeyListener(null);
