@@ -16,10 +16,6 @@ import android.widget.TimePicker;
 
 import java.util.Calendar;
 
-import android.util.Log;
-
-
-
 
 public class BookAppointmentActivity extends AppCompatActivity {
     EditText ed1, ed2, ed3, ed4;
@@ -35,10 +31,10 @@ public class BookAppointmentActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_appointment);
 
         tv = findViewById(R.id.textViewAppTitle);
-        ed1 = findViewById(R.id.editTextFullName);
-        ed2 = findViewById(R.id.editTextAppAddress);
-        ed3 = findViewById(R.id.editTextAppContact);
-        ed4 = findViewById(R.id.editTextAppFees);
+        ed1 = findViewById(R.id.editTextBookingName);
+        ed2 = findViewById(R.id.editTextBookingAddress);
+        ed3 = findViewById(R.id.editTextBookingContact);
+        ed4 = findViewById(R.id.editTextBookingConfirm);
         dateButton = findViewById(R.id.buttonDate); //mapping
         timeButton = findViewById(R.id.buttonSelectTime);
         btnBook = findViewById(R.id.ButtonBookApp);

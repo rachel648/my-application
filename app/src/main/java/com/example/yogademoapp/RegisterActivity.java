@@ -20,12 +20,12 @@ public class RegisterActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        edUsername = findViewById(R.id.editTextFullName);
-        edPassword = findViewById(R.id.editTextAppContact);
-        edEmail = findViewById(R.id.editTextAppAddress);
-        edConfirmPassword = findViewById(R.id.editTextAppFees);
+        edUsername = findViewById(R.id.editTextBookingName);
+        edPassword = findViewById(R.id.editTextBookingContact);
+        edEmail = findViewById(R.id.editTextBookingAddress);
+        edConfirmPassword = findViewById(R.id.editTextBookingConfirm);
         btn = findViewById(R.id.ButtonBookApp);
-        tv= findViewById(R.id.textViewExistingUser);
+        tv= findViewById(R.id.textViewAccountBooking);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override

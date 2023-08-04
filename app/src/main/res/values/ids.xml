@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="editTextTextUsername" type="id" />
-    <item name="editTextAppAddress" type="id" />
+    <item name="editTextBookingAddress" type="id" />
     <item name="editTextHeight" type="id" />
     <item name="editTextWeight" type="id" />
 </resources>

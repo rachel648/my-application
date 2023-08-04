@@ -66,5 +66,14 @@ public class HomeActivity extends AppCompatActivity {
 
             }
         });
+
+        CardView OrderDetails = findViewById(R.id.OrderDetails); //creation of another object
+        OrderDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(HomeActivity.this, CartBook.class));
+
+            }
+        });
     }
 }
