@@ -21,9 +21,9 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         edUsername = findViewById(R.id.editTextBookingName);
-        edPassword = findViewById(R.id.editTextBookingContact);
+        edPassword = findViewById(R.id.editTextBookingPincode);
         edEmail = findViewById(R.id.editTextBookingAddress);
-        edConfirmPassword = findViewById(R.id.editTextBookingConfirm);
+        edConfirmPassword = findViewById(R.id.editTextContactNumber);
         btn = findViewById(R.id.ButtonBooking);
         tv= findViewById(R.id.textViewBooking);
 

@@ -71,9 +71,8 @@ public class HomeActivity extends AppCompatActivity {
         OrderDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, CartBook.class));
-
+                startActivity(new Intent(HomeActivity.this, OrderDetailsActivity.class));
             }
-        });
+       });
     }
 }

@@ -8,7 +8,7 @@
     tools:context=".CartBook">
 
     <EditText
-        android:id="@+id/editTextBookingConfirm"
+        android:id="@+id/editTextContactNumber"
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
@@ -17,7 +17,7 @@
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
-        android:hint="Confirm Password"
+        android:hint="Contact Number"
         android:inputType="textPassword"
         android:textAllCaps="false"
         android:textStyle="bold"
@@ -41,12 +41,12 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/editTextBookingContact"
+        android:id="@+id/editTextBookingPincode"
         android:layout_width="358dp"
         android:layout_height="48dp"
-        android:layout_marginEnd="12dp"
-        android:layout_marginRight="12dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -54,7 +54,7 @@
         android:inputType="textPassword"
         android:textAllCaps="false"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBookingConfirm"
+        app:layout_constraintBottom_toTopOf="@+id/editTextContactNumber"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText
@@ -82,7 +82,7 @@
         app:icon="@drawable/baseline2"
         app:iconGravity="textStart"
         app:iconSize="40dp"
-        app:layout_constraintBottom_toTopOf="@+id/editTextBookingContact"
+        app:layout_constraintBottom_toTopOf="@+id/editTextBookingPincode"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <EditText

@@ -17,7 +17,7 @@ public class PurchaseActivity extends AppCompatActivity {
 
     private String[][] Equipments =
             {
-                    {"Equipment 1 : Exercise Bike", "", "", "", "10000"},
+                    {"Equipment 1 : Exercise Bike", "", "", "", "1000"},
                     {"Equipment 2 : Cable Crossover", "", "", "", "3700"},
                     {"Equipment 3 : Dumbbell", "", "", "", "2250"},
                     {"Equipment 4 : Olympic Bar", "", "", "", "3000"},

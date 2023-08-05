@@ -36,7 +36,7 @@ public class PurchaseDetailActivity extends AppCompatActivity {
         Intent intent = getIntent();
         textviewBuyTitleDetail1.setText(intent.getStringExtra("text1"));
         edPurchaseDetailMultiLine.setText(intent.getStringExtra("text2"));
-        textViewTotalCost.setText("Total Cost :"+intent.getStringExtra("text3")+"/-");
+        textViewTotalCost.setText("Total Cost :"+intent.getStringExtra("text3")+"ksh");
 
         buttonPurchaseDetailback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,7 +49,7 @@ public class PurchaseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-                String username = sharedPreferences.getString("username", "");
+                String username = sharedPreferences.getString("username", "").toString();
                 String product =textviewBuyTitleDetail1.getText().toString();
                 float price = Float.parseFloat(intent.getStringExtra("text3").toString());
 
@@ -57,7 +57,7 @@ public class PurchaseDetailActivity extends AppCompatActivity {
          if (db.checkCart(username,product)==1){
              Toast.makeText(getApplicationContext(),"product Already Added",Toast.LENGTH_SHORT).show();
          }else {
-db.addCart(username,product,price,"purchase");
+db.addCart(username,product,price,"cart");
 Toast.makeText(getApplicationContext(),"Record Inserted to Cart",Toast.LENGTH_SHORT).show();
        startActivity(new Intent(PurchaseDetailActivity.this,PurchaseActivity.class));
          }
