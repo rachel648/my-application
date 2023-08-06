@@ -43,7 +43,7 @@ Button btnBooking;
             try {
                 int pincode = Integer.parseInt(edpincode.getText().toString());
 
-                db.addOrder(username, edname.getText().toString(), edaddress.getText().toString(), edcontact.getText().toString(), pincode, date, time, Float.parseFloat(price[1]), "cart");
+        // db.addOrder(username, edname.getText().toString(), edaddress.getText().toString(), edcontact.getText().toString(), pincode, date, time, Float.parseFloat(price[1]), "cart");
                 db.removeCart(username, "cart");
                 Toast.makeText(getApplicationContext(), "Your booking is done successfully", Toast.LENGTH_LONG).show();
                 startActivity(new Intent(CartBook.this, HomeActivity.class));
