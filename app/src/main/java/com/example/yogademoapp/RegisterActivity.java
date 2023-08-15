@@ -1,7 +1,5 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,15 +8,23 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+
+
 public class RegisterActivity extends AppCompatActivity {
     EditText edUsername, edEmail, edPassword, edConfirmPassword;
     Button btn;
     TextView tv;
 
+    FirebaseAuth auth = FirebaseAuth.getInstance();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
 
         edUsername = findViewById(R.id.editTextBookingName);
         edPassword = findViewById(R.id.editTextBookingPincode);
@@ -36,6 +42,7 @@ public class RegisterActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                // Obtain data entered
                 String Username = edUsername.getText().toString();
                 String Password = edPassword.getText().toString();
                 String email = edEmail.getText().toString();
@@ -66,7 +73,9 @@ public class RegisterActivity extends AppCompatActivity {
 
         });
 
-    }
+        }
+
+
     /*  We check if password is valid by checking the length eg 8 characters,whether it has a digit, a letter,an alphabet, a special character
     * To do so we use a built in function as used below
     * if less eight return false
