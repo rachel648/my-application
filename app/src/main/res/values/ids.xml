@@ -4,4 +4,5 @@
     <item name="editTextBookingAddress" type="id" />
     <item name="editTextHeight" type="id" />
     <item name="editTextWeight" type="id" />
+    <item name="editTextBookingEmail" type="id" />
 </resources>

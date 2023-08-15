@@ -8,9 +8,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class RegisterActivity extends AppCompatActivity {
@@ -18,13 +23,26 @@ public class RegisterActivity extends AppCompatActivity {
     Button btn;
     TextView tv;
 
-    FirebaseAuth auth = FirebaseAuth.getInstance();
+    FirebaseAuth mAuth;
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+
+        }
+    }
+
+    //  FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        mAuth = FirebaseAuth.getInstance();
 
         edUsername = findViewById(R.id.editTextBookingName);
         edPassword = findViewById(R.id.editTextBookingPincode);
@@ -55,11 +73,28 @@ public class RegisterActivity extends AppCompatActivity {
                 else {
                     if (Password.compareTo(ConfirmPassword) == 0) {
                         if (isValid(Password)) {    /*if both passwords are same then check whether it's a valid password containing all specifications*/
-                 db.registar(Username,email,Password);
-                      Toast.makeText(getApplicationContext(),"Record Inserted",Toast.LENGTH_SHORT).show();
-                      startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
-                        }
-                        else {
+
+                            // Create a new user account with Firebase Authentication
+                            mAuth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<AuthResult> task) {
+                                            if (task.isSuccessful()) {
+                                                // User registration successful
+
+
+                                                // db.registar(Username,email,Password);
+                                                Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                            } else {
+
+                                                // Registration failed
+                                                Toast.makeText(getApplicationContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    });
+
+                        }else {
+
                     Toast.makeText(getApplicationContext(),("Password must contain at least 8 characters,having letter,digit and alphabet"), Toast.LENGTH_SHORT).show();
                 }
                     } else {
@@ -72,8 +107,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
 
         });
-
-        }
+    }
 
 
     /*  We check if password is valid by checking the length eg 8 characters,whether it has a digit, a letter,an alphabet, a special character
@@ -103,11 +137,13 @@ public class RegisterActivity extends AppCompatActivity {
                       f3 = 1 ;
                 }
             }
-            if(f1==1 && f2==1 && f3==1)         /*flags*/
+            if(f1==1 && f2==1 && f3==1)/*flags*/
                 return true;
 
                 return false;
                 }
             }
+
+
 }
 
