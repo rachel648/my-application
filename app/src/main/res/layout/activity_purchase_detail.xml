@@ -74,40 +74,38 @@
 
     <EditText
         android:id="@+id/edPurchaseDetailMultiLine"
-        android:layout_width="290dp"
-        android:layout_height="372dp"
+        android:layout_width="272dp"
+        android:layout_height="344dp"
         android:layout_marginTop="20dp"
-        app:layout_constraintBottom_toTopOf="@+id/buttonPurchaseDetailback"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintVertical_bias="0.307"
+        android:ems="10"
+        android:gravity="start|top"
         android:inputType="textMultiLine"
         android:padding="10dp"
-        android:ems="10"
         android:text="Hi \nHello"
         android:textColor="#FFFFFF"
-        app:layout_constraintHorizontal_bias="0.495"
-        tools:ignore="MissingContraints"
-        android:gravity="start|top"
-        app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsName"
         android:textSize="25dp"
-        />
+        app:layout_constraintBottom_toTopOf="@+id/buttonPurchaseDetailback"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsName"
+        app:layout_constraintVertical_bias="0.307"
+        tools:ignore="MissingContraints" />
 
     <TextView
         android:id="@+id/textViewTotalCost"
-        android:layout_width="204dp"
-        android:layout_height="37dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:hint="username"
         android:text="Total Cost"
         android:textColor="@color/white"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.594"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="729dp"
-        app:layout_constraintTop_toBottomOf="@+id/edPurchaseDetailMultiLine"
-       />
+        app:layout_constraintTop_toBottomOf="@+id/edPurchaseDetailMultiLine" />
 
     <Button
         android:id="@+id/buttonPurchaseDetailback"
@@ -116,6 +114,7 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginBottom="28dp"
+        android:layout_marginTop="16dp"
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />

@@ -1,7 +1,5 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +31,6 @@ public class PurchaseActivity extends AppCompatActivity {
                     "Fast Burning of Calories\n" +
                     "Improved Lung Capacity\n"+
                     "Better Posture.\n"+
-                   "Less Pressure on Joints\n"+
                     "Easy to Use\n",
 
             "add muscle \n" +
@@ -39,7 +38,6 @@ public class PurchaseActivity extends AppCompatActivity {
                     "define your chest and upper bodys\n" +
                     "benefits your arms\n"+
                     "benefits your glute muscles\n" +
-                    "benefits your core\n" +
                     "improve shoulder stability.\n",
 
             "cardio\n" +
@@ -47,7 +45,6 @@ public class PurchaseActivity extends AppCompatActivity {
                     "Better sleep\n" +
                     "Weight loss\n"+
                     "Balance and Coordination.\n"+
-                    "Portability and Efficient Use of Space.\n"+
                     "Muscle Gain and Functional Strength\n"+
             "Improved Cardiovascular Health\n",
 
@@ -59,15 +56,12 @@ public class PurchaseActivity extends AppCompatActivity {
                     "Triceps\n",
 
             "cardio\n" +
-                    "Strength\n"
-                    +
+                    "Strength\n" +
                     "Burns calories efficiently." +
                     " \n" +
                     "Helps manage your blood sugar levels.." +
                     " \n" +
                     "Decreases your risk of falls. " +
-                    "\n" +
-                    "Improves heart health." +
                     "\n" +
                     "Can help you appear leaner\n",
     };
