@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -30,6 +31,10 @@ public class MembershipProfileActivity extends AppCompatActivity {
     private Spinner spinnerMembershipType;
     private Button buttonSubmit, buttonSignup,buttonForgotPassword, btnback;
 
+    private ImageView imageView;
+
+    private FirebaseAuth authProfile;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,6 +51,15 @@ public class MembershipProfileActivity extends AppCompatActivity {
         btnback = findViewById(R.id.buttonMembershipback);
         buttonSignup = findViewById(R.id.buttonSignup);
 
+        //Set OnClickListener on ImageView to Open Uploadloadprofile on MembershipProfileActivity
+      //  imageView = findViewById(R.id.imageview_profile_dp);
+imageView.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+        Intent intent = new Intent(MembershipProfileActivity.this,UploadProfileActivity.class);
+        startActivity(intent);
+    }
+});
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
