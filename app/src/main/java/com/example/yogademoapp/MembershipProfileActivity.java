@@ -1,15 +1,22 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.Toast;import android.widget.ArrayAdapter;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 public class MembershipProfileActivity extends AppCompatActivity {
@@ -17,6 +24,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
     Button btn;
     EditText ed;
     Spinner sp;
+    FirebaseAuth mAuth;
 
     private EditText editTextName, editTextEmail, editTextPassword, editTextUsername;
     private Spinner spinnerMembershipType;
@@ -26,7 +34,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_membership_profile);
-
+        mAuth = FirebaseAuth.getInstance();
         editTextName = findViewById(R.id.editTextName);
         editTextEmail = findViewById(R.id.editTextEmail);
         spinnerMembershipType = findViewById(R.id.spinnerMembershipType);
@@ -52,33 +60,48 @@ public class MembershipProfileActivity extends AppCompatActivity {
                 String name = editTextName.getText().toString();
                 String email = editTextEmail.getText().toString();
                 String membershipType = spinnerMembershipType.getSelectedItem().toString();
-
-                // Do something with the entered data, such as storing it in a database
-
-                // Display a toast message to indicate successful submission
-                Toast.makeText(
-                        MembershipProfileActivity.this,
-                        "Profile submitted: Name = " + name + ", Email = " + email + ", Membership Type = " + membershipType,
-                        Toast.LENGTH_SHORT
-                ).show();
-            }
-        });
-
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
                 String username = editTextName.getText().toString();
                 String password = editTextPassword.getText().toString();
+                // Do something with the entered data, such as storing it in a database
+                // Display a toast message to indicate successful submission
 
-                // Perform login authentication logic
-                if (username.equals("admin") && password.equals("password")) {
-                    Toast.makeText(MembershipProfileActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
-                    // Perform any additional actions after successful login
+                if (email.length() == 0 || password.length() == 0) {
+                    Toast.makeText(getApplicationContext(), ("Please fill all the details"), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MembershipProfileActivity.this, "Invalid credentials", Toast.LENGTH_SHORT).show();
+                    // Use Firebase Authentication to sign in
+                    mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(MembershipProfileActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                Toast.makeText(
+                                        MembershipProfileActivity.this,
+                                        "Profile submitted: Name = " + name + ", Email = " + email + ", Membership Type = " + membershipType,
+                                        Toast.LENGTH_SHORT).show();
+                                // Perform login authentication logic
+                                if (username.equals("admin") && password.equals("password")) {
+                                    Toast.makeText(MembershipProfileActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
+                                    // Perform any additional actions after successful login
+
+                                } else {
+                                    Toast.makeText(MembershipProfileActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+
+                                    startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
+                                }
+                                // Start the Login activity
+                               // Intent intent = new Intent(MembershipProfileActivity.this, HomeActivity.class);
+                              //  startActivity(intent);
+
+                            }
+                        }
+
+                    });
+
                 }
             }
         });
+
         buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,14 +111,6 @@ public class MembershipProfileActivity extends AppCompatActivity {
             }
         });
 
-        buttonSubmit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Start the Login activity
-                Intent intent = new Intent(MembershipProfileActivity.this, LoginActivity.class);
-                startActivity(intent);
-            }
-        });
         buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

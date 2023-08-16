@@ -24,7 +24,7 @@
         android:id="@+id/editTextName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="32dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
@@ -50,7 +50,7 @@
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="16dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
@@ -116,7 +116,7 @@
     <Button
         android:id="@+id/buttonForgotPassword"
         style="?android:spinnerStyle"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot Password"
         android:textSize="18sp" />
@@ -126,9 +126,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end"
+        android:layout_marginTop="4dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
-        android:layout_marginBottom="28dp"
         android:text="BACK" />
 
 </LinearLayout>

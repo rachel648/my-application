@@ -72,11 +72,6 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // if (db.login(Username,Password)==1);
                                 Toast.makeText(getApplicationContext(), ("Login Success"), Toast.LENGTH_SHORT).show();
-                                //  SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-                                //SharedPreferences.Editor editor = sharedpreferences.edit();
-                                //editor.putString("username", Username);
-                                // to save our data with key and value.
-                                //editor.apply();
                                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                     /*  }else{
                     Toast.makeText(getApplicationContext(), ("invalid username or password"), Toast.LENGTH_SHORT).show();
