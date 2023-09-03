@@ -7,19 +7,18 @@
     android:background="@drawable/blackone"
     tools:context=".CartActivity">
 
+
     <Button
         android:id="@+id/buttonCheckOutCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
+        android:layout_marginEnd="236dp"
+        android:layout_marginRight="236dp"
         android:layout_marginBottom="28dp"
         android:hint="Go To Cart"
         android:text="Checkout"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="673dp"/>
-
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textviewBuyCheckoutTitle"
@@ -70,12 +69,12 @@
         android:layout_width="386dp"
         android:layout_height="293dp"
         android:layout_margin="10dp"
-        android:layout_marginTop="136dp"
+        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
+        android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextviewCheckoutTitle"
-        android:visibility="visible"/>
+        app:layout_constraintTop_toBottomOf="@+id/TextviewCheckoutTitle" />
 
     <Button
         android:id="@+id/buttonCheckoutback"
@@ -128,6 +127,7 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="27/10/2023"
+        android:textColor="@color/white"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/buttonCheckoutTime" />
@@ -139,6 +139,7 @@
         android:layout_height="38dp"
         android:layout_marginTop="40dp"
         android:text="10:00"
+        android:textColor="@color/white"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textViewTotalCost" />

@@ -27,10 +27,10 @@
         android:visibility="visible"
         app:layout_constraintBottom_toTopOf="@+id/Register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.623"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.836" />
+        app:layout_constraintVertical_bias="0.829" />
 
     <TextView
         android:id="@+id/textViewBooking"
@@ -95,7 +95,7 @@
         android:id="@+id/Register"
         android:layout_width="204dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="512dp"
+        android:layout_marginBottom="516dp"
         android:hint="username"
         android:text="Login"
         android:textColor="@color/white"
@@ -103,7 +103,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.743"
+        app:layout_constraintHorizontal_bias="0.898"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText

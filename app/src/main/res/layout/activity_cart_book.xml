@@ -13,7 +13,7 @@
         android:layout_height="48dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginBottom="52dp"
+        android:layout_marginBottom="68dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -23,7 +23,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ButtonBooking"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -42,11 +42,11 @@
 
     <EditText
         android:id="@+id/editTextBookingPincode"
-        android:layout_width="358dp"
-        android:layout_height="48dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginBottom="40dp"
+        android:layout_width="351dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="44dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
@@ -55,15 +55,15 @@
         android:textAllCaps="false"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextContactNumber"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@id/editTextBookingAddress"
         android:layout_width="363dp"
         android:layout_height="44dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginBottom="52dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/sym_action_email"
         android:drawablePadding="2dp"
@@ -83,12 +83,14 @@
         app:iconGravity="textStart"
         app:iconSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBookingPincode"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextBookingName"
         android:layout_width="363dp"
         android:layout_height="44dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/input_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
@@ -109,15 +111,13 @@
         app:iconGravity="textStart"
         app:iconSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/editTextBookingAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.854"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/BookingDetails"
         android:layout_width="334dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="56dp"
         android:hint="username"
         android:text="Please Fill In All The Details"
         android:textColor="@color/white"
@@ -125,7 +125,7 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextBookingName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintHorizontal_bias="0.987"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView

@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -31,7 +30,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
     private Spinner spinnerMembershipType;
     private Button buttonSubmit, buttonSignup,buttonForgotPassword, btnback;
 
-    private ImageView imageView;
+  //  private ImageView imageView;
 
     private FirebaseAuth authProfile;
 
@@ -44,22 +43,22 @@ public class MembershipProfileActivity extends AppCompatActivity {
         editTextEmail = findViewById(R.id.editTextEmail);
         spinnerMembershipType = findViewById(R.id.spinnerMembershipType);
         buttonSubmit = findViewById(R.id.buttonSubmit);
-        buttonForgotPassword=findViewById(R.id.buttonForgotPassword);
-       // editTextUsername = findViewById(R.id.editTextUsername);
-       editTextPassword = findViewById(R.id.editTextPassword);
+        buttonForgotPassword = findViewById(R.id.buttonForgotPassword);
+        // editTextUsername = findViewById(R.id.editTextUsername);
+        editTextPassword = findViewById(R.id.editTextPassword);
         editTextPassword.setHintTextColor(ColorStateList.valueOf(getResources().getColor(android.R.color.white)));
         btnback = findViewById(R.id.buttonMembershipback);
         buttonSignup = findViewById(R.id.buttonSignup);
 
         //Set OnClickListener on ImageView to Open Uploadloadprofile on MembershipProfileActivity
-      //  imageView = findViewById(R.id.imageview_profile_dp);
-imageView.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View view) {
-        Intent intent = new Intent(MembershipProfileActivity.this,UploadProfileActivity.class);
-        startActivity(intent);
-    }
-});
+        //  imageView = findViewById(R.id.imageview_profile_dp);
+      //  imageView.setOnClickListener(new View.OnClickListener() {
+          //  @Override
+          //  public void onClick(View view) {
+            //    Intent intent = new Intent(MembershipProfileActivity.this, UploadProfileActivity.class);
+           //     startActivity(intent);
+        //    }
+   //     });
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -104,8 +103,8 @@ imageView.setOnClickListener(new View.OnClickListener() {
                                     startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
                                 }
                                 // Start the Login activity
-                               // Intent intent = new Intent(MembershipProfileActivity.this, HomeActivity.class);
-                              //  startActivity(intent);
+                                // Intent intent = new Intent(MembershipProfileActivity.this, HomeActivity.class);
+                                //  startActivity(intent);
 
                             }
                         }
@@ -136,16 +135,16 @@ imageView.setOnClickListener(new View.OnClickListener() {
 
 
         // Add four types of membership to the spinner
-        String[] membershipTypes = {"OneDayMembership", "WeekMembership","MonthMembership","YearMembership"};
-      // ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, membershipTypes);
-      //  spinnerMembershipType.setAdapter(adapter);
+        String[] membershipTypes = {"OneDayMembership", "WeekMembership", "MonthMembership", "YearMembership"};
+        // ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, membershipTypes);
+        //  spinnerMembershipType.setAdapter(adapter);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, membershipTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMembershipType.setAdapter(adapter);
 
-
     }
+
 }
 
 
