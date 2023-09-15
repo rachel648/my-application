@@ -1,7 +1,5 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -10,6 +8,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -120,11 +120,12 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Intent it = new Intent(GymDetailsActivity.this, BookAppointmentActivity.class);
+                // it.putExtra,passes instructor's name from the GymDetailsActivity to the BookAppointmentActivity and display it in an EditText
                 it.putExtra("text1", title);
-                item.put("text2", Gym_Details[i][0]); // Instructor Name
-                item.put("text3", Gym_Details[i][1]); // Gym Number
+                it.putExtra("text2", Gym_Details[i][0]); // Instructor Name
+                it.putExtra("text3", Gym_Details[i][1]); // Gym Number
                 // item.put("text4", Gym_Details[i][2]); // Experience (not required on Book Appointment)
-                item.put("text4", Gym_Details[i][3]); // Mobile Number
+                it.putExtra("text4", Gym_Details[i][3]); // Mobile Number
                 it.putExtra("text5", Gym_Details[i][4]); // Instructor Fees
                 startActivity(it);
             }

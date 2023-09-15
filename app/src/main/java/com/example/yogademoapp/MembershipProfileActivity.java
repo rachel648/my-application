@@ -98,7 +98,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
                                     // Perform any additional actions after successful login
 
                                 } else {
-                                    Toast.makeText(MembershipProfileActivity.this, "Login success", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MembershipProfileActivity.this, "Login Successz", Toast.LENGTH_SHORT).show();
 
                                     startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
                                 }
