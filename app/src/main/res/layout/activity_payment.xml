@@ -30,7 +30,7 @@
         app:layout_constraintHorizontal_bias="0.434"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/payment_toolbar"
-        app:srcCompat="@drawable/bike"
+        app:srcCompat="@drawable/card1"
         android:contentDescription="TODO"
         tools:ignore="ContentDescription" />
 

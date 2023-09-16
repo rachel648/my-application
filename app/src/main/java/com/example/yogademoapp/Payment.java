@@ -16,14 +16,14 @@ public class Payment extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_payment);
         //Toolbar
-       // toolbar = findViewById(R.id.payment_toolbar);
-        //setSupportActionBar(toolbar);
-       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar = findViewById(R.id.payment_toolbar);
+        //setSupportActionBar(toolbar); //inaharibu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        //subTotal = findViewById(R.id.sub_total);
-        //discount = findViewById(R.id.textView17);
-        //shipping = findViewById(R.id.textView18);
-        //total = findViewById(R.id.total_amt);
+        subTotal = findViewById(R.id.sub_total);
+        discount = findViewById(R.id.textView17);
+        shipping = findViewById(R.id.textView18);
+        total = findViewById(R.id.total_amt);
 
 
     }
