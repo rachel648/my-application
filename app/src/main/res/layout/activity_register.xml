@@ -5,7 +5,7 @@
     android:id="@+id/textViewAppTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@drawable/lucky"
     tools:context=".RegisterActivity"
     tools:ignore="DuplicateIds">
 
@@ -14,7 +14,7 @@
         android:layout_width="465dp"
         android:layout_height="840dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/background"
+        android:background="@drawable/lucky"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.74"
@@ -160,8 +160,8 @@
             android:id="@+id/textView2"
             android:layout_width="184dp"
             android:layout_height="46dp"
-            android:layout_marginStart="176dp"
-            android:layout_marginLeft="176dp"
+            android:layout_marginStart="188dp"
+            android:layout_marginLeft="188dp"
             android:layout_marginBottom="32dp"
             android:text="24/7 FITNESS"
             android:textAppearance="@style/TextAppearance.AppCompat.Title"

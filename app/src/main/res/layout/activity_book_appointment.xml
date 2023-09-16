@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/blackone"
+    android:background="@drawable/lucky"
     tools:context=".BookAppointmentActivity">
 
     <TextView
@@ -165,7 +165,8 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextContactNumber"
-        style="?android:spinnerStyle"/>
+        style="?android:spinnerStyle"
+        android:textColor="@color/white"/>
 
     <TextView
         android:id="@+id/textViewNew2"
@@ -191,7 +192,8 @@
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/buttonDate"
-        style="?android:spinnerStyle"/>
+        style="?android:spinnerStyle"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/BackBookApp"

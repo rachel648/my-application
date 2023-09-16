@@ -11,8 +11,8 @@
         android:id="@+id/buttonPurchaseDetailCart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="280dp"
-        android:layout_marginRight="280dp"
+        android:layout_marginEnd="208dp"
+        android:layout_marginRight="208dp"
         android:layout_marginBottom="28dp"
         android:hint="Add To Cart"
         android:text="Add To Cart"
@@ -30,7 +30,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:text="PURCHASE_OR_HIRE"
-        android:textColor="#C8FBFBFB"
+        android:textColor="#FFFAF0"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -60,8 +60,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="76dp"
-        android:layout_marginRight="76dp"
+        android:layout_marginEnd="44dp"
+        android:layout_marginRight="44dp"
         android:layout_marginBottom="24dp"
         android:text="GYMWEAR *AND* EQUIPMENT"
         android:textColor="#C8FBFBFB"
@@ -70,7 +70,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/TextviewGymDetailsName"
-        app:layout_constraintVertical_bias="0.095" />
+        app:layout_constraintVertical_bias="0.103" />
 
     <EditText
         android:id="@+id/edPurchaseDetailMultiLine"

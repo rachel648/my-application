@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/blackone">
+    android:background="@drawable/lucky">
 
     <TextView
         android:id="@+id/textView5"
@@ -36,7 +36,7 @@
         android:paddingTop="10dp"
         android:paddingRight="0dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/design_default_color_surface"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible" />
@@ -62,7 +62,7 @@
         android:paddingTop="10dp"
         android:paddingRight="0dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/design_default_color_surface"
+        android:textColor="@color/white"
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible" />
@@ -101,7 +101,8 @@
         android:layout_width="258dp"
         android:layout_height="60dp"
         android:text="LOGIN"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/buttonSignup"
@@ -109,7 +110,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="SIGNUP"
-        android:textSize="20sp" />
+        android:textSize="20sp"
+        android:textColor="@color/white"/>
 
         />
 
@@ -119,7 +121,8 @@
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:text="Forgot Password"
-        android:textSize="18sp" />
+        android:textSize="18sp"
+        android:textColor="@color/white"/>
 
     <Button
         android:id="@+id/buttonMembershipback"

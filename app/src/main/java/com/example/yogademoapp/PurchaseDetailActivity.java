@@ -1,7 +1,5 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -11,6 +9,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class PurchaseDetailActivity extends AppCompatActivity {
 
@@ -59,7 +59,7 @@ public class PurchaseDetailActivity extends AppCompatActivity {
          }else {
 db.addCart(username,product,price,"cart");
 Toast.makeText(getApplicationContext(),"Record Inserted to Cart",Toast.LENGTH_SHORT).show();
-       startActivity(new Intent(PurchaseDetailActivity.this,PurchaseActivity.class));
+       startActivity(new Intent(PurchaseDetailActivity.this,CartActivity.class));
          }
             }
         });
