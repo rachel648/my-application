@@ -98,11 +98,14 @@ public class BookAppointmentActivity extends AppCompatActivity {
 
 // Create an Intent to start the Payment activity
 
-                startActivity(new Intent(BookAppointmentActivity.this,Payment.class));
+                Intent paymentIntent = new Intent(BookAppointmentActivity.this, Payment.class);
 
+                // Pass the Train Fees value to the Payment activity
+                String trainFees = getIntent().getStringExtra("text5");
+                paymentIntent.putExtra("TrainFees", trainFees);
+
+                startActivity(paymentIntent);
             }
-
-
         });
     }
 

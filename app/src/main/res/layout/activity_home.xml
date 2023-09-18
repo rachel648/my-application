@@ -72,7 +72,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="GYMNASTICS"
+                        android:text="WORKOUTS FOR YOU"
                         android:textAlignment="center"
                         android:textColor="@color/purple_200"
                         android:textStyle="bold" />
