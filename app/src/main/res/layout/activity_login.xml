@@ -5,45 +5,57 @@
     android:id="@+id/fitness"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/backsix"
     tools:actionBarNavMode="standard"
-    tools:context=".LoginActivity">
+    tools:context=".LoginActivity"
+    android:background="@drawable/babe4">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraint"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        android:background="@drawable/header_bg">
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="184dp"
-        android:layout_height="46dp"
+        android:layout_width="169dp"
+        android:layout_height="41dp"
         android:layout_marginStart="2dp"
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
-        android:layout_marginBottom="40dp"
         android:text="24/7 FITNESS"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:layout_constraintBottom_toTopOf="@+id/Register"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.623"
+        app:layout_constraintHorizontal_bias="0.575"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.829" />
+        tools:layout_editor_absoluteY="186dp" />
 
     <TextView
         android:id="@+id/textViewBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="40dp"
         android:text="Register For New User"
-        android:textColor="@color/white"
+        android:textColor="#008080"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.543"
+        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -51,7 +63,7 @@
         android:layout_width="258dp"
         android:layout_height="60dp"
         android:text="login"
-        android:textColor="@android:color/holo_blue_dark"
+        android:textColor="	#008080"
         android:textSize="16sp"
         app:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,10 +75,10 @@
 
     <EditText
         android:id="@id/editTextEmail"
-        android:layout_width="363dp"
-        android:layout_height="44dp"
+        android:layout_width="297dp"
+        android:layout_height="48dp"
         android:layout_marginBottom="11dp"
-        android:background="@drawable/input_bg"
+        android:background="@drawable/header_bg"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
         android:ems="10"
@@ -81,7 +93,6 @@
         android:textSize="18sp"
         android:textStyle="bold"
         android:visibility="visible"
-        app:icon="@drawable/baseline2"
         app:iconGravity="textStart"
         app:iconSize="40dp"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
@@ -93,25 +104,25 @@
 
     <TextView
         android:id="@+id/Register"
-        android:layout_width="204dp"
-        android:layout_height="37dp"
-        android:layout_marginBottom="516dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="572dp"
         android:hint="username"
         android:text="Login"
-        android:textColor="@color/white"
-        android:textSize="24sp"
+        android:textColor="@color/black"
+        android:textSize="30dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.898"
+        app:layout_constraintHorizontal_bias="0.583"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextPassword"
-        android:layout_width="357dp"
-        android:layout_height="48dp"
-        android:layout_marginBottom="84dp"
-        android:background="@drawable/input_bg"
+        android:layout_width="300dp"
+        android:layout_height="49dp"
+        android:layout_marginBottom="88dp"
+        android:background="@drawable/header_bg"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
         android:hint="Password"
@@ -120,5 +131,6 @@
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.549"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
