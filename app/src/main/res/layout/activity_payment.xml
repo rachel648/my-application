@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Payment"
-    android:background="@drawable/lucky">
+    android:background="@drawable/baby7">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/payment_toolbar"
