@@ -17,9 +17,6 @@
             android:name=".ChooseActivity"
             android:exported="false" />
         <activity
-            android:name=".Choose"
-            android:exported="false" />
-        <activity
             android:name=".Payment"
             android:exported="false" />
         <activity

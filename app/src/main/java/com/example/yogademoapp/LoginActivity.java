@@ -72,7 +72,7 @@ public class LoginActivity extends AppCompatActivity {
 
                                 // if (db.login(Username,Password)==1);
                                 Toast.makeText(getApplicationContext(), ("Login Success"), Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                                startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
                     /*  }else{
                     Toast.makeText(getApplicationContext(), ("invalid username or password"), Toast.LENGTH_SHORT).show();
                     }   */
