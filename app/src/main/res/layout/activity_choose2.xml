@@ -82,7 +82,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/header_bg"
-        android:text="MENTAL STATUS"
+        android:text="MENTAL WELLNESS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/physicalFitnessButton"
         android:textColor="@color/black"
