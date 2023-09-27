@@ -11,7 +11,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
         android:layout_width="match_parent"
-        android:layout_height="150dp"
+        android:layout_height="100dp"
         android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,16 +47,16 @@
         android:id="@+id/Register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="572dp"
+        android:layout_marginBottom="616dp"
         android:hint="username"
-        android:text="WE BELIEVE IN YOU"
+        android:text="WE BELIEVE IN YOU!!"
         android:textColor="@color/black"
         android:textSize="29dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintHorizontal_bias="0.602"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/physicalFitnessButton"
@@ -66,10 +66,13 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="236dp"
         android:background="@drawable/header_bg"
-        android:backgroundTint="@color/white"
         android:text="PHYSICAL FITNESS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
+        />
 
     <Button
         android:id="@+id/mentalStatusButton"
@@ -79,10 +82,12 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="40dp"
         android:background="@drawable/header_bg"
-        android:backgroundTint="@color/white"
         android:text="MENTAL STATUS"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/physicalFitnessButton" />
+        app:layout_constraintTop_toBottomOf="@+id/physicalFitnessButton"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"/>
 
     <Button
         android:id="@+id/consultationButton"
@@ -95,7 +100,10 @@
         android:backgroundTint="@color/white"
         android:text="CONSULTATION"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mentalStatusButton" />
+        app:layout_constraintTop_toBottomOf="@+id/mentalStatusButton"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"/>
 
 
     <Button
@@ -108,6 +116,9 @@
         android:background="@drawable/header_bg"
         android:backgroundTint="@color/white"
         android:text="LOGOUT"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        app:backgroundTint="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/consultationButton" />
 

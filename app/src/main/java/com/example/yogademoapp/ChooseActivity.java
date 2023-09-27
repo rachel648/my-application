@@ -30,5 +30,13 @@ public class ChooseActivity extends AppCompatActivity {
 
             }
         });
-    }
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChooseActivity.this,LoginActivity.class));
+
+            }
+        });
+
+            }
 }
