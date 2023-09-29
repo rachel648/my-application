@@ -79,7 +79,8 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-          android:src="@drawable/cycle"/>
+          android:src="@drawable/cycle"
+            android:scaleType="centerCrop"/>
 
           <TextView
               android:layout_width="wrap_content"
@@ -116,7 +117,8 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/box" />
+            android:src="@drawable/box"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -153,7 +155,8 @@
         <ImageView
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:src="@drawable/eq"/>
+            android:src="@drawable/eq"
+            android:scaleType="centerCrop"/>
 
         <TextView
             android:layout_width="wrap_content"

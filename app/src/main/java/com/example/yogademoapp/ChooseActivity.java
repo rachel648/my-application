@@ -38,5 +38,14 @@ public class ChooseActivity extends AppCompatActivity {
             }
         });
 
+        mentalStatusButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(ChooseActivity.this,MedDoc.class));
+
+            }
+        });
+
+
             }
 }

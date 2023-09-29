@@ -7,6 +7,11 @@
     android:background="@drawable/baby7"
     tools:context=".BookAppointmentActivity">
 
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/wave__3_"
+        />
     <TextView
         android:id="@+id/textView3"
         android:layout_width="184dp"

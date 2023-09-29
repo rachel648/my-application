@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@drawable/baby7">
+    android:background="@drawable/wave__4_">
 
     <TextView
         android:id="@+id/textView5"
