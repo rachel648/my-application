@@ -8,6 +8,33 @@
     android:background="@drawable/thera">
 
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-100dp"
+        android:background="@drawable/bike"
+        android:scaleType="centerCrop"
+        android:src="@drawable/shapy_bg" />
+
+    <TextView
+        android:id="@+id/textVie"
+        android:layout_width="695dp"
+        android:layout_height="91dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginLeft="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginRight="2dp"
+        android:gravity="center"
+        android:text="Welcome to \nMENTAL HEALTH"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.903"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="186dp" />
+
     <Button
         android:id="@+id/buttonLogin"
         android:layout_width="match_parent"
@@ -19,6 +46,17 @@
 
         android:textColor="@color/black"
         app:backgroundTint="@color/lightblue" /> <!-- Adjust the margin as needed -->
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="-160dp"
+        android:background="@drawable/bike"
+        android:layout_alignParentBottom="true"
+        android:scaleType="centerCrop"
+        android:src="@drawable/botton_bg"
+        />
+
 
     </RelativeLayout>
 

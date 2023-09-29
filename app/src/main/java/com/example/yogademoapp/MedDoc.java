@@ -19,11 +19,11 @@ public class MedDoc extends AppCompatActivity {
             @Override
             public void run() {
                 // Start the next activity here
-                Intent intent = new Intent(MedDoc.this,mentaldashboard .class);
+                Intent intent = new Intent(MedDoc.this,mentaldashboard.class);
                 startActivity(intent);
                 finish(); // Optional: Close this activity to prevent going back
             }
-        }, 1000); // Delay in milliseconds (2 seconds)
+        }, 1500); // Delay in milliseconds (2 seconds)
     }
 }
 
