@@ -52,7 +52,7 @@
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="#FFFAFA"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">

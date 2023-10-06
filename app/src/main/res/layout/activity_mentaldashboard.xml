@@ -46,7 +46,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Box"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -54,10 +54,44 @@
                 android:layout_gravity="center"
                 android:clickable="true"
                 android:focusable="true"
-                app:cardBackgroundColor="#FFFAFA"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
+
+                <FrameLayout
+                    android:layout_width="302dp"
+                    android:layout_height="match_parent"
+                    android:padding="16dp"
+                    tools:context=".mentaldashboard">
+
+                    <!-- CardView -->
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:clickable="true"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="4dp">
+
+                        <!-- Place your content inside the CardView here -->
+                        <!-- For example, you can add a Spinner or other views here -->
+                    </androidx.cardview.widget.CardView>
+
+                    <!-- TextView on top of CardView -->
+                    <TextView
+                        android:id="@+id/textViewOnTop"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal|top"
+                        android:layout_marginTop="00dp"
+                        android:text="CLICK HERE"
+                        android:textColor="@color/black"
+                        android:textSize="10dp"
+                        android:visibility="visible" />
+
+                </FrameLayout>
+
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -66,28 +100,26 @@
                     android:gravity="center"
                     android:orientation="vertical">
 
-
                     <Spinner
                         android:id="@+id/spinner"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
-                        android:visibility="gone"/>
+                        android:visibility="gone"
+                        android:backgroundTint="@color/black"
+                        android:backgroundTintMode="screen"
+                        />
 
                     <Spinner
                         android:id="@+id/secondSpinner"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
+                        android:layout_height="match_parent"
+                        android:backgroundTint="@color/black"
+                        android:backgroundTintMode="screen"
+                        android:layout_margin="16dp"
+                        android:visibility="gone"
+                        />
 
-
-                    <TextView
-                        android:id="@+id/textView2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Type of help"
-                        android:textAlignment="center"
-                        android:textColor="@color/purple_200"
-                        android:textStyle="bold" />
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -133,7 +165,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/BMI"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="200dp"
                 android:layout_row="1"
                 android:layout_rowWeight="0"
                 android:layout_column="0"
@@ -153,7 +185,7 @@
 
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_height="wrap_content"
                         android:src="@drawable/eq" />
 
                     <TextView
@@ -277,6 +309,19 @@
 
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="305dp"
+                android:layout_height="wrap_content"
+                android:layout_row="1"
+                android:layout_column="0"
+                android:layout_below="@id/Box"
+                android:text="Help Type"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="13dp"
+                android:textStyle="bold" />
 
         </GridLayout>
     </RelativeLayout>

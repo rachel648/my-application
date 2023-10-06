@@ -15,6 +15,10 @@ public class mentaldashboard extends AppCompatActivity {
     private Spinner spinner;
     private Spinner secondSpinner;
 
+    private TextView textViewOnTop;
+
+    private boolean isTextViewVisible = true;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,6 +28,7 @@ public class mentaldashboard extends AppCompatActivity {
         spinner = findViewById(R.id.spinner);
         TextView textView = findViewById(R.id.textView2);
         secondSpinner = findViewById(R.id.secondSpinner);
+        textViewOnTop = findViewById(R.id.textViewOnTop);
 
 // Set the first Spinner initially to GONE
         spinner.setVisibility(View.GONE);
@@ -43,7 +48,7 @@ public class mentaldashboard extends AppCompatActivity {
                 // Handle the selected option here
 
                 updateSecondSpinner(position);
-
+                secondSpinner.setVisibility(View.VISIBLE); // Show the second Spinner
             }
 
             @Override
@@ -57,18 +62,33 @@ public class mentaldashboard extends AppCompatActivity {
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // Toggle the visibility of the TextView
+                if (isTextViewVisible) {
+                    textViewOnTop.setVisibility(View.GONE);
+                } else {
+                    textViewOnTop.setVisibility(View.VISIBLE);
+                }
+                isTextViewVisible = !isTextViewVisible;
+
+                // Toggle the visibility of the first Spinner
                 if (spinner.getVisibility() == View.VISIBLE) {
                     spinner.setVisibility(View.GONE);
                 } else {
                     spinner.setVisibility(View.VISIBLE);
                 }
+
+                // Ensure the second Spinner is hidden when the CardView is clicked
+                secondSpinner.setVisibility(View.GONE);
             }
         });
+
+
 
         // Set an onClickListener for the TextView to show/hide the Spinner
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                secondSpinner.setVisibility(View.GONE);
               //  toggleSpinnerVisibility();
             }
         });
