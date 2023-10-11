@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,7 +35,7 @@ public class mentaldashboard extends AppCompatActivity {
         spinner.setVisibility(View.GONE);
 
         // Define the list of options for the Spinner
-        final String[] options = {"Depression", "Anxiety disoider", "Eating disorder", "Eating disorder", "Eating disorder", "low-self-esteem"};
+        final String[] options = {"Depression", "Anxiety disoider", "Eating disorder", "low-self-esteem", "other", "D"};
 
         // Create an ArrayAdapter to populate the Spinner with options
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
@@ -109,16 +110,22 @@ public class mentaldashboard extends AppCompatActivity {
         // Determine the options for the second Spinner based on the selected item in the first Spinner
         switch (position) {
             case 0:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions for for Depression"};
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
                 break;
             case 1:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions for Anxiety disorder"};
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
                 break;
             case 2:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions for Eating disorder"};
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
                 break;
             case 3:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions Low self-esteem"};
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                break;
+            case 4:
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                break;
+                case 5:
+                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
                 break;
             default:
                 secondOptions = new String[0];
@@ -129,6 +136,32 @@ public class mentaldashboard extends AppCompatActivity {
         ArrayAdapter<String> secondAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, secondOptions);
         secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         secondSpinner.setAdapter(secondAdapter);
+
+
+
+        // Set an item selected listener for the second Spinner
+        secondSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
+                // Handle the selected option here
+
+                // Check the selected option and start the corresponding activity
+                String selectedOption = secondOptions[position];
+                if ("Online sessions".equals(selectedOption) || "Physical sessions".equals(selectedOption)) {
+                    // Start the ConsultantsActivity
+                    Intent intent = new Intent(mentaldashboard.this, ConsultantActivity.class);
+                    startActivity(intent);
+                } else {
+                    // Handle other options if needed
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parentView) {
+                // Do nothing
+            }
+        });
+
 
 
     }
