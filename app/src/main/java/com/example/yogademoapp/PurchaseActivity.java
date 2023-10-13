@@ -79,7 +79,7 @@ public class PurchaseActivity extends AppCompatActivity {
 
         buttonPurchaseCart = findViewById(R.id.buttonPurchaseCart);
         buttonPurchaseback = findViewById(R.id.buttonPurchaseback);
-        listView = findViewById(R.id.listviewPurchase);
+        listView = findViewById(R.id.listviewConsultants);
 
         buttonPurchaseback.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,7 +103,7 @@ public class PurchaseActivity extends AppCompatActivity {
                 new String[]{"line1", "line2", "line3", "line4", "line5"},
                 new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
         );
-        ListView lst = findViewById(R.id.listviewPurchase);
+        ListView lst = findViewById(R.id.listviewConsultants);
         lst.setAdapter(sa);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

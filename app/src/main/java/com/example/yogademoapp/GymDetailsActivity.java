@@ -57,6 +57,13 @@ public class GymDetailsActivity extends AppCompatActivity {
                      {"Instuctor Name : Leon  Kalonzo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
                      {"Instuctor Name : Shem Timothy", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
              };
+
+    private String[][] Instructor_Details6 = {
+            {"Instructor Name : John Doe", "Gym Number : 123X", "Exp : 5 years", "Mobile No: 1234567890", "600"},
+            {"Instructor Name : Jane Smith", "Gym Number : 124Y", "Exp : 4 years", "Mobile No: 9876543210", "550"},
+            // Add more details as needed
+    };
+
     Button btn;
     TextView tv;
     String[][] Gym_Details = {};
@@ -69,7 +76,7 @@ public class GymDetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_gym_details);
 
         tv = findViewById(R.id.TextviewGymDetailsTitle);
-        btn = findViewById(R.id.buttonPurchaseDetailback);
+        btn = findViewById(R.id.buttonConsultantDetailback);
         Intent it = getIntent();//variable "it" obtained by calling getIntent().The intent is stored in "it"
         String title = it. getStringExtra("title");//The retrieved value which is expected to be a string is assigned to the "title"
         tv.setText(title);//Value of the title is set as the text of a textview
@@ -85,6 +92,9 @@ public class GymDetailsActivity extends AppCompatActivity {
         else
         if(title.compareTo("Aerobics")==0)//Aerobics
             Gym_Details = Instructor_Details4;
+        else
+            if(title.compareTo("Aerobics")==0)//Aerobics
+            Gym_Details = Instructor_Details6;
         else
        // if(title.compareTo("Explore_Outside")==0) //Aerobic
             Gym_Details = Instructor_Details5;
@@ -113,7 +123,7 @@ startActivity(new Intent(GymDetailsActivity.this,BoxActivity.class));
                new String[]{"line1", "line2", "line3", "line4", "line5"},
                new int[]{R.id.line_a,R.id.line_b,R.id.line_c,R.id.line_d,R.id.line_e}
        );
-        ListView lst = findViewById(R.id.listviewPurchase);
+        ListView lst = findViewById(R.id.listviewConsultants);
         lst.setAdapter(sa);
 
         lst.setOnItemClickListener(new AdapterView.OnItemClickListener() {

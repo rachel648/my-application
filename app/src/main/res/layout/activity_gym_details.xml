@@ -48,7 +48,7 @@
         app:layout_constraintVertical_bias="0.045" />
 
     <ListView
-        android:id="@+id/listviewPurchase"
+        android:id="@+id/listviewConsultants"
         android:layout_width="350dp"
         android:layout_height="500dp"
         android:layout_margin="10dp"
@@ -60,7 +60,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsTitle"/>
     <Button
-        android:id="@+id/buttonPurchaseDetailback"
+        android:id="@+id/buttonConsultantDetailback"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

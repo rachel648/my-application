@@ -27,7 +27,7 @@ public class PurchaseDetailActivity extends AppCompatActivity {
         textviewBuyTitleDetail1 = findViewById(R.id.textviewBuyTitleDetail1);
         textViewTotalCost = findViewById(R.id.textViewTotalCost);
         edPurchaseDetailMultiLine = findViewById(R.id.edPurchaseDetailMultiLine);
-        buttonPurchaseDetailback = findViewById(R.id.buttonPurchaseDetailback);
+        buttonPurchaseDetailback = findViewById(R.id.buttonConsultantDetailback);
         buttonPurchaseDetailCart = findViewById(R.id.buttonPurchaseDetailCart);
 
 
