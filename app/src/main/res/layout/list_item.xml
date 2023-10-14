@@ -18,9 +18,9 @@
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_pic"
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:id="@+id/circularImageView"
             android:src="@drawable/baby7"/>
 
         <LinearLayout
@@ -39,7 +39,7 @@
     android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/latmessage"
+                android:id="@+id/lastmessage"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"

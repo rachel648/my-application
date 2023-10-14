@@ -1,38 +1,55 @@
 package com.example.yogademoapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
+import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.yogademoapp.databinding.ActivityMainBinding;
+
+import java.util.ArrayList;
+
 public class ConsultantActivity extends AppCompatActivity {
+    ActivityMainBinding binding;
 
-    private TextView Consultationtitle,headtextview;
-    private ListView listviewConsultants;
-
-    private Button consultationback;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consultant);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
-         Consultationtitle = findViewById(R.id.TextviewGymDetailsName);
-         headtextview = findViewById(R.id.TextviewGymDetailsTitle);
-         listviewConsultants = findViewById(R.id.listviewConsultants);
-        consultationback= findViewById(R.id.buttonConsultantDetailback);
+        int[] imageId = {R.drawable.babe,R.drawable.aero,R.drawable.nel4,R.drawable.babe2,R.drawable.babe12,R.drawable.babe15,R.drawable.babe3,R.drawable.babe4,R.drawable.nel8};
+
+        String [] name = {"Chris Bones","Craig Omolo","Mike Kimathi","Ray Mellissa","Shelmith Nelina","Zaga llo","Caroline Odinga","Dennis chipchip","Agnes Benson"};
+
+        String [] lastMessage = {"Hi","Let's talk","How can I help you?","Hey","ssup","Confidential","Cool","Need help?","Friendly"};
+
+        String [] lastMsgTime = {"5:00 am","5:00 am","5:00 am","5:00 am","5:00 am","5:30 am","2:00 pm","9:00 am","3:00 am","5:00 pm","4:00 pm","5:30 pm"};
+
+        String [] phoneNo = {"0712671173","0112671077","0782641193","0799671773","0782677173","0767671183","0782671479","0752671178","0110677170"};
+
+        String [] Experience = {"10yrs","7yrs","7yrs","6yrs","5yrs","3yrs","2yrs","1yrs","3yrs"};
+
+        String [] fees = {"7000","6000","6000","5500","5000","4000","4700","3500","2000"};
+
+        ArrayList<User> userArrayList = new ArrayList<>();
+
+        for (int i = 0;i< imageId.length;i++){
+
+            User user = new User(name[i],lastMessage[i],lastMsgTime[i],phoneNo[i],Experience[i],fees[i],imageId[i]);
+
+     userArrayList.add(user);
+
+     ListAdapter listAdapter = new ListAdapter(ConsultantActivity.this,userArrayList);
+
+            binding.listviewConsultants.setAdapter(listAdapter);
+            binding.listviewConsultants.setClickable(true);
 
 
-        consultationback.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                Intent paymentIntent = new Intent(ConsultantActivity.this, Payment.class);
-            }
-        });
+        }
 
     }
 }
+
