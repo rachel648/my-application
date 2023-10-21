@@ -17,8 +17,6 @@ public class PurchaseDetailActivity extends AppCompatActivity {
     TextView textviewBuyTitleDetail1,textViewTotalCost;
     EditText edPurchaseDetailMultiLine;
     Button buttonPurchaseDetailback, buttonPurchaseDetailCart;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

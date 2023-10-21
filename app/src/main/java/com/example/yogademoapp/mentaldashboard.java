@@ -162,7 +162,13 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
-
+        CardView Com = findViewById(R.id.Com); //creation of another object
+        Com.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mentaldashboard.this, CommunityActivity.class));
+            }
+        });
 
     }
 }
