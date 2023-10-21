@@ -25,7 +25,7 @@
             android:layout_marginRight="12dp"
             android:layout_marginBottom="12dp"
             android:text="24/7 FITNESS"
-            android:textColor="@color/purple_200"
+            android:textColor="@color/lightblue"
             android:textSize="30sp"
             android:textStyle="bold" />
 
@@ -127,13 +127,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Membership"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="right"
-                app:cardBackgroundColor="#FFFAFA"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true"
@@ -147,16 +147,16 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="138dp"
+                        android:layout_height="174dp"
                         android:src="@drawable/cycle" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="100dp"
-                        android:text=" PROFILE AND MEMBER MANAGEMENT"
+                        android:text=" HEALTH RESORCES"
                         android:textAlignment="center"
-                        android:textColor="@color/purple_200"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -165,13 +165,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/BMI"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
+                android:layout_height="150dp"
                 android:layout_row="1"
                 android:layout_rowWeight="0"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="center"
-                app:cardBackgroundColor="#FFFAFA"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -184,16 +184,17 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="wrap_content"
-                        android:src="@drawable/eq" />
+                        android:layout_width="168dp"
+                        android:layout_height="82dp"
+                        android:src="@drawable/eq"
+                        android:textAlignment="center" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="  BODY MASS INDEX"
+                        android:text="PEER COMMUNITY GROUPS"
                         android:textAlignment="center"
-                        android:textColor="@color/purple_200"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -202,13 +203,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Purchase"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_row="4"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="right|center"
-                app:cardBackgroundColor="@color/design_default_color_on_primary"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -222,52 +223,15 @@
 
                     <ImageView
                         android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_height="89dp"
                         android:src="@drawable/intructor" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="GYMWEAR AND EQUIPMENTS!!"
+                        android:text="DIETRY!!"
                         android:textAlignment="center"
-                        android:textColor="@color/purple_200"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/OrderDetails"
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:layout_row="2"
-                android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="center"
-                app:cardBackgroundColor="#FFFAFA"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        android:src="@drawable/hobby" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="ORDER_DETAILS"
-                        android:textAlignment="center"
-                        android:textColor="@color/purple_200"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -276,13 +240,13 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Logout"
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="150dp"
                 android:layout_row="5"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
                 android:layout_columnWeight="1"
                 android:layout_gravity="right"
-                app:cardBackgroundColor="@color/design_default_color_on_primary"
+                app:cardBackgroundColor="@color/lightblue"
                 app:cardCornerRadius="8dp"
                 app:cardElevation="8dp"
                 app:cardUseCompatPadding="true">
@@ -295,8 +259,8 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
+                        android:layout_width="94dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/log" />
 
                     <TextView
@@ -304,7 +268,7 @@
                         android:layout_height="wrap_content"
                         android:text="LOG_OUT"
                         android:textAlignment="center"
-                        android:textColor="@color/purple_200"
+                        android:textColor="@color/black"
                         android:textStyle="bold" />
 
                 </LinearLayout>
@@ -314,12 +278,12 @@
                 android:id="@+id/textView2"
                 android:layout_width="305dp"
                 android:layout_height="wrap_content"
-                android:layout_row="1"
+                android:layout_row="0"
                 android:layout_column="0"
                 android:layout_below="@id/Box"
                 android:text="Help Type"
                 android:textAlignment="center"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textSize="13dp"
                 android:textStyle="bold" />
 

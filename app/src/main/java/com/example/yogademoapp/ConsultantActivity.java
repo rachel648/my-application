@@ -31,7 +31,7 @@ public class ConsultantActivity extends AppCompatActivity {
 
         String [] lastMessage = {"Hi","Let's talk","How can I help you?","Hey","ssup","Confidential","Cool","Need help?","Friendly"};
 
-        String [] lastMsgTime = {"5:00 am","5:00 am","5:00 am","5:00 am","5:00 am","5:30 am","2:00 pm","9:00 am","3:00 am","5:00 pm","4:00 pm","5:30 pm"};
+       String [] lastMsgTime = {"5:00 am","5:00 am","5:00 am","5:00 am","5:00 am","5:30 am","2:00 pm","9:00 am","3:00 am","5:00 pm","4:00 pm","5:30 pm"};
 
         String [] phoneNo = {"0712671173","0112671077","0782641193","0799671773","0782677173","0767671183","0782671479","0752671178","0110677170"};
 
@@ -39,7 +39,7 @@ public class ConsultantActivity extends AppCompatActivity {
 
         String [] fees = {"7000","6000","6000","5500","5000","4000","4700","3500","2000"};
 
-        String [] GymNumber = {"10","30","15","15","10","10","10","12","18"};
+        String [] GymNumber = {"ConsultantNo: 07","ConsultantNo: 03","ConsultantNo: 10","ConsultantNo: 06","ConsultantNo: 05","ConsultantNo: 16","ConsultantNo :3","ConsultantNo 14:","ConsultantNo: 14"};
 
         ArrayList<User> userArrayList = new ArrayList<>();
 
@@ -63,6 +63,7 @@ public class ConsultantActivity extends AppCompatActivity {
           i.putExtra("Experience", Experience[position]);
           i.putExtra("imageid",imageId[position]);
           i.putExtra("fees",fees[position]);
+          i.putExtra("GymNumber",GymNumber[position]);
           startActivity(i);
 
                 }

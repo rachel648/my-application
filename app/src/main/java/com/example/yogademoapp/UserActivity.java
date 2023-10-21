@@ -31,7 +31,7 @@ public class UserActivity extends AppCompatActivity {
             String phone = intent.getStringExtra("phone");
             String Experience = intent.getStringExtra("Experience");
             String fees = intent.getStringExtra("fees");
-            String GymNumber = intent.getStringExtra("fees");
+            String GymNumber = intent.getStringExtra("GymNumber");
             int imageid = intent.getIntExtra("imageid",R.drawable.babe3);
 
             binding.nameProfile.setText(name);

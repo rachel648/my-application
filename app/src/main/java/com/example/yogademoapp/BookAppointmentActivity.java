@@ -54,11 +54,13 @@ public class BookAppointmentActivity extends AppCompatActivity {
         String contact = it.getStringExtra("text4");
         String fees = it.getStringExtra("text5");
 
+
         tv.setText(title); //Display
         ed1.setText(fullname);
         ed2.setText(address);
         ed3.setText(contact);
         ed4.setText("Train Fees: " + fees + "ksh");
+
 
         // datepicker
         initDatePicker();
