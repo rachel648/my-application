@@ -50,6 +50,10 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 // Start the BookAppointmentActivity when the button is clicked
                 Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
+
+// Pass the "fees" value to the Payment activity
+                String fees = binding.fees.getText().toString();
+                bookAppointmentIntent.putExtra("TrainFees", fees);
                 startActivity(bookAppointmentIntent);
             }
         });
