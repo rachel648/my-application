@@ -137,11 +137,9 @@ public class RegisterActivity extends AppCompatActivity {
                       f3 = 1 ;
                 }
             }
-            if(f1==1 && f2==1 && f3==1)/*flags*/
-                return true;
-
-                return false;
-                }
+            /*flags*/
+            return f1 == 1 && f2 == 1 && f3 == 1;
+        }
             }
 
 

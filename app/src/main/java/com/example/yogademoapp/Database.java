@@ -45,7 +45,7 @@ public class Database extends SQLiteOpenHelper {
     }
     public int login(String username,String password) {
         int result = 0;
-        String str[] = new String[2];
+        String[] str = new String[2];
         str[0]=username ;
         str[1]=password;
         SQLiteDatabase db = getReadableDatabase();
@@ -71,7 +71,7 @@ public class Database extends SQLiteOpenHelper {
 
     public int checkCart(String username,String product) {
         int result = 0;
-        String str[] = new String[2];
+        String[] str = new String[2];
         str[0] = username;
         str[1] = product;
         SQLiteDatabase db = getWritableDatabase();
@@ -84,7 +84,7 @@ public class Database extends SQLiteOpenHelper {
     }
 
     public void removeCart(String username,String otype) {
-        String str[] = new String[2];
+        String[] str = new String[2];
         str[0] = username;
         str[1] = otype;
         SQLiteDatabase db = getWritableDatabase();
@@ -96,7 +96,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList<String> getCartData(String username, String otype) {
         ArrayList<String> arr = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        String str[] = new String[2];
+        String[] str = new String[2];
         str[0] = username;
         str[1] = otype;
         Cursor c = db.rawQuery("select * from cart where username = ? and otype = ?", str);
@@ -131,7 +131,7 @@ public class Database extends SQLiteOpenHelper {
     public ArrayList getOrderData(String username){
         ArrayList<String> arr = new ArrayList<>();
         SQLiteDatabase db = getReadableDatabase();
-        String str[] = new String[1];
+        String[] str = new String[1];
         str[0] = username;
         Cursor c = db.rawQuery("select * from orderplace where username =?",str);
         if(c.moveToFirst()){

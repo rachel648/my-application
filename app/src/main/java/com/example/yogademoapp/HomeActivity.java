@@ -28,7 +28,7 @@ public class HomeActivity extends AppCompatActivity {
         FirebaseUser user = auth.getCurrentUser();
 
         SharedPreferences sharedpreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        String username = sharedpreferences.getString("username", "").toString();
+        String username = sharedpreferences.getString("username", "");
         Toast.makeText(getApplicationContext(), "Welcome " + username, Toast.LENGTH_SHORT).show();
 
         CardView exit = findViewById(R.id.Logout); //creation of an object

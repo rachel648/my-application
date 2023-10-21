@@ -36,7 +36,7 @@ Button btnBooking;
         public void onClick(View view) {
 
             SharedPreferences sharedPreferences = getSharedPreferences("Shared_prefs",Context.MODE_PRIVATE);
-            String username = sharedPreferences.getString("username","").toString();
+            String username = sharedPreferences.getString("username","");
 
             Database db = new Database(getApplicationContext(), "fitness", null, 1);
 

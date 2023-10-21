@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class GymDetailsActivity extends AppCompatActivity {
-    private String[][]  Instructor_Details1 =
+    private final String[][]  Instructor_Details1 =
             {
                     {"Instuctor Name : Rachel kaume", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
                     {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -23,7 +23,7 @@ public class GymDetailsActivity extends AppCompatActivity {
                     {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
                     {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
             };
-   private String[][]  Instructor_Details2 =
+   private final String[][]  Instructor_Details2 =
     {
             {"Instuctor Name : Agnes Kajuju", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
             {"Instuctor Name : Bessy Sheryl", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -31,7 +31,7 @@ public class GymDetailsActivity extends AppCompatActivity {
             {"Instuctor Name : Modesma  Octavio", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
             {"Instuctor Name : Frank Opiyo", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
     };
-       private String[][]  Instructor_Details3 =
+       private final String[][]  Instructor_Details3 =
       {
               {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
               {"Instuctor Name : Linet Orengo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -41,7 +41,7 @@ public class GymDetailsActivity extends AppCompatActivity {
 
       };
 
-    private String[] []  Instructor_Details4 =
+    private final String[] []  Instructor_Details4 =
              {
                      {"Instuctor Name : Evans Kimathi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
                      {"Instuctor Name : Amber Ray Domani", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -49,7 +49,7 @@ public class GymDetailsActivity extends AppCompatActivity {
                      {"Instuctor Name : Consolata Penting", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
                      {"Instuctor Name : Martha Austin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
              };
-     private String[] []  Instructor_Details5 =
+     private final String[] []  Instructor_Details5 =
              {
                      {"Instuctor Name : Judy Valentine", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
                      {"Instuctor Name : Ariana Goodie", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
@@ -58,7 +58,7 @@ public class GymDetailsActivity extends AppCompatActivity {
                      {"Instuctor Name : Shem Timothy", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
              };
 
-    private String[][] Instructor_Details6 = {
+    private final String[][] Instructor_Details6 = {
             {"Instructor Name : John Doe", "Gym Number : 123X", "Exp : 5 years", "Mobile No: 1234567890", "600"},
             {"Instructor Name : Jane Smith", "Gym Number : 124Y", "Exp : 4 years", "Mobile No: 9876543210", "550"},
             // Add more details as needed

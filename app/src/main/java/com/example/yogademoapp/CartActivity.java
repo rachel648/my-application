@@ -52,7 +52,7 @@ public class CartActivity extends AppCompatActivity {
          List=new ArrayList<>();
 
         SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-        String username =sharedPreferences.getString("username","").toString();
+        String username = sharedPreferences.getString("username","");
 
         Database db = new Database(getApplicationContext(),"fitness",null,1);
         float totalAmount = 0;//fetch card data and store it in Arraylist

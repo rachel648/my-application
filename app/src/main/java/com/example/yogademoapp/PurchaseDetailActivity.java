@@ -49,9 +49,9 @@ public class PurchaseDetailActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
-                String username = sharedPreferences.getString("username", "").toString();
+                String username = sharedPreferences.getString("username", "");
                 String product =textviewBuyTitleDetail1.getText().toString();
-                float price = Float.parseFloat(intent.getStringExtra("text3").toString());
+                float price = Float.parseFloat(intent.getStringExtra("text3"));
 
                 Database db = new Database(getApplicationContext(),"fitness",null,1);
          if (db.checkCart(username,product)==1){

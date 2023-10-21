@@ -1,12 +1,12 @@
 package com.example.yogademoapp;
 
 public class GymdbDetails {
-    private int id;
-    private String instructorName;
-    private String gymNumber;
-    private String experience;
-    private String mobileNo;
-    private int fees;
+    private final int id;
+    private final String instructorName;
+    private final String gymNumber;
+    private final String experience;
+    private final String mobileNo;
+    private final int fees;
 
     public GymdbDetails(int id, String instructorName, String gymNumber, String experience, String mobileNo, int fees) {
         this.id = id;

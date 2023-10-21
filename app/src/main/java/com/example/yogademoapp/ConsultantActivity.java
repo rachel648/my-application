@@ -1,28 +1,33 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ListView;
+import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.yogademoapp.databinding.ActivityMainBinding;
+import com.example.yogademoapp.databinding.ActivityConsultantBinding;
 
 import java.util.ArrayList;
 
 public class ConsultantActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+    ActivityConsultantBinding binding;
+    Button btn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        binding = ActivityConsultantBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        btn= findViewById(R.id.buttonConsultantDetailback);
+
 
         int[] imageId = {R.drawable.babe,R.drawable.aero,R.drawable.nel4,R.drawable.babe2,R.drawable.babe12,R.drawable.babe15,R.drawable.babe3,R.drawable.babe4,R.drawable.nel8};
 
-        String [] name = {"Chris Bones","Craig Omolo","Mike Kimathi","Ray Mellissa","Shelmith Nelina","Zaga llo","Caroline Odinga","Dennis chipchip","Agnes Benson"};
+        String [] name = {"Chris\nBones","Craig\nOmolo","Mike\nKimathi","Ray\nMellissa","Shelmith Nelina","Zaga llo","Caroline Odinga","Dennis chipchip","Agnes\nBenson"};
 
         String [] lastMessage = {"Hi","Let's talk","How can I help you?","Hey","ssup","Confidential","Cool","Need help?","Friendly"};
 
@@ -34,18 +39,42 @@ public class ConsultantActivity extends AppCompatActivity {
 
         String [] fees = {"7000","6000","6000","5500","5000","4000","4700","3500","2000"};
 
+        String [] GymNumber = {"10","30","15","15","10","10","10","12","18"};
+
         ArrayList<User> userArrayList = new ArrayList<>();
 
         for (int i = 0;i< imageId.length;i++){
 
-            User user = new User(name[i],lastMessage[i],lastMsgTime[i],phoneNo[i],Experience[i],fees[i],imageId[i]);
+            User user = new User(name[i],lastMessage[i],lastMsgTime[i],phoneNo[i],GymNumber[i],Experience[i],fees[i],imageId[i]);
 
      userArrayList.add(user);
 
      ListAdapter listAdapter = new ListAdapter(ConsultantActivity.this,userArrayList);
 
-            binding.listviewConsultants.setAdapter(listAdapter);
-            binding.listviewConsultants.setClickable(true);
+            binding.myListView.setAdapter(listAdapter);
+            binding.myListView.setClickable(true);
+            binding.myListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+
+                    Intent i = new Intent(ConsultantActivity.this,UserActivity.class);
+          i.putExtra("name",name[position]);
+          i.putExtra("phone",phoneNo [position]);
+          i.putExtra("Experience", Experience[position]);
+          i.putExtra("imageid",imageId[position]);
+          i.putExtra("fees",fees[position]);
+          startActivity(i);
+
+                }
+            });
+
+btn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View view) {
+
+        startActivity(new Intent(ConsultantActivity.this,mentaldashboard.class));
+    }
+});
 
 
         }

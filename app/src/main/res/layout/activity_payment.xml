@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Payment"
-    android:background="@drawable/baby7">
+    android:background="@drawable/wave__4_">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/payment_toolbar"
-        android:background="@color/black"
+        android:background="@color/lightblue"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:title="Payment Details"
-        app:titleTextColor="@color/purple_200"/>
+        app:titleTextColor="@color/black"/>
 
 
 
@@ -134,7 +134,8 @@
         android:layout_marginTop="44dp"
         android:text="Check Out"
         android:textStyle="bold"
-        android:textColor="@android:color/white"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightblue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent"

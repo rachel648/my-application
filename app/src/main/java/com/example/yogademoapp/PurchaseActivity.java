@@ -15,7 +15,7 @@ import java.util.HashMap;
 
 public class PurchaseActivity extends AppCompatActivity {
 
-    private String[][] Equipments =
+    private final String[][] Equipments =
             {
                     {"Equipment 1 : Exercise Bike", "", "", "", "1000"},
                     {"Equipment 2 : Cable Crossover", "", "", "", "3700"},
@@ -24,7 +24,7 @@ public class PurchaseActivity extends AppCompatActivity {
                     {"Equipment 5 : Weights", "", "", "", "4000"}
             };
 
-    private String[] Equipments_Details = {
+    private final String[] Equipments_Details = {
 
             "cardio\n" +
                     "Strength\n" +

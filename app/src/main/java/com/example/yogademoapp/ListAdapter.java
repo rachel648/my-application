@@ -7,7 +7,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -38,6 +37,6 @@ public class ListAdapter extends ArrayAdapter<User> {
         userName.setText(user.name);
         lastMsg.setText(user.lastMessage);
         time.setText(user.lastMsgTime);
-        return super.getView(position, convertView, parent);
+        return convertView;
     }
 }
