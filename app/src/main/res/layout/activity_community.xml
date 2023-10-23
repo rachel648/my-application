@@ -33,7 +33,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Children"
-                android:gravity="center" />
+                android:gravity="center"
+                android:textColor="@color/lightblue"/>
         </LinearLayout>
 
         <!-- Second Image with Text -->
@@ -50,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/nel4"
+                android:src="@drawable/nel5"
                 android:scaleType="fitCenter" />
 
             <TextView

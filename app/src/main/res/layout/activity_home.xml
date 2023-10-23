@@ -67,7 +67,7 @@
                     <ImageView
                         android:layout_width="280dp"
                         android:layout_height="83dp"
-                        android:src="@drawable/box" />
+                        android:src="@drawable/boxer" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -105,7 +105,7 @@
                     <ImageView
                         android:layout_width="145dp"
                         android:layout_height="83dp"
-                        android:src="@drawable/cycle" />
+                        android:src="@drawable/profile" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -142,7 +142,7 @@
                     <ImageView
                         android:layout_width="160dp"
                         android:layout_height="101dp"
-                        android:src="@drawable/eq" />
+                        android:src="@drawable/bmi" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -179,7 +179,7 @@
                     <ImageView
                         android:layout_width="126dp"
                         android:layout_height="82dp"
-                        android:src="@drawable/intructor" />
+                        android:src="@drawable/equip" />
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -216,7 +216,7 @@
                     <ImageView
                         android:layout_width="148dp"
                         android:layout_height="83dp"
-                        android:src="@drawable/hobby" />
+                        android:src="@drawable/order" />
 
                     <TextView
                         android:layout_width="wrap_content"
