@@ -103,7 +103,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="145dp"
+                        android:layout_width="280dp"
                         android:layout_height="83dp"
                         android:src="@drawable/profile" />
 
@@ -177,7 +177,7 @@
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="126dp"
+                        android:layout_width="320dp"
                         android:layout_height="82dp"
                         android:src="@drawable/equip" />
 
