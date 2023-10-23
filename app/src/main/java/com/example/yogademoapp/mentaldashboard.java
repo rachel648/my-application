@@ -165,7 +165,7 @@ public class mentaldashboard extends AppCompatActivity {
         Community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mentaldashboard.this,CommunityActivity.class));
+                startActivity(new Intent(mentaldashboard.this, CommunityActivity.class));
             }
         });
 
