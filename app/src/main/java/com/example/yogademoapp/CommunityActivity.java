@@ -8,8 +8,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class CommunityActivity extends AppCompatActivity {
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -26,6 +26,7 @@ public class mentaldashboard extends AppCompatActivity {
         setContentView(R.layout.activity_mentaldashboard);
 
         CardView cardView = findViewById(R.id.Box); // Corrected the ID here
+
         spinner = findViewById(R.id.spinner);
         TextView textView = findViewById(R.id.textView2);
         secondSpinner = findViewById(R.id.secondSpinner);
@@ -137,8 +138,6 @@ public class mentaldashboard extends AppCompatActivity {
         secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         secondSpinner.setAdapter(secondAdapter);
 
-
-
         // Set an item selected listener for the second Spinner
         secondSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
@@ -162,8 +161,8 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
-        CardView Com = findViewById(R.id.Com); //creation of another object
-        Com.setOnClickListener(new View.OnClickListener() {
+        CardView Community = findViewById(R.id.Community); //creation of another object
+        Community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(mentaldashboard.this, CommunityActivity.class));

@@ -163,7 +163,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/Com"
+                android:id="@+id/Community"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
                 android:layout_row="1"
