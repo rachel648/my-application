@@ -1,36 +1,136 @@
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/wave__4_"
     tools:context=".Types">
 
-    <androidx.cardview.widget.CardView
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/cardView"
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="262dp"
+        android:layout_height="37dp"
+        android:text="24/7 FITNESS"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/lightblue"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <RadioGroup
+        android:id="@+id/ageGroupRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioGroup1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="8-10"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioGroup2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="12-14"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioGroup3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15-17"
+            android:textSize="17dp"
+            />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/timeDateRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioTime1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4:00 PM Friday"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioTime2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="3:00 PM Saturday"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioTime3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="2:00 PM Sunday"
+            android:textSize="17dp"
+            />
+    </RadioGroup>
+
+
+    <RadioGroup
+        android:id="@+id/locationRadioGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioLocation1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Online session"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioLocation2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Life_Boost center"
+            android:textSize="17dp"
+            />
+
+        <RadioButton
+            android:id="@+id/radioLocation3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Town center"
+            android:textSize="17dp"
+            />
+    </RadioGroup>
+
+    <Button
+        android:id="@+id/joinButton"
+        android:layout_width="166dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="@color/lightblue"
+        android:text="Join" />
+
+    <TextView
+        android:id="@+id/groupLeaderText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:paddingTop="16dp"
+        android:text="" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <Spinner
-                android:id="@+id/spinner"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp" />
-
-            <!-- Add other CardView content here if needed -->
-
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    <!-- ... Previous layout elements ... -->
 
 
 
+    <!-- ... Continue with the "Join" button and TextView ... -->
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,7 +21,8 @@ public class CommunityActivity extends AppCompatActivity {
 
         imageView1.setOnClickListener(v -> {
             // Handle the click on imageView1
-            Toast.makeText(CommunityActivity.this, "Image 1 clicked", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(CommunityActivity.this, Types.class);
+            startActivity(intent);
         });
 
         imageView2.setOnClickListener(new View.OnClickListener() {
@@ -28,6 +30,7 @@ public class CommunityActivity extends AppCompatActivity {
             public void onClick(View v) {
                 // Handle the click on imageView2
                 Toast.makeText(CommunityActivity.this, "Image 2 clicked", Toast.LENGTH_SHORT).show();
+
             }
         });
 
