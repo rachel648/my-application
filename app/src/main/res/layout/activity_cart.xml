@@ -16,6 +16,8 @@
         android:layout_marginRight="236dp"
         android:layout_marginBottom="28dp"
         android:hint="Go To Cart"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/lightblue"
         android:text="Checkout"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
@@ -78,12 +80,14 @@
 
     <Button
         android:id="@+id/buttonCheckoutback"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="105dp"
+        android:layout_height="57dp"
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:layout_marginBottom="28dp"
+        android:backgroundTint="@color/lightblue"
         android:text="BACK"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
