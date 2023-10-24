@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,8 +28,8 @@ public class CommunityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click on imageView2
-                Toast.makeText(CommunityActivity.this, "Image 2 clicked", Toast.LENGTH_SHORT).show();
-
+                Intent intent = new Intent(CommunityActivity.this, Teens.class);
+                startActivity(intent);
             }
         });
 
@@ -38,7 +37,8 @@ public class CommunityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click on imageView3
-                Toast.makeText(CommunityActivity.this, "Image 3 clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CommunityActivity.this, EarlyAdulthood.class);
+                startActivity(intent);
             }
         });
 
@@ -46,7 +46,8 @@ public class CommunityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // Handle the click on imageView4
-                Toast.makeText(CommunityActivity.this, "Image 4 clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CommunityActivity.this, Elderly.class);
+                startActivity(intent);
             }
         });
     }

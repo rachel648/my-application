@@ -7,7 +7,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Types extends AppCompatActivity {
+public class EarlyAdulthood extends AppCompatActivity {
 
     private RadioGroup ageGroupRadioGroup;
     private RadioGroup timeDateRadioGroup;
@@ -18,7 +18,7 @@ public class Types extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_types);
+        setContentView(R.layout.activity_early_adulthood);
 
         ageGroupRadioGroup = findViewById(R.id.ageGroupRadioGroup);
         timeDateRadioGroup = findViewById(R.id.timeDateRadioGroup);
@@ -55,12 +55,12 @@ public class Types extends AppCompatActivity {
     private String getGroupLeader(String ageGroup) {
         // Implement logic to get the group leader for the selected age group
         // You can use a switch statement or other logic here
-        if (ageGroup.equals("8-10")) {
-            return "Group Leader: Alex";
-        } else if (ageGroup.equals("12-15")) {
-            return "Group Leader: Grace";
-        } else if (ageGroup.equals("16-19")) {
-            return "Group Leader: Ray";
+        if (ageGroup.equals("20-22")) {
+            return "Group Leader: Edwin";
+        } else if (ageGroup.equals("23-26")) {
+            return "Group Leader: Manuel";
+        } else if (ageGroup.equals("27-29")) {
+            return "Group Leader: Kanyiri";
         } else {
             return "Unknown Group Leader";
         }

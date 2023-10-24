@@ -7,7 +7,7 @@
     android:orientation="vertical"
     android:padding="16dp"
     android:background="@drawable/wave__4_"
-    tools:context=".Types">
+    tools:context=".Elderly">
 
     <TextView
         android:layout_width="216dp"
@@ -29,7 +29,7 @@
             android:id="@+id/radioGroup1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="8-10"
+            android:text="47-53"
             android:textSize="17dp"
             />
 
@@ -37,7 +37,7 @@
             android:id="@+id/radioGroup2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="12-15"
+            android:text="53-57"
             android:textSize="17dp"
             />
 
@@ -45,7 +45,7 @@
             android:id="@+id/radioGroup3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="16-19"
+            android:text="58 and Above"
             android:textSize="17dp"
             />
     </RadioGroup>
