@@ -10,19 +10,20 @@
     tools:context=".Types">
 
     <TextView
-        android:id="@+id/textView2"
-        android:layout_width="262dp"
-        android:layout_height="37dp"
+        android:layout_width="216dp"
+        android:layout_height="wrap_content"
         android:text="24/7 FITNESS"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/lightblue"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:layout_marginStart="70dp"
+        android:textColor="@color/lightblue"
+        android:textStyle="bold"
+        />
 
     <RadioGroup
         android:id="@+id/ageGroupRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp">
 
         <RadioButton
             android:id="@+id/radioGroup1"
@@ -90,32 +91,29 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Online session"
-            android:textSize="17dp"
-            />
+            android:textSize="17dp" />
 
         <RadioButton
             android:id="@+id/radioLocation2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Life_Boost center"
-            android:textSize="17dp"
-            />
+            android:textSize="17dp" />
 
         <RadioButton
             android:id="@+id/radioLocation3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Town center"
-            android:textSize="17dp"
-            />
+            android:textSize="17dp" />
     </RadioGroup>
 
     <Button
         android:id="@+id/joinButton"
-        android:layout_width="166dp"
+        android:layout_width="199dp"
         android:layout_height="60dp"
-        android:layout_marginStart="80dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="40dp"
         android:backgroundTint="@color/lightblue"
         android:text="Join" />
 
