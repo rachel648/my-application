@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="24/7 FITNESS"
         android:textSize="30dp"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="75dp"
         android:textColor="@color/lightblue"
         android:textStyle="bold"
         />
@@ -23,7 +23,7 @@
         android:id="@+id/ageGroupRadioGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="10dp">
 
         <RadioButton
             android:id="@+id/radioGroup1"
@@ -53,7 +53,9 @@
     <RadioGroup
         android:id="@+id/timeDateRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        >
 
         <RadioButton
             android:id="@+id/radioTime1"
@@ -84,7 +86,8 @@
     <RadioGroup
         android:id="@+id/locationRadioGroup"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <RadioButton
             android:id="@+id/radioLocation1"
