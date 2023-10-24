@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -49,7 +50,15 @@ public class Elderly extends AppCompatActivity {
 
                     String groupLeader = getGroupLeader(selectedAgeGroup);
                     groupLeaderText.setText("Group Leader: " + groupLeader + "\nTime/Date: " + selectedTimeDate + "\nLocation: " + selectedLocation);
+
+                    // Start the new activity
+                    Intent intent = new Intent(Elderly.this, CartBook.class);
+                    intent.putExtra("ageGroup", selectedAgeGroup);
+                    intent.putExtra("timeDate", selectedTimeDate);
+                    intent.putExtra("location", selectedLocation);
+                    startActivity(intent);;
                 }
+            //    startActivity(new Intent(Elderly.this, CartBook.class));
             }
         });
     }

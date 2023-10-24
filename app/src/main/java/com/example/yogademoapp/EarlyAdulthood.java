@@ -1,10 +1,13 @@
 package com.example.yogademoapp;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class EarlyAdulthood extends AppCompatActivity {
@@ -47,9 +50,21 @@ public class EarlyAdulthood extends AppCompatActivity {
 
                     String groupLeader = getGroupLeader(selectedAgeGroup);
                     groupLeaderText.setText("Group Leader: " + groupLeader + "\nTime/Date: " + selectedTimeDate + "\nLocation: " + selectedLocation);
+
+                    // Start the new activity
+                    Intent intent = new Intent(EarlyAdulthood.this, CartBook.class);
+                    intent.putExtra("ageGroup", selectedAgeGroup);
+                    intent.putExtra("timeDate", selectedTimeDate);
+                    intent.putExtra("location", selectedLocation);
+                    startActivity(intent);;
                 }
+
+             //   { startActivity(new Intent(EarlyAdulthood.this, CartBook.class));}
             }
+
+
         });
+
     }
 
     private String getGroupLeader(String ageGroup) {
