@@ -8,8 +8,8 @@
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
-        android:icon="@mipmap/ic_launcher"
-        android:label="Yoga_Demo_App"
+        android:icon="@drawable/hobby"
+        android:label="Life_Boost_Fitness"
         android:supportsRtl="true"
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31" >
