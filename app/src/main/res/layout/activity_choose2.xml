@@ -80,7 +80,7 @@
         android:layout_height="68dp"
         android:layout_marginStart="32dp"
         android:layout_marginLeft="32dp"
-        android:layout_marginTop="40dp"
+        android:layout_marginTop="80dp"
         android:background="@drawable/header_bg"
         android:text="MENTAL WELLNESS"
         app:layout_constraintStart_toStartOf="parent"
@@ -108,7 +108,7 @@
 
 
     <!--<com.google.android.material.navigation.NavigationView-->
-    <com.google.android.material.bottomnavigation.BottomNavigationView
+    <com.google.android.material.navigation.NavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="60dp"
