@@ -5,7 +5,7 @@
     android:id="@+id/textViewAppTitle"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/nel4"
+    android:background="@drawable/ray2"
     tools:context=".RegisterActivity"
     tools:ignore="DuplicateIds">
 
@@ -14,7 +14,6 @@
         android:layout_width="465dp"
         android:layout_height="840dp"
         android:layout_marginBottom="4dp"
-        android:background="@drawable/nel4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.74"
