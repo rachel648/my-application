@@ -102,29 +102,18 @@
         style="?android:spinnerStyle"
         android:layout_width="258dp"
         android:layout_height="60dp"
-        android:text="LOGIN"
+        android:text="Submit"
         android:textSize="20sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
-    <Button
-        android:id="@+id/buttonSignup"
-        style="?android:spinnerStyle"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="SIGNUP"
-        android:textSize="20sp"
-        android:textColor="@color/white"/>
-
-        />
-
-    <Button
+ <Button
         android:id="@+id/buttonForgotPassword"
         style="?android:spinnerStyle"
         android:layout_width="380dp"
         android:layout_height="wrap_content"
         android:text="Forgot Password"
         android:textSize="18sp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/buttonMembershipback"
@@ -136,5 +125,15 @@
         android:layout_marginEnd="28dp"
         android:layout_marginRight="28dp"
         android:text="BACK" />
+
+    <ImageView
+        android:id="@+id/imageViewProfile"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="16dp"
+        android:contentDescription="Profile Image"
+        android:src="@drawable/baseline_person_24" />
+
 
 </LinearLayout>

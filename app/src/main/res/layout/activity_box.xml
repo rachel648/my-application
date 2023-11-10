@@ -37,7 +37,7 @@
       android:layout_marginBottom="12dp"
       android:text="Choose_Your_Poison"
       android:textColor="@color/purple_200"
-      android:textSize="30sp"
+      android:textSize="20sp"
       android:textStyle="bold" />
 
   <GridLayout
@@ -58,13 +58,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Instructors"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="0"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -77,10 +77,10 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-          android:src="@drawable/cycle"
-            android:scaleType="centerCrop"/>
+            android:layout_width="156dp"
+            android:layout_height="93dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/cycle" />
 
           <TextView
               android:layout_width="wrap_content"
@@ -96,13 +96,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Box"
         android:layout_width="305dp"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="2"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -115,10 +115,10 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/box"
-            android:scaleType="centerCrop"/>
+            android:layout_width="168dp"
+            android:layout_height="84dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/box" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -134,13 +134,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Weight"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="1"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -153,10 +153,10 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/eq"
-            android:scaleType="centerCrop"/>
+            android:layout_width="135dp"
+            android:layout_height="93dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/eq" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -172,13 +172,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Aerobics"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="3"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -191,9 +191,9 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/hobby"/>
+            android:layout_width="108dp"
+            android:layout_height="86dp"
+            android:src="@drawable/hobby" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -209,13 +209,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Boxback"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="5"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="center"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -228,9 +228,9 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/boxbackground"/>
+            android:layout_width="156dp"
+            android:layout_height="100dp"
+            android:src="@drawable/boxbackground" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -246,13 +246,13 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/Explore"
         android:layout_width="match_parent"
-        android:layout_height="202dp"
+        android:layout_height="150dp"
         android:layout_row="4"
         android:layout_rowWeight="1"
         android:layout_column="0"
         android:layout_columnWeight="1"
         android:layout_gravity="fill"
-        app:cardBackgroundColor="#FFFAFA"
+        app:cardBackgroundColor="@color/lightblue"
         app:cardCornerRadius="8dp"
         app:cardElevation="8dp"
         app:cardUseCompatPadding="true">
@@ -265,9 +265,9 @@
           android:orientation="vertical">
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:src="@drawable/boxfour"/>
+            android:layout_width="163dp"
+            android:layout_height="71dp"
+            android:src="@drawable/boxfour" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -275,7 +275,7 @@
             android:text="Explore_Outside"
             android:textAlignment="center"
             android:textColor="@color/purple_200"
-            android:textStyle="bold"/>
+            android:textStyle="bold" />
 
       </LinearLayout>
     </androidx.cardview.widget.CardView>

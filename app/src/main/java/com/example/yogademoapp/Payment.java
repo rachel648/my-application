@@ -36,7 +36,7 @@ public class Payment extends AppCompatActivity {
         TrainFees = findViewById(R.id.textView12);
         Discount = findViewById(R.id.textView17);
         PointsEarned = findViewById(R.id.textView18);
-        total = findViewById(R.id.total_amt);
+       // total = findViewById(R.id.total_amt);
         sub_total = findViewById(R.id.sub_total);
 
         // Retrieve Train Fees value from the intent

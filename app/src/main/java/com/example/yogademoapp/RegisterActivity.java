@@ -84,7 +84,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                                                 // db.registar(Username,email,Password);
                                                 Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+                                                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                                             } else {
 
                                                 // Registration failed

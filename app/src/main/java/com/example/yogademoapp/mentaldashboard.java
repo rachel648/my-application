@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -169,6 +170,18 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
-    }
-}
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the back button click, e.g., go back to the previous activity
+                onBackPressed();
+            }
+        });
+            }
+        }
+
+
+
 

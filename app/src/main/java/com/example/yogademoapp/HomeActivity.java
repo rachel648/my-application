@@ -17,6 +17,7 @@ public class HomeActivity extends AppCompatActivity {
 
     FirebaseAuth auth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +39,6 @@ public class HomeActivity extends AppCompatActivity {
                 SharedPreferences.Editor editor = sharedpreferences.edit();
                 editor.clear();
                 editor.apply();
-                startActivity(new Intent(HomeActivity.this, LoginActivity.class));
             }
         });
         CardView box = findViewById(R.id.Box); //creation of another object
@@ -77,14 +77,5 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
-        CardView OrderDetails = findViewById(R.id.OrderDetails); //creation of another object
-        OrderDetails.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startActivity(new Intent(HomeActivity.this, OrderDetailsActivity.class));
             }
-       });
-
-
     }
-}

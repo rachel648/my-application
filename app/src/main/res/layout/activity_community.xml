@@ -108,6 +108,8 @@
                 android:text="Elderly"
                 android:gravity="center"
                 android:textColor="@color/lightblue"/>
+
+
         </LinearLayout>
 
         <!-- Add more image-text pairs as needed -->

@@ -48,7 +48,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
         editTextPassword = findViewById(R.id.editTextPassword);
         editTextPassword.setHintTextColor(ColorStateList.valueOf(getResources().getColor(android.R.color.white)));
         btnback = findViewById(R.id.buttonMembershipback);
-        buttonSignup = findViewById(R.id.buttonSignup);
+       // buttonSignup = findViewById(R.id.buttonSignup);
 
         //Set OnClickListener on ImageView to Open Uploadloadprofile on MembershipProfileActivity
         //  imageView = findViewById(R.id.imageview_profile_dp);
@@ -115,14 +115,14 @@ public class MembershipProfileActivity extends AppCompatActivity {
             }
         });
 
-        buttonSignup.setOnClickListener(new View.OnClickListener() {
+    /*    buttonSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Start the Register New User activity
                 Intent intent = new Intent(MembershipProfileActivity.this, RegisterActivity.class);
                 startActivity(intent);
             }
-        });
+        });*/
 
         buttonForgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
