@@ -5,6 +5,7 @@ import android.content.DialogInterface;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -16,6 +17,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 public class Payment extends AppCompatActivity {
     Toolbar toolbar;
@@ -31,7 +39,7 @@ public class Payment extends AppCompatActivity {
         //Toolbar
         toolbar = findViewById(R.id.payment_toolbar);
         //setSupportActionBar(toolbar); //inaharibu
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TrainFees = findViewById(R.id.textView12);
         Discount = findViewById(R.id.textView17);
@@ -91,7 +99,9 @@ public class Payment extends AppCompatActivity {
     }
 
     private void sendPaymentRequestSMS(String phoneNumber) {
-        String message = "Please make a payment for your booking.";
+        String message = "Payment for your booking with Life_Boost made .";
+
+      //  String senderPhoneNumber = "0787380469";
 
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(phoneNumber, null, message, null, null);
@@ -102,17 +112,61 @@ public class Payment extends AppCompatActivity {
         Toast.makeText(Payment.this, "Payment request sent!", Toast.LENGTH_SHORT).show();
     }
 
+    private void generateAndSaveReceipt(String sender, String receiver, String message) {
+        String receiptContent = "Payment Receipt\n" +
+                "Date: " + getCurrentDateTime() + "\n" +
+                "Amount: $50.00\n" +
+                "Transaction ID: ABC123\n" +
+                "Thank you for your payment.\n" +
+                "Sender: " + sender + "\n" +
+                "Receiver: " + receiver + "\n" +
+                "Message: " + message;
+
+        saveReceiptToFile(receiptContent);
+    }
+
+    private String getCurrentDateTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.getDefault());
+        return sdf.format(new Date());
+    }
+
+    private void saveReceiptToFile(String receiptContent) {
+        try {
+            File directory = new File(getExternalFilesDir(null), "Receipts");
+            if (!directory.exists()) {
+                directory.mkdirs();
+            }
+
+            String fileName = "receipt_" + System.currentTimeMillis() + ".txt";
+
+            File receiptFile = new File(directory, fileName);
+            FileOutputStream outputStream = new FileOutputStream(receiptFile);
+            outputStream.write(receiptContent.getBytes());
+            outputStream.close();
+
+            Log.d("Receipt", "Receipt saved: " + receiptFile.getAbsolutePath());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(this, "Error saving receipt", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     // Handle permission request result
+   // @SuppressLint("MissingSuperCall")
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == SMS_PERMISSION_REQUEST_CODE) {
             if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 // Permission granted, send the SMS
+                String phoneNumber = input.getText().toString();
+                sendPaymentRequestSMS(phoneNumber);
                 // Make sure to implement the SMS sending logic here
             } else {
                 // Permission denied, handle accordingly
                 Toast.makeText(this, "SMS permission denied.", Toast.LENGTH_SHORT).show();
             }
+
         }
 
     }
