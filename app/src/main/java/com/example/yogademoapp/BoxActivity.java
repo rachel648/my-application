@@ -1,13 +1,16 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 public class BoxActivity extends AppCompatActivity {
+
+    ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,6 +71,18 @@ public class BoxActivity extends AppCompatActivity {
                 startActivity(it);
             }
         });
+
+        backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BoxActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
 
 
     }

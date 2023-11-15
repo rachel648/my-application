@@ -33,8 +33,6 @@ public class LoginActivity extends AppCompatActivity {
 
         }
     }
-
-
     /*  The following are methods:
         onCreate(Bundle savedInstanceState)
         onClick(View view) (anonymous inner class inside onCreate)

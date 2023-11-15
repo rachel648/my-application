@@ -7,6 +7,17 @@
     android:background="@drawable/wave__4_"
     tools:context=".GymDetailsActivity">
 
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:layout_gravity="end"
+        android:paddingStart="315dp"
+        android:paddingEnd="16dp"
+        android:contentDescription="Back Button"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:id="@+id/TextviewGymDetailsName"
         android:layout_width="wrap_content"
@@ -73,7 +84,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -17,6 +18,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class MembershipProfileActivity extends AppCompatActivity {
@@ -51,14 +53,15 @@ public class MembershipProfileActivity extends AppCompatActivity {
        // buttonSignup = findViewById(R.id.buttonSignup);
 
         //Set OnClickListener on ImageView to Open Uploadloadprofile on MembershipProfileActivity
-        //  imageView = findViewById(R.id.imageview_profile_dp);
-      //  imageView.setOnClickListener(new View.OnClickListener() {
-          //  @Override
-          //  public void onClick(View view) {
-            //    Intent intent = new Intent(MembershipProfileActivity.this, UploadProfileActivity.class);
-           //     startActivity(intent);
-        //    }
-   //     });
+       ImageView imageViewProfile = findViewById(R.id.imageViewProfile);
+       imageViewProfile.setOnClickListener(new View.OnClickListener() {
+           @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MembershipProfileActivity.this, UploadProfileActivity.class);
+                startActivity(intent);
+           }
+        });
+
         btnback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,21 +89,27 @@ public class MembershipProfileActivity extends AppCompatActivity {
                         @Override
                         public void onComplete(@NonNull Task<AuthResult> task) {
                             if (task.isSuccessful()) {
-                                Toast.makeText(
-                                        MembershipProfileActivity.this,
-                                        "Profile submitted: Name = " + name + ", Email = " + email + ", Membership Type = " + membershipType,
-                                        Toast.LENGTH_SHORT).show();
+                                FirebaseUser currentUser = mAuth.getCurrentUser();
+
+                                if (currentUser != null) {
+                                    String loggedInUserName = currentUser.getDisplayName();
+                                    String loggedInUserEmail = currentUser.getEmail();
+                                    editTextName.setText(loggedInUserName);
+                                    editTextEmail.setText(loggedInUserEmail);
+
+                                    Toast.makeText(MembershipProfileActivity.this, "Welcome, " + loggedInUserName + " (" + loggedInUserEmail + ")!", Toast.LENGTH_SHORT).show();
+                                }
                                 // Perform login authentication logic
                                 if (username.equals("admin") && password.equals("password")) {
                                     Toast.makeText(MembershipProfileActivity.this, "Login successful", Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
+                                    startActivity(new Intent(MembershipProfileActivity.this, ChooseActivity.class));
                                     // Perform any additional actions after successful login
 
                                 } else {
-                                    Toast.makeText(MembershipProfileActivity.this, "Login Successz", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MembershipProfileActivity.this, "Login Success", Toast.LENGTH_SHORT).show();
 
-                                    startActivity(new Intent(MembershipProfileActivity.this, HomeActivity.class));
+                                    startActivity(new Intent(MembershipProfileActivity.this, ChooseActivity.class));
                                 }
                                 // Start the Login activity
                                 // Intent intent = new Intent(MembershipProfileActivity.this, HomeActivity.class);
@@ -142,6 +151,17 @@ public class MembershipProfileActivity extends AppCompatActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, androidx.appcompat.R.layout.support_simple_spinner_dropdown_item, membershipTypes);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerMembershipType.setAdapter(adapter);
+
+
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MembershipProfileActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

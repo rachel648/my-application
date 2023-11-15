@@ -2,12 +2,14 @@ package com.example.yogademoapp;
 
 import android.Manifest;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.telephony.SmsManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -101,11 +103,10 @@ public class Payment extends AppCompatActivity {
     private void sendPaymentRequestSMS(String phoneNumber) {
         String message = "Payment for your booking with Life_Boost made .";
 
-      //  String senderPhoneNumber = "0787380469";
-
         SmsManager smsManager = SmsManager.getDefault();
         smsManager.sendTextMessage(phoneNumber, null, message, null, null);
 
+        generateAndSaveReceipt(null, phoneNumber, message);
         // Implement your SMS sending logic here
 
         // You can also add code to handle SMS sent successfully or not.
@@ -115,7 +116,7 @@ public class Payment extends AppCompatActivity {
     private void generateAndSaveReceipt(String sender, String receiver, String message) {
         String receiptContent = "Payment Receipt\n" +
                 "Date: " + getCurrentDateTime() + "\n" +
-                "Amount: $50.00\n" +
+                "Amount: ksh 50.00\n" +
                 "Transaction ID: ABC123\n" +
                 "Thank you for your payment.\n" +
                 "Sender: " + sender + "\n" +
@@ -147,8 +148,10 @@ public class Payment extends AppCompatActivity {
             Log.d("Receipt", "Receipt saved: " + receiptFile.getAbsolutePath());
         } catch (IOException e) {
             e.printStackTrace();
+            Log.e("Receipt", "Error saving receipt", e);
             Toast.makeText(this, "Error saving receipt", Toast.LENGTH_SHORT).show();
         }
+
     }
 
     // Handle permission request result
@@ -162,12 +165,24 @@ public class Payment extends AppCompatActivity {
                 String phoneNumber = input.getText().toString();
                 sendPaymentRequestSMS(phoneNumber);
                 // Make sure to implement the SMS sending logic here
+
+
             } else {
                 // Permission denied, handle accordingly
                 Toast.makeText(this, "SMS permission denied.", Toast.LENGTH_SHORT).show();
             }
 
+            ImageView backButton = findViewById(R.id.backButton);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(Payment.this, ChooseActivity.class);
+                    startActivity(intent);
+                }
+            });
+
         }
+
 
     }
 }

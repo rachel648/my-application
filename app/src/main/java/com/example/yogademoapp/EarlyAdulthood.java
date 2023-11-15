@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -65,7 +66,17 @@ public class EarlyAdulthood extends AppCompatActivity {
 
         });
 
+        ImageView backbutton = findViewById(R.id.backButton);
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(EarlyAdulthood.this,ChooseActivity.class));
+
+            }
+        });
+
     }
+
 
     private String getGroupLeader(String ageGroup) {
         // Implement logic to get the group leader for the selected age group

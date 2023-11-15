@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -136,7 +137,14 @@ public class BookAppointmentActivity extends AppCompatActivity {
         int style = AlertDialog.THEME_HOLO_DARK;
         timePickerDialog = new TimePickerDialog(this, style, timeSetListener, hrs, mins, true);
 
-
+       ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BookAppointmentActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 }

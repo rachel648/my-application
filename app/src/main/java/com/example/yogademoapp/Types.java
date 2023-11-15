@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -58,6 +59,16 @@ public class Types extends AppCompatActivity {
                     intent.putExtra("location", selectedLocation);
                     startActivity(intent);
                 }
+            }
+        });
+
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Types.this, ChooseActivity.class);
+                startActivity(intent);
             }
         });
     }

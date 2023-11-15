@@ -1,10 +1,12 @@
 package com.example.yogademoapp;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AlertDialog;
@@ -44,8 +46,8 @@ public class BMIActivity extends AppCompatActivity {
         @Override
         public void onClick(View view) {
             // Handle the button click event
-            finish();
-
+            Intent intent = new Intent(BMIActivity.this, ChooseActivity.class);
+            startActivity(intent);
         }
     });
 }
@@ -86,6 +88,15 @@ public class BMIActivity extends AppCompatActivity {
                 })
                 .create()
                 .show();
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(BMIActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

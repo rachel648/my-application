@@ -1,6 +1,5 @@
 package com.example.yogademoapp;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -11,16 +10,18 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
-import java.util.Arrays;
 
 public class CartActivity extends AppCompatActivity {
     HashMap<String, String> item;
@@ -167,7 +168,14 @@ public class CartActivity extends AppCompatActivity {
             int style = AlertDialog.THEME_HOLO_DARK;
             timePickerDialog = new TimePickerDialog(this, style, timeSetListener, hrs, mins, true);
 
-
+            ImageView backButton = findViewById(R.id.backButton);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(CartActivity.this, ChooseActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
     }
 

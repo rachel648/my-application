@@ -4,8 +4,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wave__4_"
+    android:background="@drawable/background"
     tools:context=".CartBook">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:layout_gravity="end"
+        android:paddingStart="315dp"
+        android:paddingEnd="16dp"
+        android:contentDescription="Back Button"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:id="@+id/editTextContactNumber"
@@ -147,11 +158,11 @@
         android:id="@+id/textView2"
         android:layout_width="184dp"
         android:layout_height="46dp"
-        android:layout_marginStart="136dp"
-        android:layout_marginLeft="136dp"
+        android:layout_marginStart="96dp"
+        android:layout_marginLeft="96dp"
         android:text="24/7 FITNESS"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         android:visibility="visible"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -119,6 +120,16 @@ public class PurchaseActivity extends AppCompatActivity {
             }
         });
 
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PurchaseActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
+
         buttonPurchaseCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -126,6 +137,8 @@ public class PurchaseActivity extends AppCompatActivity {
 
             }
         });
+
+
 
     }
 }

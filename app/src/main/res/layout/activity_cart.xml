@@ -4,21 +4,32 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wave__4_"
+    android:background="@drawable/background"
     tools:context=".CartActivity">
+
+    <ImageView
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:layout_gravity="end"
+        android:paddingStart="315dp"
+        android:paddingEnd="16dp"
+        android:contentDescription="Back Button"
+        android:layout_alignParentEnd="true" />
 
 
     <Button
         android:id="@+id/buttonCheckOutCart"
-        android:layout_width="wrap_content"
+        android:layout_width="179dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="236dp"
-        android:layout_marginRight="236dp"
-        android:layout_marginBottom="28dp"
-        android:hint="Go To Cart"
-        android:textColor="@color/black"
+        android:layout_marginEnd="108dp"
+        android:layout_marginRight="108dp"
+        android:layout_marginBottom="40dp"
         android:backgroundTint="@color/lightblue"
+        android:hint="Go To Cart"
         android:text="Checkout"
+        android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -26,7 +37,7 @@
         android:id="@+id/textviewBuyCheckoutTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="PURCHASE_OR_HIRE"
+        android:text="PURCHASE EQUIPMENT"
         android:textColor="#C8FBFBFB"
         android:textSize="20sp"
         android:textStyle="bold"
@@ -51,32 +62,16 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"  />
 
-    <TextView
-        android:id="@+id/TextviewCheckoutTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:text="GYMWEAR *AND* EQUIPMENT"
-        android:textColor="#C8FBFBFB"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.565"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextviewGymDetailsName"/>
-
     <ListView
         android:id="@+id/listviewCheckout"
         android:layout_width="386dp"
         android:layout_height="293dp"
         android:layout_margin="10dp"
-        android:layout_marginTop="56dp"
         android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:visibility="visible"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextviewCheckoutTitle" />
+        tools:layout_editor_absoluteY="45dp" />
 
     <Button
         android:id="@+id/buttonCheckoutback"
@@ -89,7 +84,8 @@
         android:text="BACK"
         android:textColor="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/CheckoutDate"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wave__4_"
+    android:background="@drawable/background"
     tools:context=".HomeActivity">
 
     <RelativeLayout
@@ -227,7 +227,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/baseline_arrow_back_ios_24"
                 android:layout_gravity="end"
-                android:paddingStart="16dp"
+                android:paddingStart="315dp"
                 android:paddingEnd="16dp"
                 android:contentDescription="Back Button"/>
 

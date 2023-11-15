@@ -4,13 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/wave__4_"
+    android:background="@drawable/background"
     tools:context=".HomeActivity">
+
+
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/baseline_arrow_back_ios_24"
+            android:layout_gravity="end"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:contentDescription="Back Button"
+            android:layout_alignParentEnd="true" />
 
 
         <TextView
@@ -185,43 +198,6 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="GYMWEAR AND EQUIPMENTS!!"
-                        android:textAlignment="center"
-                        android:textColor="@color/black"
-                        android:textStyle="bold" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/Logout"
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_row="5"
-                android:layout_rowWeight="1"
-                android:layout_column="0"
-                android:layout_columnWeight="1"
-                android:layout_gravity="right"
-                app:cardBackgroundColor="@color/lightblue"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="8dp"
-                app:cardUseCompatPadding="true">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical|center_horizontal"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="139dp"
-                        android:layout_height="83dp"
-                        android:src="@drawable/log" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="LOG_OUT"
                         android:textAlignment="center"
                         android:textColor="@color/black"
                         android:textStyle="bold" />

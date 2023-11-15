@@ -50,6 +50,15 @@ public class CommunityActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(CommunityActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -32,7 +33,7 @@ public class HomeActivity extends AppCompatActivity {
         String username = sharedpreferences.getString("username", "");
         Toast.makeText(getApplicationContext(), "Welcome " + username, Toast.LENGTH_SHORT).show();
 
-        CardView exit = findViewById(R.id.Logout); //creation of an object
+      /* CardView exit = findViewById(R.id.Logout); //creation of an object
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +41,7 @@ public class HomeActivity extends AppCompatActivity {
                 editor.clear();
                 editor.apply();
             }
-        });
+        });*/
         CardView box = findViewById(R.id.Box); //creation of another object
         box.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,5 +78,16 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Handle the back button click, e.g., go back to the previous activity
+                onBackPressed();
             }
+        });
     }
+}
+
+

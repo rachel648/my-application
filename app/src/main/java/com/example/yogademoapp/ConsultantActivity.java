@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -76,6 +77,15 @@ btn.setOnClickListener(new View.OnClickListener() {
         startActivity(new Intent(ConsultantActivity.this,mentaldashboard.class));
     }
 });
+
+            ImageView backButton = findViewById(R.id.backButton);
+            backButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ConsultantActivity.this, ChooseActivity.class);
+                    startActivity(intent);
+                }
+            });
 
 
         }

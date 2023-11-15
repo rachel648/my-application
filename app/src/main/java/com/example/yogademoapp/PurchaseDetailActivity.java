@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -61,5 +62,17 @@ Toast.makeText(getApplicationContext(),"Record Inserted to Cart",Toast.LENGTH_SH
          }
             }
         });
+
+        ImageView backButton = findViewById(R.id.backButton);
+
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PurchaseDetailActivity.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
+
 }
