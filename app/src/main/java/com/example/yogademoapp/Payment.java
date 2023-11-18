@@ -40,8 +40,8 @@ public class Payment extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         //Toolbar
         toolbar = findViewById(R.id.payment_toolbar);
-        setSupportActionBar(toolbar); //inaharibu
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        //setSupportActionBar(toolbar); //inaharibu
+       // getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TrainFees = findViewById(R.id.textView12);
         Discount = findViewById(R.id.textView17);
