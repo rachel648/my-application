@@ -29,7 +29,7 @@ import java.util.Locale;
 
 public class Payment extends AppCompatActivity {
     Toolbar toolbar;
-    TextView TrainFees, Discount, PointsEarned, total, sub_total, checkOutButton;
+    TextView TrainFees, Discount, PointsEarned, sub_total, checkOutButton;
     private EditText input;
 
     private static final int SMS_PERMISSION_REQUEST_CODE = 101;
@@ -40,8 +40,8 @@ public class Payment extends AppCompatActivity {
         setContentView(R.layout.activity_payment);
         //Toolbar
         toolbar = findViewById(R.id.payment_toolbar);
-        //setSupportActionBar(toolbar); //inaharibu
-        //getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        setSupportActionBar(toolbar); //inaharibu
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         TrainFees = findViewById(R.id.textView12);
         Discount = findViewById(R.id.textView17);

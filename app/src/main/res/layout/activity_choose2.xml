@@ -32,6 +32,7 @@
         android:layout_marginLeft="2dp"
         android:layout_marginEnd="2dp"
         android:layout_marginRight="2dp"
+        android:layout_marginTop="5dp"
         android:text="24/7 FITNESS"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/black"
@@ -41,22 +42,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.897"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="184dp" />
-
-    <TextView
-        android:id="@+id/Register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="616dp"
-        android:hint="username"
-        android:text="WE BELIEVE IN YOU!!"
-        android:textColor="@color/black"
-        android:textSize="29dp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.602"
-        app:layout_constraintStart_toStartOf="parent" />
+        tools:layout_editor_absoluteY="206dp" />
 
     <Button
         android:id="@+id/physicalFitnessButton"
@@ -108,6 +94,7 @@
 
 
     <!--<com.google.android.material.navigation.NavigationView-->
+    <!--<com.google.android.material.bottomnavigation.BottomNavigationView-->
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"

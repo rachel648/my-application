@@ -33,8 +33,19 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileImageView"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="81dp"
+        android:backgroundTint="@color/lightblue"
+        android:text="Choose Image" />
+
+    <Button
+        android:id="@+id/UploadImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/profileImageView"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="16dp"
-        android:text="Choose Image"
+        android:text="Upload Image"
         android:backgroundTint="@color/lightblue"/>
+
 
 </RelativeLayout>

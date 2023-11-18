@@ -170,6 +170,7 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
+
         ImageView backButton = findViewById(R.id.backButton);
 
         backButton.setOnClickListener(new View.OnClickListener() {
