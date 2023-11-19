@@ -8,6 +8,7 @@ import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +17,7 @@ public class UploadProfileActivity extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
     private ImageView profileImageView;
+    Button chooseImageButton,UploadImageButton;
 
     private Uri selectedImageUri = null;
 
@@ -25,7 +27,8 @@ public class UploadProfileActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload_profile);
 
         profileImageView = findViewById(R.id.profileImageView);
-        Button chooseImageButton = findViewById(R.id.chooseImageButton);
+         chooseImageButton = findViewById(R.id.chooseImageButton);
+        UploadImageButton = findViewById(R.id.UploadImageButton);
 
         chooseImageButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -45,6 +48,12 @@ public class UploadProfileActivity extends AppCompatActivity {
         startActivityForResult(intent, PICK_IMAGE_REQUEST);
     }
 
+    private boolean imageIsSelected() {
+        // Check if selectedImageUri is not null
+        return selectedImageUri != null;
+    }
+
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -62,6 +71,21 @@ public class UploadProfileActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     Intent intent = new Intent(UploadProfileActivity.this, ChooseActivity.class);
                     startActivity(intent);
+                }
+            });
+
+
+            UploadImageButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // Check if an image is selected
+                    if (imageIsSelected()) {
+                        // Display a toast message when the button is clicked and an image is selected
+                        Toast.makeText(UploadProfileActivity.this, "Select an image first", Toast.LENGTH_SHORT).show();
+                    } else {
+                        // Display a toast message indicating that an image should be selected first
+                        Toast.makeText(UploadProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                    }
                 }
             });
         }

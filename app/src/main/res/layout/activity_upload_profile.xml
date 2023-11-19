@@ -32,8 +32,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/profileImageView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="81dp"
+        android:layout_centerInParent="true"
+        android:layout_marginTop="58dp"
         android:backgroundTint="@color/lightblue"
         android:text="Choose Image" />
 
@@ -43,9 +43,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/profileImageView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="16dp"
-        android:text="Upload Image"
-        android:backgroundTint="@color/lightblue"/>
+        android:layout_marginTop="149dp"
+        android:backgroundTint="@color/lightblue"
+        android:text="Upload Image" />
 
 
 </RelativeLayout>

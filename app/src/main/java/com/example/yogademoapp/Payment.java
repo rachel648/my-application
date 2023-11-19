@@ -33,6 +33,7 @@ public class Payment extends AppCompatActivity {
     private EditText input;
 
     private static final int SMS_PERMISSION_REQUEST_CODE = 101;
+    private static final int MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE = 102;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,11 +82,22 @@ public class Payment extends AppCompatActivity {
                 String phoneNumber = input.getText().toString();
 
                 // Check for SMS permission
-                if (ContextCompat.checkSelfPermission(Payment.this, Manifest.permission.SEND_SMS) == PackageManager.PERMISSION_GRANTED) {
-                    sendPaymentRequestSMS(phoneNumber);
+                if (ContextCompat.checkSelfPermission(Payment.this, Manifest.permission.SEND_SMS)
+                        == PackageManager.PERMISSION_GRANTED) {
+                    // Check for WRITE_EXTERNAL_STORAGE permission
+                    if (ContextCompat.checkSelfPermission(Payment.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                            == PackageManager.PERMISSION_GRANTED) {
+                        sendPaymentRequestSMS(phoneNumber);
+                    } else {
+                        // Request WRITE_EXTERNAL_STORAGE permission
+                        ActivityCompat.requestPermissions(Payment.this,
+                                new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                MY_PERMISSIONS_REQUEST_WRITE_EXTERNAL_STORAGE);
+                    }
                 } else {
-                    // Request SMS permission from the user
-                    ActivityCompat.requestPermissions(Payment.this, new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_REQUEST_CODE);
+                    // Request SMS permission
+                    ActivityCompat.requestPermissions(Payment.this,
+                            new String[]{Manifest.permission.SEND_SMS}, SMS_PERMISSION_REQUEST_CODE);
                 }
             }
         });
@@ -113,14 +125,14 @@ public class Payment extends AppCompatActivity {
         Toast.makeText(Payment.this, "Payment request sent!", Toast.LENGTH_SHORT).show();
     }
 
-    private void generateAndSaveReceipt(String sender, String receiver, String message) {
+    private void generateAndSaveReceipt(String sender, String phoneNumber, String message) {
         String receiptContent = "Payment Receipt\n" +
                 "Date: " + getCurrentDateTime() + "\n" +
                 "Amount: ksh 50.00\n" +
                 "Transaction ID: ABC123\n" +
                 "Thank you for your payment.\n" +
                 "Sender: " + sender + "\n" +
-                "Receiver: " + receiver + "\n" +
+                "Receiver Phone Number: " + phoneNumber + "\n" +
                 "Message: " + message;
 
         saveReceiptToFile(receiptContent);
@@ -166,11 +178,11 @@ public class Payment extends AppCompatActivity {
                 sendPaymentRequestSMS(phoneNumber);
                 // Make sure to implement the SMS sending logic here
 
-
             } else {
                 // Permission denied, handle accordingly
                 Toast.makeText(this, "SMS permission denied.", Toast.LENGTH_SHORT).show();
             }
+
 
             ImageView backButton = findViewById(R.id.backButton);
             backButton.setOnClickListener(new View.OnClickListener() {

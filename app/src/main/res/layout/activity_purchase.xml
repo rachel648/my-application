@@ -28,7 +28,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/lightblue"
         android:hint="Go To Cart"
-        android:text="Go To Cart"
+        android:text="Purchase"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -61,12 +61,13 @@
         android:layout_marginRight="88dp"
         android:text="24*FITNESS"
         android:textColor="#F5F5F5"
-        android:textSize="34dp"
+        android:textSize="24dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/TextviewPurchaseDetailTitle"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,8 @@ public class ChooseActivity extends AppCompatActivity {
 
     Button  logoutButton, consultationButton, mentalStatusButton, physicalFitnessButton;
 
+    ImageView logo;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,8 +29,11 @@ public class ChooseActivity extends AppCompatActivity {
 
         physicalFitnessButton = findViewById(R.id.physicalFitnessButton);
         mentalStatusButton= findViewById(R.id.mentalStatusButton);
+
       //  consultationButton = findViewById(R.id.consultationButton);
        // logoutButton = findViewById(R.id.logoutButton);
+
+
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -100,8 +106,5 @@ public class ChooseActivity extends AppCompatActivity {
         // Finish the current activity
         finish();
     }
-
-
-
 
 }

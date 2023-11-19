@@ -28,7 +28,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/lightblue"
         android:hint="Add To Cart"
-        android:text="Add To Cart"
+        android:text="Book for Purchase"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -57,16 +57,17 @@
         android:id="@+id/TextviewGymDetailsName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="116dp"
-        android:layout_marginRight="116dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginRight="128dp"
         android:text="24*FITNESS"
-        android:textColor="#C8FBFBFB"
-        android:textSize="34dp"
+        android:textColor="@color/black"
+        android:textSize="27dp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.018" />
+        app:layout_constraintVertical_bias="0.018"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/TextviewPurchaseDetailTitle"
