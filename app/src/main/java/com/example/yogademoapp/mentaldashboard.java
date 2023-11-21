@@ -112,22 +112,22 @@ public class mentaldashboard extends AppCompatActivity {
         // Determine the options for the second Spinner based on the selected item in the first Spinner
         switch (position) {
             case 0:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
                 break;
             case 1:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
                 break;
             case 2:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{"Online sessions", "Physical sessions"};
                 break;
             case 3:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{"Online sessions", "Physical sessions"};
                 break;
             case 4:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
                 break;
                 case 5:
-                secondOptions = new String[]{"Health resources", "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
                 break;
             default:
                 secondOptions = new String[0];

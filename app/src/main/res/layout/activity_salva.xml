@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <!-- Book 1 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="16dp">
+
+        <ImageView
+            android:id="@+id/book1ImageView"
+            android:layout_width="357dp"
+            android:layout_height="200dp"
+            android:contentDescription="Book 1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/bike" />
+
+        <TextView
+            android:id="@+id/book1TitleTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Book 1 Title"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_marginTop="8dp"/>
+
+        <TextView
+            android:id="@+id/book1PriceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Price: $10.00"
+            android:textSize="16sp"
+            android:layout_marginTop="4dp"/>
+
+
+
+
+
+
+    </LinearLayout>
+
+
+
+    <!-- Repeat the above layout for Book 2 to Book 5 -->
+
+</LinearLayout>
