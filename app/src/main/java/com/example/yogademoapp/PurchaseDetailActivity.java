@@ -57,7 +57,8 @@ public class PurchaseDetailActivity extends AppCompatActivity {
              Toast.makeText(getApplicationContext(),"product Already Added",Toast.LENGTH_SHORT).show();
          }else {
 db.addCart(username,product,price,"cart");
-Toast.makeText(getApplicationContext(),"Record Inserted to Cart",Toast.LENGTH_SHORT).show();
+Toast.makeText(getApplicationContext(),"Record Inserted to Purchase",Toast.LENGTH_SHORT).show();
+//to cart
        startActivity(new Intent(PurchaseDetailActivity.this,CartActivity.class));
          }
             }

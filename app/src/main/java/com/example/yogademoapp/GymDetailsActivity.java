@@ -18,50 +18,50 @@ import java.util.HashMap;
 public class GymDetailsActivity extends AppCompatActivity {
     private final String[][]  Instructor_Details1 =
             {
-                    {"Instuctor Name : Rachel kaume", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                    {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                    {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                    {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
+                    {"Instuctor Name : Rachel kaume", "Gym Number : 12R ", "Exp : 10yrs","Mobile No:0712671172","1500"},
+                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 6yrs","Mobile No:0723297740","800"},
+                    {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 7yrs","Mobile No:0750467930","1000"},
+                    {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","900"},
+                    {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 8yrs","Mobile No:0715588485","1200"},
             };
    private final String[][]  Instructor_Details2 =
     {
-            {"Instuctor Name : Agnes Kajuju", "Gym Number : 12R ", "Exp : 5yrs","Mobile No:0712671172","600"},
-            {"Instuctor Name : Bessy Sheryl", "Gym Number : 13D ", "Exp : 5yrs","Mobile No:0723297740","600"},
-            {"Instuctor Name : Malissa Bernson", "Gym Number : 14R ", "Exp : 5yrs","Mobile No:0750467930","600"},
-            {"Instuctor Name : Modesma  Octavio", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","600"},
-            {"Instuctor Name : Frank Opiyo", "Gym Number : 15A", "Exp : 5yrs","Mobile No:0715588485","600"},
+            {"Instuctor Name : Agnes Kajuju", "Gym Number : 12R ", "Exp : 10yrs","Mobile No:0712671172","1500"},
+            {"Instuctor Name : Bessy Sheryl", "Gym Number : 13D ", "Exp : 8yrs","Mobile No:0723297740","1200"},
+            {"Instuctor Name : Malissa Bernson", "Gym Number : 14R ", "Exp : 6yrs","Mobile No:0750467930","800"},
+            {"Instuctor Name : Modesma  Octavio", "Gym Number : 17B ", "Exp : 4yrs","Mobile No:0714752682","700"},
+            {"Instuctor Name : Frank Opiyo", "Gym Number : 15A", "Exp : 1yr","Mobile No:0715588485","500"},
     };
        private final String[][]  Instructor_Details3 =
       {
-              {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-              {"Instuctor Name : Linet Orengo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-              {"Instuctor Name : Lydia Karanja", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-              {"Instuctor Name : Zagallo Lobo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-              {"Instuctor Name : Martin Zachayo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+              {"Instuctor Name : Rachel Kanyiri", "Gym Number : 1DOD ", "Exp : 13yrs","Mobile No:0712671172","2000"},
+              {"Instuctor Name : Linet Orengo", "Gym Number : 1DOD ", "Exp : 10yrs","Mobile No:0723297740","1500"},
+              {"Instuctor Name : Lydia Karanja", "Gym Number : 1DOD ", "Exp : 7yrs","Mobile No:0750467930","1000"},
+              {"Instuctor Name : Zagallo Lobo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","900"},
+              {"Instuctor Name : Martin Zachayo", "Gym Number : 1DOD ", "Exp : 2yrs","Mobile No:0715588485","600"},
 
       };
 
     private final String[] []  Instructor_Details4 =
              {
-                     {"Instuctor Name : Evans Kimathi", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                     {"Instuctor Name : Amber Ray Domani", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                     {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                     {"Instuctor Name : Consolata Penting", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                     {"Instuctor Name : Martha Austin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+                     {"Instuctor Name : Evans Kimathi", "Gym Number : 1DOD ", "Exp : 15yrs","Mobile No:0712671172","2500"},
+                     {"Instuctor Name : Amber Ray Domani", "Gym Number : 1DOD ", "Exp : 13yrs","Mobile No:0723297740","2000"},
+                     {"Instuctor Name : Benson Gelas", "Gym Number : 1DOD ", "Exp : 10yrs","Mobile No:0750467930","1500"},
+                     {"Instuctor Name : Consolata Penting", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","700"},
+                     {"Instuctor Name : Martha Austin", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","700"},
              };
      private final String[] []  Instructor_Details5 =
              {
-                     {"Instuctor Name : Judy Valentine", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0712671172","600"},
-                     {"Instuctor Name : Ariana Goodie", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0723297740","600"},
-                     {"Instuctor Name : Thomas Grey", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0750467930","600"},
-                     {"Instuctor Name : Leon  Kalonzo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","600"},
-                     {"Instuctor Name : Shem Timothy", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0715588485","600"},
+                     {"Instuctor Name : Judy Valentine", "Gym Number : 1DOD ", "Exp : 15yrs","Mobile No:0712671172","2000"},
+                     {"Instuctor Name : Ariana Goodie", "Gym Number : 1DOD ", "Exp : 13yrs","Mobile No:0723297740","2500"},
+                     {"Instuctor Name : Thomas Grey", "Gym Number : 1DOD ", "Exp : 10yrs","Mobile No:0750467930","1500"},
+                     {"Instuctor Name : Leon  Kalonzo", "Gym Number : 1DOD ", "Exp : 5yrs","Mobile No:0714752682","700"},
+                     {"Instuctor Name : Shem Timothy", "Gym Number : 1DOD ", "Exp : 1yr","Mobile No:0715588485","600"},
              };
 
     private final String[][] Instructor_Details6 = {
-            {"Instructor Name : John Doe", "Gym Number : 123X", "Exp : 5 years", "Mobile No: 1234567890", "600"},
-            {"Instructor Name : Jane Smith", "Gym Number : 124Y", "Exp : 4 years", "Mobile No: 9876543210", "550"},
+            {"Instructor Name : John Doe", "Gym Number : 123X", "Exp : 5 yrs", "Mobile No: 1234567890", "600"},
+            {"Instructor Name : Jane Smith", "Gym Number : 124Y", "Exp : 4 yrs", "Mobile No: 9876543210", "550"},
             // Add more details as needed
     };
 

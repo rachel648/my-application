@@ -65,6 +65,15 @@ public class Payment extends AppCompatActivity {
                 requestPhoneNumber();
             }
         });
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Payment.this, ChooseActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     private void requestPhoneNumber() {
@@ -183,18 +192,7 @@ public class Payment extends AppCompatActivity {
                 Toast.makeText(this, "SMS permission denied.", Toast.LENGTH_SHORT).show();
             }
 
-
-            ImageView backButton = findViewById(R.id.backButton);
-            backButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(Payment.this, ChooseActivity.class);
-                    startActivity(intent);
-                }
-            });
-
         }
-
 
     }
 }

@@ -29,12 +29,13 @@
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
         android:hint="Contact Number"
-        android:inputType="textPassword"
+        android:inputType="number"
         android:textAllCaps="false"
         android:textColorHint="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ButtonBooking"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="@color/black"/>
 
     <Button
         android:id="@+id/ButtonBooking"
@@ -66,7 +67,8 @@
         android:textColorHint="@color/black"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/editTextContactNumber"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/black"/>
 
     <EditText
         android:id="@id/editTextBookingAddress"
@@ -86,7 +88,7 @@
         android:paddingTop="10dp"
         android:paddingRight="0dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/design_default_color_surface"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
@@ -115,7 +117,7 @@
         android:paddingTop="10dp"
         android:paddingRight="0dp"
         android:paddingBottom="10dp"
-        android:textColor="@color/design_default_color_surface"
+        android:textColor="@color/black"
         android:textColorHint="@color/black"
         android:textSize="18sp"
         android:textStyle="bold"
