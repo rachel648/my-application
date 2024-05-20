@@ -24,6 +24,7 @@ public class LoginActivity extends AppCompatActivity {
 
     FirebaseAuth mAuth;
 
+
     @Override
     public void onStart() {
         super.onStart();

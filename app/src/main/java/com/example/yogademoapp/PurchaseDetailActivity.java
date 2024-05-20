@@ -44,17 +44,34 @@ public class PurchaseDetailActivity extends AppCompatActivity {
             }
         });
 
+
+      /*  buttonPurchaseDetailCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent paymentIntent = new Intent(PurchaseDetailActivity.this, Payment.class);
+
+                // Assuming "text3" contains the total cost as a String
+                String totalCost = getIntent().getStringExtra("text3");
+
+                // Pass the total cost to Payment activity
+                paymentIntent.putExtra("TrainFees", totalCost);
+
+                startActivity(paymentIntent);
+            }
+        });*/
+
+
         buttonPurchaseDetailCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
+              SharedPreferences sharedPreferences = getSharedPreferences("shared_prefs", Context.MODE_PRIVATE);
                 String username = sharedPreferences.getString("username", "");
                 String product =textviewBuyTitleDetail1.getText().toString();
                 float price = Float.parseFloat(intent.getStringExtra("text3"));
 
                 Database db = new Database(getApplicationContext(),"fitness",null,1);
          if (db.checkCart(username,product)==1){
-             Toast.makeText(getApplicationContext(),"product Already Added",Toast.LENGTH_SHORT).show();
+             Toast.makeText(getApplicationContext(),"product Already Added", Toast.LENGTH_SHORT).show();
          }else {
 db.addCart(username,product,price,"cart");
 Toast.makeText(getApplicationContext(),"Record Inserted to Purchase",Toast.LENGTH_SHORT).show();

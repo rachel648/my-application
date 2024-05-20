@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="150dp"
-                android:src="@drawable/nel4"
+                android:src="@drawable/kids"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -45,7 +45,7 @@
                 android:layout_height="wrap_content"
                 android:text="Children/Teens"
                 android:gravity="center"
-                android:textColor="@color/lightblue"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <!-- Second Image with Text -->
@@ -62,7 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="150dp"
                 android:layout_gravity="center"
-                android:src="@drawable/nel5"
+                android:src="@drawable/teens"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -70,7 +70,7 @@
                 android:layout_height="wrap_content"
                 android:text="Youth"
                 android:gravity="center"
-                android:textColor="@color/lightblue"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -86,7 +86,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="150dp"
-                android:src="@drawable/nel4"
+                android:src="@drawable/man1"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -94,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:text="Early age Adulthood"
                 android:gravity="center"
-                android:textColor="@color/lightblue"/>
+                android:textColor="@color/black"/>
         </LinearLayout>
 
         <LinearLayout
@@ -110,7 +110,7 @@
                 android:layout_width="wrap_content"
                 android:layout_gravity="center"
                 android:layout_height="150dp"
-                android:src="@drawable/nel4"
+                android:src="@drawable/man2"
                 android:scaleType="fitCenter" />
 
             <TextView
@@ -118,7 +118,7 @@
                 android:layout_height="wrap_content"
                 android:text="Elderly"
                 android:gravity="center"
-                android:textColor="@color/lightblue"/>
+                android:textColor="@color/black"/>
 
 
         </LinearLayout>

@@ -18,10 +18,10 @@ import java.util.HashMap;
 public class GymDetailsActivity extends AppCompatActivity {
     private final String[][]  Instructor_Details1 =
             {
-                    {"Instuctor Name : Rachel kaume", "Gym Number : 12R ", "Exp : 10yrs","Mobile No:0712671172","1500"},
-                    {"Instuctor Name : Shelmith Nelima", "Gym Number : 13D ", "Exp : 6yrs","Mobile No:0723297740","800"},
-                    {"Instuctor Name : Benson Gelas", "Gym Number : 14R ", "Exp : 7yrs","Mobile No:0750467930","1000"},
-                    {"Instuctor Name : Henry  Chumba", "Gym Number : 17B ", "Exp : 5yrs","Mobile No:0714752682","900"},
+                    {"Consultant Name : Rachel kaume", "ID : 12R ", "Exp : 10yrs","Mobile No:0712671172","1500"},
+                    {"Instuctor Name : Shelmith Nelima", "UserID : 13D ", "Exp : 6yrs","Mobile No:0723297740","800"},
+                    {"Instuctor Name : Benson Gelas", "ID : 14R ", "Exp : 7yrs","Mobile No:0750467930","1000"},
+                    {"Instuctor Name : Henry  Chumba", "ID : 17B ", "Exp : 5yrs","Mobile No:0714752682","900"},
                     {"Instuctor Name : Marcus Justin", "Gym Number : 15A", "Exp : 8yrs","Mobile No:0715588485","1200"},
             };
    private final String[][]  Instructor_Details2 =

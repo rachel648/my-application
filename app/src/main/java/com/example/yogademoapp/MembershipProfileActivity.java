@@ -28,6 +28,8 @@ public class MembershipProfileActivity extends AppCompatActivity {
     Spinner sp;
     FirebaseAuth mAuth;
 
+
+
     private EditText editTextName, editTextEmail, editTextPassword, editTextUsername;
     private Spinner spinnerMembershipType;
     private Button buttonSubmit, buttonSignup,buttonForgotPassword, btnback;
@@ -51,6 +53,7 @@ public class MembershipProfileActivity extends AppCompatActivity {
         editTextPassword.setHintTextColor(ColorStateList.valueOf(getResources().getColor(android.R.color.white)));
         btnback = findViewById(R.id.buttonMembershipback);
        // buttonSignup = findViewById(R.id.buttonSignup);
+
 
         //Set OnClickListener on ImageView to Open Uploadloadprofile on MembershipProfileActivity
        ImageView imageViewProfile = findViewById(R.id.imageViewProfile);

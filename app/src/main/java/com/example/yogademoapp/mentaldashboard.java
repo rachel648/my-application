@@ -37,7 +37,7 @@ public class mentaldashboard extends AppCompatActivity {
         spinner.setVisibility(View.GONE);
 
         // Define the list of options for the Spinner
-        final String[] options = {"Depression", "Anxiety disoider", "Eating disorder", "low-self-esteem", "other", "D"};
+        final String[] options = {"Depression", "Anxiety disoider", "Eating disorder", "low-self-esteem", "other"};
 
         // Create an ArrayAdapter to populate the Spinner with options
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
@@ -112,22 +112,22 @@ public class mentaldashboard extends AppCompatActivity {
         // Determine the options for the second Spinner based on the selected item in the first Spinner
         switch (position) {
             case 0:
-                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Default","Online sessions", "Physical sessions"};
                 break;
             case 1:
-                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Default","Online sessions", "Physical sessions"};
                 break;
             case 2:
-                secondOptions = new String[]{"Online sessions", "Physical sessions"};
+                secondOptions = new String[]{"Default","Online sessions", "Physical sessions"};
                 break;
             case 3:
-                secondOptions = new String[]{"Online sessions", "Physical sessions"};
+                secondOptions = new String[]{"Default","Online sessions", "Physical sessions"};
                 break;
             case 4:
-                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Default","Online sessions", "Physical sessions"};
                 break;
                 case 5:
-                secondOptions = new String[]{ "Online sessions", "Physical sessions"};
+                secondOptions = new String[]{ "Default","Online sessions", "Physical sessions"};
                 break;
             default:
                 secondOptions = new String[0];

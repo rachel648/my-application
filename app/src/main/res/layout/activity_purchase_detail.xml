@@ -28,7 +28,7 @@
         android:layout_marginBottom="32dp"
         android:backgroundTint="@color/lightblue"
         android:hint="Add To Cart"
-        android:text="Book for Purchase"
+        android:text="Purchase"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -133,6 +133,7 @@
         android:text="BACK"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="gone"/>
+        android:visibility="gone"
+       />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
