@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+   android:background="@color/white"
     tools:context=".ConsultantActivity">
 
     <ImageView
@@ -27,7 +27,6 @@
         android:layout_marginLeft="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
-        android:text="24*FITNESS"
         android:textColor="#C8FBFBFB"
         android:textSize="34dp"
         android:textStyle="bold"
@@ -49,7 +48,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="24dp"
         android:text="Consultants"
-        android:textColor="#C8FBFBFB"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
