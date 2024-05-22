@@ -16,7 +16,7 @@
         android:paddingStart="315dp"
         android:paddingEnd="16dp"
         android:contentDescription="Back Button"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"/>
 
 
     <TextView

@@ -149,7 +149,7 @@ public class mentaldashboard extends AppCompatActivity {
                 String selectedOption = secondOptions[position];
                 if ("Online sessions".equals(selectedOption) || "Physical sessions".equals(selectedOption)) {
                     // Start the ConsultantsActivity
-                    Intent intent = new Intent(mentaldashboard.this, ConsultantActivity.class);
+                    Intent intent = new Intent(mentaldashboard.this,preference.class);
                     startActivity(intent);
                 } else {
                     // Handle other options if needed
