@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/background"
+    android:background="@color/white"
     tools:context=".HomeActivity">
 
     <RelativeLayout
@@ -24,7 +24,6 @@
             android:layout_marginEnd="12dp"
             android:layout_marginRight="12dp"
             android:layout_marginBottom="12dp"
-            android:text="24/7 FITNESS"
             android:textColor="@color/lightblue"
             android:textSize="30sp"
             android:textStyle="bold" />
@@ -127,7 +126,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Membership"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_row="3"
                 android:layout_rowWeight="1"
                 android:layout_column="0"
@@ -164,7 +163,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/Community"
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
+                android:layout_height="170dp"
                 android:layout_row="1"
                 android:layout_rowWeight="0"
                 android:layout_column="0"
