@@ -10,6 +10,9 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
 
     <application
         android:allowBackup="true"
@@ -20,14 +23,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
-
+        <activity
+            android:name=".maps"
+            android:exported="false" />
         <activity
             android:name=".preference"
             android:exported="false" />
         <activity
             android:name=".dialog_custom"
             android:exported="false" />
-
         <activity
             android:name=".ReceiveActivity"
             android:exported="false" />
@@ -127,11 +131,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="${MAPS_API_KEY}" />
-
-
+            android:value="@string/my_map_api_key" />
     </application>
-
-
 
 </manifest>

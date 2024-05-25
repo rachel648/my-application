@@ -42,7 +42,14 @@ public class preference extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     cardView.startAnimation(scaleUpAnimation);
-                    showCustomDialog(message);
+
+                    if (message.equals("You selected location")) {
+                        // Navigate to the activity for location selection
+                        startActivity(new Intent(preference.this, maps.class));
+                    } else {
+                        // Show the custom dialog for other messages
+                        showCustomDialog(message);
+                    }
                 }
             });
         }
