@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edEmail, edPassword;  //ed means edit text
-    Button btn;
+    Button btn,service;
     TextView tv;
 
     FirebaseAuth mAuth;
@@ -49,6 +49,7 @@ public class LoginActivity extends AppCompatActivity {
         btn = findViewById(R.id.buttonLogin); /*Btn for button*/
         tv= findViewById(R.id.textViewBooking);/*tv for text view*/
         //classes creation
+        service=findViewById(R.id.service);
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -94,6 +95,16 @@ public class LoginActivity extends AppCompatActivity {
                             startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
                         }
                     });
+
+
+        service.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(LoginActivity.this, Agent.class));
+            }
+        });
+
+
                 }
 
             }

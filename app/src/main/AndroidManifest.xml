@@ -10,9 +10,8 @@
     <uses-permission android:name="android.permission.SEND_SMS" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
+        <activity
+            android:name=".Agent"
+            android:exported="false" />
         <activity
             android:name=".maps"
             android:exported="false" />
