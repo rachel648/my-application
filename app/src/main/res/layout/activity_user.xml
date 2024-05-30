@@ -1,128 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UserActivity"
-    android:background="@drawable/background">
-
+    android:background="@drawable/background"
+    tools:context=".UserActivity">
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/ProfileImage"
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/baby7"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="20dp"
+        android:src="@drawable/baby7" />
+
     <ImageView
         android:id="@+id/backButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/baseline_arrow_back_ios_24"
+        android:layout_alignParentEnd="true"
         android:layout_gravity="end"
+        android:contentDescription="Back Button"
         android:paddingStart="315dp"
         android:paddingEnd="16dp"
-        android:contentDescription="Back Button"
-        android:layout_alignParentEnd="true" />
-
+        android:src="@drawable/baseline_arrow_back_ios_24" />
 
     <RelativeLayout
         android:id="@+id/relative_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/ProfileImage"
         android:background="?attr/selectableItemBackground"
         android:clickable="true"
-        android:focusable="true" >
-
-        <Button
-            android:id="@+id/buttonBooking"
-            android:layout_width="258dp"
-            android:layout_height="60dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="56dp"
-            android:layout_marginRight="56dp"
-            android:layout_marginBottom="24dp"
-            android:text="Book Appointment"
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            app:backgroundTint="@color/white"
-            app:layout_constraintBottom_toTopOf="@+id/BackBookApp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textViewNew2" />
+        android:focusable="true"
+        android:paddingTop="16dp">
 
         <TextView
             android:id="@+id/nameProfile"
-            android:layout_width="203dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:text="Name:"
+            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
             android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentTop="true"
-            android:layout_marginStart="61dp"
-            android:layout_marginLeft="61dp"
-            android:layout_marginTop="329dp"
-            android:text="Name:\n"
-            android:textSize="20dp" />
+            android:layout_alignParentTop="true" />
 
         <TextView
             android:id="@+id/GymNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="55dp"
-            android:layout_marginLeft="55dp"
-            android:layout_marginBottom="411dp"
             android:text="GymNumber:"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/nameProfile" />
 
         <TextView
             android:id="@+id/Experience"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="60dp"
-            android:layout_marginLeft="60dp"
-            android:layout_marginBottom="191dp"
             android:text="Experience:"
-            android:textSize="20dp" />
-
+            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/GymNumber" />
 
         <TextView
             android:id="@+id/phoneProfile"
-            android:layout_width="266dp"
-            android:layout_height="50dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="59dp"
-            android:layout_marginLeft="59dp"
-            android:layout_marginBottom="261dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Phone Number:"
-            android:textSize="20dp" />
+            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/Experience" />
 
         <TextView
             android:id="@+id/fees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="64dp"
-            android:layout_marginLeft="64dp"
-            android:layout_marginBottom="129dp"
             android:text="Fees:"
-            android:textSize="20dp" />
-    </RelativeLayout>
+            android:textSize="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_below="@id/phoneProfile" />
 
+        <Button
+            android:id="@+id/buttonBooking"
+            android:layout_width="258dp"
+            android:layout_height="60dp"
+            android:text="Book Appointment"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:layout_marginTop="24dp"
+            android:layout_marginEnd="56dp"
+            android:layout_marginBottom="24dp"
+            android:layout_alignParentEnd="true"
+            android:layout_below="@id/fees"
+            app:backgroundTint="@color/white" />
+
+    </RelativeLayout>
 
 </RelativeLayout>
