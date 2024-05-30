@@ -80,14 +80,17 @@ public class UploadProfileActivity extends AppCompatActivity {
                 public void onClick(View v) {
                     // Check if an image is selected
                     if (imageIsSelected()) {
-                        // Display a toast message when the button is clicked and an image is selected
-                        Toast.makeText(UploadProfileActivity.this, "Select an image first", Toast.LENGTH_SHORT).show();
+                        // Display a toast message indicating that the image is uploaded
+                        Toast.makeText(UploadProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        // Perform upload operation here
                     } else {
                         // Display a toast message indicating that an image should be selected first
-                        Toast.makeText(UploadProfileActivity.this, "Uploaded", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(UploadProfileActivity.this, "Select an image first", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
+
+
         }
     }
 

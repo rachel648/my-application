@@ -81,7 +81,6 @@ public class RegisterActivity extends AppCompatActivity {
                                             if (task.isSuccessful()) {
                                                 // User registration successful
 
-
                                                 // db.registar(Username,email,Password);
                                                 Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
@@ -140,8 +139,18 @@ public class RegisterActivity extends AppCompatActivity {
             /*flags*/
             return f1 == 1 && f2 == 1 && f3 == 1;
         }
+
+
+
+
+
+
+
             }
 
 
 }
+
+
+
 
