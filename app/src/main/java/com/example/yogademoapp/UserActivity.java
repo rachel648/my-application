@@ -2,7 +2,9 @@ package com.example.yogademoapp;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -13,18 +15,23 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.yogademoapp.databinding.ActivityUserBinding;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 public class UserActivity extends AppCompatActivity {
 
     Button buttonBooking;
     ActivityUserBinding binding;
+    SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        sharedPreferences = getSharedPreferences("YogaDemoAppPrefs", Context.MODE_PRIVATE);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -65,18 +72,26 @@ public class UserActivity extends AppCompatActivity {
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                         date.set(Calendar.HOUR_OF_DAY, hourOfDay);
                         date.set(Calendar.MINUTE, minute);
-                        proceedToPayment(date);
+                        saveAppointmentDetails(date);
                     }
                 }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
             }
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
-    private void proceedToPayment(Calendar date) {
+    private void saveAppointmentDetails(Calendar date) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        String dateTimeString = dateFormat.format(date.getTime());
+
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("userEmail", "user@example.com"); // Save the user email, replace with actual email
+        editor.putString("scheduledTime", dateTimeString);
+        editor.apply();
+
+        // Proceed with existing process (e.g., payment activity)
         Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
         String fees = binding.fees.getText().toString();
         bookAppointmentIntent.putExtra("TrainFees", fees);
-        bookAppointmentIntent.putExtra("AppointmentDateTime", date.getTimeInMillis());
         startActivity(bookAppointmentIntent);
     }
 }

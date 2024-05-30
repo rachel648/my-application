@@ -9,7 +9,6 @@ public class Agent extends AppCompatActivity {
 
     Button agent;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

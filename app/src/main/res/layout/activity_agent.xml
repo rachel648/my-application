@@ -28,20 +28,20 @@
                 android:orientation="horizontal">
 
                 <ImageView
+                    android:id="@+id/userImageView"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_marginRight="16dp"
-                    android:src="@drawable/im1"
                     android:scaleType="centerCrop"
                     android:background="@drawable/circular_background" />
 
+
                 <TextView
-                    android:id="@+id/userNameTextView"
+                    android:id="@+id/userEmailTextView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Name"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:text="User Email"
+                    android:textSize="14sp" />
 
             </LinearLayout>
 
