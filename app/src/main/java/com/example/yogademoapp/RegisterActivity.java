@@ -16,11 +16,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.FirebaseDatabase;
 
 
 public class RegisterActivity extends AppCompatActivity {
     EditText edUsername, edEmail, edPassword, edConfirmPassword;
-    Button btn;
+    Button btn,consultantBtn;
     TextView tv;
 
     FirebaseAuth mAuth;
@@ -49,108 +51,109 @@ public class RegisterActivity extends AppCompatActivity {
         edEmail = findViewById(R.id.editTextBookingAddress);
         edConfirmPassword = findViewById(R.id.editTextContactNumber);
         btn = findViewById(R.id.ButtonBooking);
-        tv= findViewById(R.id.textViewBooking);
+        consultantBtn = findViewById(R.id.ButtonConsultant);
+        tv = findViewById(R.id.textViewBooking);
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(RegisterActivity.this,LoginActivity.class));
+                startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
             }
         });
+
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                // Obtain data entered
-                String Username = edUsername.getText().toString();
-                String Password = edPassword.getText().toString();
-                String email = edEmail.getText().toString();
-                String ConfirmPassword = edConfirmPassword.getText().toString();
-                Database db = new Database(getApplicationContext(),"YogaDemo",null ,1);
-
-                if (Username.length() == 0 || email.length() == 0 || Password.length() == 0 || ConfirmPassword.length() == 0) {
-                    Toast.makeText(getApplicationContext(), ("Please fill all the details"), Toast.LENGTH_SHORT).show();
-                }
-                else {
-                    if (Password.compareTo(ConfirmPassword) == 0) {
-                        if (isValid(Password)) {    /*if both passwords are same then check whether it's a valid password containing all specifications*/
-
-                            // Create a new user account with Firebase Authentication
-                            mAuth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                                        @Override
-                                        public void onComplete(@NonNull Task<AuthResult> task) {
-                                            if (task.isSuccessful()) {
-                                                // User registration successful
-
-                                                // db.registar(Username,email,Password);
-                                                Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
-                                                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                                            } else {
-
-                                                // Registration failed
-                                                Toast.makeText(getApplicationContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                                            }
-                                        }
-                                    });
-
-                        }else {
-
-                    Toast.makeText(getApplicationContext(),("Password must contain at least 8 characters,having letter,digit and alphabet"), Toast.LENGTH_SHORT).show();
-                }
-                    } else {
-                        Toast.makeText(getApplicationContext(), ("Password and Confirm password do not match"), Toast.LENGTH_SHORT).show();
-
-                    }
-
-                }
-
+                registerUser("patient");
             }
+        });
 
+        consultantBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                registerUser("consultant");
+            }
         });
     }
 
+    private void registerUser(String userType) {
+        // Obtain data entered
+        String Username = edUsername.getText().toString();
+        String Password = edPassword.getText().toString();
+        String email = edEmail.getText().toString();
+        String ConfirmPassword = edConfirmPassword.getText().toString();
 
-    /*  We check if password is valid by checking the length eg 8 characters,whether it has a digit, a letter,an alphabet, a special character
-    * To do so we use a built in function as used below
-    * if less eight return false
-    * the one character must be between oscillators as below on the third "for"
-    * if all flags are set we return true*/
+        if (Username.length() == 0 || email.length() == 0 || Password.length() == 0 || ConfirmPassword.length() == 0) {
+            Toast.makeText(getApplicationContext(), "Please fill all the details", Toast.LENGTH_SHORT).show();
+        } else {
+            if (Password.equals(ConfirmPassword)) {
+                if (isValid(Password)) {
+                    // Create a new user account with Firebase Authentication
+                    mAuth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                        @Override
+                        public void onComplete(@NonNull Task<AuthResult> task) {
+                            if (task.isSuccessful()) {
+                                // User registration successful
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    // Update user profile with display name
+                                    user.updateProfile(new UserProfileChangeRequest.Builder()
+                                            .setDisplayName(Username)
+                                            .build());
+
+                                    // Save user type to Firebase Database
+                                    String userId = user.getUid();
+                                    FirebaseDatabase.getInstance().getReference("Users")
+                                            .child(userId)
+                                            .setValue(userType);
+
+                                    Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+
+                                    // Redirect based on user type
+                                    if ("consultant".equals(userType)) {
+                                        startActivity(new Intent(RegisterActivity.this, Agent.class));
+                                    } else if ("patient".equals(userType)) {
+                                        startActivity(new Intent(RegisterActivity.this, ChooseActivity.class));
+                                    }
+                                }
+                            } else {
+                                // Registration failed
+                                Toast.makeText(getApplicationContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    });
+                } else {
+                    Toast.makeText(getApplicationContext(), "Password must contain at least 8 characters, a letter, a digit, and a special character", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(getApplicationContext(), "Password and Confirm password do not match", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
 
     public static boolean isValid(String passwordhere) {
-        int f1=0,f2=0,f3=0;
+        int f1 = 0, f2 = 0, f3 = 0;
         if (passwordhere.length() < 8) {
             return false;
         } else {
-            for(int p=0; p< passwordhere.length(); p++) {
+            for (int p = 0; p < passwordhere.length(); p++) {
                 if (Character.isLetter(passwordhere.charAt(p))) {
                     f1 = 1;
                 }
             }
-            for (int r=0; r < passwordhere.length(); r++) {
+            for (int r = 0; r < passwordhere.length(); r++) {
                 if (Character.isDigit(passwordhere.charAt(r))) {
                     f2 = 1;
                 }
             }
-            for (int s=0; s < passwordhere.length(); s++) {
+            for (int s = 0; s < passwordhere.length(); s++) {
                 char c = passwordhere.charAt(s);
-                if(c>=33&&c<=46||c==64){          /*oscillators*/
-                      f3 = 1 ;
+                if (c >= 33 && c <= 46 || c == 64) {
+                    f3 = 1;
                 }
             }
-            /*flags*/
             return f1 == 1 && f2 == 1 && f3 == 1;
         }
-
-
-
-
-
-
-
-            }
-
-
+    }
 }
-
-
-
-
