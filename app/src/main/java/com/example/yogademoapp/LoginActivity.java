@@ -24,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     EditText edEmail, edPassword;  //ed means edit text
-    Button btn,service;
+    Button btn;
     TextView tv;
 
     FirebaseAuth mAuth;
@@ -62,7 +62,6 @@ public class LoginActivity extends AppCompatActivity {
         edPassword = findViewById(R.id.editTextPassword);
         btn = findViewById(R.id.buttonLogin);
         tv = findViewById(R.id.textViewBooking);
-        service = findViewById(R.id.service);
 
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
