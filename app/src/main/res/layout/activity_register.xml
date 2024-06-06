@@ -9,62 +9,60 @@
     tools:context=".RegisterActivity"
     tools:ignore="DuplicateIds">
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="260dp"
-        android:layout_height="160dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="30dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:paddingLeft="5dp" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="465dp"
-        android:layout_height="840dp"
-        android:layout_marginBottom="4dp"
+        android:layout_width="416dp"
+        android:layout_height="847dp"
+        android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.74"
+        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
         tools:context=".RegisterActivity">
+
+        <Button
+            android:id="@+id/ButtonConsultant"
+            android:layout_width="258dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="36dp"
+            android:text="Register as consultant"
+            android:textColor="@color/black"
+            android:textSize="13sp"
+            app:backgroundTint="@color/white"
+            app:layout_constraintBottom_toTopOf="@+id/textViewBooking"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.594"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextContactNumber"
             android:layout_width="300dp"
             android:layout_height="50dp"
             android:layout_marginStart="32dp"
-            android:layout_marginLeft="32dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/header_bg"
+            android:layout_marginBottom="76dp"
+
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:ems="10"
             android:hint="Confirm Password"
             android:inputType="textPassword"
             android:textAllCaps="false"
+            android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ButtonBooking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.533"
-            app:layout_constraintStart_toStartOf="parent"
-            android:textColor="@color/black"/>
+            app:layout_constraintHorizontal_bias="0.559"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <Button
             android:id="@+id/ButtonBooking"
             android:layout_width="258dp"
             android:layout_height="60dp"
-            android:layout_marginBottom="52dp"
-            android:text="Register"
+            android:layout_marginBottom="108dp"
+            android:text="Register as client"
             android:textColor="@color/black"
-            android:textSize="16sp"
+            android:textSize="14sp"
             app:backgroundTint="@color/white"
             app:layout_constraintBottom_toTopOf="@+id/textViewBooking"
             app:layout_constraintEnd_toEndOf="parent"
@@ -75,29 +73,27 @@
             android:id="@+id/editTextBookingPincode"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
-            android:layout_marginBottom="28dp"
-            android:background="@drawable/header_bg"
+            android:layout_marginEnd="36dp"
+            android:layout_marginBottom="24dp"
+
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:ems="10"
             android:hint="Password"
             android:inputType="textPassword"
             android:textAllCaps="false"
+            android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextContactNumber"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/black"/>
+            app:layout_constraintEnd_toEndOf="parent" />
 
         <EditText
             android:id="@id/editTextBookingAddress"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginRight="60dp"
+            android:layout_marginEnd="36dp"
             android:layout_marginBottom="24dp"
-            android:background="@drawable/header_bg"
+
             android:drawableLeft="@android:drawable/sym_action_email"
             android:drawablePadding="2dp"
             android:ems="10"
@@ -123,8 +119,8 @@
             android:id="@+id/editTextBookingName"
             android:layout_width="300dp"
             android:layout_height="50dp"
-            android:layout_marginBottom="20dp"
-            android:background="@drawable/header_bg"
+            android:layout_marginBottom="28dp"
+
             android:drawableLeft="@android:drawable/ic_menu_edit"
             android:drawablePadding="2dp"
             android:ems="10"
@@ -145,7 +141,7 @@
             app:iconSize="40dp"
             app:layout_constraintBottom_toTopOf="@+id/editTextBookingAddress"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.624"
+            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -160,7 +156,7 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextBookingName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.72"
+            app:layout_constraintHorizontal_bias="0.778"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -178,19 +174,5 @@
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="184dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="84dp"
-        android:layout_marginRight="84dp"
-        android:text="24/7 FITNESS"
-        android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/black"
-        android:textSize="28dp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="-6dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
