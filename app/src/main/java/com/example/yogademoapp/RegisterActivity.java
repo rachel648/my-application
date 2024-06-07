@@ -19,10 +19,9 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 
-
 public class RegisterActivity extends AppCompatActivity {
     EditText edUsername, edEmail, edPassword, edConfirmPassword;
-    Button btn,consultantBtn;
+    Button btn, consultantBtn;
     TextView tv;
 
     FirebaseAuth mAuth;
@@ -32,12 +31,10 @@ public class RegisterActivity extends AppCompatActivity {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-
+        if (currentUser != null) {
+            // User is already signed in
         }
     }
-
-    //  FirebaseAuth auth = FirebaseAuth.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -83,7 +80,7 @@ public class RegisterActivity extends AppCompatActivity {
         String email = edEmail.getText().toString();
         String ConfirmPassword = edConfirmPassword.getText().toString();
 
-        if (Username.length() == 0 || email.length() == 0 || Password.length() == 0 || ConfirmPassword.length() == 0) {
+        if (Username.isEmpty() || email.isEmpty() || Password.isEmpty() || ConfirmPassword.isEmpty()) {
             Toast.makeText(getApplicationContext(), "Please fill all the details", Toast.LENGTH_SHORT).show();
         } else {
             if (Password.equals(ConfirmPassword)) {
@@ -106,6 +103,21 @@ public class RegisterActivity extends AppCompatActivity {
                                     FirebaseDatabase.getInstance().getReference("Users")
                                             .child(userId)
                                             .setValue(userType);
+
+                                    // If user is a consultant, save additional details
+                                    if ("consultant".equals(userType)) {
+                                        String phoneNo = "0712671173"; // Replace with actual phone number input
+                                        String experience = "5yrs"; // Replace with actual experience input
+                                        String fees = "5000"; // Replace with actual fees input
+                                        String gymNumber = "ConsultantNo: 01"; // Replace with actual gym number input
+                                        int imageId = R.drawable.man1; // Replace with actual image resource id
+
+                                        Consultant consultant = new Consultant(Username, phoneNo, experience, fees, gymNumber, imageId);
+
+                                        FirebaseDatabase.getInstance().getReference("Consultants")
+                                                .child(userId)
+                                                .setValue(consultant);
+                                    }
 
                                     Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
 
@@ -130,7 +142,6 @@ public class RegisterActivity extends AppCompatActivity {
             }
         }
     }
-
 
     public static boolean isValid(String passwordhere) {
         int f1 = 0, f2 = 0, f3 = 0;

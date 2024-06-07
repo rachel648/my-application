@@ -1,23 +1,55 @@
 package com.example.yogademoapp;
 
 public class User {
-    String name,lastMessage,lastMsgTime,phoneNo,Experience,fees,GymNumber;
-    int imageId;
+    private String name;
+    private String lastMessage;
+    private String lastMsgTime;
+    private String phoneNo;
+    private String gymNumber;
+    private String experience;
+    private String fees;
+    private int imageId;
 
-
-    public User(String name, String lastMessage, String lastMsgTime, String phoneNo,String GymNumber, String Experience,String fees, int imageId) {
+    public User(String name, String lastMessage, String lastMsgTime, String phoneNo, String gymNumber, String experience, String fees, int imageId) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.lastMsgTime = lastMsgTime;
         this.phoneNo = phoneNo;
-        this.Experience= Experience;
-        this.imageId = imageId;
+        this.gymNumber = gymNumber;
+        this.experience = experience;
         this.fees = fees;
-        this.GymNumber = GymNumber;
-
+        this.imageId = imageId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public String getLastMessage() {
+        return lastMessage;
+    }
+
+    public String getLastMsgTime() {
+        return lastMsgTime;
+    }
+
+    public String getPhoneNo() {
+        return phoneNo;
+    }
+
+    public String getGymNumber() {
+        return gymNumber;
+    }
+
+    public String getExperience() {
+        return experience;
+    }
+
+    public String getFees() {
+        return fees;
+    }
+
+    public int getImageId() {
+        return imageId;
+    }
 }
-
-
-

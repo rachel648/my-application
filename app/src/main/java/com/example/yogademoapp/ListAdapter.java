@@ -14,29 +14,29 @@ import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<User> {
 
- public ListAdapter (Context context , ArrayList<User>userArrayList){
-     super(context,R.layout.list_item,userArrayList);
- }
+    public ListAdapter(Context context, ArrayList<User> userArrayList) {
+        super(context, R.layout.list_item, userArrayList);
+    }
 
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        User user = getItem(position);
 
-      User user = getItem(position);
+        if (convertView == null) {
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
+        }
 
-      if(convertView == null){
-
-          convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item,parent,false);
-      }
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personname);
         TextView lastMsg = convertView.findViewById(R.id.lastmessage);
         TextView time = convertView.findViewById(R.id.msgtime);
 
-        imageView.setImageResource(user.imageId);
-        userName.setText(user.name);
-        lastMsg.setText(user.lastMessage);
-        time.setText(user.lastMsgTime);
+        imageView.setImageResource(user.getImageId());
+        userName.setText(user.getName());
+        lastMsg.setText(user.getLastMessage());
+        time.setText(user.getLastMsgTime());
+
         return convertView;
     }
 }
