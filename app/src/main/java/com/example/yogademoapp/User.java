@@ -1,7 +1,7 @@
 package com.example.yogademoapp;
 
 public class User {
-    private String name;
+    private final String name;
     private String lastMessage;
     private String lastMsgTime;
     private String phoneNo;
@@ -51,5 +51,9 @@ public class User {
 
     public int getImageId() {
         return imageId;
+    }
+
+    public int getEmail() {
+        return 0;
     }
 }
