@@ -14,7 +14,8 @@
         android:layout_height="200dp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:src="@drawable/baby7" />
+        android:src="@drawable/baby7"
+        />
 
     <ImageView
         android:id="@+id/backButton"

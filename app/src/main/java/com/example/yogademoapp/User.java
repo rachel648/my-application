@@ -53,6 +53,8 @@ public class User {
         return imageId;
     }
 
+    //yes
+
     public int getEmail() {
         return 0;
     }
