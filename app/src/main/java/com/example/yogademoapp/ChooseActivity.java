@@ -69,20 +69,20 @@ public class ChooseActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case R.id.menu_home:
+                    case 2131231099: //home_menu
                         startActivity(new Intent(ChooseActivity.this, ChooseActivity.class));
                         return true;
-                    case R.id.menu_profile:
+                    case 2131231100: // menu_profile
                         startActivity(new Intent(ChooseActivity.this, MembershipProfileActivity.class));
                         return true;
-                    case R.id.Physical:
+                    case 2131230747: //physical
                         startActivity(new Intent(ChooseActivity.this, HomeActivity.class));
                         return true;
 
-                    case R.id.Mental:
+                    case 2131230745: //mental
                         startActivity(new Intent(ChooseActivity.this, mentaldashboard.class));
                         return true;
-                    case R.id.menu_cart:
+                    case 2131231098: //menu_cart
                         // Handle cart action
                         handleCartAction();
                         return true;
