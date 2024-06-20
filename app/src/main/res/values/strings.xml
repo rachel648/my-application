@@ -13,4 +13,9 @@
     <string name="my_map_api_key">AIzaSyAhh0yQG5LzKcZOWhz2F_Fh1lf2Gg6h8d8</string>
 
 
+    <string name="open">Open Navigation Drawer </string>
+    <string name="close">Close Navigation Drawer </string>
+
+
+
 </resources>
