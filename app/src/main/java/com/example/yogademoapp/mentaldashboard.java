@@ -67,7 +67,7 @@ public class mentaldashboard extends AppCompatActivity {
                         Toast.makeText(mentaldashboard.this, "Share selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.call:
-                        Toast.makeText(mentaldashboard.this, "Call selected", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(mentaldashboard.this, "Contacts selected", Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.rate_us:
                         Toast.makeText(mentaldashboard.this, "Rate selected", Toast.LENGTH_SHORT).show();
