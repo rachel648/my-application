@@ -7,25 +7,8 @@
     android:layout_height="match_parent"
     tools:actionBarNavMode="standard"
     tools:context=".LoginActivity"
-    android:background="@drawable/background">
+    android:background="#FFFFFF">
 
-
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="260dp"
-        android:layout_height="170dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="40dp"
-        android:paddingLeft="5dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/logo"
-        app:layout_constraintBottom_toTopOf="@+id/textView2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        android:contentDescription="TODO" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint"
@@ -48,35 +31,31 @@
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="262dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="2dp"
-        android:layout_marginLeft="2dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginRight="2dp"
-        android:text="24/7 FITNESS"
+        android:layout_width="114dp"
+        android:layout_height="56dp"
+        android:text="Sign in"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
         android:textColor="@color/black"
         android:textSize="30dp"
         android:textStyle="bold"
         android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="186dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textViewBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:text="Register For New User"
-        android:textColor="@color/white"
+        android:layout_marginBottom="72dp"
+        android:text="Register For New User?"
+        android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.504"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
@@ -86,13 +65,13 @@
         android:text="login"
         android:textColor="@color/black"
         android:textSize="16sp"
-        app:backgroundTint="@color/white"
+        app:backgroundTint="#1C804C"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797" />
+        app:layout_constraintVertical_bias="0.765" />
 
     <EditText
         android:id="@id/editTextEmail"
@@ -100,7 +79,7 @@
         android:layout_height="48dp"
         android:layout_marginBottom="192dp"
         android:background="@drawable/header_bg"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#D9D9D9"
         android:drawableLeft="@android:drawable/ic_menu_edit"
         android:drawablePadding="2dp"
         android:ems="10"
@@ -128,7 +107,7 @@
         android:layout_height="49dp"
         android:layout_marginBottom="96dp"
         android:background="@drawable/header_bg"
-        android:backgroundTint="@color/white"
+        android:backgroundTint="#D9D9D9"
         android:drawableLeft="@android:drawable/ic_lock_idle_lock"
         android:ems="10"
         android:hint="Password"
@@ -141,5 +120,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.513"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Forget password"
+        app:layout_constraintBottom_toTopOf="@+id/buttonLogin"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPassword" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
