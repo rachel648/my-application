@@ -64,7 +64,7 @@ public class preference extends AppCompatActivity {
         TextView dialogMessage = view.findViewById(R.id.dialog_message);
         Button dialogButton = view.findViewById(R.id.dialog_button);
 
-        dialogTitle.setText("Custom Dialog");
+        dialogTitle.setText("Custom Dialog:");
         dialogMessage.setText(message);
 
         // dialogButton.setOnClickListener(v -> dialog.dismiss());

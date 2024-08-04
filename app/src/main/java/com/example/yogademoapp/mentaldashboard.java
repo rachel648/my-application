@@ -36,6 +36,12 @@ public class mentaldashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentaldashboard);
 
+        // Start the preference activity immediately
+        Intent intent = new Intent(mentaldashboard.this, preference.class);
+        startActivity(intent);
+        finish(); // Optionally finish the current activity if you don't want to return to it
+
+        // The rest of your original code remains here
         CardView cardView = findViewById(R.id.Box); // Corrected the ID here
         spinner = findViewById(R.id.spinner);
         TextView textView = findViewById(R.id.textView2);
