@@ -59,6 +59,9 @@ public class mentaldashboard extends AppCompatActivity {
                         break;
                     case R.id.profileImageView:
                         Toast.makeText(mentaldashboard.this, "Profile selected", Toast.LENGTH_SHORT).show();
+                        // Start the GreenCard activity
+                        Intent intent = new Intent(mentaldashboard.this, GreenCard.class);
+                        startActivity(intent);
                         break;
                     case R.id.info:
                         Toast.makeText(mentaldashboard.this, "About selected", Toast.LENGTH_SHORT).show();
