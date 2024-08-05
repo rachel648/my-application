@@ -15,15 +15,14 @@ public class MedDoc extends AppCompatActivity {
         setContentView(R.layout.activity_med_doc);
 
         // Delay for 2 seconds and then start the next activity
-        new Handler(Looper.getMainLooper().getMainLooper()).postDelayed(new Runnable() {
+        new Handler(Looper.getMainLooper()).postDelayed(new Runnable() {
             @Override
             public void run() {
                 // Start the next activity here
-                Intent intent = new Intent(MedDoc.this,mentaldashboard.class);
+                Intent intent = new Intent(MedDoc.this, mentaldashboard.class);
                 startActivity(intent);
                 finish(); // Optional: Close this activity to prevent going back
             }
-        }, 1500); // Delay in milliseconds (2 seconds)
+        }, 2000); // Delay in milliseconds (2 seconds)
     }
 }
-

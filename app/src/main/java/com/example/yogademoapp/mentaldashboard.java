@@ -36,13 +36,7 @@ public class mentaldashboard extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentaldashboard);
 
-        // Start the preference activity immediately
-        Intent intent = new Intent(mentaldashboard.this, preference.class);
-        startActivity(intent);
-        finish(); // Optionally finish the current activity if you don't want to return to it
-
-        // The rest of your original code remains here
-        CardView cardView = findViewById(R.id.Box); // Corrected the ID here
+        CardView cardView = findViewById(R.id.Box);
         spinner = findViewById(R.id.spinner);
         TextView textView = findViewById(R.id.textView2);
         secondSpinner = findViewById(R.id.secondSpinner);
@@ -89,7 +83,7 @@ public class mentaldashboard extends AppCompatActivity {
         spinner.setVisibility(View.GONE);
 
         // Define the list of options for the Spinner
-        final String[] options = {"Depression", "Anxiety disorder", "Eating disorder", "low-self-esteem", "other"};
+        final String[] options = {"Depression", "Anxiety disorder", "Eating disorder", "Low self-esteem", "Other"};
 
         // Create an ArrayAdapter to populate the Spinner with options
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
@@ -140,11 +134,11 @@ public class mentaldashboard extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 secondSpinner.setVisibility(View.GONE);
-                //  toggleSpinnerVisibility();
+                toggleSpinnerVisibility();
             }
         });
 
-        CardView Community = findViewById(R.id.Community); //creation of another object
+        CardView Community = findViewById(R.id.Community);
         Community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -193,21 +187,10 @@ public class mentaldashboard extends AppCompatActivity {
         // Determine the options for the second Spinner based on the selected item in the first Spinner
         switch (position) {
             case 0:
-                secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
-                break;
             case 1:
-                secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
-                break;
             case 2:
-                secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
-                break;
             case 3:
-                secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
-                break;
             case 4:
-                secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
-                break;
-            case 5:
                 secondOptions = new String[]{"Default", "Online sessions", "Physical sessions"};
                 break;
             default:
@@ -225,15 +208,10 @@ public class mentaldashboard extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 // Handle the selected option here
-
-                // Check the selected option and start the corresponding activity
                 String selectedOption = secondOptions[position];
                 if ("Online sessions".equals(selectedOption) || "Physical sessions".equals(selectedOption)) {
-                    // Start the ConsultantsActivity
                     Intent intent = new Intent(mentaldashboard.this, preference.class);
                     startActivity(intent);
-                } else {
-                    // Handle other options if needed
                 }
             }
 
