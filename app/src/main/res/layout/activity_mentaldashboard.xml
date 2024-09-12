@@ -58,7 +58,7 @@
                     android:layout_gravity="center"
                     android:clickable="true"
                     android:focusable="true"
-                    app:cardBackgroundColor="@color/lightblue"
+                    app:cardBackgroundColor="#1C804C"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -131,7 +131,7 @@
                     android:layout_column="0"
                     android:layout_columnWeight="1"
                     android:layout_gravity="right"
-                    app:cardBackgroundColor="@color/lightblue"
+                    app:cardBackgroundColor="#1C804C"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">
@@ -173,7 +173,7 @@
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    app:cardBackgroundColor="@color/lightblue"
+                    app:cardBackgroundColor="#1C804C"
                     app:cardCornerRadius="8dp"
                     app:cardElevation="8dp"
                     app:cardUseCompatPadding="true">

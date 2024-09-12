@@ -23,51 +23,55 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText edEmail, edPassword;  //ed means edit text
+
+    EditText edEmail, edPassword;
     Button btn;
     TextView tv;
 
     FirebaseAuth mAuth;
-
 
     @Override
     public void onStart() {
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if(currentUser != null){
-
+        if (currentUser != null) {
+            // Redirect the user if already signed in (optional)
+            startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
+            finish();
         }
     }
-    /*  The following are methods:
-        onCreate(Bundle savedInstanceState)
-        onClick(View view) (anonymous inner class inside onCreate)
-        onClick(View view) (anonymous inner class inside tv.setOnClickListener)*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        Intent intent = getIntent();
-        if (intent != null) {
-            String userType = intent.getStringExtra("userType");
-            if ("consultant".equals(userType)) {
-                startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
-                finish(); // Optionally finish LoginActivity to prevent going back
-            }
-        }
 
+        // Find Views by ID
         edEmail = findViewById(R.id.editTextEmail);
         edPassword = findViewById(R.id.editTextPassword);
         btn = findViewById(R.id.buttonLogin);
         tv = findViewById(R.id.textViewBooking);
 
+        // Check intent for userType and redirect consultants
+        Intent intent = getIntent();
+        if (intent != null) {
+            String userType = intent.getStringExtra("userType");
+            if ("consultant".equals(userType)) {
+                startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
+                finish(); // Finish LoginActivity to prevent returning
+            }
+        }
+
+        // Handle login button click
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = edEmail.getText().toString();
-                String password = edPassword.getText().toString();
+                String email = edEmail.getText().toString().trim();
+                String password = edPassword.getText().toString().trim();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all the details", Toast.LENGTH_SHORT).show();
@@ -77,15 +81,16 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
-                                        // Login successful
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         if (user != null) {
-                                            // Get user role from Firebase Database
+                                            // Reference to user node in the database
                                             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
+
                                             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    String userType = snapshot.getValue(String.class);
+                                                    String userType = snapshot.child("userType").getValue(String.class);
+
                                                     if ("consultant".equals(userType)) {
                                                         startActivity(new Intent(LoginActivity.this, Agent.class));
                                                     } else if ("patient".equals(userType)) {
@@ -102,7 +107,6 @@ public class LoginActivity extends AppCompatActivity {
                                             });
                                         }
                                     } else {
-                                        // Login failed
                                         Toast.makeText(getApplicationContext(), "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -111,7 +115,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-// Move the tv click listener outside of the btn click listener
+        // Handle TextView click to open RegisterActivity
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
