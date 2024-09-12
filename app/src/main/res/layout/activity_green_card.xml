@@ -209,10 +209,11 @@
                     android:padding="8dp"
                     android:textColorHint="@color/black"
                     android:textColor="@color/black"
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:clickable="true"
-                    android:drawableEnd="@drawable/baseline_account_circle_24" />
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:clickable="false"
+                    android:drawableEnd="@drawable/baseline_account_circle_24"
+                    android:inputType="textPassword"/>
 
                 <!-- Password Change Section (Initially Hidden) -->
                 <LinearLayout
