@@ -1,24 +1,30 @@
 package com.example.yogademoapp;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
 
 public class GreenCard extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_green_card);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+        setContentView(R.layout.activity_green_card); // Make sure this matches your actual layout file name
+
+        // Find the views by their IDs
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        LinearLayout passwordChangeSection = findViewById(R.id.passwordChangeSection);
+
+        // Set up the click listener to toggle visibility
+        passwordEditText.setOnClickListener(v -> {
+            if (passwordChangeSection.getVisibility() == View.GONE) {
+                passwordChangeSection.setVisibility(View.VISIBLE);
+            } else {
+                passwordChangeSection.setVisibility(View.GONE);
+            }
         });
     }
 }

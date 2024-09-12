@@ -234,8 +234,8 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/white"
-        app:itemTextColor="@color/green"
-        app:itemIconTint="@color/green"
+        app:itemTextColor="@color/greenpref"
+        app:itemIconTint="@color/greenpref"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu" />
 
