@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -82,6 +84,13 @@ public class GreenCard extends AppCompatActivity {
                     Toast.makeText(GreenCard.this, "Email not found", Toast.LENGTH_SHORT).show();
                 }
             }
+        });
+        // Initialize CardViews
+        CardView settingsCardView = findViewById(R.id.notifications);
+        // Set up the click listener for the settings CardView
+        settingsCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(GreenCard.this, Not.class); // Start the Not activity
+            startActivity(intent);
         });
     }
 }
