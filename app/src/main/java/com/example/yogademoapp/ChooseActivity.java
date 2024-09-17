@@ -69,42 +69,41 @@ public class ChooseActivity extends AppCompatActivity {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
-                    case 2131231099: //home_menu
+                    case R.id.menu_home:
                         startActivity(new Intent(ChooseActivity.this, ChooseActivity.class));
                         return true;
-                    case 2131231100: // menu_profile
+                    case R.id.menu_profile:
                         startActivity(new Intent(ChooseActivity.this, MembershipProfileActivity.class));
                         return true;
-                    case 2131230747: //physical
+                    case R.id.Physical:
                         startActivity(new Intent(ChooseActivity.this, HomeActivity.class));
                         return true;
-
-                    case 2131230745: //mental
-                        startActivity(new Intent(ChooseActivity.this, mentaldashboard.class));
+                    case R.id.Mental:
+                        startActivity(new Intent(ChooseActivity.this, MedDoc.class));
                         return true;
-                    case 2131231098: //menu_cart
-                        // Handle cart action
-                        handleCartAction();
+                    case R.id.menu_cart: // Back (logout)
+                        handleLogout();
                         return true;
                     default:
                         return false;
                 }
             }
         });
+
     }
 
-    private void handleCartAction() {
-        // Implement your logout functionality here
-        // For example, you can show a toast message
+    private void handleLogout() {
+        // Optionally show a toast message
         Toast.makeText(this, "Logging out...", Toast.LENGTH_SHORT).show();
 
-        // Add any additional logic for logging out, such as clearing session data, etc.
+        // Clear user session or any relevant data if needed
 
-        // Start the LoginActivity to go back to the login screen
-        startActivity(new Intent(ChooseActivity.this, LoginActivity.class));
-
-        // Finish the current activity
-        finish();
+        // Navigate back to the LoginActivity
+        Intent logoutIntent = new Intent(ChooseActivity.this, LoginActivity.class);
+        logoutIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Clears the back stack
+        startActivity(logoutIntent);
+        finish(); // Finish the current activity
     }
+
 
 }

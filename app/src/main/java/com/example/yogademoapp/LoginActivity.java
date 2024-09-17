@@ -23,8 +23,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-
-    EditText edEmail, edPassword;
+    EditText edEmail, edPassword;  //ed means edit text
     Button btn;
     TextView tv;
 
@@ -33,12 +32,13 @@ public class LoginActivity extends AppCompatActivity {
     @Override
     public void onStart() {
         super.onStart();
+        // Initialize FirebaseAuth before using it
+        mAuth = FirebaseAuth.getInstance();
+
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
-            // Redirect the user if already signed in (optional)
-            startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
-            finish();
+            // You can redirect to the appropriate activity here if needed
         }
     }
 
@@ -47,31 +47,19 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
-        // Find Views by ID
         edEmail = findViewById(R.id.editTextEmail);
         edPassword = findViewById(R.id.editTextPassword);
         btn = findViewById(R.id.buttonLogin);
         tv = findViewById(R.id.textViewBooking);
 
-        // Check intent for userType and redirect consultants
-        Intent intent = getIntent();
-        if (intent != null) {
-            String userType = intent.getStringExtra("userType");
-            if ("consultant".equals(userType)) {
-                startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
-                finish(); // Finish LoginActivity to prevent returning
-            }
-        }
-
-        // Handle login button click
+        // Handle Login button click
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = edEmail.getText().toString().trim();
-                String password = edPassword.getText().toString().trim();
+                String email = edEmail.getText().toString();
+                String password = edPassword.getText().toString();
 
                 if (email.isEmpty() || password.isEmpty()) {
                     Toast.makeText(getApplicationContext(), "Please fill all the details", Toast.LENGTH_SHORT).show();
@@ -81,22 +69,26 @@ public class LoginActivity extends AppCompatActivity {
                                 @Override
                                 public void onComplete(@NonNull Task<AuthResult> task) {
                                     if (task.isSuccessful()) {
+                                        // Login successful
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         if (user != null) {
-                                            // Reference to user node in the database
+                                            // Get user role from Firebase Database
                                             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
-
                                             userRef.addListenerForSingleValueEvent(new ValueEventListener() {
                                                 @Override
                                                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    String userType = snapshot.child("userType").getValue(String.class);
-
-                                                    if ("consultant".equals(userType)) {
-                                                        startActivity(new Intent(LoginActivity.this, Agent.class));
-                                                    } else if ("patient".equals(userType)) {
-                                                        startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
+                                                    // Make sure userType is not null
+                                                    String userType = snapshot.getValue(String.class);
+                                                    if (userType != null) {
+                                                        if ("consultant".equals(userType)) {
+                                                            startActivity(new Intent(LoginActivity.this, Agent.class));
+                                                        } else if ("patient".equals(userType)) {
+                                                            startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
+                                                        } else {
+                                                            Toast.makeText(getApplicationContext(), "User type not recognized", Toast.LENGTH_SHORT).show();
+                                                        }
                                                     } else {
-                                                        Toast.makeText(getApplicationContext(), "User type not recognized", Toast.LENGTH_SHORT).show();
+                                                        Toast.makeText(getApplicationContext(), "User type is null", Toast.LENGTH_SHORT).show();
                                                     }
                                                 }
 
@@ -107,6 +99,7 @@ public class LoginActivity extends AppCompatActivity {
                                             });
                                         }
                                     } else {
+                                        // Login failed
                                         Toast.makeText(getApplicationContext(), "Authentication failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                     }
                                 }
@@ -115,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        // Handle TextView click to open RegisterActivity
+        // Handle Register link click
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
