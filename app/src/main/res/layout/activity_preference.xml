@@ -78,7 +78,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview1"
                 android:layout_margin="17dp">
 
@@ -87,7 +87,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Gender"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -95,7 +96,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview2"
                 android:layout_margin="17dp">
 
@@ -103,7 +104,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Location"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -111,7 +113,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview3"
                 android:layout_margin="17dp">
 
@@ -119,7 +121,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Age"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -127,7 +130,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview4"
                 android:layout_margin="17dp">
 
@@ -135,7 +138,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Religion"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -143,7 +147,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview5"
                 android:layout_margin="17dp">
 
@@ -151,7 +155,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Button 5"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
@@ -159,7 +164,7 @@
                 android:layout_width="200dp"
                 android:layout_height="300dp"
                 android:layout_marginRight="5dp"
-                app:cardBackgroundColor="@color/lightblue"
+                app:cardBackgroundColor="@color/greenpref"
                 android:id="@+id/cardview6"
                 android:layout_margin="17dp">
 
@@ -167,7 +172,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="press"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:backgroundTint="#B0B0B0"/>
 
             </androidx.cardview.widget.CardView>
 
