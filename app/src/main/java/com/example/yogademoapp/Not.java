@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -29,9 +30,12 @@ import androidx.core.content.ContextCompat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
+
 public class Not extends AppCompatActivity {
 
     SwitchCompat switchNotifications;
+
+    CardView  settingsCard, paymentCard;
     Button buttonSetTime;
     LinearLayout notificationTimesContainer;
     int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
@@ -40,6 +44,7 @@ public class Not extends AppCompatActivity {
     private long lastTapTime = 0;
     private int tappedPosition = -1; // Store position of the last tapped notification
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +52,27 @@ public class Not extends AppCompatActivity {
         switchNotifications = findViewById(R.id.switchNotifications);
         buttonSetTime = findViewById(R.id.buttonSetTime);
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
+
+        CardView settingsCard = findViewById(R.id.SettingsCard);
+        CardView paymentCard = findViewById(R.id.PaymentCard);
+
+
+        // Set up click listeners for CardViews
+        settingsCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Not.this, GreenCard.class);
+                startActivity(intent);
+            }
+        });
+
+        paymentCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Not.this, profpayment.class);
+                startActivity(intent);
+            }
+        });
 
         // Set initial visibility based on switch state
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
@@ -252,5 +278,8 @@ public class Not extends AppCompatActivity {
         }
 
         Toast.makeText(this, "Notification removed", Toast.LENGTH_SHORT).show();
+
+
+
     }
 }

@@ -1,6 +1,7 @@
 package com.example.yogademoapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences; // Import SharedPreferences
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,7 +24,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
-    EditText edEmail, edPassword;  //ed means edit text
+    EditText edEmail, edPassword;  // ed means edit text
     Button btn;
     TextView tv;
 
@@ -72,6 +73,12 @@ public class LoginActivity extends AppCompatActivity {
                                         // Login successful
                                         FirebaseUser user = mAuth.getCurrentUser();
                                         if (user != null) {
+                                            // Save email in SharedPreferences
+                                            SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+                                            SharedPreferences.Editor editor = sharedPreferences.edit();
+                                            editor.putString("userEmail", user.getEmail()); // Save the email
+                                            editor.apply(); // Apply changes
+
                                             // Get user role from Firebase Database
                                             DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(user.getUid());
                                             userRef.addListenerForSingleValueEvent(new ValueEventListener() {

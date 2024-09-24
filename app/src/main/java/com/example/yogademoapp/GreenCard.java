@@ -1,11 +1,13 @@
 package com.example.yogademoapp;
 
 import android.content.Intent;
+import android.content.SharedPreferences; // Import SharedPreferences
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView; // Import TextView
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,10 @@ public class GreenCard extends AppCompatActivity {
     private String defaultAddress = "Nairobi 220022";
     private String defaultLocation = "Nairobi";
 
+    private EditText telephoneEditText;
+    private EditText addressEditText;
+    private EditText locationEditText;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,12 +39,28 @@ public class GreenCard extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
 
-        // Password change functionality
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        // Initialize views
+        telephoneEditText = findViewById(R.id.textBox1);
+        addressEditText = findViewById(R.id.textBox2);
+        locationEditText = findViewById(R.id.textBox3);
+        Button editButton = findViewById(R.id.editButton);
         LinearLayout passwordChangeSection = findViewById(R.id.passwordChangeSection);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
         EditText oldPasswordEditText = findViewById(R.id.oldPassword);
         EditText newPasswordEditText = findViewById(R.id.newPassword);
         Button changePasswordButton = findViewById(R.id.changePasswordButton);
+        TextView emailTextView = findViewById(R.id.textviewemail); // Ensure you have a TextView for displaying the email
+
+        // Load saved email from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        String savedEmail = sharedPreferences.getString("userEmail", "johndoe@gmail.com"); // Default email
+        emailTextView.setText(savedEmail); // Display the email
+
+        // Load saved details from SharedPreferences
+        loadProfileDetails();
+
+        // Make the fields non-editable initially
+        setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
 
         // Toggle visibility of the password change section
         passwordEditText.setOnClickListener(v -> {
@@ -50,96 +72,10 @@ public class GreenCard extends AppCompatActivity {
         });
 
         // Handle password change
-        changePasswordButton.setOnClickListener(v -> {
-            String oldPassword = oldPasswordEditText.getText().toString();
-            String newPassword = newPasswordEditText.getText().toString();
-
-            if (oldPassword.isEmpty() || newPassword.isEmpty()) {
-                Toast.makeText(GreenCard.this, "Please fill in both fields", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            FirebaseUser user = mAuth.getCurrentUser();
-            if (user != null) {
-                String email = user.getEmail();
-                if (email != null) {
-                    // Re-authenticate the user
-                    user.reauthenticate(EmailAuthProvider.getCredential(email, oldPassword))
-                            .addOnCompleteListener(task -> {
-                                if (task.isSuccessful()) {
-                                    user.updatePassword(newPassword)
-                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                                @Override
-                                                public void onComplete(@NonNull Task<Void> task) {
-                                                    if (task.isSuccessful()) {
-                                                        Toast.makeText(GreenCard.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
-                                                        mAuth.signOut(); // Optionally log out the user after changing the password
-                                                        finish(); // Close the current activity
-                                                    } else {
-                                                        Toast.makeText(GreenCard.this, "Password update failed", Toast.LENGTH_SHORT).show();
-                                                    }
-                                                }
-                                            });
-                                } else {
-                                    Toast.makeText(GreenCard.this, "Re-authentication failed", Toast.LENGTH_SHORT).show();
-                                }
-                            });
-                } else {
-                    Toast.makeText(GreenCard.this, "Email not found", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
-
-        // Profile editing functionality
-        EditText telephoneEditText = findViewById(R.id.textBox1);
-        EditText addressEditText = findViewById(R.id.textBox2);
-        EditText locationEditText = findViewById(R.id.textBox3);
-        Button editButton = findViewById(R.id.editButton);
-
-        // Set default values for telephone, address, and location fields
-        telephoneEditText.setText(defaultTelephone);
-        addressEditText.setText(defaultAddress);
-        locationEditText.setText(defaultLocation);
-
-        // Make the fields non-editable initially
-        setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
+        changePasswordButton.setOnClickListener(v -> changePassword(oldPasswordEditText, newPasswordEditText));
 
         // Add click listener to the edit button for profile editing
-        editButton.setOnClickListener(v -> {
-            if (isEditing) {
-                // If in edit mode, save the new values and make fields non-editable
-                String newTelephone = telephoneEditText.getText().toString();
-                String newAddress = addressEditText.getText().toString();
-                String newLocation = locationEditText.getText().toString();
-
-                if (newTelephone.isEmpty() || newAddress.isEmpty() || newLocation.isEmpty()) {
-                    Toast.makeText(GreenCard.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
-                // Save new values as the new defaults
-                defaultTelephone = newTelephone;
-                defaultAddress = newAddress;
-                defaultLocation = newLocation;
-
-                // Make fields non-editable
-                setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
-                Toast.makeText(GreenCard.this, "Profile updated", Toast.LENGTH_SHORT).show();
-
-            } else {
-                // If not in edit mode, allow editing
-                telephoneEditText.setText("");
-                addressEditText.setText("");
-                locationEditText.setText("");
-
-                // Enable editing
-                setFieldsEditable(true, telephoneEditText, addressEditText, locationEditText);
-                Toast.makeText(GreenCard.this, "You can now edit the fields", Toast.LENGTH_SHORT).show();
-            }
-
-            // Toggle edit mode
-            isEditing = !isEditing;
-        });
+        editButton.setOnClickListener(v -> toggleEditMode());
 
         // Navigate to the notifications page
         CardView settingsCardView = findViewById(R.id.notifications);
@@ -147,6 +83,100 @@ public class GreenCard extends AppCompatActivity {
             Intent intent = new Intent(GreenCard.this, Not.class); // Start the Not activity
             startActivity(intent);
         });
+    }
+
+    private void changePassword(EditText oldPasswordEditText, EditText newPasswordEditText) {
+        String oldPassword = oldPasswordEditText.getText().toString();
+        String newPassword = newPasswordEditText.getText().toString();
+
+        if (oldPassword.isEmpty() || newPassword.isEmpty()) {
+            Toast.makeText(GreenCard.this, "Please fill in both fields", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            String email = user.getEmail();
+            if (email != null) {
+                // Re-authenticate the user
+                user.reauthenticate(EmailAuthProvider.getCredential(email, oldPassword))
+                        .addOnCompleteListener(task -> {
+                            if (task.isSuccessful()) {
+                                user.updatePassword(newPassword)
+                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                            @Override
+                                            public void onComplete(@NonNull Task<Void> task) {
+                                                if (task.isSuccessful()) {
+                                                    Toast.makeText(GreenCard.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
+                                                    mAuth.signOut(); // Optionally log out the user after changing the password
+                                                    finish(); // Close the current activity
+                                                } else {
+                                                    Toast.makeText(GreenCard.this, "Password update failed", Toast.LENGTH_SHORT).show();
+                                                }
+                                            }
+                                        });
+                            } else {
+                                Toast.makeText(GreenCard.this, "Re-authentication failed", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+            } else {
+                Toast.makeText(GreenCard.this, "Email not found", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+    private void toggleEditMode() {
+        if (isEditing) {
+            // If in edit mode, save the new values and make fields non-editable
+            String newTelephone = telephoneEditText.getText().toString();
+            String newAddress = addressEditText.getText().toString();
+            String newLocation = locationEditText.getText().toString();
+
+            if (newTelephone.isEmpty() || newAddress.isEmpty() || newLocation.isEmpty()) {
+                Toast.makeText(GreenCard.this, "Please fill in all fields", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Save new values to SharedPreferences
+            saveProfileDetails(newTelephone, newAddress, newLocation);
+
+            // Make fields non-editable
+            setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
+            Toast.makeText(GreenCard.this, "Profile updated", Toast.LENGTH_SHORT).show();
+
+        } else {
+            // If not in edit mode, allow editing
+            telephoneEditText.setText("");
+            addressEditText.setText("");
+            locationEditText.setText("");
+
+            // Enable editing
+            setFieldsEditable(true, telephoneEditText, addressEditText, locationEditText);
+            Toast.makeText(GreenCard.this, "You can now edit the fields", Toast.LENGTH_SHORT).show();
+        }
+
+        // Toggle edit mode
+        isEditing = !isEditing;
+    }
+
+    private void saveProfileDetails(String telephone, String address, String location) {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("telephone", telephone);
+        editor.putString("address", address);
+        editor.putString("location", location);
+        editor.apply(); // Save changes
+    }
+
+    private void loadProfileDetails() {
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        String savedTelephone = sharedPreferences.getString("telephone", defaultTelephone);
+        String savedAddress = sharedPreferences.getString("address", defaultAddress);
+        String savedLocation = sharedPreferences.getString("location", defaultLocation);
+
+        telephoneEditText.setText(savedTelephone);
+        addressEditText.setText(savedAddress);
+        locationEditText.setText(savedLocation);
     }
 
     // Helper method to toggle editability of fields

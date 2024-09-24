@@ -97,6 +97,7 @@
                     android:padding="8dp">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/SettingsCard"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -123,7 +124,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="8dp"
-                                android:text="Payment"
+                                android:text="Settings"
                                 android:textColor="#333333"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -131,6 +132,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/PaymentCard"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -157,7 +159,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:paddingTop="8dp"
-                                android:text="Settings"
+                                android:text="Payment"
                                 android:textColor="#333333"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -165,6 +167,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/cardviewNot"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
