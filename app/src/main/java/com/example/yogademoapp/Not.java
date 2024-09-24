@@ -35,7 +35,7 @@ public class Not extends AppCompatActivity {
 
     SwitchCompat switchNotifications;
 
-    CardView  settingsCard, paymentCard;
+    CardView  settingsCard, paymentCard; //
     Button buttonSetTime;
     LinearLayout notificationTimesContainer;
     int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
