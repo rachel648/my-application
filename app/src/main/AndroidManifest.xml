@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+
 
     <application
         android:allowBackup="true"
@@ -159,6 +162,10 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/my_map_api_key" />
+
+        <meta-data
+            android:name="com.google.android.calendar.API_KEY"
+            android:value="AIzaSyDrNVF9gZdToUpefE6Eex8PxVspgO6lJXg"/>
     </application>
 
 </manifest>

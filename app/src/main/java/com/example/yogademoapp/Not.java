@@ -16,7 +16,6 @@ import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.CalendarContract;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -184,22 +183,17 @@ public class Not extends AppCompatActivity {
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 60 * 60 * 1000); // Event duration is 1 hour
         intent.putExtra(CalendarContract.Events.TITLE, "Yoga Session");
         intent.putExtra(CalendarContract.Events.DESCRIPTION, "Scheduled Yoga Session");
-
-        // Add this line
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 
-        // Log the available calendar apps
+        // Log available calendar apps
         List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        for (ResolveInfo resolveInfo : resolveInfoList) {
-            Log.d("CalendarApp", "Package: " + resolveInfo.activityInfo.packageName);
-        }
-
-        if (intent.resolveActivity(getPackageManager()) != null) {
-            startActivity(intent); // Open Google Calendar
-        } else {
+        if (resolveInfoList.isEmpty()) {
             Toast.makeText(this, "No calendar app found", Toast.LENGTH_SHORT).show();
+        } else {
+            startActivity(intent); // Open Google Calendar
         }
     }
+
 
 
 
