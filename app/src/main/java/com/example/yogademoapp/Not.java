@@ -2,6 +2,7 @@ package com.example.yogademoapp;
 
 import android.Manifest;
 import android.app.AlarmManager;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -10,13 +11,15 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.CalendarContract;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,13 +32,12 @@ import androidx.core.content.ContextCompat;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-
+import java.util.List;
 
 public class Not extends AppCompatActivity {
 
     SwitchCompat switchNotifications;
-
-    CardView  settingsCard, paymentCard;
+    CardView settingsCard, paymentCard;
     Button buttonSetTime;
     LinearLayout notificationTimesContainer;
     int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
@@ -44,43 +46,41 @@ public class Not extends AppCompatActivity {
     private long lastTapTime = 0;
     private int tappedPosition = -1; // Store position of the last tapped notification
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not);
+
         switchNotifications = findViewById(R.id.switchNotifications);
         buttonSetTime = findViewById(R.id.buttonSetTime);
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
-
-        CardView settingsCard = findViewById(R.id.SettingsCard);
-        CardView paymentCard = findViewById(R.id.PaymentCard);
-
+        settingsCard = findViewById(R.id.SettingsCard);
+        paymentCard = findViewById(R.id.PaymentCard);
 
         // Set up click listeners for CardViews
-        settingsCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Not.this, GreenCard.class);
-                startActivity(intent);
-            }
+        settingsCard.setOnClickListener(v -> {
+            Intent intent = new Intent(Not.this, GreenCard.class);
+            startActivity(intent);
         });
 
-        paymentCard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Not.this, profpayment.class);
-                startActivity(intent);
-            }
+        paymentCard.setOnClickListener(v -> {
+            Intent intent = new Intent(Not.this, profpayment.class);
+            startActivity(intent);
         });
 
         // Set initial visibility based on switch state
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
 
+        // Request notification permissions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
+        }
+
+        // Request calendar permissions
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR}, 102);
         }
 
         // Handle switch toggle
@@ -91,7 +91,6 @@ public class Not extends AppCompatActivity {
                 buttonSetTime.setVisibility(View.VISIBLE); // Show button when switch is on
             } else {
                 // Switch is off - disable notifications
-                // Optionally, you could stop notifications here
                 buttonSetTime.setVisibility(View.GONE); // Hide button when switch is off
             }
         });
@@ -159,25 +158,68 @@ public class Not extends AppCompatActivity {
                 (view, hourOfDay, minute) -> {
                     selectedHour = hourOfDay;
                     selectedMinute = minute;
-                    // Schedule the notification
-                    scheduleNotification();
+                    // Show the dialog to choose Google Calendar or Cancel
+                    showCalendarOptionDialog();
                 }, selectedHour, selectedMinute, true);
         timePickerDialog.show();
     }
 
+    // Function to display dialog with Google Calendar option
+    private void showCalendarOptionDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage("Set notification using Google Calendar or cancel?")
+                .setPositiveButton("Google Calendar", (dialog, which) -> openGoogleCalendar()) // Open Google Calendar
+                .setNegativeButton("Cancel", (dialog, which) -> {
+                    dialog.dismiss(); // Dismiss the dialog
+                    scheduleNotification(); // Set the notification locally
+                })
+                .show();
+    }
+
+    // Function to open Google Calendar
+    private void openGoogleCalendar() {
+        Intent intent = new Intent(Intent.ACTION_INSERT);
+        intent.setData(CalendarContract.Events.CONTENT_URI);
+        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimeInMillis());
+        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 60 * 60 * 1000); // Event duration is 1 hour
+        intent.putExtra(CalendarContract.Events.TITLE, "Yoga Session");
+        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Scheduled Yoga Session");
+
+        // Add this line
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+
+        // Log the available calendar apps
+        List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+        for (ResolveInfo resolveInfo : resolveInfoList) {
+            Log.d("CalendarApp", "Package: " + resolveInfo.activityInfo.packageName);
+        }
+
+        if (intent.resolveActivity(getPackageManager()) != null) {
+            startActivity(intent); // Open Google Calendar
+        } else {
+            Toast.makeText(this, "No calendar app found", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+
+    // Helper function to convert selected date and time to milliseconds
+    private long getTimeInMillis() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
+        return calendar.getTimeInMillis();
+    }
+
     private void scheduleNotification() {
-        // Check if the maximum number of notifications has been reached
         if (notificationTimes.size() >= 3) {
             Toast.makeText(this, "Maximum of 3 notifications can be set", Toast.LENGTH_SHORT).show();
-            return; // Exit the method if the limit is reached
+            return;
         }
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
 
         notificationTimes.add(calendar); // Store the scheduled time
-
-        // Update the UI with the new scheduled time
         updateNotificationTimesDisplay();
 
         Intent intent = new Intent(this, NotificationReceiver.class);
@@ -194,92 +236,53 @@ public class Not extends AppCompatActivity {
         notificationTimesContainer.removeAllViews();
         for (int i = 0; i < notificationTimes.size(); i++) {
             Calendar time = notificationTimes.get(i);
-            RelativeLayout timeLayout = new RelativeLayout(this);
+
+            // Use LinearLayout instead of RelativeLayout
+            LinearLayout timeLayout = new LinearLayout(this);
+            timeLayout.setOrientation(LinearLayout.HORIZONTAL);
+            timeLayout.setPadding(16, 16, 16, 16);
 
             TextView dateView = new TextView(this);
             dateView.setText(String.format("%d-%d-%d", time.get(Calendar.YEAR), time.get(Calendar.MONTH) + 1, time.get(Calendar.DAY_OF_MONTH)));
-            dateView.setId(View.generateViewId());
-            dateView.setPadding(16, 16, 16, 16);
             dateView.setTextSize(16);
-            dateView.setTextColor(Color.BLACK); // Set text color to black
+            dateView.setTextColor(Color.BLACK);
+            // Set layout weight for the date view to take up space
+            LinearLayout.LayoutParams dateParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            dateView.setLayoutParams(dateParams);
+            timeLayout.addView(dateView);
 
             TextView timeView = new TextView(this);
             timeView.setText(String.format("%02d:%02d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE)));
-            timeView.setPadding(16, 16, 16, 16);
             timeView.setTextSize(16);
-            timeView.setTextColor(Color.BLACK); // Set text color to black
-
-            RelativeLayout.LayoutParams dateParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            dateParams.addRule(RelativeLayout.ALIGN_PARENT_START);
-            dateView.setLayoutParams(dateParams);
-
-            RelativeLayout.LayoutParams timeParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            timeParams.addRule(RelativeLayout.ALIGN_PARENT_END);
-            timeParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            timeView.setTextColor(Color.BLACK);
+            // Set layout weight for the time view to take up space
+            LinearLayout.LayoutParams timeParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
             timeView.setLayoutParams(timeParams);
-
-            timeLayout.addView(dateView);
             timeLayout.addView(timeView);
-            int finalI = i;
-            timeLayout.setOnClickListener(v -> handleNotificationClick(finalI)); // Handle double-tap
 
-            RelativeLayout.LayoutParams timeLayoutParams = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            timeLayoutParams.setMargins(0, 0, 0, 16); // Add bottom margin to create space between notifications
-            timeLayout.setLayoutParams(timeLayoutParams);
+            // Set click listener for the timeView to reset the notification time
+            int finalI = i;
+            timeView.setOnClickListener(v -> {
+                // Check if double-tap
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastTapTime < DOUBLE_TAP_TIME_DELTA) {
+                    // Double-tap detected
+                    resetNotificationTime(finalI);
+                } else {
+                    // Regular tap detected
+                    tappedPosition = finalI; // Update tapped position
+                }
+                lastTapTime = currentTime; // Update last tap time
+            });
 
             notificationTimesContainer.addView(timeLayout);
-
-            // Add a divider after each notification, except the last one
-            if (i < notificationTimes.size() - 1) {
-                View divider = new View(this);
-                LinearLayout.LayoutParams dividerParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, 2); // height of the line
-                divider.setLayoutParams(dividerParams);
-                divider.setBackgroundColor(Color.BLACK); // Set divider color to black
-
-                // Add top margin to create space between the divider and the notification
-                LinearLayout.LayoutParams dividerMarginParams = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT, 2);
-                dividerMarginParams.setMargins(0, 16, 0, 0); // Top margin for space above the divider
-                divider.setLayoutParams(dividerMarginParams);
-
-                notificationTimesContainer.addView(divider);
-            }
         }
     }
 
-    private void handleNotificationClick(int position) {
-        long currentTime = System.currentTimeMillis();
-        if (currentTime - lastTapTime < DOUBLE_TAP_TIME_DELTA && tappedPosition == position) {
-            // It's a double-tap on the same notification
-            removeNotification(position);
-        } else {
-            // Single tap or double-tap on a different notification
-            lastTapTime = currentTime;
-            tappedPosition = position;
-            // Optionally, you can show a feedback for single tap
-        }
-    }
-
-    private void removeNotification(int position) {
-        // Remove the notification from the list and update the UI
+    private void resetNotificationTime(int position) {
+        // Reset the notification time by removing it from the list
         notificationTimes.remove(position);
-        updateNotificationTimesDisplay();
-
-        // Remove the alarm for the removed notification
-        Intent intent = new Intent(this, NotificationReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, position, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.cancel(pendingIntent);
-        }
-
-        Toast.makeText(this, "Notification removed", Toast.LENGTH_SHORT).show();
-
-
-
+        updateNotificationTimesDisplay(); // Refresh the display
+        Toast.makeText(this, "Notification time reset", Toast.LENGTH_SHORT).show();
     }
 }

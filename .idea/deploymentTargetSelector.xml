@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="YogademoApp">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2024-08-03T06:41:47.961493500Z">
+        <DropdownSelection timestamp="2024-09-25T09:53:19.487099500Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\HP\.android\avd\Pixel_7_Pro_Edited_API_UpsideDownCake.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=4T6HJZJR7PLBSCWK" />
             </handle>
           </Target>
         </DropdownSelection>
