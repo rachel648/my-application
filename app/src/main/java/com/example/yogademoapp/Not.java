@@ -174,7 +174,6 @@ public class Not extends AppCompatActivity {
                 })
                 .show();
     }
-ll hjk
     // Function to open Google Calendar
     private void openGoogleCalendar() {
         Intent intent = new Intent(Intent.ACTION_INSERT);
