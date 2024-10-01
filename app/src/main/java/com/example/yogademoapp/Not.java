@@ -175,7 +175,7 @@ public class Not extends AppCompatActivity {
                 .show();
     }
 
-    // Function to open Google Calendar
+    // Function to open Google Calenda
     private void openGoogleCalendar() {
         Intent intent = new Intent(Intent.ACTION_INSERT);
         intent.setData(CalendarContract.Events.CONTENT_URI);
@@ -279,4 +279,5 @@ public class Not extends AppCompatActivity {
         updateNotificationTimesDisplay(); // Refresh the display
         Toast.makeText(this, "Notification time reset", Toast.LENGTH_SHORT).show();
     }
+    // ;
 }
