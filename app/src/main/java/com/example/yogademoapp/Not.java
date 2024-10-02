@@ -1,7 +1,6 @@
 package com.example.yogademoapp;
 
 import android.Manifest;
-import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.NotificationChannel;
@@ -10,6 +9,7 @@ import android.app.PendingIntent;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+
 import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.Color;
@@ -19,9 +19,9 @@ import android.provider.CalendarContract;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
@@ -29,11 +29,21 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
 public class Not extends AppCompatActivity {
+
+    private static final int RC_SIGN_IN = 9001;
+    private GoogleSignInClient mGoogleSignInClient;
 
     SwitchCompat switchNotifications;
     CardView settingsCard, paymentCard;
@@ -41,22 +51,29 @@ public class Not extends AppCompatActivity {
     LinearLayout notificationTimesContainer;
     int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
     ArrayList<Calendar> notificationTimes = new ArrayList<>();
-    private static final long DOUBLE_TAP_TIME_DELTA = 300; // Time interval for double-tap (milliseconds)
+    private static final long DOUBLE_TAP_TIME_DELTA = 300;
     private long lastTapTime = 0;
-    private int tappedPosition = -1; // Store position of the last tapped notification
+    private int tappedPosition = -1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_not);
 
+        // Initialize Google Sign-In options
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
+
+        // Set up other UI components
         switchNotifications = findViewById(R.id.switchNotifications);
         buttonSetTime = findViewById(R.id.buttonSetTime);
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
         settingsCard = findViewById(R.id.SettingsCard);
         paymentCard = findViewById(R.id.PaymentCard);
 
-        // Set up click listeners for CardViews
         settingsCard.setOnClickListener(v -> {
             Intent intent = new Intent(Not.this, GreenCard.class);
             startActivity(intent);
@@ -67,69 +84,84 @@ public class Not extends AppCompatActivity {
             startActivity(intent);
         });
 
-        // Set initial visibility based on switch state
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
 
-        // Request notification permissions
+        // Request notification and calendar permissions
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
                 ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
             }
         }
-
-        // Request calendar permissions
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_CALENDAR) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR}, 102);
         }
 
-        // Handle switch toggle
         switchNotifications.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
-                // Switch is on - enable notifications
                 makeNotification();
-                buttonSetTime.setVisibility(View.VISIBLE); // Show button when switch is on
+                buttonSetTime.setVisibility(View.VISIBLE);
             } else {
-                // Switch is off - disable notifications
-                buttonSetTime.setVisibility(View.GONE); // Hide button when switch is off
+                buttonSetTime.setVisibility(View.GONE);
             }
         });
 
-        // Handle button click to set notification time
         buttonSetTime.setOnClickListener(v -> showDatePickerDialog());
     }
 
-    // Function to create and display a notification
-    private void makeNotification() {
-        String channelID = "CHANNEL_ID_NOTIFICATION";
-        NotificationCompat.Builder builder =
-                new NotificationCompat.Builder(this, channelID)
-                        .setSmallIcon(R.drawable.baseline_add_alert_24)
-                        .setContentTitle("Notification Title")
-                        .setContentText("Some text for notification here")
-                        .setAutoCancel(true)
-                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+    // Start Google Sign-In Intent
+    private void signIn() {
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_SIGN_IN);
+    }
 
-        Intent intent = new Intent(this, NotificationActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        intent.putExtra("data", "some value to be passed here");
+    // Handle the sign-in result
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            handleSignInResult(task);
+        }
+    }
 
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
-        builder.setContentIntent(pendingIntent);
+    private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
+        try {
+            GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            // Signed in successfully, show authenticated UI.
+            Toast.makeText(this, "Signed in as: " + account.getEmail(), Toast.LENGTH_SHORT).show();
+        } catch (ApiException e) {
+            Toast.makeText(this, "Sign-in failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
 
-        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+    // Modify openGoogleCalendar method to insert into Google Calendar
+    private void openGoogleCalendar() {
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if (account == null) {
+            // If user is not signed in, prompt them to sign in
+            signIn();
+        } else {
+            // User is already signed in, insert event into Google Calendar
+            Intent intent = new Intent(Intent.ACTION_INSERT);
+            intent.setData(CalendarContract.Events.CONTENT_URI);
+            intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimeInMillis());
+            intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 60 * 60 * 1000);
+            intent.putExtra(CalendarContract.Events.TITLE, "Yoga Session");
+            intent.putExtra(CalendarContract.Events.DESCRIPTION, "Scheduled Yoga Session");
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
-            if (notificationChannel == null) {
-                int importance = NotificationManager.IMPORTANCE_HIGH;
-                notificationChannel = new NotificationChannel(channelID, "Some description", importance);
-                notificationChannel.setLightColor(Color.GREEN);
-                notificationChannel.enableVibration(true);
-                notificationManager.createNotificationChannel(notificationChannel);
+            List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
+            if (resolveInfoList.isEmpty()) {
+                Toast.makeText(this, "No calendar app found", Toast.LENGTH_SHORT).show();
+            } else {
+                startActivity(intent);
             }
         }
+    }
 
-        notificationManager.notify(0, builder.build());
+    private long getTimeInMillis() {
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
+        return calendar.getTimeInMillis();
     }
 
     private void showDatePickerDialog() {
@@ -157,51 +189,51 @@ public class Not extends AppCompatActivity {
                 (view, hourOfDay, minute) -> {
                     selectedHour = hourOfDay;
                     selectedMinute = minute;
-                    // Show the dialog to choose Google Calendar or Cancel
                     showCalendarOptionDialog();
                 }, selectedHour, selectedMinute, true);
         timePickerDialog.show();
     }
 
-    // Function to display dialog with Google Calendar option
     private void showCalendarOptionDialog() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage("Set notification using Google Calendar or cancel?")
-                .setPositiveButton("Google Calendar", (dialog, which) -> openGoogleCalendar()) // Open Google Calendar
+                .setPositiveButton("Google Calendar", (dialog, which) -> openGoogleCalendar())
                 .setNegativeButton("Cancel", (dialog, which) -> {
-                    dialog.dismiss(); // Dismiss the dialog
-                    scheduleNotification(); // Set the notification locally
+                    dialog.dismiss();
+                    scheduleNotification(); // Set the notification locally when the user cancels
                 })
                 .show();
     }
 
-    // Function to open Google Calenda
-    private void openGoogleCalendar() {
-        Intent intent = new Intent(Intent.ACTION_INSERT);
-        intent.setData(CalendarContract.Events.CONTENT_URI);
-        intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimeInMillis());
-        intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 60 * 60 * 1000); // Event duration is 1 hour
-        intent.putExtra(CalendarContract.Events.TITLE, "Yoga Session");
-        intent.putExtra(CalendarContract.Events.DESCRIPTION, "Scheduled Yoga Session");
-        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+    private void makeNotification() {
+        String channelID = "CHANNEL_ID_NOTIFICATION";
+        NotificationCompat.Builder builder =
+                new NotificationCompat.Builder(this, channelID)
+                        .setSmallIcon(R.drawable.baseline_add_alert_24)
+                        .setContentTitle("Notification Title")
+                        .setContentText("Some text for notification here")
+                        .setAutoCancel(true)
+                        .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
-        // Log available calendar apps
-        List<ResolveInfo> resolveInfoList = getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY);
-        if (resolveInfoList.isEmpty()) {
-            Toast.makeText(this, "No calendar app found", Toast.LENGTH_SHORT).show();
-        } else {
-            startActivity(intent); // Open Google Calendar
+        Intent intent = new Intent(this, NotificationActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_MUTABLE);
+        builder.setContentIntent(pendingIntent);
+
+        NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel notificationChannel = notificationManager.getNotificationChannel(channelID);
+            if (notificationChannel == null) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                notificationChannel = new NotificationChannel(channelID, "Some description", importance);
+                notificationChannel.setLightColor(Color.GREEN);
+                notificationChannel.enableVibration(true);
+                notificationManager.createNotificationChannel(notificationChannel);
+            }
         }
-    }
 
-
-
-
-    // Helper function to convert selected date and time to milliseconds
-    private long getTimeInMillis() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
-        return calendar.getTimeInMillis();
+        notificationManager.notify(0, builder.build());
     }
 
     private void scheduleNotification() {
@@ -212,72 +244,30 @@ public class Not extends AppCompatActivity {
 
         Calendar calendar = Calendar.getInstance();
         calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
+        notificationTimes.add(calendar);
 
-        notificationTimes.add(calendar); // Store the scheduled time
-        updateNotificationTimesDisplay();
+        // Display the notification time to the user
+        String timeString = String.format("%02d:%02d, %02d/%02d/%d", selectedHour, selectedMinute, selectedDay, selectedMonth + 1, selectedYear);
+        Toast.makeText(this, "Notification time set: " + timeString, Toast.LENGTH_SHORT).show();
 
-        Intent intent = new Intent(this, NotificationReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, notificationTimes.size() - 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-        if (alarmManager != null) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
-            Toast.makeText(this, "Notification scheduled for " + selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay + " " + selectedHour + ":" + selectedMinute, Toast.LENGTH_LONG).show();
-        }
+        // Show the notification times
+        updateNotificationTimesView();
     }
 
-    private void updateNotificationTimesDisplay() {
+    private void updateNotificationTimesView() {
         notificationTimesContainer.removeAllViews();
-        for (int i = 0; i < notificationTimes.size(); i++) {
-            Calendar time = notificationTimes.get(i);
-
-            // Use LinearLayout instead of RelativeLayout
-            LinearLayout timeLayout = new LinearLayout(this);
-            timeLayout.setOrientation(LinearLayout.HORIZONTAL);
-            timeLayout.setPadding(16, 16, 16, 16);
-
-            TextView dateView = new TextView(this);
-            dateView.setText(String.format("%d-%d-%d", time.get(Calendar.YEAR), time.get(Calendar.MONTH) + 1, time.get(Calendar.DAY_OF_MONTH)));
-            dateView.setTextSize(16);
-            dateView.setTextColor(Color.BLACK);
-            // Set layout weight for the date view to take up space
-            LinearLayout.LayoutParams dateParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-            dateView.setLayoutParams(dateParams);
-            timeLayout.addView(dateView);
-
-            TextView timeView = new TextView(this);
-            timeView.setText(String.format("%02d:%02d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE)));
-            timeView.setTextSize(16);
-            timeView.setTextColor(Color.BLACK);
-            // Set layout weight for the time view to take up space
-            LinearLayout.LayoutParams timeParams = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
-            timeView.setLayoutParams(timeParams);
-            timeLayout.addView(timeView);
-
-            // Set click listener for the timeView to reset the notification time
-            int finalI = i;
-            timeView.setOnClickListener(v -> {
-                // Check if double-tap
-                long currentTime = System.currentTimeMillis();
-                if (currentTime - lastTapTime < DOUBLE_TAP_TIME_DELTA) {
-                    // Double-tap detected
-                    resetNotificationTime(finalI);
-                } else {
-                    // Regular tap detected
-                    tappedPosition = finalI; // Update tapped position
-                }
-                lastTapTime = currentTime; // Update last tap time
-            });
-
-            notificationTimesContainer.addView(timeLayout);
+        for (Calendar time : notificationTimes) {
+            String timeString = String.format("%02d:%02d, %02d/%02d/%d", time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE), time.get(Calendar.DAY_OF_MONTH), time.get(Calendar.MONTH) + 1, time.get(Calendar.YEAR));
+            Button timeButton = new Button(this);
+            timeButton.setText(timeString);
+            timeButton.setOnClickListener(v -> resetNotificationTime(time));
+            notificationTimesContainer.addView(timeButton);
         }
     }
 
-    private void resetNotificationTime(int position) {
-        // Reset the notification time by removing it from the list
-        notificationTimes.remove(position);
-        updateNotificationTimesDisplay(); // Refresh the display
+    private void resetNotificationTime(Calendar time) {
+        notificationTimes.remove(time);
+        updateNotificationTimesView();
         Toast.makeText(this, "Notification time reset", Toast.LENGTH_SHORT).show();
     }
-    // ;
 }
