@@ -2,13 +2,11 @@ package com.example.yogademoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -65,9 +63,9 @@ public class ChooseActivity extends AppCompatActivity {
 
 
         // Set a listener for item selection in BottomNavigationView
-        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+      /*    bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+          public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.menu_home:
                         startActivity(new Intent(ChooseActivity.this, ChooseActivity.class));
@@ -88,7 +86,7 @@ public class ChooseActivity extends AppCompatActivity {
                         return false;
                 }
             }
-        });
+        });     */
 
     }
 
