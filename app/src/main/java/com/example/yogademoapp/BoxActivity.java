@@ -22,7 +22,7 @@ public class BoxActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(BoxActivity.this,HomeActivity.class));
-                //finish();
+                finish();
             }
         });
 

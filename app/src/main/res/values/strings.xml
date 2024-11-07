@@ -15,6 +15,13 @@
 
     <string name="open">Open Navigation Drawer </string>
     <string name="close">Close Navigation Drawer </string>
+    <string name="email">Email</string>
+    <string name="username">Username</string>
+    <string name="already_have_an_account">Already Have An Account</string>
+    <string name="sign_up">Sign_up</string>
+    <string name="password">Password</string>
+    <string name="client_signup">CLIENT SIGNUP</string>
+    <string name="consultant_signup">CONSULTANT SIGNUP</string>
 
 
 </resources>

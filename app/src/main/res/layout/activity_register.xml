@@ -11,13 +11,14 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="416dp"
-        android:layout_height="847dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_marginBottom="44dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.833"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.5"
         tools:context=".RegisterActivity">
 
         <Button
@@ -25,20 +26,18 @@
             android:layout_width="258dp"
             android:layout_height="60dp"
             android:layout_marginBottom="36dp"
-            android:text="CONSULTANT SIGNUP"
+            android:text="@string/consultant_signup"
             android:textColor="@color/black"
             android:textSize="13sp"
             app:backgroundTint="#1C804C"
             app:layout_constraintBottom_toTopOf="@+id/textViewBooking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.594"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextContactNumber"
             android:layout_width="310dp"
             android:layout_height="50dp"
-            android:layout_marginStart="32dp"
             android:layout_marginBottom="44dp"
             android:background="@drawable/header_bg"
             android:backgroundTint="#D9D9D9"
@@ -52,7 +51,6 @@
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/ButtonBooking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.559"
             app:layout_constraintStart_toStartOf="parent" />
 
         <Button
@@ -60,46 +58,44 @@
             android:layout_width="258dp"
             android:layout_height="60dp"
             android:layout_marginBottom="108dp"
-            android:text="CLIENT SIGNUP"
+            android:text="@string/client_signup"
             android:textColor="@color/black"
             android:textSize="14sp"
             app:backgroundTint="#4CAF50"
             app:layout_constraintBottom_toTopOf="@+id/textViewBooking"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.594"
             app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextBookingPincode"
             android:layout_width="310dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="36dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/header_bg"
             android:backgroundTint="#D9D9D9"
             android:drawableLeft="@android:drawable/ic_lock_idle_lock"
             android:ems="10"
-            android:hint="Password"
+            android:hint="@string/password"
             android:inputType="textPassword"
             android:textAllCaps="false"
             android:textColor="@color/black"
             android:textColorHint="@color/black"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextContactNumber"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@id/editTextBookingAddress"
             android:layout_width="310dp"
             android:layout_height="50dp"
-            android:layout_marginEnd="36dp"
             android:layout_marginBottom="24dp"
             android:background="@drawable/header_bg"
             android:backgroundTint="#D9D9D9"
             android:drawableLeft="@android:drawable/sym_action_email"
             android:drawablePadding="2dp"
             android:ems="10"
-            android:hint="Email"
+            android:hint="@string/email"
             android:inputType="textEmailAddress"
             android:padding="0dp"
             android:paddingLeft="0dp"
@@ -111,11 +107,9 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible"
-            app:icon="@drawable/baseline2"
-            app:iconGravity="textStart"
-            app:iconSize="40dp"
             app:layout_constraintBottom_toTopOf="@+id/editTextBookingPincode"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
         <EditText
             android:id="@+id/editTextBookingName"
@@ -127,7 +121,7 @@
             android:drawableLeft="@android:drawable/ic_menu_edit"
             android:drawablePadding="2dp"
             android:ems="10"
-            android:hint="Username"
+            android:hint="@string/username"
             android:inputType="textPersonName"
             android:padding="0dp"
             android:paddingLeft="0dp"
@@ -139,12 +133,8 @@
             android:textSize="18sp"
             android:textStyle="bold"
             android:visibility="visible"
-            app:icon="@drawable/baseline2"
-            app:iconGravity="textStart"
-            app:iconSize="40dp"
             app:layout_constraintBottom_toTopOf="@+id/editTextBookingAddress"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.681"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -152,14 +142,12 @@
             android:layout_width="204dp"
             android:layout_height="37dp"
             android:layout_marginBottom="36dp"
-            android:hint="username"
-            android:text="Sign_up"
+            android:text="@string/sign_up"
             android:textColor="@color/black"
             android:textSize="24sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextBookingName"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.768"
             app:layout_constraintStart_toStartOf="parent" />
 
         <TextView
@@ -167,13 +155,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="40dp"
-            android:text="Already Have An Account"
+            android:text="@string/already_have_an_account"
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.572"
             app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
