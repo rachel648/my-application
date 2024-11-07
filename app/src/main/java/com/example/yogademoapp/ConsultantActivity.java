@@ -90,7 +90,7 @@ public class ConsultantActivity extends AppCompatActivity {
                                 consultant.gymNumber,
                                 consultant.experience,
                                 consultant.fees,
-                                consultant.imageId
+                                consultant.imageId    // pip
                         );
                         userArrayList.add(user);
                     }
