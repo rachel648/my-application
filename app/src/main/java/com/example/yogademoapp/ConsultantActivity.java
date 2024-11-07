@@ -84,8 +84,8 @@ public class ConsultantActivity extends AppCompatActivity {
                     if (consultant != null) {
                         User user = new User(
                                 consultant.name,
-                                "Default Last Message", // You can customize these values
-                                "Default Last Msg Time",
+                                "I am available", // You can customize these values
+                                "12:00",
                                 consultant.phoneNo,
                                 consultant.gymNumber,
                                 consultant.experience,
@@ -101,10 +101,10 @@ public class ConsultantActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle possible errors
+
             }
         });
     }
-
     private void loadHardcodedData() {
         int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2, R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
 
