@@ -27,6 +27,8 @@ public class mentaldashboard extends AppCompatActivity {
     private TextView textViewOnTop;
     private boolean isTextViewVisible = true;
 
+    CardView Community;
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     ActionBarDrawerToggle drawerToggle;
@@ -44,6 +46,7 @@ public class mentaldashboard extends AppCompatActivity {
 
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
+        Community = findViewById(R.id.Community);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.open, R.string.close);
 
         drawerLayout.addDrawerListener(drawerToggle);
@@ -145,7 +148,7 @@ public class mentaldashboard extends AppCompatActivity {
         Community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(mentaldashboard.this, CommunityActivity.class));
+                startActivity(new Intent(mentaldashboard.this, mario.class));
             }
         });
 
@@ -223,5 +226,14 @@ public class mentaldashboard extends AppCompatActivity {
                 // Do nothing
             }
         });
+
+            Community.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(mentaldashboard.this, mario.class);
+                startActivity(intent);
+            }
+        });
+
     }
 }

@@ -16,7 +16,6 @@
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
 
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -26,6 +25,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
+        <activity
+            android:name=".mario"
+            android:exported="false" />
         <activity
             android:name=".profpayment"
             android:exported="false" />
@@ -162,10 +164,9 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="@string/my_map_api_key" />
-
         <meta-data
             android:name="com.google.android.calendar.API_KEY"
-            android:value="AIzaSyDrNVF9gZdToUpefE6Eex8PxVspgO6lJXg"/>
+            android:value="AIzaSyDrNVF9gZdToUpefE6Eex8PxVspgO6lJXg" />
     </application>
 
 </manifest>
