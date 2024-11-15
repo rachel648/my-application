@@ -111,8 +111,11 @@ public class RegisterActivity extends AppCompatActivity {
                                         String fees = "5000"; // Replace with actual fees input
                                         String gymNumber = "ConsultantNo: 01"; // Replace with actual gym number input
                                         int imageId = R.drawable.man1; // Replace with actual image resource id
+                                        int rating = 4;  // Example: Assigning a rating of 4 out of 5
 
-                                        Consultant consultant = new Consultant(Username, phoneNo, experience, fees, gymNumber, imageId);
+
+                                        Consultant consultant = new Consultant(Username, phoneNo, experience, fees, gymNumber, imageId, rating);
+
 
                                         FirebaseDatabase.getInstance().getReference("Consultants")
                                                 .child(userId)

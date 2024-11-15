@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -27,16 +28,27 @@ public class ListAdapter extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
+        // Views for the list item
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personname);
         TextView lastMsg = convertView.findViewById(R.id.lastmessage);
         TextView time = convertView.findViewById(R.id.msgtime);
+        TextView ratingTextView = convertView.findViewById(R.id.ratingTextView);  // TextView for the rating stars
 
+        // Set data to views
         imageView.setImageResource(user.getImageId());
         userName.setText(user.getName());
         lastMsg.setText(user.getLastMessage());
         time.setText(user.getLastMsgTime());
 
+        // Set the rating as stars
+        ratingTextView.setText(generateStars(user.getRating()));
+
         return convertView;
+    }
+
+    // Helper method to convert rating into stars
+    private String generateStars(int rating) {
+        return new String(new char[rating]).replace("\0", "⭐");
     }
 }

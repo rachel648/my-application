@@ -9,8 +9,9 @@ public class User {
     private String experience;
     private String fees;
     private int imageId;
+    private int rating;
 
-    public User(String name, String lastMessage, String lastMsgTime, String phoneNo, String gymNumber, String experience, String fees, int imageId) {
+    public User(String name, String lastMessage, String lastMsgTime, String phoneNo, String gymNumber, String experience, String fees, int imageId,int rating) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.lastMsgTime = lastMsgTime;
@@ -19,6 +20,7 @@ public class User {
         this.experience = experience;
         this.fees = fees;
         this.imageId = imageId;
+        this.rating = rating;
     }
 
     public String getName() {
@@ -47,6 +49,10 @@ public class User {
 
     public String getFees() {
         return fees;
+    }
+
+    public int getRating(){
+        return  rating;
     }
 
     public int getImageId() {

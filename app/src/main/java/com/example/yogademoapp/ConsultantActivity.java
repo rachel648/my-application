@@ -82,15 +82,20 @@ public class ConsultantActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Consultant consultant = dataSnapshot.getValue(Consultant.class);
                     if (consultant != null) {
+                        // Ensure the rating is properly bounded between 1 and 5
+                        int rating = consultant.getRating();
+                        // Generate the stars based on rating
+                        String ratingString = generateStars(rating);
                         User user = new User(
                                 consultant.name,
-                                "I am available", // You can customize these values
-                                "12:00",
+                                ratingString, // Display rating as stars
+                                "12:00",  // You might want to adjust this based on your Firebase data
                                 consultant.phoneNo,
                                 consultant.gymNumber,
                                 consultant.experience,
                                 consultant.fees,
-                                consultant.imageId
+                                consultant.imageId,
+                                rating
                         );
                         userArrayList.add(user);
                     }
@@ -101,10 +106,24 @@ public class ConsultantActivity extends AppCompatActivity {
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
                 // Handle possible errors
-
             }
         });
     }
+
+
+    private String generateStars(int rating) {
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < 5; i++) {
+            if (i < rating) {
+                stars.append("⭐");
+            } else {
+                stars.append("☆");
+            }
+        }
+        return stars.toString();
+    }
+
+
     private void loadHardcodedData() {
         int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2, R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
 
@@ -122,9 +141,15 @@ public class ConsultantActivity extends AppCompatActivity {
 
         String[] gymNumber = {"ConsultantNo: 07", "ConsultantNo: 03", "ConsultantNo: 10", "ConsultantNo: 06", "ConsultantNo: 05", "ConsultantNo: 16", "ConsultantNo: 3", "ConsultantNo: 14", "ConsultantNo: 14"};
 
+        int[] rating = {5, 4, 3, 2, 1, 1, 3, 4, 5};
+
+
         for (int i = 0; i < imageId.length; i++) {
-            User user = new User(name[i], lastMessage[i], lastMsgTime[i], phoneNo[i], gymNumber[i], experience[i], fees[i], imageId[i]);
+            // Assuming rating[i] is an array holding the rating values for each user
+            User user = new User(name[i], lastMessage[i], lastMsgTime[i], phoneNo[i], gymNumber[i], experience[i], fees[i], imageId[i], rating[i]);
             userArrayList.add(user);
+
+
         }
 
         listAdapter.notifyDataSetChanged();

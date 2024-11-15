@@ -39,6 +39,14 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/ratingTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⭐⭐⭐⭐"
+                    android:textSize="14sp"
+                    android:paddingTop="2dp" />
+
+                <TextView
                     android:id="@+id/lastmessage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
