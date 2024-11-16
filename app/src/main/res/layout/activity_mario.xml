@@ -4,7 +4,7 @@
     android:layout_height="match_parent"
     android:padding="16dp"
     android:orientation="vertical"
-    android:background="@color/white">
+    android:background="#FFFFFF">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -44,8 +44,8 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#BBDEFB"
-        android:backgroundTint="#E0E0E0"/>
+        android:progressTint="#0E92FF"
+        android:backgroundTint="#0E92FF"/>
 
     <Button
         android:id="@+id/guidedButton"
@@ -53,7 +53,7 @@
         android:layout_height="wrap_content"
         android:text="Increment Guided"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#BBDEFB"/>
+        android:backgroundTint="#0E92FF"/>
 
     <!-- Personal Sessions Section -->
     <TextView
@@ -73,7 +73,7 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#A5D6A7"
+        android:progressTint="#388E3C"
         android:backgroundTint="#E0E0E0"/>
 
     <Button
@@ -82,7 +82,7 @@
         android:layout_height="wrap_content"
         android:text="Increment Personal"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#A5D6A7"/>
+        android:backgroundTint="#388E3C"/>
 
     <TextView
         android:id="@+id/journalText"
@@ -101,7 +101,7 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#FFE0B2"
+        android:progressTint="#F57C00"
         android:backgroundTint="#E0E0E0"/>
 
     <Button
@@ -110,7 +110,8 @@
         android:layout_height="wrap_content"
         android:text="Increment Journal"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#FFE0B2"/>
+        android:backgroundTint="#F57C00"
+        />
 
     <!-- Meditation Sessions Section -->
     <TextView
@@ -131,8 +132,8 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#E1BEE7"
-        android:backgroundTint="#E0E0E0"/>
+        android:progressTint="#D100FA"
+        android:backgroundTint="#B0BEC5"/>
 
     <Button
         android:id="@+id/meditationButton"
@@ -140,7 +141,8 @@
         android:layout_height="wrap_content"
         android:text="Increment Meditation"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#E0E0E0"/>
+        android:backgroundTint="#D100FA"
+        />
 
 
         <TextView
@@ -163,8 +165,9 @@
             android:max="100"
             style="?android:attr/progressBarStyleHorizontal"
             android:layout_marginBottom="20dp"
-            android:progressTint="#BBDEFB"
-            android:backgroundTint="#E0E0E0"/>
+            android:progressTint="#008AFF"
+            android:backgroundTint="#616161"
+        android:visibility="visible"/>
 
 </LinearLayout>
 
