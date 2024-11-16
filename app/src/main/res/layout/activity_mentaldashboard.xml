@@ -37,7 +37,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/titlehome"
-                android:layout_gravity="center_horizontal"
+                android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="24dp"
@@ -144,13 +144,13 @@
                         android:orientation="vertical">
 
                         <ImageView
-                            android:layout_width="138dp"
-                            android:layout_height="174dp"
-                            android:src="@drawable/cycle" />
+                            android:layout_width="170dp"
+                            android:layout_height="100dp"
+                            android:src="@drawable/progbooktwo" />
 
                         <TextView
                             android:layout_width="wrap_content"
-                            android:layout_height="100dp"
+                            android:layout_height="wrap_content"
                             android:text="HEALTH RESOURCES"
                             android:textAlignment="center"
                             android:textColor="@color/black"
@@ -188,7 +188,7 @@
                         <ImageView
                             android:layout_width="170dp"
                             android:layout_height="82dp"
-                            android:src="@drawable/nel6"
+                            android:src="@drawable/progress"
                             android:textAlignment="center" />
 
                         <TextView
