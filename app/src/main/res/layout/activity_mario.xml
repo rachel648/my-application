@@ -110,7 +110,7 @@
         android:layout_height="wrap_content"
         android:text="Increment Journal"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#F57C00"
+        android:backgroundTint="#F57C00"g
         android:background="@drawable/rounded_button"
         />
 

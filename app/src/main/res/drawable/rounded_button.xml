@@ -1,4 +1,4 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="?android:attr/colorButtonNormal"/> <!-- Retains the default button color -->
+    <solid android:color="#F57C00"/> <!-- Retains the default button color -->
     <corners android:radius="20dp"/> <!-- Rounded corners -->
 </shape>
