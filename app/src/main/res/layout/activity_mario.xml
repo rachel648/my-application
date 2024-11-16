@@ -44,7 +44,8 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#BBDEFB"/>
+        android:progressTint="#BBDEFB"
+        android:backgroundTint="#E0E0E0"/>
 
     <Button
         android:id="@+id/guidedButton"
@@ -72,7 +73,8 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#A5D6A7"/>
+        android:progressTint="#A5D6A7"
+        android:backgroundTint="#E0E0E0"/>
 
     <Button
         android:id="@+id/personalButton"
@@ -99,7 +101,8 @@
         android:max="100"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_marginBottom="8dp"
-        android:progressTint="#FFE0B2"/>
+        android:progressTint="#FFE0B2"
+        android:backgroundTint="#E0E0E0"/>
 
     <Button
         android:id="@+id/journalButton"
@@ -107,7 +110,7 @@
         android:layout_height="wrap_content"
         android:text="Increment Journal"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#E1BEE7"/>
+        android:backgroundTint="#FFE0B2"/>
 
     <!-- Meditation Sessions Section -->
     <TextView
@@ -137,7 +140,7 @@
         android:layout_height="wrap_content"
         android:text="Increment Meditation"
         android:layout_marginBottom="20dp"
-        android:backgroundTint="#E3F2FD"/>
+        android:backgroundTint="#E0E0E0"/>
 
 
         <TextView
