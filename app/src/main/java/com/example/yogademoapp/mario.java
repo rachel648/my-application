@@ -1,12 +1,14 @@
 package com.example.yogademoapp;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 
 public class mario extends AppCompatActivity {
 
@@ -20,6 +22,9 @@ public class mario extends AppCompatActivity {
     private ProgressBar guidedProgressBar, personalProgressBar, journalProgressBar, meditationProgressBar, totalProgressBar;
     private TextView guidedText, personalText, journalText, meditationText, totalProgressText;
 
+    // Mood tracking fields
+    private String selectedMood = "";
+    private TextView moodTextView, suggestionTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,29 @@ public class mario extends AppCompatActivity {
         setupIncrementButton(R.id.personalButton, "personal");
         setupIncrementButton(R.id.journalButton, "journal");
         setupIncrementButton(R.id.meditationButton, "meditation");
+
+        moodTextView = findViewById(R.id.moodTextView);
+        suggestionTextView = findViewById(R.id.suggestionTextView);
+
+        // Define mood emojis and their corresponding images
+        final String[] moods = {"😊", "😢", "😡", "😴", "😎"};
+        int[] moodImages = {R.drawable.smile, R.drawable.sad, R.drawable.angry, R.drawable.sleep, R.drawable.cool};
+
+        // Initialize mood icons dynamically
+        LinearLayout moodLayout = findViewById(R.id.moodLayout);
+        for (int i = 0; i < moods.length; i++) {
+            final String mood = moods[i];
+            ImageView moodImage = new ImageView(this);
+            moodImage.setImageResource(moodImages[i]);
+            moodImage.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+            moodImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    setMood(mood);
+                }
+            });
+            moodLayout.addView(moodImage);
+        }
 
         updateProgress();
     }
@@ -88,5 +116,31 @@ public class mario extends AppCompatActivity {
         journalText.setText("Journal Readings: " + journalReadings + " / " + MAX_SESSIONS);
         meditationText.setText("Meditation Sessions: " + meditationSessions + " / " + MAX_SESSIONS);
         totalProgressText.setText("Total Progress: " + (int) (totalProgress * 100) + "%");
+    }
+
+    // Function to set mood and suggestion
+    private void setMood(String mood) {
+        selectedMood = mood;
+        moodTextView.setText("Today's Mood: " + selectedMood);
+        suggestionTextView.setText(getMoodSuggestion(selectedMood));
+
+    }
+
+    // Function to get mood suggestion
+    private String getMoodSuggestion(String mood) {
+        switch (mood) {
+            case "😊":
+                return "Keep spreading positivity!";
+            case "😢":
+                return "Take some time to reflect and relax.";
+            case "😡":
+                return "Consider deep breaths to calm down.";
+            case "😴":
+                return "A quick nap might help refresh you.";
+            case "😎":
+                return "Enjoy your confidence today!";
+            default:
+                return "Stay positive!";
+        }
     }
 }

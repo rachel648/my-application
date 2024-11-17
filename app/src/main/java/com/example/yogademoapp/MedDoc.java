@@ -23,6 +23,6 @@ public class MedDoc extends AppCompatActivity {
                 startActivity(intent);
                 finish(); // Optional: Close this activity to prevent going back
             }
-        }, 2000); // Delay in milliseconds (2 seconds)
+        }, 1000); // Delay in milliseconds (2 seconds)
     }
 }
