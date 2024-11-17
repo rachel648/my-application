@@ -16,7 +16,8 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:gravity="center">
 
             <TextView
                 android:id="@+id/titlehome"
@@ -79,6 +80,11 @@
 
                             <!-- Place your content inside the CardView here -->
                             <!-- For example, you can add a Spinner or other views here -->
+
+
+
+
+
                         </androidx.cardview.widget.CardView>
 
                         <!-- TextView on top of CardView -->
