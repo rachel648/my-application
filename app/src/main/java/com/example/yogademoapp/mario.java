@@ -1,11 +1,13 @@
 package com.example.yogademoapp;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,11 +26,15 @@ public class mario extends AppCompatActivity {
 
     private TextView moodTextView, suggestionTextView;
 
+    private ScrollView scrollView;
+    private LinearLayout moodLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mario);
 
+        scrollView = findViewById(R.id.scrollView);
         guidedProgressBar = findViewById(R.id.guidedProgressBar);
         personalProgressBar = findViewById(R.id.personalProgressBar);
         journalProgressBar = findViewById(R.id.journalProgressBar);
@@ -48,6 +54,7 @@ public class mario extends AppCompatActivity {
 
         moodTextView = findViewById(R.id.moodTextView);
         suggestionTextView = findViewById(R.id.suggestionTextView);
+        moodLayout = findViewById(R.id.moodLayout);
 
         // Define mood emojis and their corresponding images
         final String[] moods = {"😊", "😢", "😡", "😴", "😎"};
@@ -114,15 +121,35 @@ public class mario extends AppCompatActivity {
         journalText.setText("Journal Readings: " + journalReadings + " / " + MAX_SESSIONS);
         meditationText.setText("Meditation Sessions: " + meditationSessions + " / " + MAX_SESSIONS);
         totalProgressText.setText("Total Progress: " + (int) (totalProgress * 100) + "%");
+
+        // Trigger the popup when total progress reaches 100%
+        if ((int) (totalProgress * 100) == 100) {
+            showMoodFollowUpDialog();
+        }
     }
 
-    // Function to set mood and suggestion
+    private void showMoodFollowUpDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Mood Follow-Up")
+                .setMessage("Would you like to follow up on your mood?")
+                .setPositiveButton("Yes", (dialog, which) -> scrollToMoodSection())
+                .setNegativeButton("No", null)
+                .show();
+    }
+
+    private void scrollToMoodSection() {
+      //  ScrollView scrollView = findViewById(R.id.scrollView);
+      //  LinearLayout moodLayout = findViewById(R.id.moodLayout);
+      //  scrollView.smoothScrollTo(0, moodLayout.getTop());
+        scrollView.post(() -> scrollView.smoothScrollTo(0, moodLayout.getTop()));
+
+    }
+
     private void setMood(String mood) {
-        // Mood tracking fields
         moodTextView.setText("Today's Mood: " + mood);
         suggestionTextView.setText(getMoodSuggestion(mood));
-
     }
+
 
     // Function to get mood suggestion
     private String getMoodSuggestion(String mood) {
