@@ -23,6 +23,7 @@
     <string name="client_signup">CLIENT SIGNUP</string>
     <string name="consultant_signup">CONSULTANT SIGNUP</string>
     <string name="suggestion">Suggestion</string>
+    <string name="select_your_mood_for_today">Select Your Mood for Today</string>
 
 
 </resources>

@@ -152,24 +152,24 @@
             android:paddingBottom="16dp"
             android:textColor="@color/black"/>
 
+        <!-- New Mood Selection Section with Horizontal ScrollView -->
         <ProgressBar
             android:id="@+id/totalProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:progress="0"
-            android:max="100"
-            style="?android:attr/progressBarStyleHorizontal"
             android:layout_marginBottom="20dp"
-            android:progressTint="#008AFF"
+            android:max="100"
+            android:progress="0"
             android:progressBackgroundTint="#616161"
-            android:visibility="visible"/>
+            android:progressTint="#008AFF"
+            android:visibility="visible" />
 
-        <!-- New Mood Selection Section with Horizontal ScrollView -->
         <TextView
             android:id="@+id/moodTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Select Your Mood for Today"
+            android:text="@string/select_your_mood_for_today"
             android:textSize="20sp"
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
