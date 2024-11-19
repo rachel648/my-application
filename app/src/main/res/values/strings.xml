@@ -22,6 +22,7 @@
     <string name="password">Password</string>
     <string name="client_signup">CLIENT SIGNUP</string>
     <string name="consultant_signup">CONSULTANT SIGNUP</string>
+    <string name="suggestion">Suggestion</string>
 
 
 </resources>

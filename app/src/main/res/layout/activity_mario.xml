@@ -172,7 +172,10 @@
             android:text="Select Your Mood for Today"
             android:textSize="20sp"
             android:textStyle="bold"
-            android:layout_marginBottom="20dp"/>
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="20dp"
+            android:visibility="visible"/>
+
 
         <!-- HorizontalScrollView added here -->
         <HorizontalScrollView
@@ -191,11 +194,12 @@
 
         <TextView
             android:id="@+id/suggestionTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Suggestion"
+            android:layout_width="match_parent"
+            android:layout_height="102dp"
+            android:text="@string/suggestion"
             android:textSize="16sp"
-            android:textStyle="italic"/>
+            android:textStyle="italic"
+            android:visibility="visible"/>
 
     </LinearLayout>
 

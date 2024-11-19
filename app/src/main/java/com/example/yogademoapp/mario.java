@@ -22,8 +22,6 @@ public class mario extends AppCompatActivity {
     private ProgressBar guidedProgressBar, personalProgressBar, journalProgressBar, meditationProgressBar, totalProgressBar;
     private TextView guidedText, personalText, journalText, meditationText, totalProgressText;
 
-    // Mood tracking fields
-    private String selectedMood = "";
     private TextView moodTextView, suggestionTextView;
 
     @Override
@@ -120,9 +118,9 @@ public class mario extends AppCompatActivity {
 
     // Function to set mood and suggestion
     private void setMood(String mood) {
-        selectedMood = mood;
-        moodTextView.setText("Today's Mood: " + selectedMood);
-        suggestionTextView.setText(getMoodSuggestion(selectedMood));
+        // Mood tracking fields
+        moodTextView.setText("Today's Mood: " + mood);
+        suggestionTextView.setText(getMoodSuggestion(mood));
 
     }
 
