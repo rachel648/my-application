@@ -174,7 +174,8 @@
             android:textStyle="bold"
             android:layout_marginBottom="20dp"
             android:layout_marginTop="20dp"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:textColor="@color/black"/>
 
 
         <!-- HorizontalScrollView added here -->
@@ -199,7 +200,8 @@
             android:text="@string/suggestion"
             android:textSize="16sp"
             android:textStyle="italic"
-            android:visibility="visible"/>
+            android:visibility="visible"
+            android:textColor="@color/black"/>
 
     </LinearLayout>
 
