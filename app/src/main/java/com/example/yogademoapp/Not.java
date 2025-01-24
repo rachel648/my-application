@@ -104,8 +104,8 @@ public class Not extends AppCompatActivity {
         NotificationCompat.Builder builder =
                 new NotificationCompat.Builder(this, channelID)
                         .setSmallIcon(R.drawable.baseline_add_alert_24)
-                        .setContentTitle("Notification Title")
-                        .setContentText("Some text for notification here")
+                        .setContentTitle("iMental Reminder Set")
+                        .setContentText("You have set ` a notification ")
                         .setAutoCancel(true)
                         .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
@@ -178,7 +178,9 @@ public class Not extends AppCompatActivity {
     // Function to open Google Calenda
     private void openGoogleCalendar() {
         Intent intent = new Intent(Intent.ACTION_INSERT);
-        intent.setData(CalendarContract.Events.CONTENT_URI);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            intent.setData(CalendarContract.Events.CONTENT_URI);
+        }
         intent.putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimeInMillis());
         intent.putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 60 * 60 * 1000); // Event duration is 1 hour
         intent.putExtra(CalendarContract.Events.TITLE, "Yoga Session");
@@ -221,7 +223,9 @@ public class Not extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         if (alarmManager != null) {
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                alarmManager.setExact(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), pendingIntent);
+            }
             Toast.makeText(this, "Notification scheduled for " + selectedYear + "-" + (selectedMonth + 1) + "-" + selectedDay + " " + selectedHour + ":" + selectedMinute, Toast.LENGTH_LONG).show();
         }
     }

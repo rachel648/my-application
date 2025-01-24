@@ -2,7 +2,6 @@ package com.example.yogademoapp;
 
 import android.app.AlertDialog;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +10,14 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+
+import java.util.Calendar;
 
 public class mario extends AppCompatActivity {
 
@@ -25,15 +32,19 @@ public class mario extends AppCompatActivity {
     private TextView guidedText, personalText, journalText, meditationText, totalProgressText;
 
     private TextView moodTextView, suggestionTextView;
-
     private ScrollView scrollView;
     private LinearLayout moodLayout;
+
+    private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mario);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("YogaSessions");
+
+        // Initialize views and buttons
         scrollView = findViewById(R.id.scrollView);
         guidedProgressBar = findViewById(R.id.guidedProgressBar);
         personalProgressBar = findViewById(R.id.personalProgressBar);
@@ -56,27 +67,46 @@ public class mario extends AppCompatActivity {
         suggestionTextView = findViewById(R.id.suggestionTextView);
         moodLayout = findViewById(R.id.moodLayout);
 
-        // Define mood emojis and their corresponding images
-        final String[] moods = {"😊", "😢", "😡", "😴", "😎"};
-        int[] moodImages = {R.drawable.smile, R.drawable.sad, R.drawable.angry, R.drawable.sleep, R.drawable.cool};
+        initializeMoodIcons();
+        checkForWeeklyReset();
 
-        // Initialize mood icons dynamically
-        LinearLayout moodLayout = findViewById(R.id.moodLayout);
-        for (int i = 0; i < moods.length; i++) {
-            final String mood = moods[i];
-            ImageView moodImage = new ImageView(this);
-            moodImage.setImageResource(moodImages[i]);
-            moodImage.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
-            moodImage.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    setMood(mood);
+        // Load data when activity starts
+        loadDataFromFirebase();
+
+        updateProgress(); // Update the progress initially as well
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        saveToFirebase();  // Save data to Firebase when the activity is paused
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadDataFromFirebase();  // Ensure data is loaded from Firebase when the activity is resumed
+    }
+
+    private void loadDataFromFirebase() {
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                SessionData data = dataSnapshot.getValue(SessionData.class);
+                if (data != null) {
+                    guidedSessions = data.guidedSessions;
+                    personalSessions = data.personalSessions;
+                    journalReadings = data.journalReadings;
+                    meditationSessions = data.meditationSessions;
+                    updateProgress(); // Update UI with the retrieved data
                 }
-            });
-            moodLayout.addView(moodImage);
-        }
+            }
 
-        updateProgress();
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Handle possible errors
+            }
+        });
     }
 
     private void setupIncrementButton(int buttonId, String type) {
@@ -99,7 +129,16 @@ public class mario extends AppCompatActivity {
                 if (meditationSessions < MAX_SESSIONS) meditationSessions++;
                 break;
         }
+        saveToFirebase();
         updateProgress();
+    }
+
+    private void saveToFirebase() {
+        String sessionId = databaseReference.push().getKey(); // Automatically generates a unique ID
+        SessionData sessionData = new SessionData(guidedSessions, personalSessions, journalReadings, meditationSessions);
+        if (sessionId != null) {
+            databaseReference.child(sessionId).setValue(sessionData); // Save under a unique session ID
+        }
     }
 
     private void updateProgress() {
@@ -122,7 +161,6 @@ public class mario extends AppCompatActivity {
         meditationText.setText("Meditation Sessions: " + meditationSessions + " / " + MAX_SESSIONS);
         totalProgressText.setText("Total Progress: " + (int) (totalProgress * 100) + "%");
 
-        // Trigger the popup when total progress reaches 100%
         if ((int) (totalProgress * 100) == 100) {
             showMoodFollowUpDialog();
         }
@@ -138,11 +176,21 @@ public class mario extends AppCompatActivity {
     }
 
     private void scrollToMoodSection() {
-      //  ScrollView scrollView = findViewById(R.id.scrollView);
-      //  LinearLayout moodLayout = findViewById(R.id.moodLayout);
-      //  scrollView.smoothScrollTo(0, moodLayout.getTop());
         scrollView.post(() -> scrollView.smoothScrollTo(0, moodLayout.getTop()));
+    }
 
+    private void initializeMoodIcons() {
+        final String[] moods = {"😊", "😢", "😡", "😴", "😎"};
+        int[] moodImages = {R.drawable.smile, R.drawable.sad, R.drawable.angry, R.drawable.sleep, R.drawable.cool};
+
+        for (int i = 0; i < moods.length; i++) {
+            final String mood = moods[i];
+            ImageView moodImage = new ImageView(this);
+            moodImage.setImageResource(moodImages[i]);
+            moodImage.setLayoutParams(new LinearLayout.LayoutParams(200, 200));
+            moodImage.setOnClickListener(v -> setMood(mood));
+            moodLayout.addView(moodImage);
+        }
     }
 
     private void setMood(String mood) {
@@ -150,8 +198,6 @@ public class mario extends AppCompatActivity {
         suggestionTextView.setText(getMoodSuggestion(mood));
     }
 
-
-    // Function to get mood suggestion
     private String getMoodSuggestion(String mood) {
         switch (mood) {
             case "😊":
@@ -166,6 +212,35 @@ public class mario extends AppCompatActivity {
                 return "Enjoy your confidence today!";
             default:
                 return "Stay positive!";
+        }
+    }
+
+    private void checkForWeeklyReset() {
+        Calendar calendar = Calendar.getInstance();
+        int currentDayOfWeek = calendar.get(Calendar.DAY_OF_WEEK);
+
+        if (currentDayOfWeek == Calendar.SUNDAY) {
+            resetProgress();
+        }
+    }
+
+    private void resetProgress() {
+        guidedSessions = 0;
+        personalSessions = 0;
+        journalReadings = 0;
+        meditationSessions = 0;
+        saveToFirebase();
+        updateProgress();
+    }
+
+    private static class SessionData {
+        public int guidedSessions, personalSessions, journalReadings, meditationSessions;
+
+        public SessionData(int guided, int personal, int journal, int meditation) {
+            this.guidedSessions = guided;
+            this.personalSessions = personal;
+            this.journalReadings = journal;
+            this.meditationSessions = meditation;
         }
     }
 }
