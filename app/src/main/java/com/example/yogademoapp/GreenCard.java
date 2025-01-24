@@ -83,6 +83,12 @@ public class GreenCard extends AppCompatActivity {
             Intent intent = new Intent(GreenCard.this, Not.class); // Start the Not activity
             startActivity(intent);
         });
+
+        CardView settingprofpayment = findViewById(R.id.profpayment);
+        settingprofpayment.setOnClickListener(v -> {
+            Intent intent = new Intent(GreenCard.this, profpayment.class);
+            startActivity(intent);
+        });
     }
 
     private void changePassword(EditText oldPasswordEditText, EditText newPasswordEditText) {

@@ -203,7 +203,8 @@
                     android:textSize="24sp"
                     android:textStyle="bold"
                     android:layout_gravity="center"
-                    android:paddingBottom="20dp" />
+                    android:paddingBottom="20dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvSessionOne"
@@ -212,7 +213,8 @@
                     android:text="Session One: $0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvSessionTwo"
@@ -221,7 +223,8 @@
                     android:text="Session Two: $0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvPaymentAmount"
@@ -230,7 +233,8 @@
                     android:text="Amount Paid: $0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:paddingBottom="10dp" />
+                    android:paddingBottom="10dp"
+                    android:textColor="@color/black"/>
 
                 <TextView
                     android:id="@+id/tvPaymentTime"
@@ -239,21 +243,11 @@
                     android:text="Payment Time: 00:00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
-                    android:paddingBottom="20dp" />
+                    android:paddingBottom="20dp"
+                    android:textColor="@color/black"/>
 
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-    <!-- Back to Home Button at the bottom of the screen -->
-    <Button
-        android:id="@+id/btnBackToHome"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back to Home"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginBottom="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
