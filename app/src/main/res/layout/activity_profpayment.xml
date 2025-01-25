@@ -209,7 +209,7 @@
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:id="@+id/textViewSessionFee"
+                    android:id="@+id/tvSessionOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Session One: ksh 0.00"
@@ -219,14 +219,33 @@
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:id="@+id/tvSessionTwo"
+                    android:id="@+id/addSessionPlusSign"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Session Two: ksh 0.00"
-                    android:textSize="18sp"
+                    android:text="+"
+                    android:textSize="40sp"
+                    android:textColor="@color/black"
                     android:layout_gravity="center"
-                    android:paddingBottom="10dp"
-                    android:textColor="@color/black"/>
+                    android:contentDescription="Add Session" />
+
+                <!-- Dynamic Sessions Layout -->
+                <TextView
+                    android:id="@+id/addSessionMinusSign"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="Remove Session"
+                    android:gravity="center"
+                    android:text="-"
+                    android:textColor="@color/black"
+                    android:textSize="40dpsp"
+                    />
+
+                <LinearLayout
+                    android:id="@+id/dynamicSessionsLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:gravity="center"/>
 
                 <TextView
                     android:id="@+id/tvPaymentAmount"

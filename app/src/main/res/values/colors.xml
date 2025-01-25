@@ -13,7 +13,12 @@
     <color name="lightblue">#a2d9ff</color>
     <color name="green">#00FF00</color>
     <color name="greenpref">#1C804C</color>
-
+    <color name="colorStart">#FF6F61</color>
+    <color name="colorEnd">#FFB6B9</color>
+    <color name="green_light">#A8E6A1</color> <!-- Light Green -->
+    <color name="green_dark">#388E3C</color>  <!-- Dark Green -->
+    <color name="colorAddButton">#4CAF50</color> <!-- Green for Add button -->
+    <color name="colorMinusButton">#F44336</color> <!-- Red for Minus button -->
 
 
 

@@ -19,6 +19,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import android.content.SharedPreferences;
+
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -56,6 +58,10 @@ public class Payment extends AppCompatActivity {
         // Set Train Fees value in the TextView
         sub_total.setText(trainFees);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("TrainFee", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("TrainFees", trainFees);
+        editor.apply();
 
         checkOutButton = findViewById(R.id.pay_btn);
         checkOutButton.setOnClickListener(new View.OnClickListener() {
