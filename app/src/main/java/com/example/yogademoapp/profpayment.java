@@ -1,24 +1,29 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.cardview.widget.CardView;
 
 public class profpayment extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
+
         setContentView(R.layout.activity_profpayment);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
+
+        CardView notification = findViewById(R.id.notifications);
+        notification.setOnClickListener(v -> {
+            Intent intent = new Intent(profpayment.this, Not.class);
+            startActivity(intent);
+        });
+
+        CardView settingsprof = findViewById(R.id.setting);
+        settingsprof.setOnClickListener(v -> {
+            Intent intent = new Intent(profpayment.this, GreenCard.class);
+            startActivity(intent);
         });
     }
 }

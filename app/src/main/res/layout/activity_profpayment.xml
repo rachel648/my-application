@@ -91,6 +91,7 @@
                     android:padding="8dp">
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/payment"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -125,6 +126,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <androidx.cardview.widget.CardView
+                        android:id="@+id/setting"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_margin="8dp"
@@ -210,7 +212,7 @@
                     android:id="@+id/tvSessionOne"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Session One: $0.00"
+                    android:text="Session One: ksh 0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
                     android:paddingBottom="10dp"
@@ -220,7 +222,7 @@
                     android:id="@+id/tvSessionTwo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Session Two: $0.00"
+                    android:text="Session Two: ksh 0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
                     android:paddingBottom="10dp"
@@ -230,7 +232,7 @@
                     android:id="@+id/tvPaymentAmount"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Amount Paid: $0.00"
+                    android:text="Amount Paid: ksh 0.00"
                     android:textSize="18sp"
                     android:layout_gravity="center"
                     android:paddingBottom="10dp"
