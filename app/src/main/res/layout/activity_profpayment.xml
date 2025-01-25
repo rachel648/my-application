@@ -209,7 +209,7 @@
                     android:textColor="@color/black"/>
 
                 <TextView
-                    android:id="@+id/tvSessionOne"
+                    android:id="@+id/textViewSessionFee"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Session One: ksh 0.00"
