@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,11 +19,12 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class ongea extends AppCompatActivity {
 
     private EditText groupNameEditText, groupDescriptionEditText, joinGroupIdEditText;
-    private Button registerButton, joinButton, showGroupsButton;
+    private Button showGroupsButton;
     private ListView groupListView;
     private GroupAdapter groupAdapter;
     private ArrayList<Group> groupList;
@@ -38,8 +41,8 @@ public class ongea extends AppCompatActivity {
         groupNameEditText = findViewById(R.id.groupNameEditText);
         groupDescriptionEditText = findViewById(R.id.groupDescriptionEditText);
         joinGroupIdEditText = findViewById(R.id.joinGroupIdEditText);
-        registerButton = findViewById(R.id.registerButton);
-        joinButton = findViewById(R.id.joinButton);
+        Button registerButton = findViewById(R.id.registerButton);
+        Button joinButton = findViewById(R.id.joinButton);
         showGroupsButton = findViewById(R.id.showGroupsButton);
         groupListView = findViewById(R.id.groupListView);
 
@@ -66,13 +69,14 @@ public class ongea extends AppCompatActivity {
         } else {
             String groupId = groupRef.push().getKey();
             Group group = new Group(groupId, groupName, groupDescription);
+            assert groupId != null;
             groupRef.child(groupId).setValue(group);
             Toast.makeText(this, "Group Registered: " + groupName, Toast.LENGTH_SHORT).show();
         }
     }
 
     private void joinGroup() {
-        String groupName = joinGroupIdEditText.getText().toString().trim(); // Use group name instead of ID
+        String groupName = joinGroupIdEditText.getText().toString().trim();
 
         if (groupName.isEmpty()) {
             Toast.makeText(this, "Please enter a Group Name", Toast.LENGTH_SHORT).show();
@@ -81,12 +85,14 @@ public class ongea extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     boolean groupFound = false;
+                    String userEmail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(); // Get user email
 
                     for (DataSnapshot groupSnapshot : snapshot.getChildren()) {
                         Group group = groupSnapshot.getValue(Group.class);
                         if (group != null && group.getGroupName().equalsIgnoreCase(groupName)) {
                             groupFound = true;
-                            break; // Stop searching after finding the group
+                            EmailSender.sendEmail(userEmail, groupName); // Send email
+                            break;
                         }
                     }
 
@@ -106,6 +112,8 @@ public class ongea extends AppCompatActivity {
     }
 
 
+
+    @SuppressLint("SetTextI18n")
     private void toggleGroupList() {
         if (isListVisible) {
             groupListView.setVisibility(View.GONE);

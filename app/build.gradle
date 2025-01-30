@@ -13,7 +13,6 @@ android {
         versionName "1.0"
         minSdk 28
         targetSdk 35
-       // minSdkVersion 13
         multiDexEnabled true
         manifestPlaceholders = [MAPS_API_KEY: "${MAPS_API_KEY}"]
 
@@ -27,6 +26,27 @@ android {
         }
     }
 
+    packagingOptions {
+        // Exclude unnecessary files
+        exclude 'META-INF/gfprobe-provider.xml'
+        exclude 'META-INF/javamail.default.address.map'
+        exclude 'META-INF/javamail.charset.map'
+        exclude 'META-INF/hk2-locator/default'
+        exclude 'META-INF/mimetypes.default'
+        exclude 'META-INF/mailcap.default'
+        exclude 'META-INF/javamail.default.providers'
+        exclude 'META-INF/LICENSE.md'  // Excluded LICENSE.md
+        exclude 'META-INF/NOTICE.md'  // Excluded NOTICE.md
+        exclude 'META-INF/mailcap' // Exclude mailcap file
+
+        // Exclude other common files
+        resources {
+            excludes += 'META-INF/DEPENDENCIES'
+            excludes += 'META-INF/LICENSE'
+            excludes += 'META-INF/NOTICE'
+        }
+    }
+
     buildFeatures {
         viewBinding true
     }
@@ -34,14 +54,6 @@ android {
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
-    }
-
-    packagingOptions {
-        resources {
-            excludes += 'META-INF/DEPENDENCIES'
-            excludes += 'META-INF/LICENSE'
-            excludes += 'META-INF/NOTICE'
-        }
     }
 }
 
@@ -74,13 +86,9 @@ dependencies {
     implementation 'com.android.support:support-annotations:28.0.0'
     implementation 'androidx.activity:activity:1.10.0'
     implementation 'com.android.support:multidex:1.0.3'
-}
 
-dependencies {
+    // Mail dependencies
     implementation 'com.sun.mail:android-mail:1.6.7'
     implementation 'com.sun.mail:android-activation:1.6.7'
-}
-dependencies {
     implementation 'org.eclipse.angus:angus-mail:2.0.2'
 }
-
