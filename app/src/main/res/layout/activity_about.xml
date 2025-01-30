@@ -13,7 +13,7 @@
         android:id="@+id/app_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Yoga Demo App"
+        android:text="i_mental"
         android:textColor="@color/black"
         android:textSize="30sp"
         android:textStyle="bold"
