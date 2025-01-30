@@ -19,7 +19,7 @@ public class MedDoc extends AppCompatActivity {
             @Override
             public void run() {
                 // Start the next activity here
-                Intent intent = new Intent(MedDoc.this, mentaldashboard.class);
+                Intent intent = new Intent(MedDoc.this,mentaldashboard.class);
                 startActivity(intent);
                 finish(); // Optional: Close this activity to prevent going back
             }

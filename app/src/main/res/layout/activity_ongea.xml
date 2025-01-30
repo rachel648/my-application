@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="@color/light_green">
+
+    <!-- Title -->
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join a Mental Health Support Group"
+        android:textSize="24sp"
+        android:textColor="@color/dark_green"
+        android:textStyle="bold"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- Registration Section -->
+    <TextView
+        android:id="@+id/registerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Register a New Group"
+        android:textSize="18sp"
+        android:textColor="@color/dark_green"
+        android:layout_below="@id/titleTextView"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/groupNameEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Name"
+        android:layout_below="@id/registerTitle"
+        android:layout_marginTop="8dp"/>
+
+    <EditText
+        android:id="@+id/groupDescriptionEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group Description"
+        android:layout_below="@id/groupNameEditText"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/registerButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register Group"
+        android:backgroundTint="@color/dark_green"
+        android:textColor="@color/white"
+        android:layout_below="@id/groupDescriptionEditText"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Join Existing Group Section -->
+    <TextView
+        android:id="@+id/joinTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Join an Existing Group"
+        android:textSize="18sp"
+        android:textColor="@color/dark_green"
+        android:layout_below="@id/registerButton"
+        android:layout_marginTop="32dp"/>
+
+    <EditText
+        android:id="@+id/joinGroupIdEditText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Group ID"
+        android:layout_below="@id/joinTitle"
+        android:layout_marginTop="8dp"/>
+
+    <Button
+        android:id="@+id/joinButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Join Group"
+        android:backgroundTint="@color/dark_green"
+        android:textColor="@color/white"
+        android:layout_below="@id/joinGroupIdEditText"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Show Groups Button -->
+    <Button
+        android:id="@+id/showGroupsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Show Groups"
+        android:backgroundTint="@color/dark_green"
+        android:textColor="@color/white"
+        android:layout_below="@id/joinButton"
+        android:layout_marginTop="24dp"/>
+
+    <!-- Group ListView (Initially Hidden) -->
+    <ListView
+        android:id="@+id/groupListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/showGroupsButton"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        android:padding="8dp"/>
+</RelativeLayout>

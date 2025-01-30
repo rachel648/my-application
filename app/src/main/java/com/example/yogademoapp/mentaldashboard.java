@@ -152,6 +152,14 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
+        CardView ongea = findViewById(R.id.Membership);
+        ongea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(mentaldashboard.this, ongea.class));
+            }
+        });
+
         ImageView backButton = findViewById(R.id.backButton);
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override

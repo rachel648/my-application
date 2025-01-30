@@ -237,8 +237,7 @@
                     android:gravity="center"
                     android:text="-"
                     android:textColor="@color/black"
-                    android:textSize="40dpsp"
-                    />
+                    android:textSize="40dp"/>
 
                 <LinearLayout
                     android:id="@+id/dynamicSessionsLayout"

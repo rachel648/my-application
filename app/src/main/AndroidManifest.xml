@@ -26,6 +26,9 @@
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
         <activity
+            android:name=".ongea"
+            android:exported="false" />
+        <activity
             android:name=".mario"
             android:exported="false" />
         <activity
