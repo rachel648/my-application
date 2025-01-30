@@ -21,6 +21,9 @@
     <color name="colorMinusButton">#F44336</color> <!-- Red for Minus button -->
     <color name="light_green">#E0F2F1</color>
     <color name="dark_green">#00796B</color>
+    <color name="green_700">#388E3C</color>
+    <color name="green_900">#1B5E20</color>
+
 
 
 
