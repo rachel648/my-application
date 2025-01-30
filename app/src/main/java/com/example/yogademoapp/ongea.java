@@ -2,6 +2,7 @@ package com.example.yogademoapp;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -19,7 +20,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.Objects;
 
 public class ongea extends AppCompatActivity {
 
@@ -85,20 +85,32 @@ public class ongea extends AppCompatActivity {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     boolean groupFound = false;
-                    String userEmail = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail(); // Get user email
+                    String userEmail = FirebaseAuth.getInstance().getCurrentUser() != null ?
+                            FirebaseAuth.getInstance().getCurrentUser().getEmail() : null;
+
+                    if (userEmail == null) {
+                        Toast.makeText(ongea.this, "User not logged in", Toast.LENGTH_SHORT).show();
+                        return; // Exit if user is not logged in
+                    }
 
                     for (DataSnapshot groupSnapshot : snapshot.getChildren()) {
                         Group group = groupSnapshot.getValue(Group.class);
                         if (group != null && group.getGroupName().equalsIgnoreCase(groupName)) {
                             groupFound = true;
-                            EmailSender.sendEmail(userEmail, groupName); // Send email
+                            try {
+                                // Use the logged-in user's email to send the welcome message
+                                Log.d("EmailSender", "Attempting to send email to: " + userEmail + " for group: " + groupName);
+                                EmailSender.sendEmail(userEmail, groupName); // Send email to user
+                                Toast.makeText(ongea.this, "Joined Group: " + groupName, Toast.LENGTH_SHORT).show();
+                            } catch (Exception e) {
+                                Log.e("EmailSender", "Error sending email", e);
+                                Toast.makeText(ongea.this, "Error sending email", Toast.LENGTH_SHORT).show();
+                            }
                             break;
                         }
                     }
 
-                    if (groupFound) {
-                        Toast.makeText(ongea.this, "Joined Group: " + groupName, Toast.LENGTH_SHORT).show();
-                    } else {
+                    if (!groupFound) {
                         Toast.makeText(ongea.this, "Group Name not found!", Toast.LENGTH_SHORT).show();
                     }
                 }
@@ -110,8 +122,6 @@ public class ongea extends AppCompatActivity {
             });
         }
     }
-
-
 
     @SuppressLint("SetTextI18n")
     private void toggleGroupList() {
