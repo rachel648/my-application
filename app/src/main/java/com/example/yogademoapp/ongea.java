@@ -72,18 +72,28 @@ public class ongea extends AppCompatActivity {
     }
 
     private void joinGroup() {
-        String groupId = joinGroupIdEditText.getText().toString().trim();
+        String groupName = joinGroupIdEditText.getText().toString().trim(); // Use group name instead of ID
 
-        if (groupId.isEmpty()) {
-            Toast.makeText(this, "Please enter a Group ID", Toast.LENGTH_SHORT).show();
+        if (groupName.isEmpty()) {
+            Toast.makeText(this, "Please enter a Group Name", Toast.LENGTH_SHORT).show();
         } else {
-            groupRef.child(groupId).addListenerForSingleValueEvent(new ValueEventListener() {
+            groupRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
-                    if (snapshot.exists()) {
-                        Toast.makeText(ongea.this, "Joined Group!", Toast.LENGTH_SHORT).show();
+                    boolean groupFound = false;
+
+                    for (DataSnapshot groupSnapshot : snapshot.getChildren()) {
+                        Group group = groupSnapshot.getValue(Group.class);
+                        if (group != null && group.getGroupName().equalsIgnoreCase(groupName)) {
+                            groupFound = true;
+                            break; // Stop searching after finding the group
+                        }
+                    }
+
+                    if (groupFound) {
+                        Toast.makeText(ongea.this, "Joined Group: " + groupName, Toast.LENGTH_SHORT).show();
                     } else {
-                        Toast.makeText(ongea.this, "Group ID not found!", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ongea.this, "Group Name not found!", Toast.LENGTH_SHORT).show();
                     }
                 }
 
@@ -94,6 +104,7 @@ public class ongea extends AppCompatActivity {
             });
         }
     }
+
 
     private void toggleGroupList() {
         if (isListVisible) {
