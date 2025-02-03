@@ -26,7 +26,8 @@
         android:textSize="18sp"
         android:textColor="@color/dark_green"
         android:layout_below="@id/titleTextView"
-        android:layout_marginTop="16dp"/>
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/groupNameEditText"
@@ -34,7 +35,8 @@
         android:layout_height="wrap_content"
         android:hint="Group Name"
         android:layout_below="@id/registerTitle"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/black" />
 
     <EditText
         android:id="@+id/groupDescriptionEditText"
@@ -42,7 +44,9 @@
         android:layout_height="wrap_content"
         android:hint="Group Description"
         android:layout_below="@id/groupNameEditText"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/registerButton"
@@ -71,7 +75,9 @@
         android:layout_height="wrap_content"
         android:hint="Group ID"
         android:layout_below="@id/joinTitle"
-        android:layout_marginTop="8dp"/>
+        android:layout_marginTop="8dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
 
     <Button
         android:id="@+id/joinButton"
