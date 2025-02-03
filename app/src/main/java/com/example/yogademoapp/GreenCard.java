@@ -1,27 +1,26 @@
 package com.example.yogademoapp;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class GreenCard extends AppCompatActivity {
 
@@ -38,6 +37,8 @@ public class GreenCard extends AppCompatActivity {
 
     private ImageView imageView;
     private Uri selectedImageUri;
+    private FirebaseFirestore db;
+    private FirebaseStorage storage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,30 +46,28 @@ public class GreenCard extends AppCompatActivity {
         setContentView(R.layout.activity_green_card);
 
         mAuth = FirebaseAuth.getInstance();
+        db = FirebaseFirestore.getInstance();
+        storage = FirebaseStorage.getInstance();
 
         // Initialize views
         telephoneEditText = findViewById(R.id.textBox1);
         addressEditText = findViewById(R.id.textBox2);
         locationEditText = findViewById(R.id.textBox3);
-        Button editButton = findViewById(R.id.editButton);
         LinearLayout passwordChangeSection = findViewById(R.id.passwordChangeSection);
         EditText passwordEditText = findViewById(R.id.passwordEditText);
         EditText oldPasswordEditText = findViewById(R.id.oldPassword);
         EditText newPasswordEditText = findViewById(R.id.newPassword);
-        Button changePasswordButton = findViewById(R.id.changePasswordButton);
         TextView emailTextView = findViewById(R.id.textviewemail); // Ensure you have a TextView for displaying the email
         imageView = findViewById(R.id.imageView);
 
-        // Load saved email from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        String savedEmail = sharedPreferences.getString("userEmail", "johndoe@gmail.com"); // Default email
-        emailTextView.setText(savedEmail); // Display the email
+        // Load user email from Firebase
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser != null) {
+            emailTextView.setText(currentUser.getEmail());
+        }
 
-        // Load saved details from SharedPreferences
+        // Load saved profile details from Firestore
         loadProfileDetails();
-
-        // Make the fields non-editable initially
-        setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
 
         // Toggle visibility of the password change section
         passwordEditText.setOnClickListener(v -> {
@@ -80,12 +79,12 @@ public class GreenCard extends AppCompatActivity {
         });
 
         // Handle password change
-        changePasswordButton.setOnClickListener(v -> changePassword(oldPasswordEditText, newPasswordEditText));
+        findViewById(R.id.changePasswordButton).setOnClickListener(v -> changePassword(oldPasswordEditText, newPasswordEditText));
 
         // Add click listener to the edit button for profile editing
-        editButton.setOnClickListener(v -> toggleEditMode());
+        findViewById(R.id.editButton).setOnClickListener(v -> toggleEditMode());
 
-
+        // Image click to open gallery
         imageView.setOnClickListener(v -> {
             if (isEditing) {
                 // Only open the gallery if in edit mode
@@ -105,9 +104,7 @@ public class GreenCard extends AppCompatActivity {
             Intent intent = new Intent(GreenCard.this, profpayment.class);
             startActivity(intent);
         });
-
     }
-
 
     private void openGallery() {
         // Intent to open the device's gallery
@@ -126,27 +123,83 @@ public class GreenCard extends AppCompatActivity {
             // Set the selected image as the ImageView's source
             imageView.setImageURI(selectedImageUri);
 
-            // You can save this URI to SharedPreferences or Firebase
-            saveImageUri(selectedImageUri);
+            // You can upload this URI to Firebase Storage
+            uploadImageToFirebase();
         }
     }
 
-    private void saveImageUri(Uri imageUri) {
-        // Save the image URI in SharedPreferences
-        SharedPreferences preferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("profile_image", imageUri.toString());
-        editor.apply();
+    private void uploadImageToFirebase() {
+        // Get the current user
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null && selectedImageUri != null) {
+            StorageReference storageRef = storage.getReference().child("profile_images/" + user.getUid() + ".jpg");
+            storageRef.putFile(selectedImageUri)
+                    .addOnSuccessListener(taskSnapshot -> {
+                        // Handle success
+                        storageRef.getDownloadUrl().addOnCompleteListener(uriTask -> {
+                            if (uriTask.isSuccessful()) {
+                                String imageUrl = uriTask.getResult().toString();
+                                // Save the image URL to Firestore
+                                saveImageUri(imageUrl);
+                            } else {
+                                // Handle failure to get download URL
+                                Log.e("ImageUpload", "Failed to get download URL", uriTask.getException());
+                                Toast.makeText(GreenCard.this, "Failed to retrieve image URL", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    })
+                    .addOnFailureListener(exception -> {
+                        // Log the error
+                        Log.e("ImageUpload", "Upload failed", exception);
+                        Toast.makeText(GreenCard.this, "Image upload failed: " + exception.getMessage(), Toast.LENGTH_SHORT).show();
+                    });
+        } else {
+            // Handle case where user is null or selectedImageUri is null
+            Log.e("ImageUpload", "User or image URI is null");
+            Toast.makeText(GreenCard.this, "User or image URI is null", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void loadImage() {
-        // Load the saved image URI if available
-        SharedPreferences preferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        String imageUriString = preferences.getString("profile_image", null);
 
-        if (imageUriString != null) {
-            Uri imageUri = Uri.parse(imageUriString);
-            imageView.setImageURI(imageUri);
+    private void saveImageUri(String imageUrl) {
+        // Get the current user
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            DocumentReference userRef = db.collection("users").document(user.getUid());
+            userRef.update("profile_image", imageUrl)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(GreenCard.this, "Profile image updated", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private void loadProfileDetails() {
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            DocumentReference userRef = db.collection("users").document(user.getUid());
+            userRef.get().addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    // Get the document snapshot
+                    if (task.getResult() != null && task.getResult().exists()) {
+                        String telephone = task.getResult().getString("telephone");
+                        String address = task.getResult().getString("address");
+                        String location = task.getResult().getString("location");
+                        String profileImageUrl = task.getResult().getString("profile_image");
+
+                        // Set the data in the fields
+                        telephoneEditText.setText(telephone != null ? telephone : defaultTelephone);
+                        addressEditText.setText(address != null ? address : defaultAddress);
+                        locationEditText.setText(location != null ? location : defaultLocation);
+
+                        // Set the profile image if available
+                        if (profileImageUrl != null) {
+                            imageView.setImageURI(Uri.parse(profileImageUrl));
+                        }
+                    }
+                }
+            });
         }
     }
 
@@ -161,38 +214,20 @@ public class GreenCard extends AppCompatActivity {
 
         FirebaseUser user = mAuth.getCurrentUser();
         if (user != null) {
-            String email = user.getEmail();
-            if (email != null) {
-                // Re-authenticate the user
-                user.reauthenticate(EmailAuthProvider.getCredential(email, oldPassword))
-                        .addOnCompleteListener(task -> {
-                            if (task.isSuccessful()) {
-                                user.updatePassword(newPassword)
-                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
-                                            @Override
-                                            public void onComplete(@NonNull Task<Void> task) {
-                                                if (task.isSuccessful()) {
-                                                    Toast.makeText(GreenCard.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
-                                                    mAuth.signOut(); // Optionally log out the user after changing the password
-                                                    finish(); // Close the current activity
-                                                } else {
-                                                    Toast.makeText(GreenCard.this, "Password update failed", Toast.LENGTH_SHORT).show();
-                                                }
-                                            }
-                                        });
-                            } else {
-                                Toast.makeText(GreenCard.this, "Re-authentication failed", Toast.LENGTH_SHORT).show();
-                            }
-                        });
-            } else {
-                Toast.makeText(GreenCard.this, "Email not found", Toast.LENGTH_SHORT).show();
-            }
+            user.updatePassword(newPassword)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(GreenCard.this, "Password updated successfully", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(GreenCard.this, "Password update failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 
     private void toggleEditMode() {
         if (isEditing) {
-            // If in edit mode, save the new values and make fields non-editable
+            // If in edit mode, save the new values to Firebase
             String newTelephone = telephoneEditText.getText().toString();
             String newAddress = addressEditText.getText().toString();
             String newLocation = locationEditText.getText().toString();
@@ -202,21 +237,14 @@ public class GreenCard extends AppCompatActivity {
                 return;
             }
 
-            // Save new values to SharedPreferences
+            // Save new values to Firestore
             saveProfileDetails(newTelephone, newAddress, newLocation);
-
-            // Make fields non-editable
-            setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
-            Toast.makeText(GreenCard.this, "Profile updated", Toast.LENGTH_SHORT).show();
-
         } else {
             // If not in edit mode, allow editing
             telephoneEditText.setText("");
             addressEditText.setText("");
             locationEditText.setText("");
 
-            // Enable editing
-            setFieldsEditable(true, telephoneEditText, addressEditText, locationEditText);
             Toast.makeText(GreenCard.this, "You can now edit the fields", Toast.LENGTH_SHORT).show();
         }
 
@@ -225,31 +253,15 @@ public class GreenCard extends AppCompatActivity {
     }
 
     private void saveProfileDetails(String telephone, String address, String location) {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("telephone", telephone);
-        editor.putString("address", address);
-        editor.putString("location", location);
-        editor.apply(); // Save changes
-    }
-
-    private void loadProfileDetails() {
-        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        String savedTelephone = sharedPreferences.getString("telephone", defaultTelephone);
-        String savedAddress = sharedPreferences.getString("address", defaultAddress);
-        String savedLocation = sharedPreferences.getString("location", defaultLocation);
-
-        telephoneEditText.setText(savedTelephone);
-        addressEditText.setText(savedAddress);
-        locationEditText.setText(savedLocation);
-    }
-
-    // Helper method to toggle editability of fields
-    private void setFieldsEditable(boolean editable, EditText... editTexts) {
-        for (EditText editText : editTexts) {
-            editText.setFocusableInTouchMode(editable);
-            editText.setFocusable(editable);
-            editText.setClickable(editable);
+        FirebaseUser user = mAuth.getCurrentUser();
+        if (user != null) {
+            DocumentReference userRef = db.collection("users").document(user.getUid());
+            userRef.update("telephone", telephone, "address", address, "location", location)
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            Toast.makeText(GreenCard.this, "Profile updated", Toast.LENGTH_SHORT).show();
+                        }
+                    });
         }
     }
 }
