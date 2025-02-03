@@ -43,15 +43,17 @@
                         app:layout_constraintStart_toStartOf="@+id/imageView"
                         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-                    <ImageView
+                    <de.hdodenhof.circleimageview.CircleImageView
                         android:id="@+id/imageView"
                         android:layout_width="150dp"
                         android:layout_height="150dp"
-                        android:background="@drawable/profile"
+                        android:src="@drawable/profile"
+                        app:civ_border_width="2dp"
+                        app:civ_border_color="@android:color/white"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        tools:srcCompat="@tools:sample/avatars" />
+                        app:layout_constraintTop_toTopOf="parent" />
+
 
                     <TextView
                         android:id="@+id/textviewemail"
@@ -59,7 +61,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="36dp"
                         android:text="johndoe@gmail.com"
-                        android:textColor="#ffffff"
+                        android:textColor="@color/black"
                         android:textSize="18dp"
                         android:textStyle="bold"
                         app:layout_constraintEnd_toEndOf="@+id/imageView"
@@ -70,7 +72,7 @@
                     <ImageView
                         android:id="@+id/imageView2"
                         android:layout_width="404dp"
-                        android:layout_height="360dp"
+                        android:layout_height="300dp"
                         android:scaleType="centerCrop"
                         app:layout_constraintTop_toTopOf="parent"
                         app:srcCompat="@drawable/hello" />
