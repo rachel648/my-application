@@ -24,6 +24,6 @@ public class Consultant {
     }
 
     public int getRating() {
-        return rating; // This method should return the rating
+        return rating; 
     }
 }
