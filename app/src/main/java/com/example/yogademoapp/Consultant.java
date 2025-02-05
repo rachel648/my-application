@@ -21,9 +21,10 @@ public class Consultant {
         this.fees = fees;
         this.gymNumber = gymNumber;
         this.imageId = imageId;
+        this.rating = rating;
     }
 
     public int getRating() {
-        return rating; 
+        return rating; // This method should return the rating
     }
 }
