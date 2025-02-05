@@ -125,11 +125,16 @@ public class RegisterActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
 
                                     // Redirect based on user type
+                                    // Redirect based on user type
                                     if ("consultant".equals(userType)) {
-                                        startActivity(new Intent(RegisterActivity.this, Agent.class));
+                                        Intent intent = new Intent(RegisterActivity.this, Agent.class);
+                                        intent.putExtra("username", Username);  // Pass username
+                                        intent.putExtra("userEmail", email);      // Pass email
+                                        startActivity(intent);
                                     } else if ("patient".equals(userType)) {
                                         startActivity(new Intent(RegisterActivity.this, ChooseActivity.class));
                                     }
+
                                 }
                             } else {
                                 // Registration failed
