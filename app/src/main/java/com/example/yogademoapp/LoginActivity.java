@@ -90,7 +90,7 @@ public class LoginActivity extends AppCompatActivity {
                                                         if ("consultant".equals(userType)) {
                                                             startActivity(new Intent(LoginActivity.this, Agent.class));
                                                         } else if ("patient".equals(userType)) {
-                                                            startActivity(new Intent(LoginActivity.this, ChooseActivity.class));
+                                                            startActivity(new Intent(LoginActivity.this, MedDoc.class));
                                                         } else {
                                                             Toast.makeText(getApplicationContext(), "User type not recognized", Toast.LENGTH_SHORT).show();
                                                         }
