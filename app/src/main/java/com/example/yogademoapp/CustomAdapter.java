@@ -13,49 +13,35 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<UserOne> {
+    private Context context;
+    private List<UserOne> userList;
 
-    private LayoutInflater inflater;
-    private List<UserOne> users;
-
-    public CustomAdapter(Context context, List<UserOne> users) {
-        super(context, 0, users);
-        inflater = LayoutInflater.from(context);
-        this.users = users;
-    }
-
-    // ViewHolder pattern to optimize performance
-    static class ViewHolder {
-        ImageView userImage;
-        TextView usernameText;
-        TextView emailText;
+    public CustomAdapter(@NonNull Context context, @NonNull List<UserOne> userList) {
+        super(context, 0, userList);
+        this.context = context;
+        this.userList = userList;
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        ViewHolder holder;
-
+        // Inflate custom list item layout if needed
         if (convertView == null) {
-            // Inflate the layout (using recommended layout name)
-            convertView = inflater.inflate(R.layout.item_user, parent, false);
-            holder = new ViewHolder();
-            // Initialize views using the recommended IDs
-            holder.userImage = convertView.findViewById(R.id.userImage);
-            holder.usernameText = convertView.findViewById(R.id.usernameText);
-            holder.emailText = convertView.findViewById(R.id.emailText);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+            convertView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
         }
 
-        // Get the current UserOne object
-        UserOne currentUser = getItem(position);
-        if (currentUser != null) {
-            // Set the image, username, and email
-            holder.userImage.setImageResource(currentUser.getImageId());
-            holder.usernameText.setText(currentUser.getUsername());
-            holder.emailText.setText(currentUser.getEmail());
-        }
+        // Get the current user object
+        UserOne currentUser = userList.get(position);
+
+        // Find views in the custom layout
+        ImageView userImage = convertView.findViewById(R.id.userImage);
+        TextView usernameText = convertView.findViewById(R.id.usernameText);
+        TextView emailText = convertView.findViewById(R.id.emailText);
+
+        // Set the views with data from the current user
+        userImage.setImageResource(currentUser.getImageId());
+        usernameText.setText(currentUser.getUsername());
+        emailText.setText(currentUser.getEmail());
 
         return convertView;
     }

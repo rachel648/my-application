@@ -24,6 +24,7 @@ public class Agent extends AppCompatActivity {
         if (username != null && userEmail != null) {
             users.add(new UserOne(username, userEmail, R.drawable.man1));
         }
+
         ListView listView = findViewById(R.id.listView);
         CustomAdapter adapter = new CustomAdapter(this, users);
         listView.setAdapter(adapter);
