@@ -23,12 +23,10 @@ public class UserOne {
         return imageId;
     }
 
-    public String getUserEmail() {
-        return getUserEmail();
+    public String getUserEmail() {return getUserEmail();
     }
 
-    public int getImageResourceId() {
-        return getImageResourceId();
+    public int getImageResourceId() {return getImageResourceId();
     }
 }
 
