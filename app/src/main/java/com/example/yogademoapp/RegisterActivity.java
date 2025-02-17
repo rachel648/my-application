@@ -132,7 +132,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         intent.putExtra("userEmail", email);      // Pass email
                                         startActivity(intent);
                                     } else if ("patient".equals(userType)) {
-                                        startActivity(new Intent(RegisterActivity.this, ChooseActivity.class));
+                                        startActivity(new Intent(RegisterActivity.this, MedDoc.class));
                                     }
 
                                 }
