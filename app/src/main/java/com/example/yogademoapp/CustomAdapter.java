@@ -13,36 +13,46 @@ import androidx.annotation.NonNull;
 import java.util.List;
 
 public class CustomAdapter extends ArrayAdapter<UserOne> {
-    private Context context;
-    private List<UserOne> userList;
 
     public CustomAdapter(@NonNull Context context, @NonNull List<UserOne> userList) {
-        super(context, 0, userList);
-        this.context = context;
-        this.userList = userList;
+        super(context, 0, userList);  // The third parameter is the list of users.
     }
 
     @NonNull
     @Override
     public View getView(int position, View convertView, @NonNull ViewGroup parent) {
-        // Inflate custom list item layout if needed
+        // ViewHolder pattern to improve performance
+        ViewHolder viewHolder;
+
+        // Reuse convertView or create a new one if it's null
         if (convertView == null) {
-            convertView = LayoutInflater.from(context).inflate(R.layout.item_user, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_user, parent, false);
+            viewHolder = new ViewHolder();
+            viewHolder.userImage = convertView.findViewById(R.id.userImage);
+            viewHolder.usernameText = convertView.findViewById(R.id.usernameText);
+            viewHolder.emailText = convertView.findViewById(R.id.emailText);
+            convertView.setTag(viewHolder);  // Tag the view for future reference
+        } else {
+            viewHolder = (ViewHolder) convertView.getTag();
         }
 
         // Get the current user object
-        UserOne currentUser = userList.get(position);
+        UserOne currentUser = getItem(position);  // You can use getItem() as it is already passed by ArrayAdapter
 
-        // Find views in the custom layout
-        ImageView userImage = convertView.findViewById(R.id.userImage);
-        TextView usernameText = convertView.findViewById(R.id.usernameText);
-        TextView emailText = convertView.findViewById(R.id.emailText);
-
-        // Set the views with data from the current user
-        userImage.setImageResource(currentUser.getImageId());
-        usernameText.setText(currentUser.getUsername());
-        emailText.setText(currentUser.getEmail());
+        if (currentUser != null) {
+            // Set the views with data from the current user
+            viewHolder.userImage.setImageResource(currentUser.getImageId());
+            viewHolder.usernameText.setText(currentUser.getUsername());
+            viewHolder.emailText.setText(currentUser.getEmail());
+        }
 
         return convertView;
+    }
+
+    // ViewHolder class to hold references to avoid unnecessary calls to findViewById
+    private static class ViewHolder {
+        ImageView userImage;
+        TextView usernameText;
+        TextView emailText;
     }
 }

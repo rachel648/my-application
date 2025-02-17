@@ -118,26 +118,32 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:weightSum="1">
+                    android:weightSum="1"
+                    android:layout_marginTop="16dp"> <!-- Add marginTop to push the buttons down -->
 
                     <Button
-                        android:layout_width="0dp"
+                        android:layout_width="5dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
-                        android:layout_weight="0.5"
+                        android:layout_weight=".5"
                         android:text="Reject"
                         android:textColor="#333333"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:backgroundTint="@color/white"
+                        />
 
                     <Button
-                        android:layout_width="0dp"
+                        android:layout_width="5dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:layout_weight="0.5"
                         android:text="Accept"
                         android:textColor="#333333"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        android:backgroundTint="@color/white"
+                        />
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

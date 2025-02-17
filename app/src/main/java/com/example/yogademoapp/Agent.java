@@ -2,7 +2,6 @@ package com.example.yogademoapp;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.AdapterView;
 
@@ -12,8 +11,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Agent extends AppCompatActivity {
-
-    ImageView image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,10 +41,10 @@ public class Agent extends AppCompatActivity {
                 // Create an intent to navigate to Accept.java
                 Intent intent = new Intent(Agent.this, accept.class);
 
-                // Pass only the upper layout details (name, email, and image)
+                // Pass the username, email, and image to Accept activity
                 intent.putExtra("consultantName", selectedUser.getUsername());
-               intent.putExtra("consultantEmail", selectedUser.getUserEmail());
-               intent.putExtra("consultantImage", selectedUser.getImageResourceId());
+                intent.putExtra("consultantEmail", selectedUser.getEmail());  // Make sure to use getEmail() here
+                intent.putExtra("consultantImage", selectedUser.getImageId()); // Use getImageId() here
 
                 // Start the Accept activity
                 startActivity(intent);
