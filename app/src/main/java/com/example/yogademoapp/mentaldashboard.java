@@ -1,5 +1,7 @@
 package com.example.yogademoapp;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -68,12 +70,52 @@ public class mentaldashboard extends AppCompatActivity {
                         break;
                     case R.id.info:
                         Toast.makeText(mentaldashboard.this, "About selected", Toast.LENGTH_SHORT).show();
+                        //start about actvity
+                        Intent intent1 = new Intent(mentaldashboard.this, about.class);
+                        startActivity(intent1);
                         break;
                     case R.id.share:
                         Toast.makeText(mentaldashboard.this, "Share selected", Toast.LENGTH_SHORT).show();
+
+                        // Create an Intent to share text
+                        Intent sendIntent = new Intent(Intent.ACTION_SEND);
+                        sendIntent.setType("text/plain");
+                        sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome app!");
+
+                        // Create the options for the dialog
+                        String[] options = {"WhatsApp", "Instagram"};
+
+                        // Show a dialog with WhatsApp and Instagram options
+                        new AlertDialog.Builder(mentaldashboard.this)
+                                .setTitle("Share via")
+                                .setItems(options, new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        // Check which option was selected
+                                        if (which == 0) { // WhatsApp
+                                            sendIntent.setPackage("com.whatsapp");
+                                            try {
+                                                startActivity(sendIntent); // Try to start WhatsApp
+                                            } catch (android.content.ActivityNotFoundException ex) {
+                                                Toast.makeText(mentaldashboard.this, "WhatsApp not installed", Toast.LENGTH_SHORT).show();
+                                            }
+                                        } else if (which == 1) { // Instagram
+                                            sendIntent.setPackage("com.instagram.android"); // Set Instagram package name
+                                            try {
+                                                startActivity(sendIntent); // Try to start Instagram
+                                            } catch (android.content.ActivityNotFoundException ex) {
+                                                Toast.makeText(mentaldashboard.this, "Instagram not installed", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    }
+                                })
+                                .show();
                         break;
+
                     case R.id.call:
                         Toast.makeText(mentaldashboard.this, "Contacts selected", Toast.LENGTH_SHORT).show();
+                        Intent intent3 = new Intent(mentaldashboard.this, contacts.class);
+                        startActivity(intent3);
                         break;
                     case R.id.rate_us:
                         Toast.makeText(mentaldashboard.this, "Rate selected", Toast.LENGTH_SHORT).show();
