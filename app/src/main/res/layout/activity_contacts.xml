@@ -52,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="rachelraqelmurithi@gmail.com"
         android:textColor="@color/green_900"
-        android:textSize="30sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         android:fontFamily="sans-serif-condensed"
         app:layout_constraintTop_toBottomOf="@id/created_by"

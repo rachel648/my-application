@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -55,7 +56,7 @@ public class mentaldashboard extends AppCompatActivity {
         drawerToggle.syncState();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-       navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
                 switch (menuItem.getItemId()) {
@@ -64,45 +65,37 @@ public class mentaldashboard extends AppCompatActivity {
                         break;
                     case R.id.profileImageView:
                         Toast.makeText(mentaldashboard.this, "Profile selected", Toast.LENGTH_SHORT).show();
-                        // Start the GreenCard activity
                         Intent intent = new Intent(mentaldashboard.this, GreenCard.class);
                         startActivity(intent);
                         break;
                     case R.id.info:
                         Toast.makeText(mentaldashboard.this, "About selected", Toast.LENGTH_SHORT).show();
-                        //start about actvity
                         Intent intent1 = new Intent(mentaldashboard.this, about.class);
                         startActivity(intent1);
                         break;
                     case R.id.share:
                         Toast.makeText(mentaldashboard.this, "Share selected", Toast.LENGTH_SHORT).show();
-
-                        // Create an Intent to share text
                         Intent sendIntent = new Intent(Intent.ACTION_SEND);
                         sendIntent.setType("text/plain");
                         sendIntent.putExtra(Intent.EXTRA_TEXT, "Check out this awesome app!");
 
-                        // Create the options for the dialog
                         String[] options = {"WhatsApp", "Instagram"};
-
-                        // Show a dialog with WhatsApp and Instagram options
                         new AlertDialog.Builder(mentaldashboard.this)
                                 .setTitle("Share via")
                                 .setItems(options, new DialogInterface.OnClickListener() {
                                     @Override
                                     public void onClick(DialogInterface dialog, int which) {
-                                        // Check which option was selected
-                                        if (which == 0) { // WhatsApp
+                                        if (which == 0) {
                                             sendIntent.setPackage("com.whatsapp");
                                             try {
-                                                startActivity(sendIntent); // Try to start WhatsApp
+                                                startActivity(sendIntent);
                                             } catch (android.content.ActivityNotFoundException ex) {
                                                 Toast.makeText(mentaldashboard.this, "WhatsApp not installed", Toast.LENGTH_SHORT).show();
                                             }
-                                        } else if (which == 1) { // Instagram
-                                            sendIntent.setPackage("com.instagram.android"); // Set Instagram package name
+                                        } else if (which == 1) {
+                                            sendIntent.setPackage("com.instagram.android");
                                             try {
-                                                startActivity(sendIntent); // Try to start Instagram
+                                                startActivity(sendIntent);
                                             } catch (android.content.ActivityNotFoundException ex) {
                                                 Toast.makeText(mentaldashboard.this, "Instagram not installed", Toast.LENGTH_SHORT).show();
                                             }
@@ -111,7 +104,6 @@ public class mentaldashboard extends AppCompatActivity {
                                 })
                                 .show();
                         break;
-
                     case R.id.call:
                         Toast.makeText(mentaldashboard.this, "Contacts selected", Toast.LENGTH_SHORT).show();
                         Intent intent3 = new Intent(mentaldashboard.this, contacts.class);
@@ -119,6 +111,17 @@ public class mentaldashboard extends AppCompatActivity {
                         break;
                     case R.id.rate_us:
                         Toast.makeText(mentaldashboard.this, "Rate selected", Toast.LENGTH_SHORT).show();
+                        new AlertDialog.Builder(mentaldashboard.this)
+                                .setTitle("Rate Us")
+                                .setMessage("Would you like to rate the app?")
+                                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        showRatingDialog();
+                                    }
+                                })
+                                .setNegativeButton("No", null)
+                                .show();
                         break;
                     default:
                         return false;
@@ -127,57 +130,37 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
-        // Set the first Spinner initially to GONE
         spinner.setVisibility(View.GONE);
-
-        // Define the list of options for the Spinner
         final String[] options = {"Depression", "Anxiety disorder", "Eating disorder", "Low self-esteem", "Other"};
-
-        // Create an ArrayAdapter to populate the Spinner with options
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
 
-        // Set an item selected listener for the Spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle the selected option here
                 updateSecondSpinner(position);
-                secondSpinner.setVisibility(View.VISIBLE); // Show the second Spinner
+                secondSpinner.setVisibility(View.VISIBLE);
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing
-            }
+            public void onNothingSelected(AdapterView<?> parentView) {}
         });
 
-        // Set an onClickListener for the CardView to show/hide the Spinner
         cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Toggle the visibility of the TextView
                 if (isTextViewVisible) {
                     textViewOnTop.setVisibility(View.GONE);
                 } else {
                     textViewOnTop.setVisibility(View.VISIBLE);
                 }
                 isTextViewVisible = !isTextViewVisible;
-
-                // Toggle the visibility of the first Spinner
-                if (spinner.getVisibility() == View.VISIBLE) {
-                    spinner.setVisibility(View.GONE);
-                } else {
-                    spinner.setVisibility(View.VISIBLE);
-                }
-
-                // Ensure the second Spinner is hidden when the CardView is clicked
+                spinner.setVisibility(spinner.getVisibility() == View.VISIBLE ? View.GONE : View.VISIBLE);
                 secondSpinner.setVisibility(View.GONE);
             }
         });
 
-        // Set an onClickListener for the TextView to show/hide the Spinner
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -186,7 +169,6 @@ public class mentaldashboard extends AppCompatActivity {
             }
         });
 
-        CardView Community = findViewById(R.id.Community);
         Community.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -206,7 +188,6 @@ public class mentaldashboard extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Handle the back button click, e.g., go back to the previous activity
                 onBackPressed();
             }
         });
@@ -239,8 +220,6 @@ public class mentaldashboard extends AppCompatActivity {
 
     private void updateSecondSpinner(int position) {
         String[] secondOptions;
-
-        // Determine the options for the second Spinner based on the selected item in the first Spinner
         switch (position) {
             case 0:
             case 1:
@@ -254,16 +233,13 @@ public class mentaldashboard extends AppCompatActivity {
                 break;
         }
 
-        // Create an ArrayAdapter to populate the second Spinner with options
         ArrayAdapter<String> secondAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, secondOptions);
         secondAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         secondSpinner.setAdapter(secondAdapter);
 
-        // Set an item selected listener for the second Spinner
         secondSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
-                // Handle the selected option here
                 String selectedOption = secondOptions[position];
                 if ("Online sessions".equals(selectedOption) || "Physical sessions".equals(selectedOption)) {
                     Intent intent = new Intent(mentaldashboard.this, preference.class);
@@ -272,18 +248,33 @@ public class mentaldashboard extends AppCompatActivity {
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parentView) {
-                // Do nothing
-            }
+            public void onNothingSelected(AdapterView<?> parentView) {}
         });
+    }
 
-            Community.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(mentaldashboard.this, mario.class);
-                startActivity(intent);
-            }
-        });
+    private void showRatingDialog() {
+        final RatingBar ratingBar = new RatingBar(mentaldashboard.this);
+        ratingBar.setNumStars(5);
+        ratingBar.setStepSize(1);
+        ratingBar.setRating(0);
+        ratingBar.setIsIndicator(false);
 
+        new AlertDialog.Builder(mentaldashboard.this)
+                .setTitle("Rate the app")
+                .setMessage("Please rate us!")
+                .setView(ratingBar)
+                .setPositiveButton("Submit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        float rating = ratingBar.getRating();
+                        if (rating > 0) {
+                            Toast.makeText(mentaldashboard.this, "Thank you for your rating: " + rating + " stars!", Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(mentaldashboard.this, "Please select a rating before submitting.", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton("Cancel", null)
+                .show();
     }
 }
