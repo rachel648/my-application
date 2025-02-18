@@ -55,7 +55,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="36dp"
                     android:text="johndoe@gmail.com"
-                    android:textColor="#ffffff"
+                    android:textColor="@color/black"
                     android:textSize="18dp"
                     android:textStyle="bold"
                     app:layout_constraintEnd_toEndOf="@+id/imageView"
