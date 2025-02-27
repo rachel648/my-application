@@ -81,17 +81,24 @@ public class UserActivity extends AppCompatActivity {
 
     private void saveAppointmentDetails(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault()); // Get day of the week
         String dateTimeString = dateFormat.format(date.getTime());
+        String dayOfWeek = dayFormat.format(date.getTime());
+
+        String userEmail = sharedPreferences.getString("LoggedInUserEmail", "user@example.com"); // Fetch stored email
+        String trainFees = binding.fees.getText().toString(); // Get train fees
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("userEmail", "user@example.com"); // Save the user email, replace with actual email
+        editor.putString("userEmail", userEmail);
         editor.putString("scheduledTime", dateTimeString);
+        editor.putString("dayOfWeek", dayOfWeek);
+        editor.putString("trainFees", trainFees);
         editor.apply();
 
-        // Proceed with existing process (e.g., payment activity)
+        // Proceed with normal booking flow (e.g., Payment activity)
         Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
-        String fees = binding.fees.getText().toString();
-        bookAppointmentIntent.putExtra("TrainFees", fees);
+        bookAppointmentIntent.putExtra("TrainFees", trainFees);
         startActivity(bookAppointmentIntent);
     }
+
 }

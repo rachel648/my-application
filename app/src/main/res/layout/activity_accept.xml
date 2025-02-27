@@ -81,6 +81,7 @@
                 android:padding="16dp"> <!-- Adjust the margin for overlap -->
 
                 <TextView
+                    android:id="@+id/textviewclient"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
@@ -90,6 +91,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/textviewemail2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
@@ -98,6 +100,7 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textviewschedule"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
@@ -106,10 +109,20 @@
                     android:textSize="16sp" />
 
                 <TextView
+                    android:id="@+id/textviewday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingBottom="8dp"
                     android:text="Wednesday"
+                    android:textColor="#333333"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/textviewfees"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="8dp"
+                    android:text="Train_fees"
                     android:textColor="#333333"
                     android:textSize="16sp" />
 
@@ -122,6 +135,7 @@
                     android:layout_marginTop="16dp"> <!-- Add marginTop to push the buttons down -->
 
                     <Button
+                        android:id="@+id/rejectButton"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="start"
@@ -133,6 +147,7 @@
                         />
 
                     <Button
+                        android:id="@+id/acceptButton"
                         android:layout_width="5dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
