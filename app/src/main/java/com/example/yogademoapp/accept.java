@@ -15,7 +15,8 @@ public class accept extends AppCompatActivity {
         setContentView(R.layout.activity_accept);
 
         // Retrieve UI elements
-        TextView emailTextView = findViewById(R.id.textviewemail2);
+        TextView consultantEmailTextView = findViewById(R.id.textviewConsultantEmail); // Consultant's email
+        TextView patientEmailTextView = findViewById(R.id.textviewPatientEmail); // Patient's email
         TextView clientTextView = findViewById(R.id.textviewclient);
         TextView scheduleTextView = findViewById(R.id.textviewschedule);
         TextView dayTextView = findViewById(R.id.textviewday);
@@ -39,8 +40,11 @@ public class accept extends AppCompatActivity {
         String dayOfWeek = sharedPreferences.getString("dayOfWeek", "Unknown");
         String trainFees = sharedPreferences.getString("trainFees", "0");
 
-        // Display patient details
-        emailTextView.setText("Email: " + patientEmail);
+        // Display consultant's email separately
+        consultantEmailTextView.setText(consultantEmail);
+
+        // Display patient's details separately
+        patientEmailTextView.setText("Patient Email: " + patientEmail);
         clientTextView.setText("Client: " + patientName);
         scheduleTextView.setText("Scheduled Time: " + scheduledTime);
         dayTextView.setText("Day: " + dayOfWeek);
