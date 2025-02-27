@@ -79,6 +79,7 @@ public class UserActivity extends AppCompatActivity {
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
+
     private void saveAppointmentDetails(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault()); // Get day of the week
@@ -101,5 +102,6 @@ public class UserActivity extends AppCompatActivity {
         startActivity(bookAppointmentIntent);
     }
 
+    
 }
 
