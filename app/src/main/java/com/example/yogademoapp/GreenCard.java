@@ -25,6 +25,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.EmailAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -328,5 +330,16 @@ public class GreenCard extends AppCompatActivity {
             editText.setFocusable(editable);
             editText.setClickable(editable);
         }
+
+        DatabaseReference userRef = FirebaseDatabase.getInstance().getReference("Users").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+
+// Retrieve email from GreenCard
+        TextView emailTextView = findViewById(R.id.textviewemail);
+        String email = emailTextView.getText().toString();
+
+// Save to Firebase
+        userRef.child("email").setValue(email);
+
+
     }
 }
