@@ -113,18 +113,15 @@ public class RegisterActivity extends AppCompatActivity {
                                         int imageId = R.drawable.man1; // Replace with actual image resource id
                                         int rating = 4;  // Example: Assigning a rating of 4 out of 5
 
-
                                         Consultant consultant = new Consultant(Username, phoneNo, experience, fees, gymNumber, imageId, rating);
-
 
                                         FirebaseDatabase.getInstance().getReference("Consultants")
                                                 .child(userId)
                                                 .setValue(consultant);
                                     }
 
-                                    Toast.makeText(getApplicationContext(), "Record Inserted", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
 
-                                    // Redirect based on user type
                                     // Redirect based on user type
                                     if ("consultant".equals(userType)) {
                                         Intent intent = new Intent(RegisterActivity.this, Agent.class);
@@ -134,7 +131,6 @@ public class RegisterActivity extends AppCompatActivity {
                                     } else if ("patient".equals(userType)) {
                                         startActivity(new Intent(RegisterActivity.this, MedDoc.class));
                                     }
-
                                 }
                             } else {
                                 // Registration failed
