@@ -38,12 +38,15 @@ public class accept extends AppCompatActivity {
         if (consultantEmail == null) consultantEmail = "johndoe@gmail.com";
 
         // Retrieve patient’s booking details from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("YogaDemoAppPrefs", MODE_PRIVATE);
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         String patientEmail = sharedPreferences.getString("userEmail", "Not Available");
         String patientName = sharedPreferences.getString("userName", "Unknown User");
         String scheduledTime = sharedPreferences.getString("scheduledTime", "Not Scheduled");
         String dayOfWeek = sharedPreferences.getString("dayOfWeek", "Unknown");
         String trainFees = sharedPreferences.getString("trainFees", "0");
+
+        // Debugging: Verify retrieved email
+   //     Toast.makeText(this, "Retrieved email: " + patientEmail, Toast.LENGTH_SHORT).show();
 
         // Display consultant's email without label
         consultantEmailTextView.setText(consultantEmail);

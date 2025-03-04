@@ -46,13 +46,11 @@ public class GreenCard extends AppCompatActivity {
 
     private static final int PICK_IMAGE_REQUEST = 1;
 
-   // private FirebaseAuth mAuth;
     private ImageView profileImage;
     private SharedPreferences sharedPreferences;
     private FirebaseFirestore db;
     private StorageReference storageRef;
     private FirebaseUser currentUser;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,6 +69,81 @@ public class GreenCard extends AppCompatActivity {
 
         // Open gallery when image is clicked
         profileImage.setOnClickListener(v -> openGallery());
+
+        // Initialize views
+        telephoneEditText = findViewById(R.id.textBox1);
+        addressEditText = findViewById(R.id.textBox2);
+        locationEditText = findViewById(R.id.textBox3);
+        Button editButton = findViewById(R.id.editButton);
+        LinearLayout passwordChangeSection = findViewById(R.id.passwordChangeSection);
+        EditText passwordEditText = findViewById(R.id.passwordEditText);
+        EditText oldPasswordEditText = findViewById(R.id.oldPassword);
+        EditText newPasswordEditText = findViewById(R.id.newPassword);
+        Button changePasswordButton = findViewById(R.id.changePasswordButton);
+        TextView emailTextView = findViewById(R.id.textviewemail);
+
+        // Store the email in SharedPreferences
+        if (currentUser != null) {
+            String userEmail = currentUser.getEmail();
+            if (userEmail != null) {
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("userEmail", userEmail); // Save email
+                editor.apply();
+                emailTextView.setText(userEmail); // Display the email
+                Toast.makeText(this, "Email saved: " + userEmail, Toast.LENGTH_SHORT).show(); // Debugging
+            }
+        }
+
+        // Load saved details from SharedPreferences
+        loadProfileDetails();
+
+        // Make the fields non-editable initially
+        setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
+
+        // Toggle visibility of the password change section
+        passwordEditText.setOnClickListener(v -> {
+            if (passwordChangeSection.getVisibility() == View.GONE) {
+                passwordChangeSection.setVisibility(View.VISIBLE);
+            } else {
+                passwordChangeSection.setVisibility(View.GONE);
+            }
+        });
+
+        // Handle password change
+        changePasswordButton.setOnClickListener(v -> changePassword(oldPasswordEditText, newPasswordEditText));
+
+        // Add click listener to the edit button for profile editing
+        editButton.setOnClickListener(v -> toggleEditMode());
+
+        // Navigate to the notifications page
+        CardView settingsCardView = findViewById(R.id.notifications);
+        settingsCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(GreenCard.this, Not.class);
+            startActivity(intent);
+        });
+
+        CardView settingprofpayment = findViewById(R.id.profpayment);
+        settingprofpayment.setOnClickListener(v -> {
+            Intent intent = new Intent(GreenCard.this, profpayment.class);
+
+            // Retrieve email from TextView
+            String email = emailTextView.getText().toString();
+            intent.putExtra("EMAIL", email);
+
+            // Retrieve profile image resource
+            ImageView profileImageView = findViewById(R.id.imageView);
+            profileImageView.setDrawingCacheEnabled(true);
+            profileImageView.buildDrawingCache();
+            Bitmap bitmap = profileImageView.getDrawingCache();
+
+            // Convert Bitmap to ByteArray
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            intent.putExtra("PROFILE_IMAGE", imageBytes);
+
+            startActivity(intent);
+        });
     }
 
     private void openGallery() {
@@ -151,80 +224,7 @@ public class GreenCard extends AppCompatActivity {
                     .addOnFailureListener(e ->
                             Toast.makeText(this, "Failed to load image from Firestore", Toast.LENGTH_SHORT).show()
                     );
-            }
-
-
-        mAuth = FirebaseAuth.getInstance();
-
-        // Initialize views
-        telephoneEditText = findViewById(R.id.textBox1);
-        addressEditText = findViewById(R.id.textBox2);
-        locationEditText = findViewById(R.id.textBox3);
-        Button editButton = findViewById(R.id.editButton);
-        LinearLayout passwordChangeSection = findViewById(R.id.passwordChangeSection);
-        EditText passwordEditText = findViewById(R.id.passwordEditText);
-        EditText oldPasswordEditText = findViewById(R.id.oldPassword);
-        EditText newPasswordEditText = findViewById(R.id.newPassword);
-        Button changePasswordButton = findViewById(R.id.changePasswordButton);
-        TextView emailTextView = findViewById(R.id.textviewemail); // Ensure you have a TextView for displaying the email
-
-        // Load saved email from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        String savedEmail = sharedPreferences.getString("userEmail", "johndoe@gmail.com"); // Default email
-        emailTextView.setText(savedEmail); // Display the email
-
-        // Load saved details from SharedPreferences
-        loadProfileDetails();
-
-        // Make the fields non-editable initially
-        setFieldsEditable(false, telephoneEditText, addressEditText, locationEditText);
-
-        // Toggle visibility of the password change section
-        passwordEditText.setOnClickListener(v -> {
-            if (passwordChangeSection.getVisibility() == View.GONE) {
-                passwordChangeSection.setVisibility(View.VISIBLE);
-            } else {
-                passwordChangeSection.setVisibility(View.GONE);
-            }
-        });
-
-        // Handle password change
-        changePasswordButton.setOnClickListener(v -> changePassword(oldPasswordEditText, newPasswordEditText));
-
-        // Add click listener to the edit button for profile editing
-        editButton.setOnClickListener(v -> toggleEditMode());
-
-        // Navigate to the notifications page
-        CardView settingsCardView = findViewById(R.id.notifications);
-        settingsCardView.setOnClickListener(v -> {
-            Intent intent = new Intent(GreenCard.this, Not.class); // Start the Not activity
-            startActivity(intent);
-        });
-
-        CardView settingprofpayment = findViewById(R.id.profpayment);
-        settingprofpayment.setOnClickListener(v -> {
-            Intent intent = new Intent(GreenCard.this, profpayment.class);
-
-// Retrieve email from TextView
-            String email = emailTextView.getText().toString();
-            intent.putExtra("EMAIL", email);
-
-// Retrieve profile image resource (assuming it's an ImageView with a drawable resource)
-            ImageView profileImageView = findViewById(R.id.imageView);
-            profileImageView.setDrawingCacheEnabled(true);
-            profileImageView.buildDrawingCache();
-            Bitmap
-                    bitmap = profileImageView.getDrawingCache();
-
-// Convert Bitmap to ByteArray
-            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
-            byte[] imageBytes = byteArrayOutputStream.toByteArray();
-            intent.putExtra("PROFILE_IMAGE", imageBytes);
-
-            startActivity(intent);
-
-        });
+        }
     }
 
     private void changePassword(EditText oldPasswordEditText, EditText newPasswordEditText) {
@@ -328,12 +328,5 @@ public class GreenCard extends AppCompatActivity {
             editText.setFocusable(editable);
             editText.setClickable(editable);
         }
-
-        SharedPreferences sharedPreferences = getSharedPreferences("BookingDetails", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("patientEmail", currentUser.getEmail());
-        editor.apply();
-
-
     }
 }

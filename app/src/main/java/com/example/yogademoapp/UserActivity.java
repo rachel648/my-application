@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,7 +32,11 @@ public class UserActivity extends AppCompatActivity {
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        sharedPreferences = getSharedPreferences("YogaDemoAppPrefs", Context.MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
+
+        // Debugging: Check if email is retrieved correctly
+        String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
+        Toast.makeText(this, "Retrieved email: " + userEmail, Toast.LENGTH_SHORT).show();
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -79,18 +84,22 @@ public class UserActivity extends AppCompatActivity {
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
-
     private void saveAppointmentDetails(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
         SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault()); // Get day of the week
         String dateTimeString = dateFormat.format(date.getTime());
         String dayOfWeek = dayFormat.format(date.getTime());
 
-        String userEmail = sharedPreferences.getString("LoggedInUserEmail", "user@example.com"); // Fetch stored email
+        // Retrieve the email from SharedPreferences
+        String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
         String trainFees = binding.fees.getText().toString(); // Get train fees
 
+        // Debugging: Verify email and appointment details
+        Toast.makeText(this, "Saving email: " + userEmail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Scheduled Time: " + dateTimeString, Toast.LENGTH_SHORT).show();
+
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("userEmail", userEmail);
+        editor.putString("userEmail", userEmail); // Save email again (optional)
         editor.putString("scheduledTime", dateTimeString);
         editor.putString("dayOfWeek", dayOfWeek);
         editor.putString("trainFees", trainFees);
@@ -101,7 +110,4 @@ public class UserActivity extends AppCompatActivity {
         bookAppointmentIntent.putExtra("TrainFees", trainFees);
         startActivity(bookAppointmentIntent);
     }
-
-    
 }
-
