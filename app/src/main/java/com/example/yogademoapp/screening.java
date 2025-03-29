@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class screening extends AppCompatActivity {
-    private RadioGroup question1, question2, question3;
+    private RadioGroup question1, question2, question3, question4, question5, question6, question7, question8;
     private Button btnSubmit;
 
     @Override
@@ -19,9 +19,15 @@ public class screening extends AppCompatActivity {
         setContentView(R.layout.activity_screening);
 
         // Initialize UI elements
-        question1 = findViewById(R.id.question1);
-        question2 = findViewById(R.id.question2);
-        question3 = findViewById(R.id.question3);
+        question1 = findViewById(R.id.question1); // Sadness
+        question2 = findViewById(R.id.question2); // Anxiety
+        question3 = findViewById(R.id.question3); // Self-Esteem
+        question4 = findViewById(R.id.question4); // Eating Habits
+        question5 = findViewById(R.id.question5); // Drug Use
+        question6 = findViewById(R.id.question6); // Sleeping Patterns
+        question7 = findViewById(R.id.question7); // Concentration Issues
+        question8 = findViewById(R.id.question8); // Social Withdrawal
+
         btnSubmit = findViewById(R.id.btnSubmit);
 
         // Set up button click listener
@@ -33,17 +39,27 @@ public class screening extends AppCompatActivity {
         });
     }
 
-    // Analyze results based on the selected options
+    // Analyze results based on scores
     private void analyzeResults() {
-        int depressionScore = getSelectedScore(question1);  // Question 1 focuses on sadness
-        int anxietyScore = getSelectedScore(question2);     // Question 2 focuses on sleep/concentration
-        int generalWellnessScore = getSelectedScore(question3); // Question 3 focuses on interest loss
+        int depressionScore = getSelectedScore(question1) + getSelectedScore(question6) + getSelectedScore(question8);
+        int anxietyScore = getSelectedScore(question2) + getSelectedScore(question6) + getSelectedScore(question7);
+        int selfEsteemScore = getSelectedScore(question3);
+        int eatingDisorderScore = getSelectedScore(question4);
+        int drugAbuseScore = getSelectedScore(question5);
 
-        // Check if any mental health concern is detected
-        if (depressionScore >= 2 || anxietyScore >= 2 || generalWellnessScore >= 2) {
-            showToastAndNavigate("Signs of mental health concerns detected. Redirecting...", mentaldashboard.class);
+        // Determine the highest scoring mental health condition
+        if (depressionScore >= 3) {
+            showToastAndNavigate("Signs of Depression detected.", mentaldashboard.class);
+        } else if (anxietyScore >= 3) {
+            showToastAndNavigate("Signs of Anxiety Disorder detected.", mentaldashboard.class);
+        } else if (selfEsteemScore >= 3) {
+            showToastAndNavigate("Potential signs of Low Self-Esteem detected.", mentaldashboard.class);
+        } else if (eatingDisorderScore >= 3) {
+            showToastAndNavigate("Potential signs of an Eating Disorder detected.", mentaldashboard.class);
+        } else if (drugAbuseScore >= 3) {
+            showToastAndNavigate("Signs of Substance Abuse detected.", mentaldashboard.class);
         } else {
-            showToastAndNavigate("No major concerns detected. Proceeding...", GreenCard.class);
+            showToastAndNavigate("No major concerns detected. Proceeding...", mentaldashboard.class);
         }
     }
 
