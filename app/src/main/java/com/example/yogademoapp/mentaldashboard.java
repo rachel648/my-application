@@ -131,7 +131,7 @@ public class mentaldashboard extends AppCompatActivity {
         });
 
         spinner.setVisibility(View.GONE);
-        final String[] options = {"Depression", "Anxiety disorder", "Eating disorder", "Low self-esteem", "Other"};
+        final String[] options = {"Depression", "Anxiety disorder", "Eating disorder", "Low self-esteem","drug abuse", "Other"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, options);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
