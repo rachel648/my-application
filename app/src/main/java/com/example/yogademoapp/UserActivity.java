@@ -34,9 +34,14 @@ public class UserActivity extends AppCompatActivity {
 
         sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
 
-        // Debugging: Check if email is retrieved correctly
+        // Retrieve the user's email correctly
         String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
         Toast.makeText(this, "Retrieved email: " + userEmail, Toast.LENGTH_SHORT).show();
+
+        // Store the patient's email in SharedPreferences to be accessed in accept.java
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("patientEmail", userEmail); // Ensure it's stored correctly
+        editor.apply();
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -86,26 +91,18 @@ public class UserActivity extends AppCompatActivity {
 
     private void saveAppointmentDetails(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault()); // Get day of the week
+        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
         String dateTimeString = dateFormat.format(date.getTime());
         String dayOfWeek = dayFormat.format(date.getTime());
 
-        // Retrieve the email from SharedPreferences
-        String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
         String trainFees = binding.fees.getText().toString(); // Get train fees
 
-        // Debugging: Verify email and appointment details
-        Toast.makeText(this, "Saving email: " + userEmail, Toast.LENGTH_SHORT).show();
-        Toast.makeText(this, "Scheduled Time: " + dateTimeString, Toast.LENGTH_SHORT).show();
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("userEmail", userEmail); // Save email again (optional)
         editor.putString("scheduledTime", dateTimeString);
         editor.putString("dayOfWeek", dayOfWeek);
         editor.putString("trainFees", trainFees);
         editor.apply();
 
-        // Proceed with normal booking flow (e.g., Payment activity)
         Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
         bookAppointmentIntent.putExtra("TrainFees", trainFees);
         startActivity(bookAppointmentIntent);
