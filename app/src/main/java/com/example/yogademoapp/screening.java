@@ -10,7 +10,7 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class screening extends AppCompatActivity {
-    private RadioGroup question1, question2, question3, question4, question5, question6, question7, question8;
+    private RadioGroup question1, question2, question3, question4, question5, question6;
     private Button btnSubmit;
 
     @Override
@@ -25,8 +25,6 @@ public class screening extends AppCompatActivity {
         question4 = findViewById(R.id.question4); // Eating Habits
         question5 = findViewById(R.id.question5); // Drug Use
         question6 = findViewById(R.id.question6); // Sleeping Patterns
-        question7 = findViewById(R.id.question7); // Concentration Issues
-        question8 = findViewById(R.id.question8); // Social Withdrawal
 
         btnSubmit = findViewById(R.id.btnSubmit);
 
@@ -39,28 +37,56 @@ public class screening extends AppCompatActivity {
         });
     }
 
-    // Analyze results based on scores
+    // Analyze results and display only the most probable condition
     private void analyzeResults() {
-        int depressionScore = getSelectedScore(question1) + getSelectedScore(question6) + getSelectedScore(question8);
-        int anxietyScore = getSelectedScore(question2) + getSelectedScore(question6) + getSelectedScore(question7);
-        int selfEsteemScore = getSelectedScore(question3);
-        int eatingDisorderScore = getSelectedScore(question4);
-        int drugAbuseScore = getSelectedScore(question5);
+        int depressionScore = 0;
+        int anxietyScore = 0;
+        int selfEsteemScore = 0;
+        int eatingDisorderScore = 0;
+        int drugAbuseScore = 0;
 
-        // Determine the highest scoring mental health condition
-        if (depressionScore >= 3) {
-            showToastAndNavigate("Signs of Depression detected.", mentaldashboard.class);
-        } else if (anxietyScore >= 3) {
-            showToastAndNavigate("Signs of Anxiety Disorder detected.", mentaldashboard.class);
-        } else if (selfEsteemScore >= 3) {
-            showToastAndNavigate("Potential signs of Low Self-Esteem detected.", mentaldashboard.class);
-        } else if (eatingDisorderScore >= 3) {
-            showToastAndNavigate("Potential signs of an Eating Disorder detected.", mentaldashboard.class);
-        } else if (drugAbuseScore >= 3) {
-            showToastAndNavigate("Signs of Substance Abuse detected.", mentaldashboard.class);
-        } else {
-            showToastAndNavigate("No major concerns detected. Proceeding...", mentaldashboard.class);
+        // Assign scores to conditions based on selections
+        int q1 = getSelectedScore(question1); // Sadness
+        int q2 = getSelectedScore(question2); // Anxiety
+        int q3 = getSelectedScore(question3); // Self-Esteem
+        int q4 = getSelectedScore(question4); // Eating Habits
+        int q5 = getSelectedScore(question5); // Drug Use
+        int q6 = getSelectedScore(question6); // Sleeping Patterns
+
+        // Adjusted scoring system for better diagnosis
+        depressionScore = q1 + q3 + q6;
+        anxietyScore = q2 + q4 + q6;
+        selfEsteemScore = q3 + q1 + q5;
+        eatingDisorderScore = q4 + q2 + q6;
+        drugAbuseScore = q5 + q3 + q6;
+
+        // Find the condition with the highest score
+        String highestCondition = "✅ No major mental health concerns detected.\nKeep maintaining a healthy lifestyle!";
+        int highestScore = 3; // Minimum threshold for diagnosis
+
+        if (depressionScore > highestScore) {
+            highestCondition = "🔵 You may be experiencing **Depression**.\nConsider speaking to a mental health professional.";
+            highestScore = depressionScore;
         }
+        if (anxietyScore > highestScore) {
+            highestCondition = "🟠 You may have **Anxiety Disorder**.\nProfessional guidance is recommended.";
+            highestScore = anxietyScore;
+        }
+        if (selfEsteemScore > highestScore) {
+            highestCondition = "🟢 You may have **Low Self-Esteem**.\nConsider working on self-confidence and seeking support.";
+            highestScore = selfEsteemScore;
+        }
+        if (eatingDisorderScore > highestScore) {
+            highestCondition = "🔴 You may have an **Eating Disorder**.\nIt’s important to consult a healthcare professional.";
+            highestScore = eatingDisorderScore;
+        }
+        if (drugAbuseScore > highestScore) {
+            highestCondition = "⚠️ Possible **Substance Abuse Issue** detected.\nSeeking help could be beneficial.";
+            highestScore = drugAbuseScore;
+        }
+
+        // Show toast and navigate
+        showToastAndNavigate(highestCondition, mentaldashboard.class);
     }
 
     // Helper method to get the selected score from a RadioGroup
@@ -84,7 +110,7 @@ public class screening extends AppCompatActivity {
 
     // Helper method to show a toast and navigate to an activity
     private void showToastAndNavigate(String message, Class<?> destination) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, message, Toast.LENGTH_LONG).show();
         startActivity(new Intent(this, destination));
         finish();
     }

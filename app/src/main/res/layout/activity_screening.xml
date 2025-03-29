@@ -1,149 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/green_light"
-    android:gravity="center">
+    android:padding="16dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Mental Health Screening"
-        android:textSize="22sp"
-        android:textStyle="bold"
-        android:textColor="@color/white"
-        android:layout_gravity="center"
-        android:paddingBottom="16dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="How often do you feel sad or hopeless?"
-        android:textColor="@color/black"/>
-
-    <RadioGroup
-        android:id="@+id/question1"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="start">
+        android:orientation="vertical"
+        android:gravity="center">
 
-        <RadioButton
-            android:id="@+id/q1_option1"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Never"
-            android:tag="0"
-            android:textColor="@color/black"/>
+            android:text="Mental Health Screening"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:paddingBottom="16dp"/>
 
-        <RadioButton
-            android:id="@+id/q1_option2"
+        <!-- Question 1 -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sometimes"
-            android:tag="1"
+            android:text="How often do you feel sad or hopeless?"
             android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q1_option3"
+        <RadioGroup
+            android:id="@+id/question1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/q1_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Never"
+                android:tag="0"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q1_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:tag="1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q1_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Often"
+                android:tag="2"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <!-- Question 2 -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Often"
-            android:tag="2"
+            android:text="Do you have trouble sleeping or concentrating?"
             android:textColor="@color/black"/>
-    </RadioGroup>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Do you have trouble sleeping or concentrating?"
-        android:textColor="@color/black"/>
+        <RadioGroup
+            android:id="@+id/question2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
 
-    <RadioGroup
-        android:id="@+id/question2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="start">
+            <RadioButton
+                android:id="@+id/q2_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:tag="0"
+                android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q2_option1"
+            <RadioButton
+                android:id="@+id/q2_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:tag="1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q2_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:tag="2"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <!-- Question 3 -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No"
-            android:tag="0"
+            android:text="Have you lost interest in activities you used to enjoy?"
             android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q2_option2"
+        <RadioGroup
+            android:id="@+id/question3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/q3_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:tag="0"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q3_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:tag="1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q3_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:tag="2"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <!-- Additional Questions -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sometimes"
-            android:tag="1"
+            android:text="Do you feel anxious or worried most of the time?"
             android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q2_option3"
+        <RadioGroup
+            android:id="@+id/question4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/q4_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:tag="0"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q4_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:tag="1"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q4_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:tag="2"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <!-- More questions -->
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Yes"
-            android:tag="2"
+            android:text="Do you feel tired or lack energy often?"
             android:textColor="@color/black"/>
-    </RadioGroup>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Have you lost interest in activities you used to enjoy?"
-        android:textColor="@color/black"/>
+        <RadioGroup
+            android:id="@+id/question5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
 
-    <RadioGroup
-        android:id="@+id/question3"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:padding="8dp"
-        android:layout_marginBottom="10dp"
-        android:gravity="start">
+            <RadioButton
+                android:id="@+id/q5_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q3_option1"
+            <RadioButton
+                android:id="@+id/q5_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q5_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="No"
-            android:tag="0"
+            android:text="Do you feel overwhelmed by daily tasks?"
             android:textColor="@color/black"/>
 
-        <RadioButton
-            android:id="@+id/q3_option2"
+        <RadioGroup
+            android:id="@+id/question6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:padding="8dp"
+            android:layout_marginBottom="10dp">
+
+            <RadioButton
+                android:id="@+id/q6_option1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="No"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q6_option2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sometimes"
+                android:textColor="@color/black"/>
+
+            <RadioButton
+                android:id="@+id/q6_option3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Yes"
+                android:textColor="@color/black"/>
+        </RadioGroup>
+
+        <Button
+            android:id="@+id/btnSubmit"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Sometimes"
-            android:tag="1"
-            android:textColor="@color/black"/>
-
-        <RadioButton
-            android:id="@+id/q3_option3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Yes"
-            android:tag="2"
-            android:textColor="@color/black"/>
-    </RadioGroup>
-
-    <Button
-        android:id="@+id/btnSubmit"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Submit"
-        android:backgroundTint="@color/green_dark"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        android:layout_gravity="center"/>
-</LinearLayout>
+            android:text="Submit"
+            android:backgroundTint="@color/green_dark"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</ScrollView>
