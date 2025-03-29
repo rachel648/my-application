@@ -119,8 +119,26 @@ public class GreenCard extends AppCompatActivity {
         CardView settingsCardView = findViewById(R.id.notifications);
         settingsCardView.setOnClickListener(v -> {
             Intent intent = new Intent(GreenCard.this, Not.class);
+
+            // Retrieve email from TextView
+            String email = emailTextView.getText().toString();
+            intent.putExtra("EMAIL", email);
+
+            // Retrieve profile image resource
+            ImageView profileImageView = findViewById(R.id.imageView);
+            profileImageView.setDrawingCacheEnabled(true);
+            profileImageView.buildDrawingCache();
+            Bitmap bitmap = profileImageView.getDrawingCache();
+
+            // Convert Bitmap to ByteArray
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+            byte[] imageBytes = byteArrayOutputStream.toByteArray();
+            intent.putExtra("PROFILE_IMAGE", imageBytes);
+
             startActivity(intent);
         });
+
 
         CardView settingprofpayment = findViewById(R.id.profpayment);
         settingprofpayment.setOnClickListener(v -> {
