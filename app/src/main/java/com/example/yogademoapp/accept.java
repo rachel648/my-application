@@ -37,19 +37,26 @@ public class accept extends AppCompatActivity {
 
         // Retrieve patient’s email and booking details
         SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
-        String patientEmail = sharedPreferences.getString("patientEmail", "Not Available"); // Corrected
+        String patientEmail = sharedPreferences.getString("patientEmail", "Not Available");
+
+        // Extract name from email
         String patientName = sharedPreferences.getString("userName", "Unknown User");
+        if (patientName.equals("Unknown User") && patientEmail.contains("@")) {
+            patientName = patientEmail.split("@")[0]; // Extract username from email
+        }
+
+        // Retrieve other details
         String scheduledTime = sharedPreferences.getString("scheduledTime", "Not Scheduled");
         String dayOfWeek = sharedPreferences.getString("dayOfWeek", "Unknown");
         String trainFees = sharedPreferences.getString("trainFees", "0");
 
         // Debugging: Verify retrieved email
-        Toast.makeText(this, "Patient Email: " + patientEmail, Toast.LENGTH_LONG).show();
-        Toast.makeText(this, "Consultant Email: " + consultantEmail, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, patientEmail, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, consultantEmail, Toast.LENGTH_LONG).show();
 
         // Display correct emails
         consultantEmailTextView.setText(consultantEmail);
-        patientEmailTextView.setText("Patient Email: " + patientEmail); // Corrected
+        patientEmailTextView.setText("Patient Email: " + patientEmail);
 
         // Display other patient details
         clientTextView.setText("Client: " + patientName);

@@ -36,7 +36,7 @@ public class UserActivity extends AppCompatActivity {
 
         // Retrieve the user's email correctly
         String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
-        Toast.makeText(this, "Retrieved email: " + userEmail, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, userEmail, Toast.LENGTH_SHORT).show();
 
         // Store the patient's email in SharedPreferences to be accessed in accept.java
         SharedPreferences.Editor editor = sharedPreferences.edit();
