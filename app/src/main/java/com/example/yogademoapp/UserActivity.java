@@ -105,6 +105,6 @@ public class UserActivity extends AppCompatActivity {
 
         Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
         bookAppointmentIntent.putExtra("TrainFees", trainFees);
-        startActivity(bookAppointmentIntent); ///
+        startActivity(bookAppointmentIntent);
     }
 }
