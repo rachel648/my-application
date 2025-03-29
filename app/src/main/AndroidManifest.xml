@@ -26,6 +26,9 @@
         android:theme="@style/Theme.YogaDemoApp"
         tools:targetApi="31">
         <activity
+            android:name=".screening"
+            android:exported="false" />
+        <activity
             android:name=".accept"
             android:exported="false" />
         <activity
