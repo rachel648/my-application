@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 public class ListAdapter extends ArrayAdapter<User> {
@@ -28,27 +31,47 @@ public class ListAdapter extends ArrayAdapter<User> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.list_item, parent, false);
         }
 
-        // Views for the list item
+        // Initialize views
         ImageView imageView = convertView.findViewById(R.id.profile_pic);
         TextView userName = convertView.findViewById(R.id.personname);
         TextView lastMsg = convertView.findViewById(R.id.lastmessage);
         TextView time = convertView.findViewById(R.id.msgtime);
-        TextView ratingTextView = convertView.findViewById(R.id.ratingTextView);  // TextView for the rating stars
+        TextView ratingTextView = convertView.findViewById(R.id.ratingTextView);
 
-        // Set data to views
-        imageView.setImageResource(user.getImageId());
+        // Set text data
         userName.setText(user.getName());
         lastMsg.setText(user.getLastMessage());
         time.setText(user.getLastMsgTime());
-
-        // Set the rating as stars
         ratingTextView.setText(generateStars(user.getRating()));
+
+        // Handle image loading - THIS IS THE CRUCIAL PART
+        if (user.getImageUrl() != null && !user.getImageUrl().isEmpty()) {
+            // Load from URL using Glide
+            Glide.with(getContext())
+                    .load(user.getImageUrl())
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // Cache image
+                    .placeholder(R.drawable.updatedprofile) // Show while loading
+                    .error(R.drawable.updatedprofile) // Show if error
+                    .into(imageView);
+        } else {
+            // Fall back to local image resource
+            imageView.setImageResource(user.getImageId());
+        }
 
         return convertView;
     }
 
-    // Helper method to convert rating into stars
     private String generateStars(int rating) {
-        return new String(new char[rating]).replace("\0", "⭐");
+        StringBuilder stars = new StringBuilder();
+        int maxRating = 5; // Assuming 5-star rating system
+
+        for (int i = 0; i < maxRating; i++) {
+            if (i < rating) {
+                stars.append("⭐");
+            } else {
+                stars.append("☆");
+            }
+        }
+        return stars.toString();
     }
 }

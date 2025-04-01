@@ -1,35 +1,54 @@
 package com.example.yogademoapp;
 
+import android.Manifest;
+import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class RegisterActivity extends AppCompatActivity {
     EditText edUsername, edEmail, edPassword, edConfirmPassword;
     Button btn, consultantBtn;
     TextView tv;
+    FloatingActionButton fabImageUpload;
 
     FirebaseAuth mAuth;
+    StorageReference storageReference;
+    Uri imageUri;
+    String uploadedImageUrl = "";
+    private static final int PICK_IMAGE_REQUEST = 1;
+    private static final int STORAGE_PERMISSION_CODE = 100;
 
     @Override
     public void onStart() {
         super.onStart();
-        // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser != null) {
             // User is already signed in
@@ -42,6 +61,7 @@ public class RegisterActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register);
 
         mAuth = FirebaseAuth.getInstance();
+        storageReference = FirebaseStorage.getInstance().getReference("profile_images");
 
         edUsername = findViewById(R.id.editTextBookingName);
         edPassword = findViewById(R.id.editTextBookingPincode);
@@ -50,6 +70,14 @@ public class RegisterActivity extends AppCompatActivity {
         btn = findViewById(R.id.ButtonBooking);
         consultantBtn = findViewById(R.id.ButtonConsultant);
         tv = findViewById(R.id.textViewBooking);
+        fabImageUpload = findViewById(R.id.fabImageUpload);
+
+        fabImageUpload.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkStoragePermissionAndPickImage();
+            }
+        });
 
         tv.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -73,8 +101,71 @@ public class RegisterActivity extends AppCompatActivity {
         });
     }
 
+    private void checkStoragePermissionAndPickImage() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this,
+                    new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},
+                    STORAGE_PERMISSION_CODE);
+        } else {
+            openImageChooser();
+        }
+    }
+
+    private void openImageChooser() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            imageUri = data.getData();
+            uploadImageToFirebase();
+        }
+    }
+
+    private void uploadImageToFirebase() {
+        if (imageUri != null) {
+            StorageReference fileReference = storageReference.child(System.currentTimeMillis()
+                    + "." + getFileExtension(imageUri));
+
+            fileReference.putFile(imageUri)
+                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                            fileReference.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    uploadedImageUrl = uri.toString();
+                                    Toast.makeText(RegisterActivity.this,
+                                            "Image uploaded successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(RegisterActivity.this,
+                                    "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+    }
+
+    private String getFileExtension(Uri uri) {
+        ContentResolver cR = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(cR.getType(uri));
+    }
+
     private void registerUser(String userType) {
-        // Obtain data entered
         String Username = edUsername.getText().toString();
         String Password = edPassword.getText().toString();
         String email = edEmail.getText().toString();
@@ -85,64 +176,66 @@ public class RegisterActivity extends AppCompatActivity {
         } else {
             if (Password.equals(ConfirmPassword)) {
                 if (isValid(Password)) {
-                    // Create a new user account with Firebase Authentication
-                    mAuth.createUserWithEmailAndPassword(email, Password).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-                                // User registration successful
-                                FirebaseUser user = mAuth.getCurrentUser();
-                                if (user != null) {
-                                    // Update user profile with display name
-                                    user.updateProfile(new UserProfileChangeRequest.Builder()
-                                            .setDisplayName(Username)
-                                            .build());
+                    mAuth.createUserWithEmailAndPassword(email, Password)
+                            .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
+                                @Override
+                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                    if (task.isSuccessful()) {
+                                        FirebaseUser user = mAuth.getCurrentUser();
+                                        if (user != null) {
+                                            user.updateProfile(new UserProfileChangeRequest.Builder()
+                                                    .setDisplayName(Username)
+                                                    .build());
 
-                                    // Save user type to Firebase Database
-                                    String userId = user.getUid();
-                                    FirebaseDatabase.getInstance().getReference("Users")
-                                            .child(userId)
-                                            .setValue(userType);
+                                            String userId = user.getUid();
+                                            FirebaseDatabase.getInstance().getReference("Users")
+                                                    .child(userId)
+                                                    .setValue(userType);
 
-                                    // If user is a consultant, save additional details
-                                    if ("consultant".equals(userType)) {
-                                        String phoneNo = "0712671173"; // Replace with actual phone number input
-                                        String experience = "5yrs"; // Replace with actual experience input
-                                        String fees = "5000"; // Replace with actual fees input
-                                        String gymNumber = "ConsultantNo: 01"; // Replace with actual gym number input
-                                        int imageId = R.drawable.updatedprofile; // Replace with actual image resource id
-                                        int rating = 4;  // Example: Assigning a rating of 4 out of 5
+                                            if ("consultant".equals(userType)) {
+                                                String phoneNo = "0712671173";
+                                                String experience = "5yrs";
+                                                String fees = "5000";
+                                                String gymNumber = "ConsultantNo: 01";
+                                                int imageId = R.drawable.updatedprofile;
+                                                int rating = 4;
 
-                                        Consultant consultant = new Consultant(Username, phoneNo, experience, fees, gymNumber, imageId, rating);
+                                                Consultant consultant = new Consultant(
+                                                        Username, phoneNo, experience, fees, gymNumber, imageId, rating, uploadedImageUrl);
 
-                                        FirebaseDatabase.getInstance().getReference("Consultants")
-                                                .child(userId)
-                                                .setValue(consultant);
-                                    }
+                                                FirebaseDatabase.getInstance().getReference("Consultants")
+                                                        .child(userId)
+                                                        .setValue(consultant);
+                                            }
 
-                                    Toast.makeText(getApplicationContext(), "Registration Successful", Toast.LENGTH_SHORT).show();
+                                            Toast.makeText(getApplicationContext(),
+                                                    "Registration Successful", Toast.LENGTH_SHORT).show();
 
-                                    // Redirect based on user type
-                                    if ("consultant".equals(userType)) {
-                                        Intent intent = new Intent(RegisterActivity.this, Agent.class);
-                                        intent.putExtra("username", Username);  // Pass username
-                                        intent.putExtra("userEmail", email);      // Pass email
-                                        startActivity(intent);
-                                    } else if ("patient".equals(userType)) {
-                                        startActivity(new Intent(RegisterActivity.this, MedDoc.class));
+                                            if ("consultant".equals(userType)) {
+                                                Intent intent = new Intent(RegisterActivity.this, Agent.class);
+                                                intent.putExtra("username", Username);
+                                                intent.putExtra("userEmail", email);
+                                                startActivity(intent);
+                                            } else if ("patient".equals(userType)) {
+                                                startActivity(new Intent(RegisterActivity.this, MedDoc.class));
+                                            }
+                                        }
+                                    } else {
+                                        Toast.makeText(getApplicationContext(),
+                                                "Registration failed: " + task.getException().getMessage(),
+                                                Toast.LENGTH_SHORT).show();
                                     }
                                 }
-                            } else {
-                                // Registration failed
-                                Toast.makeText(getApplicationContext(), "Registration failed: " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        }
-                    });
+                            });
                 } else {
-                    Toast.makeText(getApplicationContext(), "Password must contain at least 8 characters, a letter, a digit, and a special character", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),
+                            "Password must contain at least 8 characters, a letter, a digit, and a special character",
+                            Toast.LENGTH_SHORT).show();
                 }
             } else {
-                Toast.makeText(getApplicationContext(), "Password and Confirm password do not match", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "Password and Confirm password do not match",
+                        Toast.LENGTH_SHORT).show();
             }
         }
     }

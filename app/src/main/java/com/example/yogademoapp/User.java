@@ -10,8 +10,12 @@ public class User {
     private String fees;
     private int imageId;
     private int rating;
+    private String imageUrl; // Added field for Firebase Storage URL
 
-    public User(String name, String lastMessage, String lastMsgTime, String phoneNo, String gymNumber, String experience, String fees, int imageId,int rating) {
+    // Constructor with all fields including imageUrl
+    public User(String name, String lastMessage, String lastMsgTime, String phoneNo,
+                String gymNumber, String experience, String fees, int imageId,
+                int rating, String imageUrl) {
         this.name = name;
         this.lastMessage = lastMessage;
         this.lastMsgTime = lastMsgTime;
@@ -21,6 +25,15 @@ public class User {
         this.fees = fees;
         this.imageId = imageId;
         this.rating = rating;
+        this.imageUrl = imageUrl;
+    }
+
+    // Constructor without imageUrl (for backward compatibility)
+    public User(String name, String lastMessage, String lastMsgTime, String phoneNo,
+                String gymNumber, String experience, String fees, int imageId,
+                int rating) {
+        this(name, lastMessage, lastMsgTime, phoneNo, gymNumber, experience,
+                fees, imageId, rating, "");
     }
 
     public String getName() {
@@ -51,17 +64,26 @@ public class User {
         return fees;
     }
 
-    public int getRating(){
-        return  rating;
+    public int getRating() {
+        return rating;
     }
 
     public int getImageId() {
         return imageId;
     }
 
-    //yes
+    // New getter for imageUrl
+    public String getImageUrl() {
+        return imageUrl;
+    }
 
-    public int getEmail() {
-        return 0;
+    // Setter for imageUrl
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+    }
+
+    // Remove or fix this method as it doesn't make sense for email to return int
+    public String getEmail() {
+        return ""; // Return appropriate email value if needed
     }
 }

@@ -6,10 +6,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.yogademoapp.databinding.ActivityConsultantBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -49,6 +51,7 @@ public class ConsultantActivity extends AppCompatActivity {
                 i.putExtra("phone", user.getPhoneNo());
                 i.putExtra("Experience", user.getExperience());
                 i.putExtra("imageid", user.getImageId());
+                i.putExtra("imageUrl", user.getImageUrl()); // Add this line
                 i.putExtra("fees", user.getFees());
                 i.putExtra("GymNumber", user.getGymNumber());
                 startActivity(i);
@@ -70,8 +73,10 @@ public class ConsultantActivity extends AppCompatActivity {
             }
         });
 
-        // If you want to display hardcoded data initially before fetching from Firebase
-        loadHardcodedData();
+        // Load hardcoded data only if no data from Firebase
+        if (userArrayList.isEmpty()) {
+            loadHardcodedData();
+        }
     }
 
     private void fetchConsultantDetails() {
@@ -82,14 +87,13 @@ public class ConsultantActivity extends AppCompatActivity {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                     Consultant consultant = dataSnapshot.getValue(Consultant.class);
                     if (consultant != null) {
-                        // Ensure the rating is properly bounded between 1 and 5
                         int rating = consultant.getRating();
-                        // Generate the stars based on rating
                         String ratingString = generateStars(rating);
+
                         User user = new User(
                                 consultant.name,
-                                ratingString, // Display rating as stars
-                                "12:00",  // You might want to adjust this based on your Firebase data
+                                ratingString,
+                                "12:00",
                                 consultant.phoneNo,
                                 consultant.gymNumber,
                                 consultant.experience,
@@ -97,19 +101,31 @@ public class ConsultantActivity extends AppCompatActivity {
                                 consultant.imageId,
                                 rating
                         );
+
+                        // Set the image URL if available
+                        if (consultant.getImageUrl() != null && !consultant.getImageUrl().isEmpty()) {
+                            user.setImageUrl(consultant.getImageUrl());
+                        }
+
                         userArrayList.add(user);
                     }
                 }
                 listAdapter.notifyDataSetChanged();
+
+                // If no consultants in Firebase, load hardcoded data
+                if (userArrayList.isEmpty()) {
+                    loadHardcodedData();
+                }
             }
 
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-                // Handle possible errors
+                Toast.makeText(ConsultantActivity.this, "Failed to load consultants: " + error.getMessage(), Toast.LENGTH_SHORT).show();
+                // Load hardcoded data if Firebase fails
+                loadHardcodedData();
             }
         });
     }
-
 
     private String generateStars(int rating) {
         StringBuilder stars = new StringBuilder();
@@ -122,7 +138,6 @@ public class ConsultantActivity extends AppCompatActivity {
         }
         return stars.toString();
     }
-
 
     private void loadHardcodedData() {
         int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2, R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
@@ -143,13 +158,9 @@ public class ConsultantActivity extends AppCompatActivity {
 
         int[] rating = {5, 4, 3, 2, 1, 1, 3, 4, 5};
 
-
         for (int i = 0; i < imageId.length; i++) {
-            // Assuming rating[i] is an array holding the rating values for each user
             User user = new User(name[i], lastMessage[i], lastMsgTime[i], phoneNo[i], gymNumber[i], experience[i], fees[i], imageId[i], rating[i]);
             userArrayList.add(user);
-
-
         }
 
         listAdapter.notifyDataSetChanged();
