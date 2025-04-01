@@ -94,7 +94,8 @@ public class ConsultantActivity extends AppCompatActivity {
                                 User user = new User(
                                         consultant.name,
                                         ratingString,
-                                        "12:00",
+
+                                        "\n" + "\n" + "\n" + "\n" + "12:00",
                                         consultant.phoneNo,
                                         consultant.gymNumber,
                                         consultant.experience,
