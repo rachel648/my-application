@@ -24,6 +24,7 @@ public class accept extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private StorageReference storageReference;
     private String patientEmail, userId;
+    private SharedPreferences sharedPreferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,15 +42,11 @@ public class accept extends AppCompatActivity {
         Button acceptButton = findViewById(R.id.buttonAccept);
         Button rejectButton = findViewById(R.id.buttonReject);
 
-        // Retrieve consultant details
-        String consultantEmail = getIntent().getStringExtra("consultantEmail");
-        if (consultantEmail == null) consultantEmail = "johndoe@gmail.com";
-
         // Retrieve patient email from SharedPreferences
-        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+        sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         patientEmail = sharedPreferences.getString("patientEmail", "Not Available");
 
-        // Create a unique ID for Firebase (based on email)
+        // Create a unique ID for Firebase and SharedPreferences (based on email)
         userId = patientEmail.replace(".", "_"); // Firebase does not allow dots in keys
 
         // Initialize Firebase Database and Storage references
@@ -66,7 +63,7 @@ public class accept extends AppCompatActivity {
         String trainFees = sharedPreferences.getString("trainFees", "0");
 
         // Display details
-        consultantEmailTextView.setText(consultantEmail);
+        consultantEmailTextView.setText("Consultant: " + sharedPreferences.getString("consultantEmail", "johndoe@gmail.com"));
         patientEmailTextView.setText("Patient Email: " + patientEmail);
         clientTextView.setText("Client: " + patientName);
         scheduleTextView.setText("Scheduled Time: " + scheduledTime);
@@ -74,7 +71,7 @@ public class accept extends AppCompatActivity {
         feesTextView.setText("Fees Paid: " + trainFees);
 
         // Load stored image if available
-        loadImageFromFirebase();
+        loadImageFromPreferences();
 
         // ImageView Click Listener for picking image
         profileImageView.setOnClickListener(v -> {
@@ -104,6 +101,9 @@ public class accept extends AppCompatActivity {
                             // Save image URL in Firebase Database
                             databaseReference.child("profileImage").setValue(uri.toString());
 
+                            // Save image URL in SharedPreferences
+                            sharedPreferences.edit().putString("profileImage_" + userId, uri.toString()).apply();
+
                             // Load image into ImageView
                             Picasso.get().load(uri).into(profileImageView);
                             Toast.makeText(accept.this, "Image uploaded successfully", Toast.LENGTH_SHORT).show();
@@ -111,22 +111,26 @@ public class accept extends AppCompatActivity {
                 .addOnFailureListener(e -> Toast.makeText(accept.this, "Upload failed: " + e.getMessage(), Toast.LENGTH_SHORT).show());
     }
 
+    private void loadImageFromPreferences() {
+        String savedImageUrl = sharedPreferences.getString("profileImage_" + userId, "");
+        if (!savedImageUrl.isEmpty()) {
+            Picasso.get().load(savedImageUrl).into(profileImageView);
+        } else {
+            loadImageFromFirebase();
+        }
+    }
+
     private void loadImageFromFirebase() {
         databaseReference.child("profileImage").get().addOnSuccessListener(snapshot -> {
             if (snapshot.exists()) {
                 String imageUrl = snapshot.getValue(String.class);
                 if (imageUrl != null && !imageUrl.isEmpty()) {
-                    Toast.makeText(accept.this, "Loading Image: " + imageUrl, Toast.LENGTH_LONG).show();
+                    sharedPreferences.edit().putString("profileImage_" + userId, imageUrl).apply();
                     Picasso.get().load(imageUrl).into(profileImageView);
-                } else {
-                    Toast.makeText(accept.this, "Image URL is empty", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(accept.this, "No image found in database", Toast.LENGTH_LONG).show();
             }
         }).addOnFailureListener(e -> {
             Toast.makeText(accept.this, "Failed to load image: " + e.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
-
 }
