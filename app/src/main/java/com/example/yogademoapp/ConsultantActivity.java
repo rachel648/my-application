@@ -11,7 +11,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.bumptech.glide.Glide;
 import com.example.yogademoapp.databinding.ActivityConsultantBinding;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -80,51 +79,49 @@ public class ConsultantActivity extends AppCompatActivity {
     }
 
     private void fetchConsultantDetails() {
-        FirebaseDatabase.getInstance().getReference("Consultants").addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                userArrayList.clear();
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
-                    Consultant consultant = dataSnapshot.getValue(Consultant.class);
-                    if (consultant != null) {
-                        int rating = consultant.getRating();
-                        String ratingString = generateStars(rating);
+        FirebaseDatabase.getInstance().getReference("Consultants")
+                .orderByChild("timestamp") // Add this line to order by timestamp
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        userArrayList.clear();
+                        for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                            Consultant consultant = dataSnapshot.getValue(Consultant.class);
+                            if (consultant != null) {
+                                int rating = consultant.getRating();
+                                String ratingString = generateStars(rating);
 
-                        User user = new User(
-                                consultant.name,
-                                ratingString,
-                                "12:00",
-                                consultant.phoneNo,
-                                consultant.gymNumber,
-                                consultant.experience,
-                                consultant.fees,
-                                consultant.imageId,
-                                rating
-                        );
+                                User user = new User(
+                                        consultant.name,
+                                        ratingString,
+                                        "12:00",
+                                        consultant.phoneNo,
+                                        consultant.gymNumber,
+                                        consultant.experience,
+                                        consultant.fees,
+                                        consultant.imageId,
+                                        rating,
+                                        consultant.getImageUrl()
+                                );
 
-                        // Set the image URL if available
-                        if (consultant.getImageUrl() != null && !consultant.getImageUrl().isEmpty()) {
-                            user.setImageUrl(consultant.getImageUrl());
+                                userArrayList.add(0, user); // Add to beginning of list (newest first)
+                            }
                         }
+                        listAdapter.notifyDataSetChanged();
 
-                        userArrayList.add(user);
+                        if (userArrayList.isEmpty()) {
+                            loadHardcodedData();
+                        }
                     }
-                }
-                listAdapter.notifyDataSetChanged();
 
-                // If no consultants in Firebase, load hardcoded data
-                if (userArrayList.isEmpty()) {
-                    loadHardcodedData();
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                Toast.makeText(ConsultantActivity.this, "Failed to load consultants: " + error.getMessage(), Toast.LENGTH_SHORT).show();
-                // Load hardcoded data if Firebase fails
-                loadHardcodedData();
-            }
-        });
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                        Toast.makeText(ConsultantActivity.this,
+                                "Failed to load consultants: " + error.getMessage(),
+                                Toast.LENGTH_SHORT).show();
+                        loadHardcodedData();
+                    }
+                });
     }
 
     private String generateStars(int rating) {
