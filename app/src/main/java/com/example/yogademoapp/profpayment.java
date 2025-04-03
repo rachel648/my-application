@@ -3,7 +3,9 @@ package com.example.yogademoapp;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.animation.AlphaAnimation;
 import android.view.animation.ScaleAnimation;
@@ -12,6 +14,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.io.ByteArrayOutputStream;
 
 public class profpayment extends AppCompatActivity {
 
@@ -45,6 +49,9 @@ public class profpayment extends AppCompatActivity {
         if (imageBytes != null) {
             Bitmap bitmap = BitmapFactory.decodeByteArray(imageBytes, 0, imageBytes.length);
             profileImageView.setImageBitmap(bitmap);
+
+            // Save the image to SharedPreferences
+            saveImageToSharedPreferences(bitmap);
         }
 
         // Set initial session value
@@ -88,6 +95,19 @@ public class profpayment extends AppCompatActivity {
             }
         });
     }
+
+    private void saveImageToSharedPreferences(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] byteArray = byteArrayOutputStream.toByteArray();
+        String encodedImage = Base64.encodeToString(byteArray, Base64.DEFAULT);
+
+        SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("PROFILE_IMAGE", encodedImage);
+        editor.apply();
+    }
+
     private void addSession(int sessionNumber) {
         TextView newSession = new TextView(this);
         newSession.setText("Session " + sessionNumber + ": ksh 0.00");
@@ -131,9 +151,5 @@ public class profpayment extends AppCompatActivity {
 
             lastSession.postDelayed(() -> dynamicSessionsLayout.removeViewAt(dynamicSessionsLayout.getChildCount() - 1), 500);
         }
-
-
-
     }
-
 }

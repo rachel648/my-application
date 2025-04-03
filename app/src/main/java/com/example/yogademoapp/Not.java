@@ -4,9 +4,12 @@ import android.Manifest;
 import android.app.*;
 import android.content.*;
 import android.content.pm.*;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.*;
 import android.provider.CalendarContract;
+import android.util.Base64;
 import android.view.View;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,6 +27,7 @@ public class Not extends AppCompatActivity {
     private ArrayList<Calendar> notificationTimes = new ArrayList<>();
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
     private static final int MAX_NOTIFICATIONS = 3;
+    private ImageView profileImageView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +37,7 @@ public class Not extends AppCompatActivity {
         initViews();
         requestPermissions();
         setupListeners();
+        loadProfileImage();
     }
 
     private void initViews() {
@@ -41,7 +46,19 @@ public class Not extends AppCompatActivity {
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
         settingsCard = findViewById(R.id.SettingsCard);
         paymentCard = findViewById(R.id.PaymentCard);
+        profileImageView = findViewById(R.id.imageView); // Make sure you have an ImageView with this ID in your layout
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
+    }
+
+    private void loadProfileImage() {
+        SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
+        String encodedImage = sharedPreferences.getString("PROFILE_IMAGE", null);
+
+        if (encodedImage != null) {
+            byte[] byteArray = Base64.decode(encodedImage, Base64.DEFAULT);
+            Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);
+            profileImageView.setImageBitmap(bitmap);
+        }
     }
 
     private void requestPermissions() {
