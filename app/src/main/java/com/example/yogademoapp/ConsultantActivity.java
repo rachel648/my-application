@@ -107,17 +107,33 @@ public class ConsultantActivity extends AppCompatActivity {
                         for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                             Consultant consultant = dataSnapshot.getValue(Consultant.class);
                             if (consultant != null) {
+                                // Generate random experience between 1 and 15 years
+                                int experienceYears = 1 + (int)(Math.random() * 15);
+                                String experience = experienceYears + "yrs";
+
+                                // Calculate fee based on experience (minimum 2000)
+                                int baseFee = 2000 + (experienceYears * 300);
+                                int feeVariation = (int)(baseFee * 0.2 * (Math.random() > 0.5 ? 1 : -1));
+                                int fee = Math.max(baseFee + feeVariation, 2000);
+                                String fees = String.valueOf(fee);
+
+                                // Generate random phone number (Kenyan format)
+                                String phoneNo = "07" + (10000000 + (int)(Math.random() * 90000000));
+
+                                // Generate random gym number between 1-20
+                                String gymNumber = "ConsultantNo: " + (1 + (int)(Math.random() * 20));
+
                                 int rating = consultant.getRating();
                                 String ratingString = generateStars(rating);
 
                                 User user = new User(
                                         consultant.name,
                                         ratingString,
-                                        "\n" + "\n" + "\n" + "\n" + "12:00",
-                                        consultant.phoneNo,
-                                        consultant.gymNumber,
-                                        consultant.experience,
-                                        consultant.fees,
+                                        generateRandomAvailability(),
+                                        phoneNo,
+                                        gymNumber,
+                                        experience,
+                                        fees,
                                         consultant.imageId,
                                         rating,
                                         consultant.getImageUrl()
@@ -141,6 +157,13 @@ public class ConsultantActivity extends AppCompatActivity {
                         loadHardcodedData();
                     }
                 });
+    }
+
+    private String generateRandomAvailability() {
+        int hour = 8 + (int)(Math.random() * 10); // 8am-6pm
+        int minute = (int)(Math.random() * 12) * 5; // 0,5,10...55
+        String period = hour < 12 ? "am" : "pm";
+        return hour + ":" + (minute < 10 ? "0" + minute : minute) + " " + period;
     }
 
     private int findAvailableSession(SharedPreferences sharedPreferences) {
@@ -174,18 +197,37 @@ public class ConsultantActivity extends AppCompatActivity {
     }
 
     private void loadHardcodedData() {
-        int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2, R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
-        String[] name = {"Chris\nBones", "Craig\nOmolo", "Mike\nKimathi", "Ray\nMellissa", "Shelmith Nelina", "Zaga llo", "Caroline Odinga", "Dennis chipchip", "Agnes\nBenson"};
-        String[] lastMessage = {"Hi", "Let's talk", "How can I help you?", "Hey", "ssup", "Confidential", "Cool", "Need help?", "Friendly"};
-        String[] lastMsgTime = {"5:00 pm", "3:00 pm", "7:00 am", "2:00 pm", "12:00 noon", "8:30 pm", "10:00 pm", "11:00 am", "8:00 am"};
-        String[] phoneNo = {"0712671173", "0112671077", "0782641193", "0799671773", "0782677173", "0767671183", "0782671479", "0752671178", "0110677170"};
-        String[] experience = {"10yrs", "7yrs", "7yrs", "6yrs", "5yrs", "3yrs", "2yrs", "1yrs", "3yrs"};
-        String[] fees = {"7000", "6000", "6000", "5500", "5000", "4000", "4700", "3500", "2000"};
-        String[] gymNumber = {"ConsultantNo: 07", "ConsultantNo: 03", "ConsultantNo: 10", "ConsultantNo: 06", "ConsultantNo: 05", "ConsultantNo: 16", "ConsultantNo: 3", "ConsultantNo: 14", "ConsultantNo: 14"};
-        int[] rating = {5, 4, 3, 2, 1, 1, 3, 4, 5};
+        int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2,
+                R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
+        String[] name = {"Chris\nBones", "Craig\nOmolo", "Mike\nKimathi", "Ray\nMellissa",
+                "Shelmith Nelina", "Zaga llo", "Caroline Odinga", "Dennis chipchip", "Agnes\nBenson"};
 
+        // Generate random data for hardcoded consultants
         for (int i = 0; i < imageId.length; i++) {
-            User user = new User(name[i], lastMessage[i], lastMsgTime[i], phoneNo[i], gymNumber[i], experience[i], fees[i], imageId[i], rating[i]);
+            int experienceYears = 1 + (int)(Math.random() * 15);
+            String experience = experienceYears + "yrs";
+
+            int baseFee = 2000 + (experienceYears * 300);
+            int feeVariation = (int)(baseFee * 0.2 * (Math.random() > 0.5 ? 1 : -1));
+            int fee = Math.max(baseFee + feeVariation, 2000);
+            String fees = String.valueOf(fee);
+
+            String phoneNo = "07" + (10000000 + (int)(Math.random() * 90000000));
+            String gymNumber = "ConsultantNo: " + (1 + (int)(Math.random() * 20));
+            int rating = 1 + (int)(Math.random() * 5);
+
+            User user = new User(
+                    name[i],
+                    generateStars(rating),
+                    generateRandomAvailability(),
+                    phoneNo,
+                    gymNumber,
+                    experience,
+                    fees,
+                    imageId[i],
+                    rating,
+                    "" // Empty image URL for hardcoded data
+            );
             userArrayList.add(user);
         }
 

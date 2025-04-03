@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.example.yogademoapp.databinding.ActivityUserBinding;
 
 import java.text.SimpleDateFormat;
@@ -44,13 +45,23 @@ public class UserActivity extends AppCompatActivity {
             String fees = intent.getStringExtra("fees");
             String gymNumber = intent.getStringExtra("GymNumber");
             int imageId = intent.getIntExtra("imageid", R.drawable.babe3);
+            String imageUrl = intent.getStringExtra("imageUrl");
 
-            binding.nameProfile.setText(name);
-            binding.phoneProfile.setText(phone);
-            binding.Experience.setText(experience);
-            binding.fees.setText(fees);
+            binding.nameProfile.setText("Name: " + name);
+            binding.phoneProfile.setText("Phone: " + phone);
+            binding.Experience.setText("Experience: " + experience);
+            binding.fees.setText("Fees: KSh " + fees);
             binding.GymNumber.setText(gymNumber);
-            binding.ProfileImage.setImageResource(imageId);
+
+            // Load image - prefer URL if available, fallback to resource ID
+            if (imageUrl != null && !imageUrl.isEmpty()) {
+                Glide.with(this)
+                        .load(imageUrl)
+                        .placeholder(R.drawable.babe3)
+                        .into(binding.ProfileImage);
+            } else {
+                binding.ProfileImage.setImageResource(imageId);
+            }
         }
 
         buttonBooking = findViewById(R.id.buttonBooking);
@@ -81,7 +92,7 @@ public class UserActivity extends AppCompatActivity {
 
         int sessionIndex = sharedPreferences.getInt("lastBookedSession", -1);
         if (sessionIndex != -1) {
-            String fees = binding.fees.getText().toString();
+            String fees = binding.fees.getText().toString().replace("Fees: KSh ", "");
             String consultant = getIntent().getStringExtra("name");
             editor.putString("session" + sessionIndex + "Fee", fees);
             editor.putString("session" + sessionIndex + "Consultant", consultant);
@@ -98,7 +109,7 @@ public class UserActivity extends AppCompatActivity {
                 .setMessage("Your appointment has been scheduled for:\n" + bookingTime)
                 .setPositiveButton("Proceed to Payment", (dialog, which) -> {
                     Intent intent = new Intent(UserActivity.this, Payment.class);
-                    intent.putExtra("TrainFees", binding.fees.getText().toString());
+                    intent.putExtra("TrainFees", binding.fees.getText().toString().replace("Fees: KSh ", ""));
                     startActivity(intent);
                     finish();
                 })

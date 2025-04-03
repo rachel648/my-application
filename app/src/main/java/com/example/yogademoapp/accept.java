@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.bumptech.glide.Glide;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -45,6 +46,20 @@ public class accept extends AppCompatActivity {
         String consultantEmail = getIntent().getStringExtra("consultantEmail");
         if (consultantEmail == null) consultantEmail = "johndoe@gmail.com";
 
+        // Retrieve image data from intent
+        int imageId = getIntent().getIntExtra("imageid", R.drawable.babe3);
+        String imageUrl = getIntent().getStringExtra("imageUrl");
+
+        // Load the consultant image
+        if (imageUrl != null && !imageUrl.isEmpty()) {
+            Glide.with(this)
+                    .load(imageUrl)
+                    .placeholder(R.drawable.babe3)
+                    .into(profileImageView);
+        } else {
+            profileImageView.setImageResource(imageId);
+        }
+
         // Retrieve patient email from SharedPreferences
         SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         patientEmail = sharedPreferences.getString("patientEmail", "Not Available");
@@ -72,9 +87,6 @@ public class accept extends AppCompatActivity {
         scheduleTextView.setText("Scheduled Time: " + scheduledTime);
         dayTextView.setText("Day: " + dayOfWeek);
         feesTextView.setText("Fees Paid: " + trainFees);
-
-        // Load stored image if available
-        loadImageFromFirebase();
 
         // ImageView Click Listener for picking image
         profileImageView.setOnClickListener(v -> {
@@ -116,17 +128,9 @@ public class accept extends AppCompatActivity {
             if (snapshot.exists()) {
                 String imageUrl = snapshot.getValue(String.class);
                 if (imageUrl != null && !imageUrl.isEmpty()) {
-                    Toast.makeText(accept.this, "Loading Image: " + imageUrl, Toast.LENGTH_LONG).show();
                     Picasso.get().load(imageUrl).into(profileImageView);
-                } else {
-                    Toast.makeText(accept.this, "Image URL is empty", Toast.LENGTH_LONG).show();
                 }
-            } else {
-                Toast.makeText(accept.this, "No image found in database", Toast.LENGTH_LONG).show();
             }
-        }).addOnFailureListener(e -> {
-            Toast.makeText(accept.this, "Failed to load image: " + e.getMessage(), Toast.LENGTH_LONG).show();
         });
     }
-
 }
