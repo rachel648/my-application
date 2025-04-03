@@ -1,5 +1,6 @@
 package com.example.yogademoapp;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -41,6 +42,11 @@ public class profpayment extends AppCompatActivity {
         usernameTextView = findViewById(R.id.textviewUsername);
         profileImageView = findViewById(R.id.imageView);
 
+        // Get train fees from SharedPreferences
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
+        String trainFees = sharedPreferences.getString("trainFees", "0.00");
+        sessionOnePlusSign.setText("Session One: ksh " + trainFees);
+
         CardView NotificationsCardView = findViewById(R.id.notifications);
         NotificationsCardView.setOnClickListener(v -> {
             Intent intent = new Intent(profpayment.this, Not.class);
@@ -79,9 +85,6 @@ public class profpayment extends AppCompatActivity {
             // Save the image to SharedPreferences
             saveImageToSharedPreferences(bitmap);
         }
-
-        // Set initial session value
-        sessionOnePlusSign.setText("Session One: ksh 0.00");
 
         // Define the scale animation
         final ScaleAnimation scaleAnimation = new ScaleAnimation(

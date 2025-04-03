@@ -58,6 +58,10 @@ public class UserActivity extends AppCompatActivity {
             binding.fees.setText(fees);
             binding.GymNumber.setText(gymNumber);
             binding.ProfileImage.setImageResource(imageId);
+
+            // Store the fees in SharedPreferences
+            editor.putString("trainFees", fees);
+            editor.apply();
         }
 
         buttonBooking = findViewById(R.id.buttonBooking);
@@ -95,16 +99,12 @@ public class UserActivity extends AppCompatActivity {
         String dateTimeString = dateFormat.format(date.getTime());
         String dayOfWeek = dayFormat.format(date.getTime());
 
-        String trainFees = binding.fees.getText().toString(); // Get train fees
-
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("scheduledTime", dateTimeString);
         editor.putString("dayOfWeek", dayOfWeek);
-        editor.putString("trainFees", trainFees);
         editor.apply();
 
         Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
-        bookAppointmentIntent.putExtra("TrainFees", trainFees);
         startActivity(bookAppointmentIntent);
     }
 }
