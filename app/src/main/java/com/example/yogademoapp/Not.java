@@ -1,21 +1,38 @@
 package com.example.yogademoapp;
 
 import android.Manifest;
-import android.app.*;
-import android.content.*;
-import android.content.pm.*;
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.*;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.*;
-import java.util.*;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Not extends AppCompatActivity {
 
@@ -24,11 +41,13 @@ public class Not extends AppCompatActivity {
     private LinearLayout notificationTimesContainer;
     private CardView settingsCard, paymentCard;
     private ArrayList<Calendar> notificationTimes = new ArrayList<>();
+    private ArrayList<Long> notificationIds = new ArrayList<>();
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
     private static final int MAX_NOTIFICATIONS = 3;
     private ImageView profileImageView;
     private TextView emailTextView, nameTextView;
     private AlarmManager alarmManager;
+    private long lastTapTime = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +63,7 @@ public class Not extends AppCompatActivity {
     }
 
     private void initViews() {
-        switchNotifications = findViewById(R.id.switchNotifications);
+        switchNotifications = findViewById(com.example.yogademoapp.R.id.switchNotifications);
         buttonSetTime = findViewById(R.id.buttonSetTime);
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
         settingsCard = findViewById(R.id.SettingsCard);
@@ -131,6 +150,9 @@ public class Not extends AppCompatActivity {
                 .setContentText("You'll receive notifications at your scheduled times")
                 .setPriority(NotificationCompat.PRIORITY_DEFAULT);
 
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
         NotificationManagerCompat.from(this).notify(0, builder.build());
     }
 
@@ -166,7 +188,7 @@ public class Not extends AppCompatActivity {
         }
 
         long triggerTime = notificationTime.getTimeInMillis();
-        saveNotification(triggerTime);
+        long notificationId = saveNotification(triggerTime);
 
         Intent intent = new Intent(this, NotificationReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(
@@ -185,6 +207,7 @@ public class Not extends AppCompatActivity {
         }
 
         notificationTimes.add(notificationTime);
+        notificationIds.add(notificationId);
         updateNotificationTimesDisplay();
         Toast.makeText(this, "Reminder set for " + formatTime(notificationTime), Toast.LENGTH_LONG).show();
     }
@@ -197,41 +220,47 @@ public class Not extends AppCompatActivity {
                 calendar.get(Calendar.MINUTE));
     }
 
-    private void saveNotification(long timeInMillis) {
+    private long saveNotification(long timeInMillis) {
         SharedPreferences prefs = getSharedPreferences("NotificationPrefs", MODE_PRIVATE);
-        int id = prefs.getInt("next_id", 0);
+        long id = System.currentTimeMillis(); // Using timestamp as unique ID
 
         prefs.edit()
                 .putLong("notification_" + id, timeInMillis)
-                .putInt("next_id", id + 1)
                 .apply();
+
+        return id;
     }
 
     private void restoreScheduledNotifications() {
         SharedPreferences prefs = getSharedPreferences("NotificationPrefs", MODE_PRIVATE);
-        int count = prefs.getInt("next_id", 0);
 
-        for (int i = 0; i < count; i++) {
-            long time = prefs.getLong("notification_" + i, 0);
-            if (time > System.currentTimeMillis()) {
-                Calendar cal = Calendar.getInstance();
-                cal.setTimeInMillis(time);
-                notificationTimes.add(cal);
+        // Get all stored notifications
+        for (String key : prefs.getAll().keySet()) {
+            if (key.startsWith("notification_")) {
+                long id = Long.parseLong(key.substring("notification_".length()));
+                long time = prefs.getLong(key, 0);
 
-                Intent intent = new Intent(this, NotificationReceiver.class);
-                PendingIntent pendingIntent = PendingIntent.getBroadcast(
-                        this,
-                        (int) time,
-                        intent,
-                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
-                );
+                if (time > System.currentTimeMillis()) {
+                    Calendar cal = Calendar.getInstance();
+                    cal.setTimeInMillis(time);
+                    notificationTimes.add(cal);
+                    notificationIds.add(id);
 
-                if (alarmManager != null) {
-                    alarmManager.setExactAndAllowWhileIdle(
-                            AlarmManager.RTC_WAKEUP,
-                            time,
-                            pendingIntent
+                    Intent intent = new Intent(this, NotificationReceiver.class);
+                    PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                            this,
+                            (int) time,
+                            intent,
+                            PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
                     );
+
+                    if (alarmManager != null) {
+                        alarmManager.setExactAndAllowWhileIdle(
+                                AlarmManager.RTC_WAKEUP,
+                                time,
+                                pendingIntent
+                        );
+                    }
                 }
             }
         }
@@ -241,14 +270,55 @@ public class Not extends AppCompatActivity {
     private void updateNotificationTimesDisplay() {
         notificationTimesContainer.removeAllViews();
 
-        for (Calendar time : notificationTimes) {
+        for (int i = 0; i < notificationTimes.size(); i++) {
             TextView tv = new TextView(this);
-            tv.setText(formatTime(time));
+            tv.setText(formatTime(notificationTimes.get(i)));
             tv.setTextSize(16);
             tv.setTextColor(Color.BLACK);
             tv.setPadding(0, 8, 0, 8);
+
+            final int position = i;
+            tv.setOnClickListener(v -> {
+                long currentTime = System.currentTimeMillis();
+                if (currentTime - lastTapTime < 300) { // Double tap detected (within 300ms)
+                    removeNotification(position);
+                }
+                lastTapTime = currentTime;
+            });
+
             notificationTimesContainer.addView(tv);
         }
+    }
+
+    private void removeNotification(int position) {
+        if (position < 0 || position >= notificationTimes.size()) return;
+
+        // Cancel the alarm
+        long triggerTime = notificationTimes.get(position).getTimeInMillis();
+        Intent intent = new Intent(this, NotificationReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+                this,
+                (int) triggerTime,
+                intent,
+                PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE
+        );
+
+        if (alarmManager != null) {
+            alarmManager.cancel(pendingIntent);
+        }
+
+        // Remove from SharedPreferences
+        long id = notificationIds.get(position);
+        SharedPreferences prefs = getSharedPreferences("NotificationPrefs", MODE_PRIVATE);
+        prefs.edit().remove("notification_" + id).apply();
+
+        // Remove from lists
+        notificationTimes.remove(position);
+        notificationIds.remove(position);
+
+        // Update UI
+        updateNotificationTimesDisplay();
+        Toast.makeText(this, "Reminder removed", Toast.LENGTH_SHORT).show();
     }
 
     @Override

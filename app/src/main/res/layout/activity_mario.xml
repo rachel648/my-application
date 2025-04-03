@@ -1,209 +1,218 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
-    android:orientation="vertical"
-    android:background="@color/light_green"
-    android:id="@+id/scrollView">
+    android:background="@color/light_green">
 
-    <LinearLayout
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:padding="16dp">
 
-        <TextView
-            android:id="@+id/trackYourSessionsText"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Track Your Sessions"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:gravity="center"
-            android:paddingBottom="24dp"
-            android:textColor="@color/black"/>
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="16dp" />
+            <TextView
+                android:id="@+id/trackYourSessionsText"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Track Your Sessions"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:paddingBottom="24dp"
+                android:textColor="@color/black"/>
 
-        <TextView
-            android:id="@+id/guidedText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Guided Sessions: 0 / 5"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/black"/>
-
-        <ProgressBar
-            android:id="@+id/guidedProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="0"
-            android:max="100"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginBottom="8dp"
-            android:progressTint="#0E92FF"
-            android:progressBackgroundTint="#616161"/>
-
-        <Button
-            android:id="@+id/guidedButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Increment Guided"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#0E92FF"/>
-
-        <!-- Personal Sessions Section -->
-        <TextView
-            android:id="@+id/personalText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Personal Sessions: 0 / 5"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/black"/>
-
-        <ProgressBar
-            android:id="@+id/personalProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="0"
-            android:max="100"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginBottom="8dp"
-            android:progressTint="#388E3C"
-            android:progressBackgroundTint="#616161"/>
-
-        <Button
-            android:id="@+id/personalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Increment Personal"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#388E3C"/>
-
-        <TextView
-            android:id="@+id/journalText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Journal Readings: 0 / 5"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/black"/>
-
-        <ProgressBar
-            android:id="@+id/journalProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="0"
-            android:max="100"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginBottom="8dp"
-            android:progressTint="#F57C00"
-            android:progressBackgroundTint="#616161"/>
-
-        <Button
-            android:id="@+id/journalButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Increment Journal"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#F57C00"/>
-
-        <!-- Meditation Sessions Section -->
-        <TextView
-            android:id="@+id/meditationText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Meditation Sessions: 0 / 5"
-            android:textSize="18sp"
-            android:layout_marginBottom="8dp"
-            android:textColor="@color/black"/>
-
-        <ProgressBar
-            android:id="@+id/meditationProgressBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:progress="0"
-            android:max="100"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_marginBottom="8dp"
-            android:progressTint="#D100FA"
-            android:progressBackgroundTint="#616161"/>
-
-        <Button
-            android:id="@+id/meditationButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Increment Meditation"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="#D100FA"/>
-
-        <TextView
-            android:id="@+id/totalProgressText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="Total Progress: 0%"
-            android:textSize="24sp"
-            android:textStyle="bold"
-            android:paddingTop="20dp"
-            android:paddingBottom="16dp"
-            android:textColor="@color/black"/>
-
-        <!-- New Mood Selection Section with Horizontal ScrollView -->
-        <ProgressBar
-            android:id="@+id/totalProgressBar"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp"
-            android:max="100"
-            android:progress="0"
-            android:progressBackgroundTint="#616161"
-            android:progressTint="#008AFF"
-            android:visibility="visible" />
-
-        <TextView
-            android:id="@+id/moodTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/select_your_mood_for_today"
-            android:textSize="20sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp"
-            android:layout_marginTop="20dp"
-            android:visibility="visible"
-            android:textColor="@color/black"/>
-
-
-        <!-- HorizontalScrollView added here -->
-        <HorizontalScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="20dp">
-
-            <LinearLayout
-                android:id="@+id/moodLayout"
+            <!-- Guided Sessions Section -->
+            <TextView
+                android:id="@+id/guidedText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:gravity="center"/>
+                android:text="Guided Sessions: 0 / 5"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
 
-        </HorizontalScrollView>
+            <ProgressBar
+                android:id="@+id/guidedProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                android:max="100"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginBottom="8dp"
+                android:progressTint="#0E92FF"
+                android:progressBackgroundTint="#616161"/>
 
-        <TextView
-            android:id="@+id/suggestionTextView"
-            android:layout_width="match_parent"
-            android:layout_height="102dp"
-            android:text="@string/suggestion"
-            android:textSize="16sp"
-            android:textStyle="italic"
-            android:visibility="visible"
-            android:textColor="@color/black"/>
+            <Button
+                android:id="@+id/guidedButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment Guided"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#0E92FF"/>
 
-    </LinearLayout>
+            <!-- Personal Sessions Section -->
+            <TextView
+                android:id="@+id/personalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Personal Sessions: 0 / 5"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
 
-</ScrollView>
+            <ProgressBar
+                android:id="@+id/personalProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                android:max="100"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginBottom="8dp"
+                android:progressTint="#388E3C"
+                android:progressBackgroundTint="#616161"/>
+
+            <Button
+                android:id="@+id/personalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment Personal"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#388E3C"/>
+
+            <!-- Journal Section -->
+            <TextView
+                android:id="@+id/journalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Journal Readings: 0 / 5"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
+
+            <ProgressBar
+                android:id="@+id/journalProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                android:max="100"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginBottom="8dp"
+                android:progressTint="#F57C00"
+                android:progressBackgroundTint="#616161"/>
+
+            <Button
+                android:id="@+id/journalButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment Journal"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#F57C00"/>
+
+            <!-- Meditation Section -->
+            <TextView
+                android:id="@+id/meditationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Meditation Sessions: 0 / 5"
+                android:textSize="18sp"
+                android:layout_marginBottom="8dp"
+                android:textColor="@color/black"/>
+
+            <ProgressBar
+                android:id="@+id/meditationProgressBar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:progress="0"
+                android:max="100"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_marginBottom="8dp"
+                android:progressTint="#D100FA"
+                android:progressBackgroundTint="#616161"/>
+
+            <Button
+                android:id="@+id/meditationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Increment Meditation"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="#D100FA"/>
+
+            <!-- Total Progress Section -->
+            <TextView
+                android:id="@+id/totalProgressText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="Total Progress: 0%"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:paddingTop="20dp"
+                android:paddingBottom="16dp"
+                android:textColor="@color/black"/>
+
+            <ProgressBar
+                android:id="@+id/totalProgressBar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:max="100"
+                android:progress="0"
+                android:progressBackgroundTint="#616161"
+                android:progressTint="#008AFF"/>
+
+            <!-- Mood Section -->
+            <TextView
+                android:id="@+id/moodTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Select your mood for today"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="20dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"/>
+
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:id="@+id/moodLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center"/>
+            </HorizontalScrollView>
+
+            <TextView
+                android:id="@+id/suggestionTextView"
+                android:layout_width="match_parent"
+                android:layout_height="102dp"
+                android:text="Suggestion will appear here"
+                android:textSize="16sp"
+                android:textStyle="italic"
+                android:textColor="@color/black"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Floating Refresh Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/refreshFab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:backgroundTint="#0E92FF"
+        app:tint="@android:color/white"
+        app:elevation="8dp"
+        app:borderWidth="0dp"/>
+</RelativeLayout>
