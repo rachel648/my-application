@@ -46,7 +46,7 @@ public class accept extends AppCompatActivity {
         if (consultantEmail == null) consultantEmail = "johndoe@gmail.com";
 
         // Retrieve image data from intent
-        int imageId = getIntent().getIntExtra("imageid", R.drawable.man1);
+        int imageId = getIntent().getIntExtra("imageid", R.drawable.man3);
         String imageUrl = getIntent().getStringExtra("imageUrl");
 
         // Load the consultant image

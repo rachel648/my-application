@@ -163,7 +163,8 @@ public class ConsultantActivity extends AppCompatActivity {
         int hour = 8 + (int)(Math.random() * 10); // 8am-6pm
         int minute = (int)(Math.random() * 12) * 5; // 0,5,10...55
         String period = hour < 12 ? "am" : "pm";
-        return hour + ":" + (minute < 10 ? "0" + minute : minute) + " " + period;
+        return "\n"+"\n" +"\n"+ hour + ":" + (minute < 10 ? "0" + minute : minute) + " " + period;
+
     }
 
     private int findAvailableSession(SharedPreferences sharedPreferences) {
