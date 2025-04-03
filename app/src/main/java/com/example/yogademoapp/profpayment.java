@@ -88,7 +88,6 @@ public class profpayment extends AppCompatActivity {
             }
         });
     }
-
     private void addSession(int sessionNumber) {
         TextView newSession = new TextView(this);
         newSession.setText("Session " + sessionNumber + ": ksh 0.00");
