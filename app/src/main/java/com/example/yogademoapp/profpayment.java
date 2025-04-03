@@ -1,9 +1,10 @@
 package com.example.yogademoapp;
 
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.Gravity;
@@ -14,12 +15,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import java.io.ByteArrayOutputStream;
 
 public class profpayment extends AppCompatActivity {
 
-    TextView sessionOnePlusSign, emailTextView;
+    TextView sessionOnePlusSign, emailTextView, usernameTextView;
     ImageView profileImageView;
     LinearLayout dynamicSessionsLayout;
     TextView addSessionPlusSign, addSessionMinusSign;
@@ -36,12 +38,34 @@ public class profpayment extends AppCompatActivity {
         addSessionPlusSign = findViewById(R.id.addSessionPlusSign);
         addSessionMinusSign = findViewById(R.id.addSessionMinusSign);
         emailTextView = findViewById(R.id.textviewemail);
+        usernameTextView = findViewById(R.id.textviewUsername);
         profileImageView = findViewById(R.id.imageView);
+
+        CardView NotificationsCardView = findViewById(R.id.notifications);
+        NotificationsCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(profpayment.this, Not.class);
+            startActivity(intent);
+        });
+
+        CardView settingsCardView = findViewById(R.id.setting);
+        settingsCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(profpayment.this, GreenCard.class);
+            startActivity(intent);
+        });
 
         // Retrieve Email
         String email = getIntent().getStringExtra("EMAIL");
         if (email != null) {
             emailTextView.setText(email);
+
+            // Extract username from email (part before @)
+            String username = email.split("@")[0];
+            if (username != null && !username.isEmpty()) {
+                // Capitalize first letter
+                username = username.substring(0, 1).toUpperCase() + username.substring(1);
+                usernameTextView.setText(username);
+            }
+
             // Save email to SharedPreferences
             saveEmailToSharedPreferences(email);
         }

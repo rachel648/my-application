@@ -52,6 +52,7 @@ public class Not extends AppCompatActivity {
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
     }
 
+
     private void loadProfileData() {
         SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
 
@@ -186,5 +187,18 @@ public class Not extends AppCompatActivity {
             timeView.setTextColor(Color.BLACK);
             notificationTimesContainer.addView(timeView);
         }
+
+
+        CardView profpaymentCardView = findViewById(R.id.profpayment);
+        profpaymentCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(Not.this, GreenCard.class);
+            startActivity(intent);
+        });
+
+        CardView settingsCardView = findViewById(R.id.setting);
+        settingsCardView.setOnClickListener(v -> {
+            Intent intent = new Intent(Not.this, GreenCard.class);
+            startActivity(intent);
+        });
     }
 }

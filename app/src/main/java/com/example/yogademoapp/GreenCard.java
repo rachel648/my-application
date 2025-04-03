@@ -81,8 +81,9 @@ public class GreenCard extends AppCompatActivity {
         EditText newPasswordEditText = findViewById(R.id.newPassword);
         Button changePasswordButton = findViewById(R.id.changePasswordButton);
         TextView emailTextView = findViewById(R.id.textviewemail);
+        TextView usernameTextView = findViewById(R.id.textviewUsername);
 
-        // Store the email in SharedPreferences
+        // Store the email in SharedPreferences and update username
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
             if (userEmail != null) {
@@ -90,7 +91,12 @@ public class GreenCard extends AppCompatActivity {
                 editor.putString("userEmail", userEmail); // Save email
                 editor.apply();
                 emailTextView.setText(userEmail); // Display the email
-                Toast.makeText(this, "Email saved: " + userEmail, Toast.LENGTH_SHORT).show(); // Debugging
+
+                // Update username TextView with the part before @
+                String username = getUsernameFromEmail(userEmail);
+                usernameTextView.setText(username);
+
+                Toast.makeText(this, "Email saved: " + userEmail, Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -118,7 +124,7 @@ public class GreenCard extends AppCompatActivity {
         // Navigate to the notifications page
         CardView settingsCardView = findViewById(R.id.notifications);
         settingsCardView.setOnClickListener(v -> {
-            Intent intent = new Intent(GreenCard.this, Not.class);
+            Intent intent = new Intent(GreenCard.this,Not.class);
 
             // Retrieve email from TextView
             String email = emailTextView.getText().toString();
@@ -138,7 +144,6 @@ public class GreenCard extends AppCompatActivity {
 
             startActivity(intent);
         });
-
 
         CardView settingprofpayment = findViewById(R.id.profpayment);
         settingprofpayment.setOnClickListener(v -> {
@@ -162,6 +167,14 @@ public class GreenCard extends AppCompatActivity {
 
             startActivity(intent);
         });
+    }
+
+    // Helper method to extract username from email
+    private String getUsernameFromEmail(String email) {
+        if (email == null || !email.contains("@")) {
+            return "John Doe"; // Default name if email is invalid
+        }
+        return email.substring(0, email.indexOf("@"));
     }
 
     private void openGallery() {
@@ -348,4 +361,3 @@ public class GreenCard extends AppCompatActivity {
         }
     }
 }
- //
