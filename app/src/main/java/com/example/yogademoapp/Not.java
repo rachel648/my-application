@@ -28,6 +28,7 @@ public class Not extends AppCompatActivity {
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
     private static final int MAX_NOTIFICATIONS = 3;
     private ImageView profileImageView;
+    private TextView emailTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class Not extends AppCompatActivity {
         initViews();
         requestPermissions();
         setupListeners();
-        loadProfileImage();
+        loadProfileData();
     }
 
     private void initViews() {
@@ -46,14 +47,22 @@ public class Not extends AppCompatActivity {
         notificationTimesContainer = findViewById(R.id.notificationTimesContainer);
         settingsCard = findViewById(R.id.SettingsCard);
         paymentCard = findViewById(R.id.PaymentCard);
-        profileImageView = findViewById(R.id.imageView); // Make sure you have an ImageView with this ID in your layout
+        profileImageView = findViewById(R.id.imageView);
+        emailTextView = findViewById(R.id.textviewemail); // Make sure you have a TextView with this ID in your layout
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
     }
 
-    private void loadProfileImage() {
+    private void loadProfileData() {
         SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
-        String encodedImage = sharedPreferences.getString("PROFILE_IMAGE", null);
 
+        // Load email
+        String email = sharedPreferences.getString("EMAIL", null);
+        if (email != null) {
+            emailTextView.setText(email);
+        }
+
+        // Load profile image
+        String encodedImage = sharedPreferences.getString("PROFILE_IMAGE", null);
         if (encodedImage != null) {
             byte[] byteArray = Base64.decode(encodedImage, Base64.DEFAULT);
             Bitmap bitmap = BitmapFactory.decodeByteArray(byteArray, 0, byteArray.length);

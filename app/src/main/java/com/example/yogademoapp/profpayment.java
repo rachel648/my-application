@@ -42,6 +42,8 @@ public class profpayment extends AppCompatActivity {
         String email = getIntent().getStringExtra("EMAIL");
         if (email != null) {
             emailTextView.setText(email);
+            // Save email to SharedPreferences
+            saveEmailToSharedPreferences(email);
         }
 
         // Retrieve Profile Image
@@ -94,6 +96,13 @@ public class profpayment extends AppCompatActivity {
                 addSessionPlusSign.setEnabled(true);
             }
         });
+    }
+
+    private void saveEmailToSharedPreferences(String email) {
+        SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("EMAIL", email);
+        editor.apply();
     }
 
     private void saveImageToSharedPreferences(Bitmap bitmap) {
