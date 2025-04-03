@@ -76,7 +76,7 @@ public class Payment extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Payment.this, ChooseActivity.class);
+                Intent intent = new Intent(Payment.this, mentaldashboard.class);
                 startActivity(intent);
             }
         });

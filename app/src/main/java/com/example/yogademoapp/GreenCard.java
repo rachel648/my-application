@@ -83,6 +83,17 @@ public class GreenCard extends AppCompatActivity {
         TextView emailTextView = findViewById(R.id.textviewemail);
         TextView usernameTextView = findViewById(R.id.textviewUsername);
 
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(GreenCard.this, mentaldashboard.class);
+                startActivity(intent);
+            }
+        });
+
+
+
         // Store the email in SharedPreferences and update username
         if (currentUser != null) {
             String userEmail = currentUser.getEmail();
@@ -144,6 +155,7 @@ public class GreenCard extends AppCompatActivity {
 
             startActivity(intent);
         });
+
 
         CardView settingprofpayment = findViewById(R.id.profpayment);
         settingprofpayment.setOnClickListener(v -> {
@@ -359,5 +371,7 @@ public class GreenCard extends AppCompatActivity {
             editText.setFocusable(editable);
             editText.setClickable(editable);
         }
+
+
     }
 }

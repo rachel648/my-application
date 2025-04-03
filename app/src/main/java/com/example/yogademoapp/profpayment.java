@@ -61,7 +61,19 @@ public class profpayment extends AppCompatActivity {
      //   trainerNameTextView = findViewById(R.id.trainerNameTextView);
         totalAmountTextView = findViewById(R.id.tvPaymentAmount);
         receiptButton = findViewById(R.id.receiptButton);
+
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(profpayment.this, mentaldashboard.class);
+                startActivity(intent);
+            }
+        });
     }
+
+
+
 
     private void setupSharedPreferences() {
         SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);

@@ -10,7 +10,7 @@
         android:id="@+id/userImage"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/man1"
+        android:src="@drawable/pop"
         android:scaleType="centerCrop" />
 
     <LinearLayout

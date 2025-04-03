@@ -1,22 +1,36 @@
 package com.example.yogademoapp;
 
 import android.Manifest;
-import android.app.*;
-import android.content.*;
-import android.content.pm.*;
+import android.app.AlarmManager;
+import android.app.DatePickerDialog;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.app.TimePickerDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-import android.os.*;
-import android.provider.CalendarContract;
+import android.os.Build;
+import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
-import android.widget.*;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SwitchCompat;
 import androidx.cardview.widget.CardView;
-import androidx.core.app.*;
-import java.util.*;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.NotificationCompat;
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Not extends AppCompatActivity {
 
@@ -28,7 +42,7 @@ public class Not extends AppCompatActivity {
     private int selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute;
     private static final int MAX_NOTIFICATIONS = 3;
     private ImageView profileImageView;
-    private TextView emailTextView;
+    private TextView emailTextView, nameTextView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,10 +62,19 @@ public class Not extends AppCompatActivity {
         settingsCard = findViewById(R.id.SettingsCard);
         paymentCard = findViewById(R.id.PaymentCard);
         profileImageView = findViewById(R.id.imageView);
-        emailTextView = findViewById(R.id.textviewemail); // Make sure you have a TextView with this ID in your layout
+        emailTextView = findViewById(R.id.textviewemail);
+        nameTextView = findViewById(R.id.textView7);
         buttonSetTime.setVisibility(switchNotifications.isChecked() ? View.VISIBLE : View.GONE);
-    }
 
+        ImageView backButton = findViewById(R.id.backButton);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Not.this, mentaldashboard.class);
+                startActivity(intent);
+            }
+        });
+    }
 
     private void loadProfileData() {
         SharedPreferences sharedPreferences = getSharedPreferences("ProfilePrefs", MODE_PRIVATE);
@@ -60,6 +83,10 @@ public class Not extends AppCompatActivity {
         String email = sharedPreferences.getString("EMAIL", null);
         if (email != null) {
             emailTextView.setText(email);
+
+            // Extract name from email (part before @)
+            String name = extractNameFromEmail(email);
+            nameTextView.setText(name);
         }
 
         // Load profile image
@@ -71,11 +98,28 @@ public class Not extends AppCompatActivity {
         }
     }
 
+    // Helper method to extract name from email
+    private String extractNameFromEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            return "John Doe"; // Default name
+        }
+
+        int atIndex = email.indexOf('@');
+        if (atIndex > 0) {
+            String namePart = email.substring(0, atIndex);
+            // Capitalize first letter
+            if (!namePart.isEmpty()) {
+                return namePart.substring(0, 1).toUpperCase() +
+                        (namePart.length() > 1 ? namePart.substring(1) : "");
+            }
+        }
+        return "John Doe"; // Fallback default name
+    }
+
     private void requestPermissions() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.POST_NOTIFICATIONS}, 101);
         }
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_CALENDAR}, 102);
     }
 
     private void setupListeners() {
@@ -125,37 +169,8 @@ public class Not extends AppCompatActivity {
         new TimePickerDialog(this, (view, hourOfDay, minute) -> {
             selectedHour = hourOfDay;
             selectedMinute = minute;
-            showCalendarOptionDialog();
+            scheduleNotification();
         }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true).show();
-    }
-
-    private void showCalendarOptionDialog() {
-        new AlertDialog.Builder(this)
-                .setMessage("Set notification using Google Calendar or cancel?")
-                .setPositiveButton("Google Calendar", (dialog, which) -> openGoogleCalendar())
-                .setNegativeButton("Cancel", (dialog, which) -> {
-                    dialog.dismiss();
-                    scheduleNotification();
-                }).show();
-    }
-
-    private void openGoogleCalendar() {
-        Intent intent = new Intent(Intent.ACTION_INSERT).setData(CalendarContract.Events.CONTENT_URI)
-                .putExtra(CalendarContract.EXTRA_EVENT_BEGIN_TIME, getTimeInMillis())
-                .putExtra(CalendarContract.EXTRA_EVENT_END_TIME, getTimeInMillis() + 3600000)
-                .putExtra(CalendarContract.Events.TITLE, "Yoga Session")
-                .putExtra(CalendarContract.Events.DESCRIPTION, "Scheduled Yoga Session");
-        if (getPackageManager().queryIntentActivities(intent, PackageManager.MATCH_DEFAULT_ONLY).isEmpty()) {
-            Toast.makeText(this, "No calendar app found", Toast.LENGTH_SHORT).show();
-        } else {
-            startActivity(intent);
-        }
-    }
-
-    private long getTimeInMillis() {
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(selectedYear, selectedMonth, selectedDay, selectedHour, selectedMinute, 0);
-        return calendar.getTimeInMillis();
     }
 
     private void scheduleNotification() {
@@ -188,17 +203,20 @@ public class Not extends AppCompatActivity {
             notificationTimesContainer.addView(timeView);
         }
 
-
         CardView profpaymentCardView = findViewById(R.id.profpayment);
-        profpaymentCardView.setOnClickListener(v -> {
-            Intent intent = new Intent(Not.this, GreenCard.class);
-            startActivity(intent);
-        });
+        if (profpaymentCardView != null) {
+            profpaymentCardView.setOnClickListener(v -> {
+                Intent intent = new Intent(Not.this, GreenCard.class);
+                startActivity(intent);
+            });
+        }
 
         CardView settingsCardView = findViewById(R.id.setting);
-        settingsCardView.setOnClickListener(v -> {
-            Intent intent = new Intent(Not.this, GreenCard.class);
-            startActivity(intent);
-        });
+        if (settingsCardView != null) {
+            settingsCardView.setOnClickListener(v -> {
+                Intent intent = new Intent(Not.this, GreenCard.class);
+                startActivity(intent);
+            });
+        }
     }
 }

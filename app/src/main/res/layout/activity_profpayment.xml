@@ -70,6 +70,19 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/hello" />
 
+                <ImageView
+                    android:id="@+id/backButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_gravity="end"
+                    android:contentDescription="Back Button"
+                    android:paddingStart="315dp"
+                    android:paddingEnd="16dp"
+                    android:src="@drawable/baseline_arrow_back_ios_24"
+                    tools:layout_editor_absoluteX="35dp"
+                    tools:layout_editor_absoluteY="15dp" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!-- Card Views Section -->
