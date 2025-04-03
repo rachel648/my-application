@@ -242,7 +242,7 @@ public class mentaldashboard extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String selectedOption = secondOptions[position];
                 if ("Online sessions".equals(selectedOption) || "Physical sessions".equals(selectedOption)) {
-                    Intent intent = new Intent(mentaldashboard.this, preference.class);
+                    Intent intent = new Intent(mentaldashboard.this, ConsultantActivity.class);
                     startActivity(intent);
                 }
             }

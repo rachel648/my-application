@@ -1,15 +1,12 @@
 package com.example.yogademoapp;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.TimePicker;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -21,7 +18,6 @@ import java.util.Calendar;
 import java.util.Locale;
 
 public class UserActivity extends AppCompatActivity {
-
     Button buttonBooking;
     ActivityUserBinding binding;
     SharedPreferences sharedPreferences;
@@ -32,15 +28,12 @@ public class UserActivity extends AppCompatActivity {
         binding = ActivityUserBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        sharedPreferences = getSharedPreferences("UserProfile", Context.MODE_PRIVATE);
-
-        // Retrieve the user's email correctly
+        sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         String userEmail = sharedPreferences.getString("userEmail", "user@example.com");
         Toast.makeText(this, userEmail, Toast.LENGTH_SHORT).show();
 
-        // Store the patient's email in SharedPreferences to be accessed in accept.java
         SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString("patientEmail", userEmail); // Ensure it's stored correctly
+        editor.putString("patientEmail", userEmail);
         editor.apply();
 
         Intent intent = getIntent();
@@ -58,53 +51,58 @@ public class UserActivity extends AppCompatActivity {
             binding.fees.setText(fees);
             binding.GymNumber.setText(gymNumber);
             binding.ProfileImage.setImageResource(imageId);
-
-            // Store the fees in SharedPreferences
-            editor.putString("trainFees", fees);
-            editor.apply();
         }
 
         buttonBooking = findViewById(R.id.buttonBooking);
-        buttonBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showDateTimeDialog();
-            }
-        });
+        buttonBooking.setOnClickListener(view -> showDateTimeDialog());
     }
 
     private void showDateTimeDialog() {
         final Calendar currentDate = Calendar.getInstance();
         final Calendar date = Calendar.getInstance();
 
-        new DatePickerDialog(UserActivity.this, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-                date.set(year, monthOfYear, dayOfMonth);
-                new TimePickerDialog(UserActivity.this, new TimePickerDialog.OnTimeSetListener() {
-                    @Override
-                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-                        date.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                        date.set(Calendar.MINUTE, minute);
-                        saveAppointmentDetails(date);
-                    }
-                }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
-            }
+        new DatePickerDialog(UserActivity.this, (view, year, monthOfYear, dayOfMonth) -> {
+            date.set(year, monthOfYear, dayOfMonth);
+            new TimePickerDialog(UserActivity.this, (view1, hourOfDay, minute) -> {
+                date.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                date.set(Calendar.MINUTE, minute);
+                saveAppointmentDetails(date);
+            }, currentDate.get(Calendar.HOUR_OF_DAY), currentDate.get(Calendar.MINUTE), false).show();
         }, currentDate.get(Calendar.YEAR), currentDate.get(Calendar.MONTH), currentDate.get(Calendar.DATE)).show();
     }
 
     private void saveAppointmentDetails(Calendar date) {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.getDefault());
-        SimpleDateFormat dayFormat = new SimpleDateFormat("EEEE", Locale.getDefault());
         String dateTimeString = dateFormat.format(date.getTime());
-        String dayOfWeek = dayFormat.format(date.getTime());
 
+        SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("scheduledTime", dateTimeString);
-        editor.putString("dayOfWeek", dayOfWeek);
+
+        int sessionIndex = sharedPreferences.getInt("lastBookedSession", -1);
+        if (sessionIndex != -1) {
+            String fees = binding.fees.getText().toString();
+            String consultant = getIntent().getStringExtra("name");
+            editor.putString("session" + sessionIndex + "Fee", fees);
+            editor.putString("session" + sessionIndex + "Consultant", consultant);
+        }
+
         editor.apply();
 
-        Intent bookAppointmentIntent = new Intent(UserActivity.this, Payment.class);
-        startActivity(bookAppointmentIntent);
+        showBookingConfirmationDialog(dateTimeString);
+    }
+
+    private void showBookingConfirmationDialog(String bookingTime) {
+        new AlertDialog.Builder(this)
+                .setTitle("Booking Confirmed")
+                .setMessage("Your appointment has been scheduled for:\n" + bookingTime)
+                .setPositiveButton("Proceed to Payment", (dialog, which) -> {
+                    Intent intent = new Intent(UserActivity.this, Payment.class);
+                    intent.putExtra("TrainFees", binding.fees.getText().toString());
+                    startActivity(intent);
+                    finish();
+                })
+                .setNegativeButton("OK", (dialog, which) -> finish())
+                .show();
     }
 }

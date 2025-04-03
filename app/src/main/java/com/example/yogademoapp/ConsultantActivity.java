@@ -1,6 +1,8 @@
 package com.example.yogademoapp;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -45,12 +47,31 @@ public class ConsultantActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 User user = userArrayList.get(position);
+
+                SharedPreferences sharedPreferences = getSharedPreferences("UserProfile", MODE_PRIVATE);
+                int sessionIndex = sharedPreferences.getInt("currentSessionIndex", -1);
+
+                if (sessionIndex == -1) {
+                    sessionIndex = findAvailableSession(sharedPreferences);
+                    if (sessionIndex == -1) {
+                        showMaxSessionsDialog();
+                        return;
+                    }
+                }
+
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("updatedFee", user.getFees());
+                editor.putString("selectedConsultantName", user.getName());
+                editor.putInt("updatedSessionIndex", sessionIndex);
+                editor.putInt("lastBookedSession", sessionIndex);
+                editor.apply();
+
                 Intent i = new Intent(ConsultantActivity.this, UserActivity.class);
                 i.putExtra("name", user.getName());
                 i.putExtra("phone", user.getPhoneNo());
                 i.putExtra("Experience", user.getExperience());
                 i.putExtra("imageid", user.getImageId());
-                i.putExtra("imageUrl", user.getImageUrl()); // Add this line
+                i.putExtra("imageUrl", user.getImageUrl());
                 i.putExtra("fees", user.getFees());
                 i.putExtra("GymNumber", user.getGymNumber());
                 startActivity(i);
@@ -67,12 +88,10 @@ public class ConsultantActivity extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ConsultantActivity.this, ChooseActivity.class);
-                startActivity(intent);
+                finish();
             }
         });
 
-        // Load hardcoded data only if no data from Firebase
         if (userArrayList.isEmpty()) {
             loadHardcodedData();
         }
@@ -80,7 +99,7 @@ public class ConsultantActivity extends AppCompatActivity {
 
     private void fetchConsultantDetails() {
         FirebaseDatabase.getInstance().getReference("Consultants")
-                .orderByChild("timestamp") // Add this line to order by timestamp
+                .orderByChild("timestamp")
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -94,7 +113,6 @@ public class ConsultantActivity extends AppCompatActivity {
                                 User user = new User(
                                         consultant.name,
                                         ratingString,
-
                                         "\n" + "\n" + "\n" + "\n" + "12:00",
                                         consultant.phoneNo,
                                         consultant.gymNumber,
@@ -105,7 +123,7 @@ public class ConsultantActivity extends AppCompatActivity {
                                         consultant.getImageUrl()
                                 );
 
-                                userArrayList.add(0, user); // Add to beginning of list (newest first)
+                                userArrayList.add(0, user);
                             }
                         }
                         listAdapter.notifyDataSetChanged();
@@ -125,6 +143,24 @@ public class ConsultantActivity extends AppCompatActivity {
                 });
     }
 
+    private int findAvailableSession(SharedPreferences sharedPreferences) {
+        for (int i = 0; i < 5; i++) {
+            String fee = sharedPreferences.getString("session" + i + "Fee", i == 0 ? "5000" : "0");
+            if (fee.equals("0")) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    private void showMaxSessionsDialog() {
+        new AlertDialog.Builder(this)
+                .setTitle("Maximum Sessions Reached")
+                .setMessage("You've already booked all 5 available sessions.")
+                .setPositiveButton("OK", null)
+                .show();
+    }
+
     private String generateStars(int rating) {
         StringBuilder stars = new StringBuilder();
         for (int i = 0; i < 5; i++) {
@@ -139,21 +175,13 @@ public class ConsultantActivity extends AppCompatActivity {
 
     private void loadHardcodedData() {
         int[] imageId = {R.drawable.man1, R.drawable.man2, R.drawable.man3, R.drawable.lady2, R.drawable.lady3, R.drawable.lady4, R.drawable.babe3, R.drawable.man4, R.drawable.lady1};
-
         String[] name = {"Chris\nBones", "Craig\nOmolo", "Mike\nKimathi", "Ray\nMellissa", "Shelmith Nelina", "Zaga llo", "Caroline Odinga", "Dennis chipchip", "Agnes\nBenson"};
-
         String[] lastMessage = {"Hi", "Let's talk", "How can I help you?", "Hey", "ssup", "Confidential", "Cool", "Need help?", "Friendly"};
-
-        String[] lastMsgTime = {"5:00 pm", "3:00 pm", "7:00 am", "2:00 pm", "12:00 noon", "8:30 pm", "10:00 pm", "11:00 am", "8:00 am", "9:00 pm", "4:00 pm", "5:30 pm"};
-
+        String[] lastMsgTime = {"5:00 pm", "3:00 pm", "7:00 am", "2:00 pm", "12:00 noon", "8:30 pm", "10:00 pm", "11:00 am", "8:00 am"};
         String[] phoneNo = {"0712671173", "0112671077", "0782641193", "0799671773", "0782677173", "0767671183", "0782671479", "0752671178", "0110677170"};
-
         String[] experience = {"10yrs", "7yrs", "7yrs", "6yrs", "5yrs", "3yrs", "2yrs", "1yrs", "3yrs"};
-
         String[] fees = {"7000", "6000", "6000", "5500", "5000", "4000", "4700", "3500", "2000"};
-
         String[] gymNumber = {"ConsultantNo: 07", "ConsultantNo: 03", "ConsultantNo: 10", "ConsultantNo: 06", "ConsultantNo: 05", "ConsultantNo: 16", "ConsultantNo: 3", "ConsultantNo: 14", "ConsultantNo: 14"};
-
         int[] rating = {5, 4, 3, 2, 1, 1, 3, 4, 5};
 
         for (int i = 0; i < imageId.length; i++) {
